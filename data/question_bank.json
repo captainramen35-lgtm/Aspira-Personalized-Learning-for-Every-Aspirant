@@ -1,0 +1,52 @@
+[
+  {
+    "id": "q1",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "medium",
+    "question": "A body of mass 5kg is moving with velocity 10 m/s. What is its kinetic energy?",
+    "options": ["100 J", "250 J", "500 J", "50 J"],
+    "correct_answer": "250 J",
+    "explanation": "KE = 0.5 * m * v^2 = 0.5 * 5 * 100 = 250 J"
+  },
+  {
+    "id": "q2",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "medium",
+    "question": "The standard electrode potential of a cell is 1.10 V. What is the Gibbs free energy change (ΔG°) for a reaction involving 2 moles of electrons? (F = 96500 C/mol)",
+    "options": ["-212300 J", "-192300 J", "-96500 J", "-424600 J"],
+    "correct_answer": "-212300 J",
+    "explanation": "ΔG° = -nFE° = -(2)(96500)(1.10) = -212300 J"
+  },
+  {
+    "id": "q3",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "hard",
+    "question": "During the electrolysis of dilute H₂SO₄, which gas is evolved at the anode?",
+    "options": ["Hydrogen", "Oxygen", "Sulphur dioxide", "Ozone"],
+    "correct_answer": "Oxygen",
+    "explanation": "At the anode (oxidation), water molecules are oxidised to produce O₂ gas: 2H₂O → O₂ + 4H⁺ + 4e⁻"
+  },
+  {
+    "id": "q4",
+    "subject": "Maths",
+    "topic": "Calculus",
+    "difficulty": "easy",
+    "question": "What is the derivative of f(x) = x³ + 3x² - 5x + 7?",
+    "options": ["3x² + 6x - 5", "3x² + 6x + 7", "x² + 6x - 5", "3x³ + 6x - 5"],
+    "correct_answer": "3x² + 6x - 5",
+    "explanation": "Using the power rule: d/dx(xⁿ) = nxⁿ⁻¹. So d/dx(x³ + 3x² - 5x + 7) = 3x² + 6x - 5 + 0 = 3x² + 6x - 5"
+  },
+  {
+    "id": "q5",
+    "subject": "Maths",
+    "topic": "Calculus",
+    "difficulty": "hard",
+    "question": "Evaluate the definite integral ∫₀¹ (3x² + 2x) dx.",
+    "options": ["1", "2", "3", "4"],
+    "correct_answer": "2",
+    "explanation": "∫₀¹ (3x² + 2x) dx = [x³ + x²]₀¹ = (1 + 1) - (0 + 0) = 2"
+  }
+]

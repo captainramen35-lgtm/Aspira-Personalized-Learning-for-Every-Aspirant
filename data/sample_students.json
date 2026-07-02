@@ -1,0 +1,26 @@
+[
+  {
+    "studentId": "student_001",
+    "name": "Rahul Sharma",
+    "topics": {
+      "Mechanics": 85,
+      "Electrochemistry": 45,
+      "Thermodynamics": 60,
+      "Calculus": 70
+    },
+    "lastUpdated": "2024-01-01",
+    "totalTests": 3
+  },
+  {
+    "studentId": "student_002",
+    "name": "Priya Nair",
+    "topics": {
+      "Mechanics": 55,
+      "Electrochemistry": 78,
+      "Thermodynamics": 40,
+      "Calculus": 90
+    },
+    "lastUpdated": "2024-01-03",
+    "totalTests": 5
+  }
+]
