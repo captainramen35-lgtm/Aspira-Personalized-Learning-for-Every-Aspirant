@@ -104,25 +104,25 @@ Every student preparing for highly competitive exams like JEE/NEET has a unique 
 ## 🚀 Setup & Execution Guide
 
 ### 1. Prerequisite Environments
-Create `.env` files in both the `frontend/` and `backend/` folders.
+Create a `.env` file in both the `frontend/` and `backend/` directories. You can copy the provided `.env.example` templates to start:
 
 **Frontend (`frontend/.env`):**
 ```env
-VITE_FIREBASE_API_KEY=AIzasYBZRBfV1-Ppe3W9Ap5D7TXPmD4sefqZijM
-VITE_FIREBASE_AUTH_DOMAIN=aspira-app-f5ff4.firebaseapp.com
-VITE_FIREBASE_PROJECT_ID=aspira-app-f5ff4
-VITE_FIREBASE_STORAGE_BUCKET=aspira-app-f5ff4.firebasestorage.app
-VITE_FIREBASE_MESSAGING_SENDER_ID=812753834597
-VITE_FIREBASE_APP_ID=1:812753834597:web:de3f1e47d7d8cea194ec8c
-VITE_FIREBASE_MEASUREMENT_ID=G-V9P2Y1T6D1
+VITE_FIREBASE_API_KEY=YOUR_FIREBASE_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=YOUR_FIREBASE_AUTH_DOMAIN
+VITE_FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET=YOUR_FIREBASE_STORAGE_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID=YOUR_FIREBASE_MESSAGING_SENDER_ID
+VITE_FIREBASE_APP_ID=YOUR_FIREBASE_APP_ID
+VITE_FIREBASE_MEASUREMENT_ID=YOUR_FIREBASE_MEASUREMENT_ID
 VITE_BACKEND_URL=http://localhost:8000
 ```
 
 **Backend (`backend/.env`):**
 ```env
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
-FIREBASE_PROJECT_ID=aspira-app-f5ff4
-FIREBASE_CREDENTIALS_PATH=/absolute/path/to/aspira-app-f5ff4-firebase-adminsdk-fbsvc-e5a26763c3.json
+FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
+FIREBASE_CREDENTIALS_PATH=/absolute/path/to/firebase-adminsdk-private-key.json
 ```
 
 ---
