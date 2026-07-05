@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/.venv/
+.venv/
+
+# Environment Variables & Credentials
+.env
+frontend/.env
+backend/.env
+*.json
+!backend/data/question_bank.json
+!package.json
+!tsconfig.json
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+
+# Local IDE folders
+.vscode/
+.idea/
+.agents/
+.gemini/

@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  /* Theme Colors */
+  --color-brand-bg-dark: #0f0a08;
+  --color-brand-card-dark: #1a120e;
+  --color-brand-accent: #d97706;
+  --color-brand-accent-hover: #b45309;
+  --color-brand-border-dark: #2d1c13;
+  --color-brand-text-dark: #faf5f0;
+
+  --color-brand-bg-light: #f5ece2;
+  --color-brand-card-light: #ffffff;
+  --color-brand-text-light: #2c1b12;
+  --color-brand-muted-light: #7c6a5f;
+  --color-brand-border-light: #dfd3c3;
+  
+  --font-sans: "Outfit", "DM Sans", system-ui, -apple-system, sans-serif;
+}
+
+/* Custom global styles */
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Animation Utilities */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.15;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
+}
+
+.glowing-bg {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.4) 0%, rgba(217, 119, 6, 0) 70%);
+  filter: blur(80px);
+  z-index: 0;
+  pointer-events: none;
+  animation: pulseGlow 8s infinite ease-in-out;
+}
+
+/* Glassmorphism for Landing Cards */
+.glass-card {
+  background: rgba(26, 18, 14, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(45, 28, 19, 0.6);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c7bca1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a89a7a;
+}

@@ -1,0 +1,642 @@
+[
+  {
+    "id": "q001",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "easy",
+    "question_text": "A body is moving with uniform velocity. What is the net force acting on it?",
+    "options": ["Zero", "Non-zero constant", "Variable", "Cannot be determined"],
+    "correct_answer": "A",
+    "explanation": "By Newton's first law of motion, a body moving with constant velocity has zero acceleration, which means the net external force acting on it is zero."
+  },
+  {
+    "id": "q002",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "medium",
+    "question_text": "A projectile is launched at 45° to the horizontal with speed 20 m/s. What is the maximum range (g = 10 m/s²)?",
+    "options": ["20 m", "40 m", "10 m", "30 m"],
+    "correct_answer": "B",
+    "explanation": "Range R = (u² * sin(2θ)) / g. For θ = 45°, sin(2θ) = sin(90°) = 1. R = (20² * 1) / 10 = 400 / 10 = 40 m."
+  },
+  {
+    "id": "q003",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "hard",
+    "question_text": "A block of mass m is placed on a rough inclined plane of inclination θ. If the coefficient of static friction is μ, what is the maximum angle θ for which the block remains at rest?",
+    "options": ["θ = sin⁻¹(μ)", "θ = cos⁻¹(μ)", "θ = tan⁻¹(μ)", "θ = cot⁻¹(μ)"],
+    "correct_answer": "C",
+    "explanation": "For the block to remain at rest, the component of gravity down the incline (mg sin θ) must be less than or equal to the maximum static friction force (μ mg cos θ). Thus, sin θ / cos θ = tan θ ≤ μ, so the maximum angle is θ = tan⁻¹(μ)."
+  },
+  {
+    "id": "q004",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "easy",
+    "question_text": "What is the work done by a centripetal force acting on a particle moving in a circular path?",
+    "options": ["Positive", "Negative", "Zero", "Depends on radius"],
+    "correct_answer": "C",
+    "explanation": "Centripetal force always acts perpendicular to the instantaneous velocity (and displacement) of the particle. Since W = F * d * cos(90°), the work done is zero."
+  },
+  {
+    "id": "q005",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "medium",
+    "question_text": "Two bodies of masses 1 kg and 4 kg have equal kinetic energies. What is the ratio of their linear momenta?",
+    "options": ["1:2", "2:1", "1:4", "4:1"],
+    "correct_answer": "A",
+    "explanation": "Momemtum p = √(2mK) where K is kinetic energy. Since K is the same, p₁/p₂ = √(m₁/m₂) = √(1/4) = 1/2."
+  },
+  {
+    "id": "q006",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "hard",
+    "question_text": "A solid sphere rolls down an inclined plane of inclination θ without slipping. What is the acceleration of the sphere?",
+    "options": ["g sin θ", "5/7 g sin θ", "2/3 g sin θ", "3/5 g sin θ"],
+    "correct_answer": "B",
+    "explanation": "For a solid sphere, rotational inertia I = 2/5 mR². Acceleration a = g sin θ / (1 + I/(mR²)) = g sin θ / (1 + 2/5) = 5/7 g sin θ."
+  },
+  {
+    "id": "q007",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "easy",
+    "question_text": "The escape velocity of a body from Earth depends on:",
+    "options": ["Mass of the body", "Mass of the Earth only", "Radius of the Earth only", "Both mass and radius of the Earth"],
+    "correct_answer": "D",
+    "explanation": "Escape velocity v_e = √(2GM/R), which depends on the gravitational constant G, mass of the planet M, and radius R. It is independent of the mass of the escaping body."
+  },
+  {
+    "id": "q008",
+    "subject": "Physics",
+    "topic": "Mechanics",
+    "difficulty": "medium",
+    "question_text": "A particle executes Simple Harmonic Motion with amplitude A. At what displacement from the mean position is its kinetic energy equal to its potential energy?",
+    "options": ["A/2", "A/√2", "A/√3", "A√3/2"],
+    "correct_answer": "B",
+    "explanation": "KE = 1/2 k(A² - x²) and PE = 1/2 k x². Setting KE = PE: A² - x² = x² => 2x² = A² => x = A/√2."
+  },
+  {
+    "id": "q009",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "difficulty": "easy",
+    "question_text": "A Carnot engine operates between 500 K and 300 K. What is its efficiency?",
+    "options": ["40%", "60%", "20%", "80%"],
+    "correct_answer": "A",
+    "explanation": "Efficiency η = 1 - T_lower/T_higher = 1 - 300/500 = 1 - 0.6 = 0.4 or 40%."
+  },
+  {
+    "id": "q010",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "difficulty": "medium",
+    "question_text": "The efficiency of a heat engine can be 100% only if the sink temperature is:",
+    "options": ["0 K", "0°C", "273 K", "Negative"],
+    "correct_answer": "A",
+    "explanation": "Efficiency η = 1 - T_sink/T_source. For η = 1 (100%), T_sink must be absolute zero (0 K)."
+  },
+  {
+    "id": "q011",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "difficulty": "hard",
+    "question_text": "An ideal gas undergoes an adiabatic process. If the pressure is doubled, by what factor does the volume change? (Take adiabatic index γ = 1.5)",
+    "options": ["Decreases by factor of 2^(2/3)", "Increases by factor of 2^(2/3)", "Decreases by factor of 4", "Increases by factor of 4"],
+    "correct_answer": "A",
+    "explanation": "For adiabatic process, P V^γ = constant. P₁ V₁^γ = P₂ V₂^γ. Since P₂ = 2 P₁, we have V₁^γ = 2 V₂^γ => V₂/V₁ = (1/2)^(1/γ) = (1/2)^(1/1.5) = (1/2)^(2/3) = 1 / 2^(2/3)."
+  },
+  {
+    "id": "q012",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "difficulty": "easy",
+    "question_text": "Which of the following variables is a state function?",
+    "options": ["Heat", "Work", "Internal Energy", "None of these"],
+    "correct_answer": "C",
+    "explanation": "Internal Energy is a state function because its value depends only on the current state of the system, not on the path taken. Heat and work are path functions."
+  },
+  {
+    "id": "q013",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "difficulty": "medium",
+    "question_text": "In a thermodynamic system, the first law of thermodynamics is a statement of:",
+    "options": ["Conservation of momentum", "Conservation of mass", "Conservation of energy", "Second law of motion"],
+    "correct_answer": "C",
+    "explanation": "The first law of thermodynamics (dU = dQ - dW) is a restatement of the law of conservation of energy applied to thermodynamic systems."
+  },
+  {
+    "id": "q014",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "difficulty": "hard",
+    "question_text": "One mole of an ideal monoatomic gas is heated at constant pressure so that its temperature rises by ΔT. What is the ratio of work done by the gas to the heat supplied?",
+    "options": ["2/5", "3/5", "2/3", "1/3"],
+    "correct_answer": "A",
+    "explanation": "Work done W = R ΔT. Heat supplied Q = C_p ΔT = 5/2 R ΔT (since C_p for monoatomic gas is 5/2 R). Ratio W/Q = R ΔT / (5/2 R ΔT) = 2/5."
+  },
+  {
+    "id": "q015",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "difficulty": "easy",
+    "question_text": "In which process is there no exchange of heat between the system and its surroundings?",
+    "options": ["Isothermal", "Isobaric", "Isochoric", "Adiabatic"],
+    "correct_answer": "D",
+    "explanation": "An adiabatic process is one in which no heat enters or leaves the system (dQ = 0)."
+  },
+  {
+    "id": "q016",
+    "subject": "Physics",
+    "topic": "Thermodynamics",
+    "difficulty": "medium",
+    "question_text": "At what temperature does the root mean square velocity of oxygen molecules equal that of hydrogen molecules at 0°C?",
+    "options": ["4096 K", "4368 K", "273 K", "0 K"],
+    "correct_answer": "B",
+    "explanation": "v_rms = √(3RT/M). Setting v_rms(O₂) = v_rms(H₂): T(O₂)/M(O₂) = T(H₂)/M(H₂) => T(O₂)/32 = 273/2 => T(O₂) = 16 * 273 = 4368 K."
+  },
+  {
+    "id": "q017",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "easy",
+    "question_text": "In a galvanic cell, oxidation takes place at the:",
+    "options": ["Anode", "Cathode", "Salt bridge", "Electrolyte"],
+    "correct_answer": "A",
+    "explanation": "By definition, oxidation always occurs at the anode in both galvanic and electrolytic cells."
+  },
+  {
+    "id": "q018",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "medium",
+    "question_text": "What is the standard cell potential (E°cell) for a cell with cathode potential of +0.80 V and anode potential of -0.76 V?",
+    "options": ["+0.04 V", "+1.56 V", "-1.56 V", "-0.04 V"],
+    "correct_answer": "B",
+    "explanation": "E°cell = E°cathode - E°anode = 0.80 V - (-0.76 V) = 0.80 + 0.76 = +1.56 V."
+  },
+  {
+    "id": "q019",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "hard",
+    "question_text": "According to the Nernst equation, what happens to the electrode potential of a copper electrode (Cu²⁺/Cu) if the concentration of Cu²⁺ ions is decreased ten-fold at 298 K?",
+    "options": ["Increases by 0.059 V", "Decreases by 0.059 V", "Decreases by 0.0295 V", "Increases by 0.0295 V"],
+    "correct_answer": "C",
+    "explanation": "E = E° - (0.0591/n) log(1/[Cu²⁺]). Here n = 2. If [Cu²⁺] decreases 10 times, the log term increases by 1 (since log(10) - log(1) = 1). Thus, E decreases by 0.0591/2 = 0.0295 V."
+  },
+  {
+    "id": "q020",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "easy",
+    "question_text": "Which of the following is a strong electrolyte?",
+    "options": ["CH₃COOH", "NH₄OH", "NaCl", "H₂CO₃"],
+    "correct_answer": "C",
+    "explanation": "NaCl is a strong electrolyte because it dissociates completely into Na⁺ and Cl⁻ ions in aqueous solution."
+  },
+  {
+    "id": "q021",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "medium",
+    "question_text": "Faraday's first law of electrolysis states that the mass of substance deposited is directly proportional to:",
+    "options": ["Equivalent weight", "Quantity of electricity passed", "Current only", "Time of electrolysis only"],
+    "correct_answer": "B",
+    "explanation": "Faraday's first law is m ∝ Q, or m = Z I t, where Q (charge) is the quantity of electricity passed."
+  },
+  {
+    "id": "q022",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "hard",
+    "question_text": "The limiting molar conductivities of NaCl, HCl, and CH₃COONa are 126, 426, and 91 S cm²/mol respectively. What is the limiting molar conductivity of CH₃COOH?",
+    "options": ["391 S cm²/mol", "209 S cm²/mol", "643 S cm²/mol", "517 S cm²/mol"],
+    "correct_answer": "A",
+    "explanation": "By Kohlrausch's law: Λ°(CH₃COOH) = Λ°(CH₃COONa) + Λ°(HCl) - Λ°(NaCl) = 91 + 426 - 126 = 391 S cm²/mol."
+  },
+  {
+    "id": "q023",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "easy",
+    "question_text": "In a hydrogen-oxygen fuel cell, the combustion of hydrogen occurs to:",
+    "options": ["Generate heat", "Create water and produce electricity directly", "Produce high-pressure steam", "All of the above"],
+    "correct_answer": "B",
+    "explanation": "A fuel cell is an electrochemical cell that converts chemical energy from a fuel (hydrogen) into electricity directly through electrochemical reactions."
+  },
+  {
+    "id": "q024",
+    "subject": "Chemistry",
+    "topic": "Electrochemistry",
+    "difficulty": "medium",
+    "question_text": "The rust on iron is a hydrated form of:",
+    "options": ["Fe₂O₃", "FeO", "Fe₃O₄", "Fe(OH)₂"],
+    "correct_answer": "A",
+    "explanation": "Rust is chemically formulated as Fe₂O₃ · xH₂O, which is hydrated ferric oxide."
+  },
+  {
+    "id": "q025",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": "easy",
+    "question_text": "Which of the following compounds exhibits geometric (cis-trans) isomerism?",
+    "options": ["But-1-ene", "But-2-ene", "Propene", "2-Methylpropene"],
+    "correct_answer": "B",
+    "explanation": "But-2-ene has a double bond where each carbon is bonded to two different groups (-H and -CH₃), allowing cis and trans forms."
+  },
+  {
+    "id": "q026",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": "medium",
+    "question_text": "What is the major product when propene reacts with HBr in the presence of organic peroxides?",
+    "options": ["2-Bromopropane", "1-Bromopropane", "1,2-Dibromopropane", "2-Bromopropene"],
+    "correct_answer": "B",
+    "explanation": "In the presence of peroxides, the addition of HBr to unsymmetrical alkenes follows the Anti-Markovnikov rule, leading to 1-bromopropane."
+  },
+  {
+    "id": "q027",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": "hard",
+    "question_text": "Which of the following reactions can convert benzaldehyde to benzyl alcohol and benzoate ion in a single step?",
+    "options": ["Aldol condensation", "Cannizzaro reaction", "Clemmensen reduction", "Friedel-Crafts reaction"],
+    "correct_answer": "B",
+    "explanation": "Aldehydes with no alpha-hydrogen (like benzaldehyde) undergo self-oxidation and reduction (disproportionation) in the presence of strong concentrated base, yielding an alcohol and a carboxylic acid salt. This is the Cannizzaro reaction."
+  },
+  {
+    "id": "q028",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": "easy",
+    "question_text": "The hybridization of carbon in methane is:",
+    "options": ["sp", "sp²", "sp³", "dsp²"],
+    "correct_answer": "C",
+    "explanation": "Carbon in methane forms four single sigma bonds, leading to sp³ hybridization and tetrahedral geometry."
+  },
+  {
+    "id": "q029",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": "medium",
+    "question_text": "Which functional group gives a silver mirror test with Tollens' reagent?",
+    "options": ["Ketone", "Carboxylic acid", "Ester", "Aldehyde"],
+    "correct_answer": "D",
+    "explanation": "Aldehydes are easily oxidized to carboxylic acids by Tollens' reagent ([Ag(NH₃)₂]⁺), reducing Ag⁺ ions to metallic silver (silver mirror)."
+  },
+  {
+    "id": "q030",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": "hard",
+    "question_text": "Arrange the following in decreasing order of acid strength: phenol (I), p-nitrophenol (II), ethanol (III), p-cresol (IV).",
+    "options": ["II > I > IV > III", "I > II > III > IV", "II > IV > I > III", "III > IV > I > II"],
+    "correct_answer": "A",
+    "explanation": "p-Nitrophenol is most acidic due to the strong electron-withdrawing -NO₂ group. Phenol is next. p-Cresol is weaker due to the electron-donating -CH₃ group. Ethanol is least acidic (alkalines are less acidic than phenols)."
+  },
+  {
+    "id": "q031",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": "easy",
+    "question_text": "The compound which is known as 'wood spirit' is:",
+    "options": ["Ethanol", "Methanol", "Acetone", "Benzene"],
+    "correct_answer": "B",
+    "explanation": "Methanol was historically produced by the destructive distillation of wood, hence the name wood spirit."
+  },
+  {
+    "id": "q032",
+    "subject": "Chemistry",
+    "topic": "Organic Chemistry",
+    "difficulty": "medium",
+    "question_text": "Which of the following organic compounds will give a positive iodoform test?",
+    "options": ["Pentan-3-one", "Pentan-2-one", "Benzaldehyde", "Propan-1-ol"],
+    "correct_answer": "B",
+    "explanation": "Compounds containing a methyl ketone group (CH₃-CO-) or a secondary methyl carbinol group (CH₃-CH(OH)-) give a positive iodoform test. Pentan-2-one contains the CH₃-CO- group."
+  },
+  {
+    "id": "q033",
+    "subject": "Chemistry",
+    "topic": "Inorganic Chemistry",
+    "difficulty": "easy",
+    "question_text": "Which of the following noble gases is most abundant in the atmosphere?",
+    "options": ["Helium", "Neon", "Argon", "Krypton"],
+    "correct_answer": "C",
+    "explanation": "Argon is the most abundant noble gas in the Earth's atmosphere, constituting about 0.93% of air by volume."
+  },
+  {
+    "id": "q034",
+    "subject": "Chemistry",
+    "topic": "Inorganic Chemistry",
+    "difficulty": "medium",
+    "question_text": "The shape of XeF₄ molecule according to VSEPR theory is:",
+    "options": ["Tetrahedral", "Square planar", "Octahedral", "See-saw"],
+    "correct_answer": "B",
+    "explanation": "Xe has 8 valence electrons. In XeF₄, it forms 4 single bonds and has 2 lone pairs. The steric number is 6, which yields octahedral electron geometry but square planar molecular geometry."
+  },
+  {
+    "id": "q035",
+    "subject": "Chemistry",
+    "topic": "Inorganic Chemistry",
+    "difficulty": "hard",
+    "question_text": "Among the following, which transition metal ion is colorless in aqueous solution?",
+    "options": ["Ti³⁺", "V³⁺", "Sc³⁺", "Cr³⁺"],
+    "correct_answer": "C",
+    "explanation": "Color in transition metal complexes is due to d-d electronic transitions. Sc³⁺ has a d⁰ configuration (no d-electrons), so it cannot undergo d-d transitions and is colorless."
+  },
+  {
+    "id": "q036",
+    "subject": "Chemistry",
+    "topic": "Inorganic Chemistry",
+    "difficulty": "easy",
+    "question_text": "What is the oxidation state of iron in [Fe(CN)₆]⁴⁻?",
+    "options": ["+2", "+3", "+4", "0"],
+    "correct_answer": "A",
+    "explanation": "Let x be the oxidation state of Fe. x + 6(-1) = -4 => x - 6 = -4 => x = +2."
+  },
+  {
+    "id": "q037",
+    "subject": "Chemistry",
+    "topic": "Inorganic Chemistry",
+    "difficulty": "medium",
+    "question_text": "Which of the following elements has the highest electronegativity?",
+    "options": ["Oxygen", "Fluorine", "Chlorine", "Nitrogen"],
+    "correct_answer": "B",
+    "explanation": "Fluorine is the most electronegative element in the periodic table, with a value of 4.0 on the Pauling scale."
+  },
+  {
+    "id": "q038",
+    "subject": "Chemistry",
+    "topic": "Inorganic Chemistry",
+    "difficulty": "hard",
+    "question_text": "Which of the following compounds has the highest lattice energy?",
+    "options": ["NaF", "NaCl", "MgO", "MgS"],
+    "correct_answer": "C",
+    "explanation": "Lattice energy is proportional to (q₁*q₂)/r. MgO has ions of +2 and -2 charge, and smaller sizes than MgS. Thus, MgO has much higher lattice energy than NaF, NaCl (+1/-1), or MgS (larger radius)."
+  },
+  {
+    "id": "q039",
+    "subject": "Chemistry",
+    "topic": "Inorganic Chemistry",
+    "difficulty": "easy",
+    "question_text": "The gas evolved when zinc reacts with dilute hydrochloric acid is:",
+    "options": ["Oxygen", "Hydrogen", "Chlorine", "Nitrogen"],
+    "correct_answer": "B",
+    "explanation": "Active metals like zinc react with dilute acids to release hydrogen gas: Zn + 2HCl -> ZnCl₂ + H₂."
+  },
+  {
+    "id": "q040",
+    "subject": "Chemistry",
+    "topic": "Inorganic Chemistry",
+    "difficulty": "medium",
+    "question_text": "Which of the following hydrides has the highest boiling point?",
+    "options": ["NH₃", "PH₃", "AsH₃", "SbH₃"],
+    "correct_answer": "A",
+    "explanation": "Although boiling points generally increase down the group due to dispersion forces, NH₃ has an anomalously high boiling point because of strong intermolecular hydrogen bonding."
+  },
+  {
+    "id": "q041",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "difficulty": "easy",
+    "question_text": "What is the derivative of f(x) = ln(sin(x)) with respect to x?",
+    "options": ["cos(x)", "tan(x)", "cot(x)", "sec(x)"],
+    "correct_answer": "C",
+    "explanation": "By chain rule, d/dx [ln(sin(x))] = (1/sin(x)) * cos(x) = cot(x)."
+  },
+  {
+    "id": "q042",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "difficulty": "medium",
+    "question_text": "What is the value of the integral ∫(from 0 to 1) x e^x dx?",
+    "options": ["1", "e", "e - 1", "2 - e"],
+    "correct_answer": "A",
+    "explanation": "Using integration by parts: ∫ x e^x dx = x e^x - ∫ e^x dx = (x - 1)e^x. Evaluating from 0 to 1: [(0)e^1 - (-1)e^0] = 0 - (-1) = 1."
+  },
+  {
+    "id": "q043",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "difficulty": "hard",
+    "question_text": "If y = x^x, what is dy/dx?",
+    "options": ["x^x * (1 + ln x)", "x^x * ln x", "x * x^(x-1)", "x^x / (1 + ln x)"],
+    "correct_answer": "A",
+    "explanation": "Taking natural logs: ln y = x ln x. Differentiating implicitly: (1/y) dy/dx = ln x + x * (1/x) = 1 + ln x. Thus, dy/dx = y(1 + ln x) = x^x (1 + ln x)."
+  },
+  {
+    "id": "q044",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "difficulty": "easy",
+    "question_text": "What is the limit as x approaches 0 of sin(5x)/x?",
+    "options": ["1", "5", "0", "Undefined"],
+    "correct_answer": "B",
+    "explanation": "lim (x->0) [sin(5x)/x] = 5 * lim (x->0) [sin(5x)/(5x)] = 5 * 1 = 5."
+  },
+  {
+    "id": "q045",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "difficulty": "medium",
+    "question_text": "What is the maximum value of the function f(x) = x(10-x) for x in real numbers?",
+    "options": ["25", "10", "5", "50"],
+    "correct_answer": "A",
+    "explanation": "f(x) = 10x - x². f'(x) = 10 - 2x = 0 => x = 5. Since f''(x) = -2 < 0, this is a maximum. f(5) = 5(10-5) = 25."
+  },
+  {
+    "id": "q046",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "difficulty": "hard",
+    "question_text": "Find the area bounded by the curve y = x², the x-axis, and the lines x = 1 and x = 3.",
+    "options": ["26/3", "8", "9", "28/3"],
+    "correct_answer": "A",
+    "explanation": "Area = ∫(from 1 to 3) x² dx = [x³/3] from 1 to 3 = 27/3 - 1/3 = 26/3."
+  },
+  {
+    "id": "q047",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "difficulty": "easy",
+    "question_text": "What is the second derivative of f(x) = e^(-2x)?",
+    "options": ["-2e^(-2x)", "4e^(-2x)", "-4e^(-2x)", "2e^(-2x)"],
+    "correct_answer": "B",
+    "explanation": "f'(x) = -2e^(-2x). f''(x) = (-2)*(-2)e^(-2x) = 4e^(-2x)."
+  },
+  {
+    "id": "q048",
+    "subject": "Mathematics",
+    "topic": "Calculus",
+    "difficulty": "medium",
+    "question_text": "The function f(x) = |x| at x = 0 is:",
+    "options": ["Continuous but not differentiable", "Differentiable but not continuous", "Neither continuous nor differentiable", "Both continuous and differentiable"],
+    "correct_answer": "A",
+    "explanation": "f(x) = |x| has no gaps at x = 0 (lim as x->0 is 0), so it is continuous. However, its graph has a sharp corner at x = 0 (left derivative is -1, right derivative is +1), so it is not differentiable."
+  },
+  {
+    "id": "q049",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": "easy",
+    "question_text": "The phenotypic ratio of a monohybrid cross in Mendel's experiments is:",
+    "options": ["1:2:1", "3:1", "9:3:3:1", "1:1"],
+    "correct_answer": "B",
+    "explanation": "In F2 generation of Mendel's monohybrid cross, three-quarters exhibit dominant phenotype and one-quarter exhibit recessive phenotype, giving a 3:1 ratio."
+  },
+  {
+    "id": "q050",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": "medium",
+    "question_text": "A cross between a homozygous dominant and a homozygous recessive individual yields F1 offspring. If F1 is backcrossed to homozygous recessive, the phenotypic ratio will be:",
+    "options": ["3:1", "1:1", "9:3:3:1", "1:2:1"],
+    "correct_answer": "B",
+    "explanation": "This is a test cross (Tt x tt). The gametes are T and t from heterozygous parent, and only t from homozygous parent. The resulting offspring are Tt and tt in a 1:1 ratio."
+  },
+  {
+    "id": "q051",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": "hard",
+    "question_text": "Which of the following is the start codon for protein synthesis in eukaryotes?",
+    "options": ["UAA", "UAG", "AUG", "UGA"],
+    "correct_answer": "C",
+    "explanation": "AUG is the standard start codon, which also codes for the amino acid methionine."
+  },
+  {
+    "id": "q052",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": "easy",
+    "question_text": "Which nitrogenous base is present in RNA but absent in DNA?",
+    "options": ["Adenine", "Thymine", "Uracil", "Cytosine"],
+    "correct_answer": "C",
+    "explanation": "Uracil is a nitrogenous base found in RNA that pairs with adenine. In DNA, thymine is present instead of uracil."
+  },
+  {
+    "id": "q053",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": "medium",
+    "question_text": "A human female with Turner syndrome has which of the following karyotypes?",
+    "options": ["47, XXY", "45, XO", "47, XXX", "47, XY, +21"],
+    "correct_answer": "B",
+    "explanation": "Turner syndrome is a genetic condition caused by monosomy of the X chromosome, resulting in a 45, XO karyotype."
+  },
+  {
+    "id": "q054",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": "hard",
+    "question_text": "If a double-stranded DNA molecule contains 20% Adenine, what is the percentage of Cytosine in this DNA?",
+    "options": ["20%", "30%", "40%", "80%"],
+    "correct_answer": "B",
+    "explanation": "By Chargaff's rules, A = T and G = C. If A = 20%, then T = 20%. Together A + T = 40%. The remaining 60% must be G + C. Since G = C, Cytosine (C) = 60%/2 = 30%."
+  },
+  {
+    "id": "q055",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": "easy",
+    "question_text": "Who is known as the 'Father of Genetics'?",
+    "options": ["Charles Darwin", "Gregor Mendel", "Thomas Hunt Morgan", "Watson and Crick"],
+    "correct_answer": "B",
+    "explanation": "Gregor Mendel is recognized as the father of genetics for his pioneering work on pea plants."
+  },
+  {
+    "id": "q056",
+    "subject": "Biology",
+    "topic": "Genetics",
+    "difficulty": "medium",
+    "question_text": "Down syndrome in humans is caused by:",
+    "options": ["Monosomy of chromosome 21", "Trisomy of chromosome 21", "Trisomy of X chromosome", "Monosomy of X chromosome"],
+    "correct_answer": "B",
+    "explanation": "Down syndrome is a chromosomal disorder caused by trisomy (three copies) of chromosome 21."
+  },
+  {
+    "id": "q057",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": "easy",
+    "question_text": "Which of the following organs is responsible for the production of bile?",
+    "options": ["Gallbladder", "Pancreas", "Liver", "Stomach"],
+    "correct_answer": "C",
+    "explanation": "Bile is produced by the liver cells (hepatocytes) and stored and concentrated in the gallbladder."
+  },
+  {
+    "id": "q058",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": "medium",
+    "question_text": "What is the structural and functional unit of the human kidney?",
+    "options": ["Neuron", "Nephron", "Alveolus", "Hepatocyte"],
+    "correct_answer": "B",
+    "explanation": "The nephron is the microscopic structural and functional unit of the kidney, responsible for filtering blood and forming urine."
+  },
+  {
+    "id": "q059",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": "hard",
+    "question_text": "Which hormone is secreted by the beta cells of the Islets of Langerhans in the pancreas?",
+    "options": ["Glucagon", "Insulin", "Somatostatin", "Epinephrine"],
+    "correct_answer": "B",
+    "explanation": "Insulin is synthesized and secreted by beta cells of the pancreas, and it lowers blood glucose levels. Glucagon is secreted by alpha cells."
+  },
+  {
+    "id": "q060",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": "easy",
+    "question_text": "The normal blood pressure of a healthy adult human is about:",
+    "options": ["80/120 mm Hg", "120/80 mm Hg", "140/90 mm Hg", "90/60 mm Hg"],
+    "correct_answer": "B",
+    "explanation": "A normal reading is systolic pressure of 120 mm Hg and diastolic pressure of 80 mm Hg, written as 120/80 mm Hg."
+  },
+  {
+    "id": "q061",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": "medium",
+    "question_text": "Which of the following is responsible for the transport of oxygen in human blood?",
+    "options": ["White blood cells", "Blood platelets", "Hemoglobin", "Plasma proteins"],
+    "correct_answer": "C",
+    "explanation": "Hemoglobin is an iron-rich protein in red blood cells that binds and transports oxygen from the lungs to the rest of the body."
+  },
+  {
+    "id": "q062",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": "hard",
+    "question_text": "In the human heart, the pacemaker is situated in:",
+    "options": ["Left atrium", "Right ventricle", "Right atrium", "Interventricular septum"],
+    "correct_answer": "C",
+    "explanation": "The Sinoatrial (SA) node, which acts as the natural pacemaker of the heart, is located in the upper wall of the right atrium."
+  },
+  {
+    "id": "q063",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": "easy",
+    "question_text": "Which vitamin is synthesized in the human skin in the presence of sunlight?",
+    "options": ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"],
+    "correct_answer": "D",
+    "explanation": "Vitamin D is synthesized in the skin when exposed to ultraviolet B (UVB) radiation from sunlight."
+  },
+  {
+    "id": "q064",
+    "subject": "Biology",
+    "topic": "Human Physiology",
+    "difficulty": "medium",
+    "question_text": "The volume of air inspired or expired during a normal respiration in humans is called:",
+    "options": ["Tidal volume", "Residual volume", "Vital capacity", "Inspiratory reserve volume"],
+    "correct_answer": "A",
+    "explanation": "Tidal volume (TV) is the amount of air inspired or expired during normal quiet breathing, which is approximately 500 mL in a healthy adult male."
+  }
+]
