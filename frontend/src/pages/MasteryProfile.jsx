@@ -126,7 +126,7 @@ export default function MasteryProfile() {
             Subject Mastery Profile
           </h3>
 
-          {profile && (
+          {profile && profile.mastery && (
             <div className="space-y-4">
               {Object.keys(profile.mastery).map((topic) => {
                 const topicData = profile.mastery[topic];

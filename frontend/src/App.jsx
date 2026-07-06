@@ -15,7 +15,8 @@ import Feedback from "./pages/Feedback";
 function ProtectedRoute({ children, allowedRoles }) {
   const { currentUser, userRole, loading } = useAuth();
 
-  if (loading) {
+  // If globally loading OR we have a user but haven't fetched their role yet
+  if (loading || (currentUser && !userRole)) {
     return (
       <div className="min-h-screen bg-brand-bg-light flex items-center justify-center">
         <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-brand-accent"></div>
