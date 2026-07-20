@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "bio_001",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "topic": "Cell Structure",
+    "difficulty": "easy",
+    "target_exam": "NEET",
+    "question_text": "Which of the following organelle is known as the powerhouse of the cell?",
+    "options": [
+      "A) Mitochondria",
+      "B) Chloroplast",
+      "C) Lysosome",
+      "D) Golgi apparatus"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Mitochondria are called the powerhouse of the cell because they are the sites of cellular respiration and generate most of the cell's supply of ATP.",
+    "formula_or_concept": "Cellular respiration and ATP generation occur in the mitochondria.",
+    "estimated_solving_time_sec": 20,
+    "common_mistakes": [
+      "Confusing mitochondria with chloroplasts (sites of photosynthesis)",
+      "Choosing lysosomes (suicidal bags)"
+    ],
+    "ai_explanation_seed": "Mitochondria produce ATP through aerobic respiration, making them the powerhouse of eukaryotic cells."
+  },
+  {
+    "id": "bio_002",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "topic": "Cell Membrane",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "According to the fluid mosaic model, the cell membrane is composed of:",
+    "options": [
+      "A) A protein bilayer with embedded lipids",
+      "B) A phospholipid bilayer with proteins embedded in or associated with it",
+      "C) A single layer of phospholipids with external proteins",
+      "D) Chitin and peptidoglycan"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Singer and Nicolson proposed the fluid mosaic model. It describes the membrane as a mosaic of proteins floating in a fluid lipid bilayer (phospholipids).",
+    "formula_or_concept": "Fluid Mosaic Model of cell membrane structure.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Thinking proteins form a continuous outer bilayer",
+      "Confusing phospholipids with simple fats"
+    ],
+    "ai_explanation_seed": "Fluid mosaic model: amphipathic lipid bilayer provides fluidity, while proteins form a mosaic pattern."
+  },
+  {
+    "id": "bio_003",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "topic": "Mendelian Inheritance",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "What is the phenotypic ratio of a Mendelian monohybrid cross in the F2 generation?",
+    "options": [
+      "A) 1:2:1",
+      "B) 3:1",
+      "C) 9:3:3:1",
+      "D) 1:1"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "A monohybrid cross yields a phenotypic ratio of 3 dominant to 1 recessive phenotype in the F2 generation, whereas the genotypic ratio is 1:2:1.",
+    "formula_or_concept": "Mendel's Law of Segregation and monohybrid crosses.",
+    "estimated_solving_time_sec": 20,
+    "common_mistakes": [
+      "Confusing phenotypic ratio (3:1) with genotypic ratio (1:2:1)",
+      "Using dihybrid cross ratio (9:3:3:1)"
+    ],
+    "ai_explanation_seed": "Monohybrid F2 phenotype ratio is 3:1 (e.g., 3 Tall : 1 Dwarf). Genotype ratio is 1:2:1 (1 TT : 2 Tt : 1 tt)."
+  },
+  {
+    "id": "bio_004",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "topic": "DNA Structure",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "If a double-stranded DNA molecule has 20% Cytosine, what is the percentage of Adenine?",
+    "options": [
+      "A) 20%",
+      "B) 30%",
+      "C) 40%",
+      "D) 80%"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "According to Chargaff's rule, A=T and G=C. Since C=20%, G must also be 20% (total G+C = 40%). The remaining 60% consists of A+T. Since A=T, Adenine must be 30%.",
+    "formula_or_concept": "Chargaff's Rule: A + G = T + C, or %A = %T and %G = %C.",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Assuming Adenine is equal to Cytosine (20%)",
+      "Subtracting 20% directly from 100% to get 80% without dividing by 2"
+    ],
+    "ai_explanation_seed": "Chargaff's rule: A+T+G+C = 100%. G=C=20% -> G+C = 40%. A+T = 60%. Since A=T, A = 30%."
+  },
+  {
+    "id": "bio_005",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Circulatory System",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which blood vessel carries oxygenated blood from the lungs to the left atrium?",
+    "options": [
+      "A) Pulmonary artery",
+      "B) Pulmonary vein",
+      "C) Vena cava",
+      "D) Aorta"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "The pulmonary vein is an exception among veins because it carries oxygenated blood from the lungs to the heart (left atrium).",
+    "formula_or_concept": "Pulmonary circulation pathway.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing pulmonary artery (carries deoxygenated blood to lungs)",
+      "Choosing aorta (carries blood from left ventricle to body)"
+    ],
+    "ai_explanation_seed": "Veins usually carry deoxygenated blood, but pulmonary veins carry oxygen-rich blood from lungs back to the left atrium of the heart."
+  },
+  {
+    "id": "bio_006",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Nervous System",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The resting membrane potential of a neuron is maintained primarily by:",
+    "options": [
+      "A) Voltage-gated calcium channels",
+      "B) Sodium-potassium pump (Na+/K+ ATPase)",
+      "C) Simple diffusion of proteins",
+      "D) Acetylcholine receptors"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "The Na+/K+ ATPase pump actively transports 3 Na+ out of the cell for every 2 K+ into the cell, maintaining the negative resting potential.",
+    "formula_or_concept": "Active transport mechanism of the Sodium-Potassium Pump.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Thinking the pump moves equal numbers of ions",
+      "Confusing active transport with passive voltage-gated channels"
+    ],
+    "ai_explanation_seed": "Resting potential (~ -70mV) is active. Na+/K+ pump uses ATP to pump 3 Na+ out and 2 K+ in, maintaining gradients."
+  },
+  {
+    "id": "bio_007",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Excretory System",
+    "difficulty": "hard",
+    "target_exam": "NEET",
+    "question_text": "Which part of the nephron is impermeable to water but highly permeable to electrolytes?",
+    "options": [
+      "A) Descending limb of loop of Henle",
+      "B) Ascending limb of loop of Henle",
+      "C) Proximal convoluted tubule",
+      "D) Collecting duct"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "The ascending limb of the loop of Henle is impermeable to water but allows active and passive transport of electrolytes (NaCl), which helps dilute the filtrate.",
+    "formula_or_concept": "Countercurrent multiplier system and selective permeability of the nephron.",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Confusing the descending limb (permeable to water, impermeable to salts) with the ascending limb",
+      "Choosing the PCT (which reabsorbs both water and solutes)"
+    ],
+    "ai_explanation_seed": "Ascending limb is water-impermeable. Descending limb is water-permeable. This differential permeability is key to hypertonic medullary gradient."
+  },
+  {
+    "id": "bio_008",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "topic": "Photosynthesis",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "In C4 plants, the primary carbon dioxide fixation takes place in the cytoplasm of:",
+    "options": [
+      "A) Bundle sheath cells",
+      "B) Mesophyll cells",
+      "C) Epidermal cells",
+      "D) Guard cells"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "In C4 plants, CO2 is first fixed in the mesophyll cells by the enzyme PEP carboxylase to form oxaloacetate (a 4-carbon compound).",
+    "formula_or_concept": "C4 photosynthetic pathway spatial separation.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking initial fixation occurs in bundle sheath cells (RuBisCO is located there, fixing CO2 for Calvin cycle)",
+      "Thinking RuBisCO does the primary fixation in mesophyll"
+    ],
+    "ai_explanation_seed": "C4 pathway divides labor. Mesophyll cells: primary CO2 fixation by PEPco (no photorespiration). Bundle sheath: secondary fixation by RuBisCO."
+  },
+  {
+    "id": "bio_009",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "topic": "Plant Hormones",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which plant hormone is primarily responsible for fruit ripening?",
+    "options": [
+      "A) Auxin",
+      "B) Gibberellin",
+      "C) Ethylene",
+      "D) Abscisic acid"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Ethylene is a gaseous plant hormone that promotes fruit ripening, senescence, and abscission.",
+    "formula_or_concept": "Functions of phytohormones.",
+    "estimated_solving_time_sec": 20,
+    "common_mistakes": [
+      "Choosing abscisic acid (known as stress hormone/abscission promoter, not ripening)",
+      "Choosing auxins (promote growth and apical dominance)"
+    ],
+    "ai_explanation_seed": "Ethylene (C2H4) is gaseous and acts autocatalytically to trigger rapid starch conversion to sugars during fruit ripening."
+  },
+  {
+    "id": "bio_010",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Ecosystem",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "According to Lindeman's 10% law, how much energy is transferred to the next trophic level?",
+    "options": [
+      "A) 1%",
+      "B) 10%",
+      "C) 50%",
+      "D) 90%"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Only about 10% of the energy at one trophic level is transferred to the next; the rest is lost as heat, respiration, and decomposer pathway.",
+    "formula_or_concept": "Energy flow in ecosystems and Lindeman's 10% law.",
+    "estimated_solving_time_sec": 20,
+    "common_mistakes": [
+      "Thinking 90% is transferred (90% is actually lost)",
+      "Confusing with the 1% energy captured from sunlight by plants"
+    ],
+    "ai_explanation_seed": "Lindeman's law: ecological efficiency is roughly 10%. 90% of energy is consumed or dissipated at each level."
+  },
+  {
+    "id": "bio_011",
+    "subject": "Biology",
+    "chapter": "Diversity in Living World",
+    "topic": "Animal Kingdom",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "Which of the following organisms exhibits radial symmetry in its adult stage but bilateral symmetry in its larval stage?",
+    "options": [
+      "A) Starfish (Echinodermata)",
+      "B) Jellyfish (Cnidaria)",
+      "C) Tapeworm (Platyhelminthes)",
+      "D) Earthworm (Annelida)"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Echinoderms like starfish exhibit secondary radial symmetry (pentamerous radial symmetry) as adults, but their larvae (e.g., bipinnaria) are bilaterally symmetrical.",
+    "formula_or_concept": "Symmetry and developmental stages in Echinodermata.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing Jellyfish (radially symmetrical in all stages)",
+      "Forgetting starfish larvae have bilateral symmetry"
+    ],
+    "ai_explanation_seed": "Echinoderms show evolutionary regression in symmetry. Larva: bilateral (advanced). Adult: radial (resembling lower phyla)."
+  },
+  {
+    "id": "bio_012",
+    "subject": "Biology",
+    "chapter": "Diversity in Living World",
+    "topic": "Plant Kingdom",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "In bryophytes and pteridophytes, the transport of male gametes (antherozoids) requires:",
+    "options": [
+      "A) Wind",
+      "B) Water",
+      "C) Insects",
+      "D) Birds"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Bryophytes and pteridophytes are called amphibians of the plant kingdom or require damp habitats because they require external water for the flagellated male gametes (antherozoids) to swim to the archegonium.",
+    "formula_or_concept": "Fertilization mechanism in lower plants.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing wind (which is common for gymnosperms/angiosperms)",
+      "Thinking animal vectors are involved"
+    ],
+    "ai_explanation_seed": "Antherozoids in bryo/pteridophytes are flagellated and chemotactic; they require a film of water to swim to archegonia."
+  },
+  {
+    "id": "bio_013",
+    "subject": "Biology",
+    "chapter": "Structural Organisation",
+    "topic": "Plant Anatomy",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which of the following tissues constitutes the chief water-conducting elements in gymnosperms?",
+    "options": [
+      "A) Vessels",
+      "B) Tracheids",
+      "C) Sieve tubes",
+      "D) Companion cells"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Gymnosperms lack true xylem vessels (except Gnetales). Instead, water transport occurs exclusively through tracheids. Sieve tubes and companion cells are phloem components.",
+    "formula_or_concept": "Xylem composition in different plant groups.",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Choosing vessels (vessels are characteristic of angiosperms, absent in gymnosperms)",
+      "Confusing xylem with phloem cells"
+    ],
+    "ai_explanation_seed": "Angiosperms: vessels + tracheids. Gymnosperms: tracheids only (no vessels). Pteridophytes also rely mostly on tracheids."
+  },
+  {
+    "id": "bio_014",
+    "subject": "Biology",
+    "chapter": "Structural Organisation",
+    "topic": "Animal Tissues",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "The cells that release histamine, heparin, and serotonin in connective tissue are:",
+    "options": [
+      "A) Fibroblasts",
+      "B) Mast cells",
+      "C) Macrophages",
+      "D) Adipocytes"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Mast cells are resident cells of connective tissues that contain granules rich in histamine (vasodilator), heparin (anticoagulant), and serotonin.",
+    "formula_or_concept": "Functions of different connective tissue cells.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Choosing fibroblasts (synthesize fibers and ground substance)",
+      "Choosing macrophages (involved in phagocytosis)"
+    ],
+    "ai_explanation_seed": "Mast cells resemble basophils of blood; they mediate inflammatory and allergic responses by releasing vasoactive substances."
+  },
+  {
+    "id": "bio_015",
+    "subject": "Biology",
+    "chapter": "Biomolecules",
+    "topic": "Enzymes",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "In competitive inhibition, how are the Vmax and Km of an enzyme-catalyzed reaction affected?",
+    "options": [
+      "A) Vmax decreases, Km increases",
+      "B) Vmax remains unchanged, Km increases",
+      "C) Vmax decreases, Km remains unchanged",
+      "D) Both Vmax and Km decrease"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Competitive inhibitors bind to the active site. Increasing substrate concentration can overcome this, so Vmax remains unchanged. However, more substrate is needed to reach half Vmax, so Km increases.",
+    "formula_or_concept": "Michaelis-Menten kinetics and enzyme inhibition.",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Thinking Vmax decreases (this is non-competitive inhibition)",
+      "Thinking Km decreases (indicating higher affinity, but inhibitor lowers apparent affinity)"
+    ],
+    "ai_explanation_seed": "Competitive: inhibitor competes for active site. High [S] outcompetes inhibitor -> Vmax same. Km increases because apparent affinity decreases."
+  },
+  {
+    "id": "bio_016",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "topic": "Cell Cycle",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "During which phase of meiosis does crossing over (homologous recombination) occur?",
+    "options": [
+      "A) Leptotene of Prophase I",
+      "B) Pachytene of Prophase I",
+      "C) Diplotene of Prophase I",
+      "D) Metaphase I"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Crossing over, mediated by the recombinase enzyme, occurs during the pachytene stage of Prophase I in meiosis.",
+    "formula_or_concept": "Stages of Prophase I of Meiosis I.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing zygotene (synaptic pairing occurs here, not crossing over)",
+      "Choosing diplotene (chiasmata become visible, synaptonemal complex dissolves)"
+    ],
+    "ai_explanation_seed": "Stages order: Leptotene (condensation) -> Zygotene (synapsis) -> Pachytene (crossing over) -> Diplotene (chiasmata) -> Diakinesis."
+  },
+  {
+    "id": "bio_017",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "topic": "Human Reproduction",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which hormone triggers ovulation in human females?",
+    "options": [
+      "A) Progesterone",
+      "B) Estrogen",
+      "C) Luteinizing Hormone (LH)",
+      "D) Follicle Stimulating Hormone (FSH)"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "A rapid surge in Luteinizing Hormone (LH surge) in the middle of the menstrual cycle (around day 14) induces the rupture of the Graafian follicle and release of the ovum (ovulation).",
+    "formula_or_concept": "Hormonal control of the menstrual cycle.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing estrogen (which peaks before ovulation to stimulate LH, but doesn't directly trigger ovulation)",
+      "Choosing progesterone (dominant in secretory phase post-ovulation)"
+    ],
+    "ai_explanation_seed": "LH surge is the trigger for ovulation. Positive feedback of estrogen on hypothalamus/pituitary causes this surge."
+  },
+  {
+    "id": "bio_018",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "topic": "Plant Reproduction",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Double fertilization, a characteristic feature of angiosperms, involves:",
+    "options": [
+      "A) Fertilization of two eggs by one pollen tube",
+      "B) Syngamy (egg + male gamete) and Triple Fusion (polar nuclei + male gamete)",
+      "C) Fertilization of egg and synergid",
+      "D) Two pollen grains fertilizing one ovule"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Double fertilization involves syngamy (formation of 2n zygote) and triple fusion (formation of 3n primary endosperm nucleus by fusion of one male gamete with two polar nuclei).",
+    "formula_or_concept": "Double fertilization and triple fusion mechanism.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking it means two male gametes fertilize two eggs",
+      "Confusing the ploidy of zygote (2n) and endosperm (3n)"
+    ],
+    "ai_explanation_seed": "Double fertilization = Syngamy (n+n -> 2n Zygote) + Triple Fusion (n+2n -> 3n Endosperm). Unique to angiosperms."
+  },
+  {
+    "id": "bio_019",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "topic": "Mutation",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Sickle-cell anemia is caused by a point mutation in the beta-globin chain, resulting in the substitution of:",
+    "options": [
+      "A) Glutamic acid by Valine",
+      "B) Valine by Glutamic acid",
+      "C) Lysine by Glutamic acid",
+      "D) Alanine by Valine"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Sickle-cell anemia involves a transversion mutation GAG to GUG, causing substitution of glutamic acid (hydrophilic) by valine (hydrophobic) at the 6th position of the beta-globin chain.",
+    "formula_or_concept": "Molecular basis of sickle-cell anemia.",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Reversing the order: Valine by Glutamic acid",
+      "Thinking it occurs on the alpha chain"
+    ],
+    "ai_explanation_seed": "Point mutation at 6th codon of β-globin gene: GAG (Glu) -> GUG (Val). Hydrophobic valine causes hemoglobin aggregation under low O2."
+  },
+  {
+    "id": "bio_020",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "topic": "Linkage",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "If two genes are very closely linked on the same chromosome, the frequency of recombination between them will be:",
+    "options": [
+      "A) Near 50%",
+      "B) Close to 0%",
+      "C) Exactly 100%",
+      "D) Independent of distance"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Closely linked genes tend to be inherited together because the chance of crossing over between them is very low, leading to a recombination frequency close to 0%.",
+    "formula_or_concept": "Morgan's chromosome theory of linkage.",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Thinking linked genes recombine at 50% (50% is the maximum recombination frequency for unlinked/distal genes)",
+      "Confusing linkage with independent assortment"
+    ],
+    "ai_explanation_seed": "Recombination frequency is proportional to physical distance on chromosome. Close genes = low crossover probability = low RF (~0%)."
+  },
+  {
+    "id": "bio_021",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "topic": "Homology",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "The forelimbs of a human, a bat, and a cheetah are examples of:",
+    "options": [
+      "A) Analogous organs showing convergent evolution",
+      "B) Homologous organs showing divergent evolution",
+      "C) Vestigial structures",
+      "D) Homoplastic structures"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "They share a similar anatomical blueprint (pentadactyl limb structure) reflecting common ancestry, but perform different functions (divergent evolution).",
+    "formula_or_concept": "Homology vs. Analogy and evolutionary pathways.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing analogy (confusing similar usage with structural blueprint)",
+      "Not linking homology to divergent evolution"
+    ],
+    "ai_explanation_seed": "Homologous = same origin, different function (divergent evolution). Analogous = different origin, same function (convergent)."
+  },
+  {
+    "id": "bio_022",
+    "subject": "Biology",
+    "chapter": "Human Health and Disease",
+    "topic": "Immunity",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which immunoglobulin class is abundant in colostrum (first milk) and mucosal secretions?",
+    "options": [
+      "A) IgG",
+      "B) IgA",
+      "C) IgM",
+      "D) IgE"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "IgA is secretory immunoglobulin. It is present in tears, saliva, colostrum, and gastrointestinal secretions, providing passive immunity to the newborn.",
+    "formula_or_concept": "Antibody classes and passive immunity.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing IgG (which crosses the placenta but is not the main secretory antibody in milk)",
+      "Choosing IgE (involved in allergy)"
+    ],
+    "ai_explanation_seed": "IgA is a dimer in secretions, stabilized by a J chain and secretory component, preventing enzymatic degradation in mucosal tracts."
+  },
+  {
+    "id": "bio_023",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "topic": "Recombinant DNA Technology",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "EcoRI is a restriction endonuclease. What does 'co' represent in this name?",
+    "options": [
+      "A) Co-enzyme",
+      "B) Colon",
+      "C) Coli (species name)",
+      "D) Co-factor"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "EcoRI is isolated from Escherichia coli RY13. E = Escherichia (genus), co = coli (species), R = strain RY13, I = order of discovery.",
+    "formula_or_concept": "Nomenclature of restriction enzymes.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Thinking it stands for co-enzyme",
+      "Thinking it stands for colon (since E. coli lives in colon, but name derives from species)"
+    ],
+    "ai_explanation_seed": "Nomenclature: Genus (capital letter) + Species (first two lowercase letters) + Strain + Roman numeral. E. + coli + R + I."
+  },
+  {
+    "id": "bio_024",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "topic": "PCR",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The thermostable Taq polymerase used in PCR is isolated from which bacterium?",
+    "options": [
+      "A) Escherichia coli",
+      "B) Thermus aquaticus",
+      "C) Bacillus thuringiensis",
+      "D) Agrobacterium tumefaciens"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Taq polymerase is isolated from the thermophilic bacterium Thermus aquaticus, which can survive high temperatures used during the denaturation step of PCR (~94°C).",
+    "formula_or_concept": "Polymerase Chain Reaction and enzyme sources.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing Bacillus thuringiensis (source of Bt toxin)",
+      "Choosing E. coli (standard cloning host, not thermophilic)"
+    ],
+    "ai_explanation_seed": "Thermus aquaticus thrives in hot springs. Its polymerase doesn't denature at 95°C, enabling automated PCR cycling."
+  },
+  {
+    "id": "bio_025",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Biodiversity Conservation",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which of the following is an example of ex-situ conservation of biodiversity?",
+    "options": [
+      "A) National Park",
+      "B) Wildlife Sanctuary",
+      "C) Botanical Garden",
+      "D) Biosphere Reserve"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Ex-situ conservation involves protecting species outside their natural habitats. Examples include botanical gardens, zoological parks, gene banks, and seed banks.",
+    "formula_or_concept": "In-situ vs. Ex-situ conservation strategies.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing biosphere reserves (which are in-situ)",
+      "Confusing zoological parks with wildlife sanctuaries"
+    ],
+    "ai_explanation_seed": "In-situ = in the natural place (National Parks, Sanctuaries). Ex-situ = out of the natural place (Botanical Gardens, Zoos, Cryopreservation)."
+  },
+  {
+    "id": "bio_026",
+    "subject": "Biology",
+    "chapter": "Structural Organisation",
+    "topic": "Flower Structure",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "In a flower, if the gynoecium occupies the highest position while other parts are situated below it, the flower is described as:",
+    "options": [
+      "A) Epigynous",
+      "B) Perigynous",
+      "C) Hypogynous",
+      "D) Amphigynous"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "In a hypogynous flower, the ovary is superior. Other parts (sepals, petals, stamens) are attached below the ovary on the thalamus (e.g., Mustard, China rose).",
+    "formula_or_concept": "Flower types based on ovary position.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing Epigynous (this has inferior ovary, other parts above)",
+      "Choosing Perigynous (parts at same level as ovary, e.g., Rose)"
+    ],
+    "ai_explanation_seed": "Hypo- (below) -gynous (gynoecium). Parts are below gynoecium -> ovary is on top (superior). Epi- (above) -gynous -> parts are above -> ovary is inferior."
+  },
+  {
+    "id": "bio_027",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "topic": "Mineral Nutrition",
+    "difficulty": "hard",
+    "target_exam": "NEET",
+    "question_text": "Which element is a constituent of the ring structure of chlorophyll and essential for ribosomal stability?",
+    "options": [
+      "A) Iron (Fe)",
+      "B) Magnesium (Mg)",
+      "C) Manganese (Mn)",
+      "D) Calcium (Ca)"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Magnesium is the central atom of the porphyrin ring of chlorophyll and is essential for binding ribosome subunits together during protein synthesis.",
+    "formula_or_concept": "Essential elements and their physiological roles.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing Iron (which is needed for chlorophyll synthesis but is not a constituent of the ring)",
+      "Choosing Manganese (involved in photolysis of water)"
+    ],
+    "ai_explanation_seed": "Mg2+ coordinates the nitrogen atoms of the four pyrrole rings in chlorophyll. It also maintains structural integrity of ribosome subunits."
+  },
+  {
+    "id": "bio_028",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "topic": "Nitrogen Cycle",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "The enzyme nitrogenase, which fixes atmospheric nitrogen in root nodules, is highly sensitive to:",
+    "options": [
+      "A) Carbon dioxide",
+      "B) Oxygen",
+      "C) Nitrogen gas",
+      "D) Ammonia"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Nitrogenase is inactivated by oxygen. Nodules contain leghemoglobin, an oxygen scavenger, to create anaerobic conditions for nitrogenase function.",
+    "formula_or_concept": "Biological nitrogen fixation and nitrogenase protection.",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Thinking nitrogenase needs oxygen to respire",
+      "Not knowing the role of leghemoglobin as an O2 scavenger"
+    ],
+    "ai_explanation_seed": "Nitrogenase requires anaerobic environment. Leghemoglobin (pink pigment) binds oxygen tightly, protecting the enzyme while allowing respiration."
+  },
+  {
+    "id": "bio_029",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "topic": "Cell Wall",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "The primary cell wall of fungi is composed of:",
+    "options": [
+      "A) Cellulose",
+      "B) Chitin",
+      "C) Peptidoglycan",
+      "D) Pectin"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Fungal cell walls are made of chitin, a polymer of N-acetylglucosamine. Plant cell walls have cellulose; bacteria have peptidoglycan.",
+    "formula_or_concept": "Cell wall compositions in different kingdoms.",
+    "estimated_solving_time_sec": 20,
+    "common_mistakes": [
+      "Choosing cellulose (plants only)",
+      "Choosing peptidoglycan (bacteria only)"
+    ],
+    "ai_explanation_seed": "Chitin is a tough nitrogen-containing polysaccharide. Same molecule forms exoskeleton of arthropods."
+  },
+  {
+    "id": "bio_030",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Endocrine System",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which hormone decreases blood calcium levels by promoting its deposition in bones?",
+    "options": [
+      "A) Parathyroid Hormone (PTH)",
+      "B) Calcitonin",
+      "C) Thyroxine",
+      "D) Aldosterone"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Calcitonin, secreted by parafollicular cells of the thyroid gland, lowers blood calcium levels. PTH increases blood calcium levels by bone resorption.",
+    "formula_or_concept": "Antagonistic hormonal control of blood calcium.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Choosing PTH (PTH increases blood Ca2+, calcitonin decreases it)",
+      "Confusing thyroid hormones (T3/T4) with calcitonin"
+    ],
+    "ai_explanation_seed": "Calcium homeostasis: Calcitonin (thyroid) decreases Ca2+ (deposits in bone). PTH (parathyroid) increases Ca2+ (resorbs from bone)."
+  },
+  {
+    "id": "bio_031",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Respiration",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Most carbon dioxide is transported in human blood as:",
+    "options": [
+      "A) Carbaminohemoglobin",
+      "B) Dissolved gas in plasma",
+      "C) Bicarbonate ions (HCO3-)",
+      "D) Carbonic acid"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "About 70% of CO2 is transported as bicarbonate ions in the plasma, 23% as carbaminohemoglobin, and 7% dissolved in plasma.",
+    "formula_or_concept": "CO2 transport mechanisms in blood.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Thinking it's mostly bound to hemoglobin (like oxygen)",
+      "Choosing dissolved gas"
+    ],
+    "ai_explanation_seed": "CO2 + H2O <-> H2CO3 <-> H+ + HCO3-. Catalyzed by carbonic anhydrase in RBCs. Bicarbonate diffuses into plasma."
+  },
+  {
+    "id": "bio_032",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Digestion",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which of the following enzymes is activated by enterokinase?",
+    "options": [
+      "A) Pepsinogen",
+      "B) Trypsinogen",
+      "C) Chymotrypsinogen",
+      "D) Procarboxypeptidase"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Enterokinase (enteropeptidase) secreted by the intestinal mucosa cleaves trypsinogen into active trypsin, which then activates other pancreatic zymogens.",
+    "formula_or_concept": "Activation of pancreatic enzymes in digestion.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Choosing pepsinogen (activated by HCl in stomach)",
+      "Thinking enterokinase activates chymotrypsinogen directly (trypsin does that)"
+    ],
+    "ai_explanation_seed": "Activation cascade: Enterokinase activates Trypsinogen -> Trypsin. Trypsin then activates Chymotrypsinogen -> Chymotrypsin."
+  },
+  {
+    "id": "bio_033",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Locomotion",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "According to the sliding filament theory of muscle contraction, which band decreases in width?",
+    "options": [
+      "A) A-band",
+      "B) I-band",
+      "C) H-zone",
+      "D) Both B and C"
+    ],
+    "correct_answer": "D",
+    "detailed_solution": "During contraction, actin filaments slide over myosin. The I-band (actin only) and H-zone (myosin only) shorten or disappear, whereas the A-band (length of myosin) remains constant.",
+    "formula_or_concept": "Sarcomere changes during muscle contraction.",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Thinking the A-band shortens (myosin length does not change)",
+      "Choosing I-band only when H-zone also narrows"
+    ],
+    "ai_explanation_seed": "Contraction: Z-lines move closer. I-band shortens. H-zone shortens. A-band remains constant. Myofilaments slide, they don't contract."
+  },
+  {
+    "id": "bio_034",
+    "subject": "Biology",
+    "chapter": "Structural Organisation",
+    "topic": "Plant Morphology",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Pneumatophores (respiratory roots) are characteristically found in plants growing in:",
+    "options": [
+      "A) Deserts (Xerophytes)",
+      "B) Saline swampy areas (Halophytes)",
+      "C) Deep water (Hydrophytes)",
+      "D) High altitudes"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Pneumatophores are specialized roots that grow upwards out of the water/mud to obtain oxygen in oxygen-poor swampy soils (e.g., Rhizophora, mangroves).",
+    "formula_or_concept": "Root modifications for respiration.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing hydrophytes (aquatic plants don't usually have pneumatophores, they have aerenchyma)",
+      "Thinking they are xerophytic modifications"
+    ],
+    "ai_explanation_seed": "Mangrove soils are waterlogged and anoxic. Pneumatophores grow negatively geotropic and have lenticels for gas exchange."
+  },
+  {
+    "id": "bio_035",
+    "subject": "Biology",
+    "chapter": "Biology in Human Welfare",
+    "topic": "Microbes in Welfare",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which micro-organism is used for the production of statins, the blood-cholesterol lowering agents?",
+    "options": [
+      "A) Saccharomyces cerevisiae",
+      "B) Monascus purpureus",
+      "C) Aspergillus niger",
+      "D) Trichoderma polysporum"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Statins are competitive inhibitors of HMG-CoA reductase and are produced by the yeast Monascus purpureus.",
+    "formula_or_concept": "Microbial products and their therapeutic applications.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing Trichoderma polysporum (produces cyclosporin A, an immunosuppressant)",
+      "Choosing Aspergillus niger (produces citric acid)"
+    ],
+    "ai_explanation_seed": "Statins: Monascus purpureus (yeast). Cyclosporin A: Trichoderma polysporum (fungus). Streptokinase: Streptococcus (bacterium)."
+  },
+  {
+    "id": "bio_036",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "topic": "Reproductive Health",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which of the following is a non-medicated Intrauterine Device (IUD)?",
+    "options": [
+      "A) Lippes loop",
+      "B) CuT (Copper T)",
+      "C) LNG-20",
+      "D) Multiload 375"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Lippes loop is a non-medicated double-S loop plastic IUD. CuT and Multiload 375 are copper-releasing IUDs; LNG-20 is a hormone-releasing IUD.",
+    "formula_or_concept": "Classification of Intrauterine Devices.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing LNG-20 (hormonal)",
+      "Thinking Copper T is non-medicated"
+    ],
+    "ai_explanation_seed": "IUDs: 1. Non-medicated (Lippes Loop). 2. Copper-releasing (CuT, Cu7, Multiload 375). 3. Hormone-releasing (Progestasert, LNG-20)."
+  },
+  {
+    "id": "bio_037",
+    "subject": "Biology",
+    "chapter": "Diversity in Living World",
+    "topic": "Biological Classification",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Prions are infectious agents composed entirely of:",
+    "options": [
+      "A) Single-stranded RNA",
+      "B) Double-stranded DNA",
+      "C) Proteins with abnormal folding",
+      "D) Glycoproteins and lipids"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Prions are proteinaceous infectious particles. Unlike viruses or viroids, they contain no nucleic acid and consist solely of misfolded proteins (PrPSc).",
+    "formula_or_concept": "Structure of sub-viral agents (Viroids, Prions).",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing RNA (this describes viroids, which are free RNA without protein coat)",
+      "Thinking they are like normal viruses with DNA"
+    ],
+    "ai_explanation_seed": "Viroid = circular ssRNA, no protein. Prion = misfolded protein, no nucleic acid. Both cause neurodegenerative/plant diseases."
+  },
+  {
+    "id": "bio_038",
+    "subject": "Biology",
+    "chapter": "Structural Organisation",
+    "topic": "Plant Morphology",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "The edible part of a coconut is the:",
+    "options": [
+      "A) Mesocarp",
+      "B) Endocarp",
+      "C) Endosperm",
+      "D) Pericarp"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "In coconut (Cocos nucifera), the edible portion is the endosperm, which exists in both liquid form (coconut water, free-nuclear endosperm) and solid form (white kernel, cellular endosperm).",
+    "formula_or_concept": "Fruit structure of drupe and seed anatomy.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Choosing mesocarp (which is fibrous in coconut, edible in mango)",
+      "Choosing endocarp (which forms the hard inner shell in coconut)"
+    ],
+    "ai_explanation_seed": "Coconut is a drupe. Exocarp = outer skin. Mesocarp = fibrous husk. Endocarp = stony shell. Edible tissue = Endosperm (liquid + solid)."
+  },
+  {
+    "id": "bio_039",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Environmental Issues",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The phenomenon of progressive increase in concentration of non-biodegradable toxicants at successive trophic levels is:",
+    "options": [
+      "A) Eutrophication",
+      "B) Biomagnification",
+      "C) Cultural eutrophication",
+      "D) Bioaccumulation"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Biomagnification refers to the increase in concentration of a toxicant (like DDT or mercury) in organisms at higher trophic levels due to lack of excretion or metabolism.",
+    "formula_or_concept": "Biomagnification in food chains.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Confusing biomagnification with bioaccumulation (accumulation within a single organism over time)",
+      "Choosing eutrophication (nutrient enrichment of water bodies)"
+    ],
+    "ai_explanation_seed": "Biomagnification propagates up the food web. Classical example: DDT concentration increases from water (0.003 ppb) to fish-eating birds (25 ppm)."
+  },
+  {
+    "id": "bio_040",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Chemical Coordination",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which hormone promotes glucose uptake by cells, thus lowering blood glucose levels?",
+    "options": [
+      "A) Glucagon",
+      "B) Insulin",
+      "C) Adrenaline",
+      "D) Cortisol"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Insulin, secreted by beta cells of islets of Langerhans in the pancreas, is a hypoglycemic hormone that increases glucose transport into cells.",
+    "formula_or_concept": "Pancreatic hormones and blood sugar regulation.",
+    "estimated_solving_time_sec": 20,
+    "common_mistakes": [
+      "Choosing glucagon (which increases blood glucose by glycogenolysis)",
+      "Thinking insulin increases blood sugar"
+    ],
+    "ai_explanation_seed": "Insulin = hypoglycemic (lowers glucose). Glucagon = hyperglycemic (raises glucose). They act antagonistically."
+  },
+  {
+    "id": "bio_041",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "topic": "Respiration in Plants",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "What is the net gain of ATP molecules produced directly by substrate-level phosphorylation in glycolysis of one glucose molecule?",
+    "options": [
+      "A) 2 ATP",
+      "B) 4 ATP",
+      "C) 36 ATP",
+      "D) 38 ATP"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "In glycolysis, 4 ATP are produced by substrate-level phosphorylation, but 2 ATP are consumed in the preparatory phase. Thus, the net gain of ATP is 2.",
+    "formula_or_concept": "Energy budget of glycolysis.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing 4 ATP (which is gross yield, not net gain)",
+      "Choosing 36/38 ATP (which refers to aerobic respiration total)"
+    ],
+    "ai_explanation_seed": "Glycolysis: Gross yield = 4 ATP (SLP). Investment = 2 ATP (hexokinase & PFK). Net yield = 2 ATP."
+  },
+  {
+    "id": "bio_042",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Neural Control",
+    "difficulty": "hard",
+    "target_exam": "NEET",
+    "question_text": "The transparent, crystalline lens of the human eye is held in place by:",
+    "options": [
+      "A) Suspensory ligaments attached to the ciliary body",
+      "B) Smooth muscles of the iris",
+      "C) Vitreous humor pressure",
+      "D) Tendons attached to the choroid"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "The eye lens is suspended in place behind the pupil by suspensory ligaments (zonules of Zinn) attached to the ciliary body.",
+    "formula_or_concept": "Anatomy of the human eye and accommodation.",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Thinking the iris holds the lens (iris regulates pupil size)",
+      "Confusing ligaments with tendons"
+    ],
+    "ai_explanation_seed": "Ciliary body contracts/relaxes, altering tension on suspensory ligaments, which changes lens shape for accommodation."
+  },
+  {
+    "id": "bio_043",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Organisms and Populations",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Mycorrhizae represent a symbiotic association between fungi and roots of higher plants. What type of interaction is this?",
+    "options": [
+      "A) Commensalism",
+      "B) Amensalism",
+      "C) Mutualism",
+      "D) Parasitism"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Mycorrhiza is a mutualistic (+/+) interaction where the fungus assists in mineral/water absorption, and the plant provides carbohydrates to the fungus.",
+    "formula_or_concept": "Types of population interactions.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing commensalism (where only one benefits, but here both benefit)",
+      "Confusing with lichen (algae + fungi)"
+    ],
+    "ai_explanation_seed": "Mutualism (+/+). Lichens and Mycorrhizae are classic obligate mutualisms. In mycorrhizae, Pinus seeds cannot even germinate without fungal association."
+  },
+  {
+    "id": "bio_044",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Organisms and Populations",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "Which curve describes a population growing in an environment with limited resources?",
+    "options": [
+      "A) J-shaped exponential curve",
+      "B) S-shaped logistic curve",
+      "C) Straight diagonal line",
+      "D) Bell-shaped curve"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "When resources are limiting, population growth shows lag, acceleration, deceleration, and asymptote phases, yielding a sigmoid (S-shaped) logistic curve.",
+    "formula_or_concept": "Verhulst-Pearl Logistic Growth equation: dN/dt = rN(K-N)/K.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing exponential curve (which occurs only with unlimited resources)",
+      "Not knowing the carrying capacity (K) concept"
+    ],
+    "ai_explanation_seed": "Real environments have carrying capacity (K). Sigmoid growth: dN/dt = rN[(K-N)/K]. In contrast, exponential growth: dN/dt = rN."
+  },
+  {
+    "id": "bio_045",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "topic": "Transcription",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "In eukaryotes, RNA Polymerase III is responsible for the transcription of:",
+    "options": [
+      "A) Pre-mRNA (heterogeneous nuclear RNA)",
+      "B) 18S and 28S rRNAs",
+      "C) tRNA, 5S rRNA, and snRNAs",
+      "D) All cellular RNAs"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "RNA Pol I transcribes rRNAs (28S, 18S, 5.8S). RNA Pol II transcribes mRNA (and hnRNA). RNA Pol III transcribes tRNA, 5S rRNA, and snRNAs.",
+    "formula_or_concept": "Division of labor among eukaryotic RNA polymerases.",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Thinking one RNA polymerase transcribes all types (true only for prokaryotes)",
+      "Confusing the targets of Pol I, II, and III"
+    ],
+    "ai_explanation_seed": "Mnemonic: 1-2-3 -> R-M-T. Pol I: Ribosomal RNA (except 5S). Pol II: Messenger RNA. Pol III: Transfer RNA (and 5S rRNA)."
+  },
+  {
+    "id": "bio_046",
+    "subject": "Biology",
+    "chapter": "Diversity in Living World",
+    "topic": "Biological Classification",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Organisms that can tolerate and thrive in a wide range of salinities are called:",
+    "options": [
+      "A) Stenohaline",
+      "B) Euryhaline",
+      "C) Stenothermal",
+      "D) Eurythermal"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Euryhaline organisms can tolerate wide salinity fluctuations (e.g., salmon). Stenohaline organisms are restricted to narrow salinity ranges.",
+    "formula_or_concept": "Ecological tolerances of organisms.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing stenohaline (steno = narrow, eury = wide)",
+      "Confusing salinity tolerance (haline) with temperature tolerance (thermal)"
+    ],
+    "ai_explanation_seed": "Eury- means wide, Steno- means narrow. Haline refers to salinity. Thermal refers to temperature."
+  },
+  {
+    "id": "bio_047",
+    "subject": "Biology",
+    "chapter": "Diversity in Living World",
+    "topic": "Plant Kingdom",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "In which group of plants is the sporophyte nutritionally dependent on the gametophyte throughout its life?",
+    "options": [
+      "A) Bryophytes",
+      "B) Pteridophytes",
+      "C) Gymnosperms",
+      "D) Angiosperms"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "In bryophytes (mosses and liverworts), the dominant phase is the haploid gametophyte. The diploid sporophyte is physically attached to and dependent on the gametophyte for nutrition.",
+    "formula_or_concept": "Alternation of generations in plant groups.",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Choosing pteridophytes (where sporophyte is dominant and independent)",
+      "Thinking gametophyte is dependent in bryophytes"
+    ],
+    "ai_explanation_seed": "Bryophytes: Dominant Gametophyte (independent) + Dependent Sporophyte. Pteridophytes onwards: Dominant Sporophyte (independent)."
+  },
+  {
+    "id": "bio_048",
+    "subject": "Biology",
+    "chapter": "Structural Organisation",
+    "topic": "Plant Anatomy",
+    "difficulty": "hard",
+    "target_exam": "NEET",
+    "question_text": "Casparian strips, containing impermeable suberin, are characteristically located in the cell walls of:",
+    "options": [
+      "A) Epidermis",
+      "B) Cortex",
+      "C) Endodermis",
+      "D) Pericycle"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Casparian strips are band-like deposits of suberin in the radial and transverse walls of endodermal cells, forcing water to enter the symplast pathway to reach the vascular cylinder.",
+    "formula_or_concept": "Root anatomy and water transport barriers.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing pericycle (which lies inside the endodermis but lacks suberized strips)",
+      "Thinking epidermis has Casparian strips (it has cutin/waxes, not Casparian strips)"
+    ],
+    "ai_explanation_seed": "Endodermis acts as checkpoint. Suberin blocks apoplastic pathway, forcing symplastic routing of water and solutes."
+  },
+  {
+    "id": "bio_049",
+    "subject": "Biology",
+    "chapter": "Biomolecules",
+    "topic": "Lipids",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which of the following lipids is a major component of biological membranes and is amphipathic?",
+    "options": [
+      "A) Triglyceride",
+      "B) Phospholipid",
+      "C) Cholesterol",
+      "D) Beeswax"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Phospholipids (like lecithin) are amphipathic molecules with a hydrophilic head (phosphate group) and hydrophobic tails (fatty acids), making them ideal for forming bilayers.",
+    "formula_or_concept": "Structure of membrane lipids.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing triglyceride (which is completely hydrophobic, used for energy storage)",
+      "Thinking cholesterol is the main structural bilayer lipid (cholesterol modulates fluidity but doesn't form bilayer)"
+    ],
+    "ai_explanation_seed": "Amphipathic nature of phospholipids causes spontaneous self-assembly into bilayers in aqueous environments."
+  },
+  {
+    "id": "bio_050",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "topic": "Translation",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "Which codon acts as the initiation codon for translation in both prokaryotes and eukaryotes?",
+    "options": [
+      "A) UAA",
+      "B) UAG",
+      "C) AUG",
+      "D) UGA"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "AUG is the universal start codon. It codes for Methionine in eukaryotes and Formyl-methionine in prokaryotes. UAA, UAG, and UGA are stop codons.",
+    "formula_or_concept": "Genetic code translation initiation.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing one of the stop codons (UAA/UAG/UGA)",
+      "Forgetting that AUG codes for methionine"
+    ],
+    "ai_explanation_seed": "AUG = Start (Methionine). Stop codons: UAA (Ochre), UAG (Amber), UGA (Opal). Stop codons do not code for amino acids."
+  },
+  {
+    "id": "bio_051",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "topic": "Nucleus",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The nucleolus is the site of active synthesis of:",
+    "options": [
+      "A) Messenger RNA (mRNA)",
+      "B) Transfer RNA (tRNA)",
+      "C) Ribosomal RNA (rRNA)",
+      "D) Histone proteins"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "The nucleolus is a dense, non-membrane bound region inside the nucleus where ribosomal RNA transcription, processing, and ribosome subunit assembly take place.",
+    "formula_or_concept": "Organelle function of the nucleolus.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing mRNA (transcribed in chromatin nucleoplasm)",
+      "Choosing proteins (synthesized in cytoplasm)"
+    ],
+    "ai_explanation_seed": "Nucleolar organizer regions (NORs) of chromosomes contain genes for rRNAs. rRNA synthesis and ribosome factory = nucleolus."
+  },
+  {
+    "id": "bio_052",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Nervous System",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "During depolarization phase of action potential, which ions flow rapidly into the axon?",
+    "options": [
+      "A) Potassium ions (K+)",
+      "B) Sodium ions (Na+)",
+      "C) Calcium ions (Ca2+)",
+      "D) Chloride ions (Cl-)"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Depolarization is caused by the opening of voltage-gated sodium channels, leading to a rapid influx of Na+ into the axoplasm along its electrochemical gradient.",
+    "formula_or_concept": "Action potential generation phases.",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Choosing Potassium (K+ efflux causes repolarization)",
+      "Choosing Calcium (associated with neurotransmitter release at synapase)"
+    ],
+    "ai_explanation_seed": "Action potential: Depolarization = Na+ influx. Repolarization = K+ efflux. Hyperpolarization = excess K+ efflux."
+  },
+  {
+    "id": "bio_053",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Endocrine System",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which endocrine gland is also known as the master gland, controlled by the hypothalamus?",
+    "options": [
+      "A) Thyroid gland",
+      "B) Adrenal gland",
+      "C) Pituitary gland",
+      "D) Pancreas"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "The pituitary gland is called the master gland because its hormones regulate other endocrine glands, but it is regulated by hypothalamic releasing/inhibiting hormones.",
+    "formula_or_concept": "Hypothalamus-Pituitary endocrine axis.",
+    "estimated_solving_time_sec": 20,
+    "common_mistakes": [
+      "Choosing Thyroid",
+      "Forgetting the hypothalamus controls the pituitary"
+    ],
+    "ai_explanation_seed": "Pituitary = master gland. Hypothalamus = master of the master gland (neuroendocrine control centre)."
+  },
+  {
+    "id": "bio_054",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "topic": "Plant Growth",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which plant hormone is responsible for maintaining seed dormancy and is often called the stress hormone?",
+    "options": [
+      "A) Auxin",
+      "B) Gibberellin",
+      "C) Abscisic Acid (ABA)",
+      "D) Cytokinin"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Abscisic acid (ABA) promotes seed dormancy, inhibits growth, and causes stomatal closure during water stress, earning it the name stress hormone.",
+    "formula_or_concept": "Phytohormone physiological roles.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing Gibberellin (gibberellins break dormancy, acting antagonistically to ABA)",
+      "Choosing Auxin"
+    ],
+    "ai_explanation_seed": "ABA maintains dormancy (inhibits germination) and closes stomata. Antagonist: Gibberellins (GA) break dormancy."
+  },
+  {
+    "id": "bio_055",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "topic": "Transport in Plants",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "The cohesive tension theory explains the ascent of sap. Cohesion refers to the:",
+    "options": [
+      "A) Attraction of water molecules to tracheary elements",
+      "B) Mutual attraction between water molecules",
+      "C) Attraction of water molecules to organic solutes",
+      "D) Surface tension of water"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Cohesion is the mutual attraction between water molecules due to hydrogen bonding. Adhesion is the attraction of water to polar surfaces like cell walls of tracheary elements.",
+    "formula_or_concept": "Cohesion-Tension-Transpiration Pull model.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Confusing cohesion (water-water) with adhesion (water-conduit wall)",
+      "Thinking it represents tension"
+    ],
+    "ai_explanation_seed": "Cohesion = like molecules attract (H-bonds between H2O). Adhesion = unlike molecules attract (H2O to hydrophilic xylem walls)."
+  },
+  {
+    "id": "bio_056",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Organisms and Populations",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "An adaptation of desert plants (xerophytes) to reduce transpiration is:",
+    "options": [
+      "A) Broad, thin leaves",
+      "B) Thick cuticle and sunken stomata",
+      "C) Absence of mechanical tissue",
+      "D) Large air spaces in parenchyma"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Desert plants have thick waxy cuticles, sunken stomata, and CAM pathway to minimize water loss via transpiration.",
+    "formula_or_concept": "Xerophytic adaptations.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing broad leaves (which would increase transpiration)",
+      "Choosing large air spaces (aerenchyma, typical of hydrophyte floatation)"
+    ],
+    "ai_explanation_seed": "Xerophyte adaptations: 1. Sunken stomata (in pits). 2. Thick cuticle. 3. Leaves modified to spines. 4. CAM photosynthesis (stomata open at night)."
+  },
+  {
+    "id": "bio_057",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Ecosystem",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Primary productivity is defined as the rate of biomass production by:",
+    "options": [
+      "A) Consumers",
+      "B) Decomposers",
+      "C) Producers (plants)",
+      "D) Herbivores"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Primary productivity is the rate at which solar energy is converted into organic matter (biomass) by photosynthetic autotrophs (producers).",
+    "formula_or_concept": "Primary vs. Secondary productivity.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing consumers (biomass production rate by consumers is called secondary productivity)",
+      "Thinking decomposers do it"
+    ],
+    "ai_explanation_seed": "Primary = Autotrophs (plants). Secondary = Heterotrophs (consumers). Gross (GPP) - Respiration (R) = Net Primary Productivity (NPP)."
+  },
+  {
+    "id": "bio_058",
+    "subject": "Biology",
+    "chapter": "Human Health and Disease",
+    "topic": "Cancer",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The property of normal cells that prevents their uncontrolled proliferation by contact with other cells is:",
+    "options": [
+      "A) Metastasis",
+      "B) Contact inhibition",
+      "C) Apoptosis",
+      "D) Oncogenic transformation"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Normal cells show contact inhibition: when they make contact with neighboring cells, they stop dividing. Cancer cells lose this property and grow in uncontrolled multilayer sheets.",
+    "formula_or_concept": "Cell division regulation and cancer hallmarks.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing metastasis (which is the spread of cancer cells to distant sites)",
+      "Choosing apoptosis (programmed cell death)"
+    ],
+    "ai_explanation_seed": "Contact inhibition: physical contact sends stop signals. Cancer cells lack this, piling up to form tumors."
+  },
+  {
+    "id": "bio_059",
+    "subject": "Biology",
+    "chapter": "Diversity in Living World",
+    "topic": "Plant Kingdom",
+    "difficulty": "hard",
+    "target_exam": "NEET",
+    "question_text": "Which group of plants produces seeds but lacks flowers and fruits?",
+    "options": [
+      "A) Pteridophytes",
+      "B) Gymnosperms",
+      "C) Angiosperms",
+      "D) Bryophytes"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Gymnosperms produce naked seeds (not enclosed within an ovary wall). They lack flowers and fruits (which develop from the ovary after fertilization).",
+    "formula_or_concept": "Taxonomy of seed plants (spermatophytes).",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing pteridophytes (which produce spores, not seeds)",
+      "Thinking angiosperms lack fruits"
+    ],
+    "ai_explanation_seed": "Seed plants = Spermatophytes. Divided into: 1. Gymnosperms (naked seeds, no ovary/fruit). 2. Angiosperms (enclosed seeds inside fruits)."
+  },
+  {
+    "id": "bio_060",
+    "subject": "Biology",
+    "chapter": "Diversity in Living World",
+    "topic": "Biological Classification",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Methanogens, which produce biogas in ruminant digestive tracts, belong to which group of organisms?",
+    "options": [
+      "A) Eubacteria",
+      "B) Archaebacteria",
+      "C) Slime molds",
+      "D) Fungi"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Methanogens are anaerobic archaebacteria that live in extreme environments like marshy areas and rumen of cattle, characterized by unique cell wall composition.",
+    "formula_or_concept": "Classification of Kingdom Monera.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing Eubacteria (true bacteria)",
+      "Thinking they are fungi because they decompose matter"
+    ],
+    "ai_explanation_seed": "Archaebacteria are ancient prokaryotes with cell walls lacking peptidoglycan. Subgroups: Methanogens, Halophiles, Thermoacidophiles."
+  },
+  {
+    "id": "bio_061",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "topic": "Cell Organelles",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Lysosomes are rich in which class of enzymes?",
+    "options": [
+      "A) Oxidases",
+      "B) Hydrolytic enzymes (Hydrolases)",
+      "C) Transferases",
+      "D) Polymerases"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Lysosomes contain acid hydrolases (lipases, proteases, carbohydrates) that function optimally at acidic pH (~5.0) to digest biomolecules.",
+    "formula_or_concept": "Lysosomal function and intracellular digestion.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing oxidases (abundant in peroxisomes)",
+      "Thinking they contain neutral pH enzymes"
+    ],
+    "ai_explanation_seed": "Lysosomes = digestive system of cell. pH is kept acidic by proton pumps. Filled with hydrolases."
+  },
+  {
+    "id": "bio_062",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Muscle Contraction",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "In a skeletal muscle fiber, calcium ions needed for contraction are stored and released by the:",
+    "options": [
+      "A) Sarcolemma",
+      "B) Sarcoplasmic reticulum",
+      "C) T-tubules",
+      "D) Mitochondria"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "The sarcoplasmic reticulum is a specialized smooth endoplasmic reticulum in muscle cells that acts as a reservoir for calcium ions (Ca2+).",
+    "formula_or_concept": "Excitation-contraction coupling.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Choosing T-tubules (which transmit the action potential, but do not store calcium)",
+      "Choosing sarcolemma (cell membrane)"
+    ],
+    "ai_explanation_seed": "Action potential down T-tubule triggers voltage sensors, opening calcium release channels (RyR) in terminal cisternae of sarcoplasmic reticulum."
+  },
+  {
+    "id": "bio_063",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Chemical Coordination",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which hormone acts on the kidneys to promote water reabsorption, concentrating the urine?",
+    "options": [
+      "A) Aldosterone",
+      "B) Anti-Diuretic Hormone (ADH)",
+      "C) Atrial Natriuretic Factor (ANF)",
+      "D) Renin"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Anti-Diuretic Hormone (ADH/vasopressin) secreted by posterior pituitary increases water permeability of DCT and collecting ducts, reducing urine volume.",
+    "formula_or_concept": "Regulation of kidney function.",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Choosing Aldosterone (which primarily reabsorbs sodium/water secondary to osmolarity, whereas ADH reabsorbs pure water)",
+      "Choosing ANF (which opposes ADH, causing diuresis)"
+    ],
+    "ai_explanation_seed": "ADH / Vasopressin inserts aquaporins in collecting duct to reabsorb water. Deficient ADH causes Diabetes Insipidus."
+  },
+  {
+    "id": "bio_064",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Organisms and Populations",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "Gause's Principle of Competitive Exclusion states that:",
+    "options": [
+      "A) Two closely related species competing for same resources cannot coexist indefinitely",
+      "B) Larger species always exclude smaller species",
+      "C) Competitors always evolve to share resources",
+      "D) Diversity increases with competition"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Gause's principle states that two species competing for the exact same limiting resources cannot coexist. The competitively inferior species will be eliminated.",
+    "formula_or_concept": "Niche overlap and competitive exclusion.",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking species can coexist indefinitely if they compete",
+      "Confusing with resource partitioning (which is an evolutionary escape from exclusion)"
+    ],
+    "ai_explanation_seed": "Complete niche overlap is unstable. One species will be slightly more efficient, leading to exclusion of the other."
+  },
+  {
+    "id": "bio_065",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "topic": "DNA Replication",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "During DNA replication, the discontinuous synthesis of lagging strand fragments (Okazaki fragments) occurs because:",
+    "options": [
+      "A) DNA polymerase can only synthesize in the 5' to 3' direction",
+      "B) The replication fork moves too fast",
+      "C) RNA primers are absent on the lagging strand",
+      "D) DNA ligase is inactive"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "DNA polymerase adds nucleotides only to the 3' end (5'->3' synthesis). Since DNA strands are antiparallel, the lagging template (5'->3') must be synthesized in short segments away from fork.",
+    "formula_or_concept": "Directionality of DNA Polymerase.",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Thinking DNA polymerase synthesizes 3' to 5'",
+      "Thinking lagging strand doesn't use primers"
+    ],
+    "ai_explanation_seed": "DNA synthesis is strictly 5' to 3'. Antiparallel strands: one template is 3'->5' (continuous leading), other is 5'->3' (discontinuous lagging)."
+  },
+  {
+    "id": "bio_066",
+    "subject": "Biology",
+    "chapter": "Diversity in Living World",
+    "topic": "Animal Kingdom",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "Which phylum is characterized by the presence of a water vascular system and tube feet?",
+    "options": [
+      "A) Porifera",
+      "B) Mollusca",
+      "C) Echinodermata",
+      "D) Coelenterata"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Echinoderms possess a unique water vascular system (hydrovascular system) derived from the coelom, used for locomotion, respiration, and food capture.",
+    "formula_or_concept": "Key phylum characteristics.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing Porifera (which has a canal system/water transport system, not a water vascular system)",
+      "Confusing tube feet with tentacles"
+    ],
+    "ai_explanation_seed": "Porifera: Water transport/canal system. Echinodermata: Water vascular system. The two terms are distinct in zoology."
+  },
+  {
+    "id": "bio_067",
+    "subject": "Biology",
+    "chapter": "Human Physiology",
+    "topic": "Digestive System",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Bile juice contains no enzymes but is essential for digestion because of:",
+    "options": [
+      "A) Starch activation",
+      "B) Emulsification of fats and activation of lipases",
+      "C) Acid neutralization in stomach",
+      "D) Protein denaturation"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Bile salts emulsify large fat droplets into tiny micelles, increasing surface area for pancreatic lipases. Bile also provides alkaline pH to activate lipases.",
+    "formula_or_concept": "Role of bile in lipid digestion.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Thinking bile contains lipases",
+      "Thinking it digests proteins"
+    ],
+    "ai_explanation_seed": "Bile has no digestive enzymes. Its roles are purely physical (emulsification by bile salts) and regulatory (activating lipases via alkaline shift)."
+  },
+  {
+    "id": "bio_068",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "topic": "Transgenic Animals",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The first transgenic cow, Rosie, produced milk enriched with which human protein?",
+    "options": [
+      "A) Human insulin",
+      "B) Human alpha-lactalbumin",
+      "C) Tissue plasminogen activator",
+      "D) Erythropoietin"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Transgenic cow Rosie (1997) produced milk containing 2.4 grams per liter of human alpha-lactalbumin, making it nutritionally superior for human babies.",
+    "formula_or_concept": "Applications of transgenic animals.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing insulin (produced in E. coli humulin, not cow milk)",
+      "Confusing alpha-lactalbumin with lactoferrin"
+    ],
+    "ai_explanation_seed": "Rosie: human alpha-lactalbumin (2.4 g/L). This milk was more balanced than natural bovine milk for infant feeding."
+  },
+  {
+    "id": "bio_069",
+    "subject": "Biology",
+    "chapter": "Ecology",
+    "topic": "Ecosystem",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Decomposition rate is slower in waterlogged or anaerobic conditions because:",
+    "options": [
+      "A) Decomposers die",
+      "B) Decomposition is an oxygen-requiring process",
+      "C) Organic matter becomes toxic",
+      "D) Water washes away enzymes"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Decomposition of detritus is largely an oxygen-consuming process. Anaerobiosis or waterlogging restricts oxygen, slowing down the rate.",
+    "formula_or_concept": "Factors affecting decomposition rate.",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Thinking decomposers cannot survive at all",
+      "Ignoring the oxygen requirement of detritivores"
+    ],
+    "ai_explanation_seed": "Decomposition needs O2. Fast: warm, moist, rich in O2, nitrogen-rich detritus. Slow: anaerobic, waterlogged, chitin/lignin-rich detritus."
+  },
+  {
+    "id": "bio_070",
+    "subject": "Biology",
+    "chapter": "Structural Organisation",
+    "topic": "Animal Tissues",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "The junction that prevents leakage of substances across tissue layers is the:",
+    "options": [
+      "A) Adhering junction",
+      "B) Gap junction",
+      "C) Tight junction",
+      "D) Synaptic junction"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Tight junctions form a seal between adjacent cells, preventing leaking of solutes and water across epithelial sheets. Gap junctions allow communication.",
+    "formula_or_concept": "Types of cell junctions and their functions.",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Choosing gap junctions (which allow ion/molecule transport, not sealing)",
+      "Choosing adhering junctions (which anchor cells together)"
+    ],
+    "ai_explanation_seed": "Tight junctions = seal (prevent leak). Adhering/Desmosomes = cement (mechanical strength). Gap junctions = tunnel (communication)."
+  }
+]

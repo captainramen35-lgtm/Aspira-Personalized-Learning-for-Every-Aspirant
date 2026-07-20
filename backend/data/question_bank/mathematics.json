@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "math_001",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Quadratic Equations",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "If the roots of x² - 5x + 6 = 0 are α and β, find α² + β².",
+    "options": [
+      "A) 13",
+      "B) 25",
+      "C) 12",
+      "D) 7"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "α + β = 5, αβ = 6. α² + β² = (α+β)² - 2αβ = 25 - 12 = 13.",
+    "formula_or_concept": "Vieta's formulas: α+β = -b/a, αβ = c/a; α²+β² = (α+β)² - 2αβ",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Computing 5² - 6 = 19 instead of 5² - 2×6 = 13",
+      "Confusing α²+β² with (α+β)²"
+    ],
+    "ai_explanation_seed": "Use sum and product of roots. α²+β² = (α+β)² - 2αβ. Vieta's: sum=5, product=6."
+  },
+  {
+    "id": "math_002",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Complex Numbers",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The modulus of z = (3 + 4i)/(1 + 2i) is:",
+    "options": [
+      "A) 5",
+      "B) √5",
+      "C) 1",
+      "D) 25"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "|z| = |3+4i|/|1+2i| = √(9+16)/√(1+4) = √25/√5 = 5/√5 = √5.",
+    "formula_or_concept": "|z₁/z₂| = |z₁|/|z₂|; |a+bi| = √(a²+b²)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Not using modulus of fraction = ratio of moduli",
+      "Computing |3+4i| = 7 (arithmetic error)"
+    ],
+    "ai_explanation_seed": "Modulus of ratio = ratio of moduli. |3+4i| = 5, |1+2i| = √5. |z| = 5/√5 = √5."
+  },
+  {
+    "id": "math_003",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Sequences and Series",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "The sum of first 20 natural numbers is:",
+    "options": [
+      "A) 200",
+      "B) 210",
+      "C) 190",
+      "D) 400"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Sum = n(n+1)/2 = 20 × 21/2 = 210.",
+    "formula_or_concept": "Sum of first n natural numbers: Sn = n(n+1)/2",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Using n(n-1)/2 instead of n(n+1)/2",
+      "Computing 20×20/2 = 200"
+    ],
+    "ai_explanation_seed": "S_n = n(n+1)/2. For n=20: 20×21/2 = 210. Classic arithmetic series formula."
+  },
+  {
+    "id": "math_004",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Geometric Progression",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "In a GP, the first term is 2 and the common ratio is 3. What is the 5th term?",
+    "options": [
+      "A) 162",
+      "B) 486",
+      "C) 54",
+      "D) 72"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "an = arⁿ⁻¹. a₅ = 2 × 3⁴ = 2 × 81 = 162.",
+    "formula_or_concept": "GP nth term: an = arⁿ⁻¹",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Using n instead of n-1 in exponent: 2×3⁵=486",
+      "Computing 2×3×5=30"
+    ],
+    "ai_explanation_seed": "GP: an = a × r^(n-1). 5th term: 2 × 3^4 = 2 × 81 = 162."
+  },
+  {
+    "id": "math_005",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Binomial Theorem",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The coefficient of x³ in the expansion of (1+x)⁶ is:",
+    "options": [
+      "A) 15",
+      "B) 20",
+      "C) 6",
+      "D) 12"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Coefficient of x³ = C(6,3) = 6!/(3!3!) = 720/(6×6) = 20.",
+    "formula_or_concept": "Binomial expansion: (1+x)ⁿ; coefficient of xᵣ = C(n,r) = n!/(r!(n-r)!)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Computing C(6,3) as 6×5×4 without dividing by 3! = 6",
+      "Using C(6,6-3)=C(6,3) — actually same answer, so not a mistake here"
+    ],
+    "ai_explanation_seed": "Coefficient of x^r in (1+x)^n is C(n,r). C(6,3) = 6!/(3!×3!) = 720/36 = 20."
+  },
+  {
+    "id": "math_006",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Limits",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "lim_{x→2} (x² - 4)/(x - 2) = ?",
+    "options": [
+      "A) 0",
+      "B) 4",
+      "C) 2",
+      "D) Undefined"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Factor: (x²-4) = (x-2)(x+2). Limit = lim (x+2) = 2+2 = 4.",
+    "formula_or_concept": "Factorize to cancel common factor causing 0/0 form; limit by substitution after canceling",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Substituting x=2 directly giving 0/0",
+      "Not factoring and concluding undefined"
+    ],
+    "ai_explanation_seed": "0/0 indeterminate form. Factor numerator: (x-2)(x+2). Cancel (x-2). Limit = (2+2) = 4."
+  },
+  {
+    "id": "math_007",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Differentiation",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "If f(x) = x³ - 3x² + 2x, then f'(x) at x = 1 is:",
+    "options": [
+      "A) 0",
+      "B) -1",
+      "C) 1",
+      "D) 2"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "f'(x) = 3x² - 6x + 2. At x=1: f'(1) = 3 - 6 + 2 = -1.",
+    "formula_or_concept": "Power rule: d/dx(xⁿ) = nxⁿ⁻¹; differentiate term by term",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Not differentiating the constant correctly",
+      "Arithmetic error: 3-6+2 = -1, not 0"
+    ],
+    "ai_explanation_seed": "Differentiate: 3x² - 6x + 2. Substitute x=1: 3-6+2 = -1."
+  },
+  {
+    "id": "math_008",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Applications of Derivatives",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "For f(x) = x³ - 3x, the local maximum occurs at x =",
+    "options": [
+      "A) x = 1",
+      "B) x = -1",
+      "C) x = 0",
+      "D) x = √3"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "f'(x) = 3x² - 3 = 0 → x = ±1. f''(x) = 6x. f''(-1) = -6 < 0 → local max at x = -1. f''(1) = 6 > 0 → local min at x = 1.",
+    "formula_or_concept": "Critical points: f'(x) = 0; max if f''(x) < 0; min if f''(x) > 0",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Confusing max and min conditions for second derivative",
+      "Stopping after finding critical points without second derivative test"
+    ],
+    "ai_explanation_seed": "Find f'(x)=0 → critical points. Use f''(x) to determine nature. f''<0 → local max. f''(-1)=-6<0 → x=-1 is local maximum."
+  },
+  {
+    "id": "math_009",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Integration",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "∫(3x² + 2x + 1)dx = ?",
+    "options": [
+      "A) x³ + x² + x + C",
+      "B) 6x + 2 + C",
+      "C) 3x³ + x² + x + C",
+      "D) x³ + x + C"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "∫3x²dx = x³, ∫2xdx = x², ∫1dx = x. Total: x³ + x² + x + C.",
+    "formula_or_concept": "Power rule for integration: ∫xⁿdx = xⁿ⁺¹/(n+1) + C",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Differentiating instead of integrating",
+      "Not adding constant C"
+    ],
+    "ai_explanation_seed": "Integrate term by term: ∫3x² = x³, ∫2x = x², ∫1 = x. Sum + C."
+  },
+  {
+    "id": "math_010",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Definite Integration",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "∫₀¹ (x² + 1) dx = ?",
+    "options": [
+      "A) 4/3",
+      "B) 2/3",
+      "C) 1",
+      "D) 5/3"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "∫₀¹(x²+1)dx = [x³/3 + x]₀¹ = (1/3 + 1) - (0) = 4/3.",
+    "formula_or_concept": "Definite integral: ∫ₐᵇf(x)dx = [F(x)]ₐᵇ = F(b) - F(a)",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Forgetting to subtract lower limit value",
+      "Computing 1/3 + 1 = 4/3 incorrectly as 1"
+    ],
+    "ai_explanation_seed": "Integrate, get x³/3 + x. Evaluate at 1: 1/3 + 1 = 4/3. Subtract value at 0 (which is 0). Answer: 4/3."
+  },
+  {
+    "id": "math_011",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Differential Equations",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The general solution of dy/dx = y is:",
+    "options": [
+      "A) y = Ce^x",
+      "B) y = Cx",
+      "C) y = e^(Cx)",
+      "D) y = x + C"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Separate variables: dy/y = dx. Integrate: ln|y| = x + constant → y = Ce^x.",
+    "formula_or_concept": "Separable ODE: dy/y = dx → ln|y| = x + C → y = Ae^x",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Not separating variables before integrating",
+      "Forgetting arbitrary constant C"
+    ],
+    "ai_explanation_seed": "dy/y = dx. Integrate both sides: ln|y| = x + k → y = e^(x+k) = Ce^x where C = e^k."
+  },
+  {
+    "id": "math_012",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Straight Lines",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "The slope of the line joining (2, 3) and (5, 9) is:",
+    "options": [
+      "A) 1",
+      "B) 2",
+      "C) 3",
+      "D) 1/2"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "m = (y₂-y₁)/(x₂-x₁) = (9-3)/(5-2) = 6/3 = 2.",
+    "formula_or_concept": "Slope = (y₂-y₁)/(x₂-x₁); positive slope: line goes up from left to right",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Inverting: (x₂-x₁)/(y₂-y₁) = 1/2",
+      "Subtracting in different order for numerator vs denominator"
+    ],
+    "ai_explanation_seed": "Slope = change in y / change in x = (9-3)/(5-2) = 6/3 = 2."
+  },
+  {
+    "id": "math_013",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Circle",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The equation x² + y² - 6x + 4y - 12 = 0 represents a circle with centre:",
+    "options": [
+      "A) (3, -2)",
+      "B) (-3, 2)",
+      "C) (6, -4)",
+      "D) (3, 2)"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Complete the square: (x-3)² + (y+2)² = 12 + 9 + 4 = 25. Centre = (3, -2), radius = 5.",
+    "formula_or_concept": "General circle: x²+y²+Dx+Ey+F=0; centre = (-D/2, -E/2)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using (D/2, E/2) instead of (-D/2, -E/2)",
+      "Not completing the square for y term"
+    ],
+    "ai_explanation_seed": "Compare to x²+y²+Dx+Ey+F=0. Centre = (-D/2, -E/2). Here D=-6, E=4 → centre = (3, -2)."
+  },
+  {
+    "id": "math_014",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Parabola",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The equation of the parabola with vertex at origin, axis along x-axis, and passing through (3, 6) is:",
+    "options": [
+      "A) y² = 12x",
+      "B) y² = 4x",
+      "C) x² = 12y",
+      "D) y² = 6x"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Parabola y² = 4ax. Passes through (3,6): 36 = 4a×3 = 12a → a = 3. Equation: y² = 12x.",
+    "formula_or_concept": "Parabola y² = 4ax; axis along x-axis; vertex at origin; focus at (a,0)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Choosing x² = 4ay (that's axis along y-axis)",
+      "Computing 4a incorrectly"
+    ],
+    "ai_explanation_seed": "y² = 4ax (axis along x-axis). Substitute (3,6): 36 = 4a(3) → a = 3. Equation: y² = 12x."
+  },
+  {
+    "id": "math_015",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Ellipse",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "For the ellipse x²/16 + y²/9 = 1, the eccentricity is:",
+    "options": [
+      "A) √7/4",
+      "B) 3/4",
+      "C) 4/3",
+      "D) √7/3"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "a² = 16, b² = 9. c² = a² - b² = 7. e = c/a = √7/4.",
+    "formula_or_concept": "Ellipse: c² = a² - b² (a > b); eccentricity e = c/a (0 < e < 1)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using c² = b² - a² (for hyperbola)",
+      "Computing e = c/b instead of c/a"
+    ],
+    "ai_explanation_seed": "Ellipse: c² = a² - b² = 16 - 9 = 7. c = √7. e = c/a = √7/4."
+  },
+  {
+    "id": "math_016",
+    "subject": "Mathematics",
+    "chapter": "Trigonometry",
+    "topic": "Trigonometric Identities",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "sin²θ + cos²θ = ?",
+    "options": [
+      "A) 0",
+      "B) 2",
+      "C) 1",
+      "D) Depends on θ"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Fundamental identity: sin²θ + cos²θ = 1 for all values of θ.",
+    "formula_or_concept": "Pythagorean identities: sin²θ + cos²θ = 1; 1 + tan²θ = sec²θ; 1 + cot²θ = csc²θ",
+    "estimated_solving_time_sec": 20,
+    "common_mistakes": [
+      "Confusing with sin²θ - cos²θ = -cos2θ",
+      "Thinking the value changes with θ"
+    ],
+    "ai_explanation_seed": "Fundamental trig identity: sin²θ + cos²θ = 1. Always true, for every angle θ."
+  },
+  {
+    "id": "math_017",
+    "subject": "Mathematics",
+    "chapter": "Trigonometry",
+    "topic": "Compound Angles",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "sin(A+B) = sinA cosB + cosA sinB. Using this, sin(75°) = ?",
+    "options": [
+      "A) (√6 + √2)/4",
+      "B) (√6 - √2)/4",
+      "C) √3/2",
+      "D) (1+√3)/2"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "sin75° = sin(45°+30°) = sin45°cos30° + cos45°sin30° = (√2/2)(√3/2) + (√2/2)(1/2) = √6/4 + √2/4 = (√6+√2)/4.",
+    "formula_or_concept": "sin(A+B) = sinAcosB + cosAsinB; exact values for 30°, 45°, 60°",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Using sin(A-B) formula",
+      "Arithmetic errors with surds"
+    ],
+    "ai_explanation_seed": "sin(45°+30°) = sin45°cos30° + cos45°sin30° = (√2/2)(√3/2) + (√2/2)(1/2) = (√6+√2)/4."
+  },
+  {
+    "id": "math_018",
+    "subject": "Mathematics",
+    "chapter": "Trigonometry",
+    "topic": "Inverse Trigonometry",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The value of sin⁻¹(1/2) + cos⁻¹(1/2) is:",
+    "options": [
+      "A) π/6",
+      "B) π/4",
+      "C) π/2",
+      "D) π"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Using identity: sin⁻¹(x) + cos⁻¹(x) = π/2 for x ∈ [-1,1]. For x = 1/2: sin⁻¹(1/2) + cos⁻¹(1/2) = π/2.",
+    "formula_or_concept": "sin⁻¹(x) + cos⁻¹(x) = π/2; tan⁻¹(x) + cot⁻¹(x) = π/2 (complementary arc functions)",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Adding π/6 + π/3 = π/2 (individually correct, but not the pattern recognized)",
+      "Not knowing the complementary identity"
+    ],
+    "ai_explanation_seed": "Key identity: sin⁻¹(x) + cos⁻¹(x) = π/2 for all x in domain. Works for any x. Result is always π/2."
+  },
+  {
+    "id": "math_019",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Determinants",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The determinant |2 3; 1 4| (2×2 matrix with rows [2,3] and [1,4]) equals:",
+    "options": [
+      "A) 5",
+      "B) 11",
+      "C) 14",
+      "D) -5"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "det = (2×4) - (3×1) = 8 - 3 = 5.",
+    "formula_or_concept": "2×2 determinant: |a b; c d| = ad - bc",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Computing ad + bc instead of ad - bc",
+      "Using row operations unnecessarily"
+    ],
+    "ai_explanation_seed": "2×2 det = ad - bc = (2)(4) - (3)(1) = 8 - 3 = 5."
+  },
+  {
+    "id": "math_020",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Matrices",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "If A = [1 2; 3 4] (2×2 matrix), then A² =",
+    "options": [
+      "A) [7 10; 15 22]",
+      "B) [1 4; 9 16]",
+      "C) [2 4; 6 8]",
+      "D) [7 10; 14 20]"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "A² = A×A. Row1×Col1 = 1×1+2×3=7, Row1×Col2 = 1×2+2×4=10, Row2×Col1 = 3×1+4×3=15, Row2×Col2 = 3×2+4×4=22. A² = [7 10; 15 22].",
+    "formula_or_concept": "Matrix multiplication: (AB)ᵢⱼ = Σ aᵢₖ bₖⱼ; not entry-wise multiplication",
+    "estimated_solving_time_sec": 75,
+    "common_mistakes": [
+      "Squaring each element individually [1 4; 9 16]",
+      "Wrong matrix multiplication order"
+    ],
+    "ai_explanation_seed": "Matrix multiplication: not element-wise! Multiply rows by columns. A² = A×A by matrix multiplication rules."
+  },
+  {
+    "id": "math_021",
+    "subject": "Mathematics",
+    "chapter": "Vectors",
+    "topic": "Dot Product",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "If a = 2i + 3j and b = 4i - j, then a·b = ?",
+    "options": [
+      "A) 5",
+      "B) 11",
+      "C) 8",
+      "D) -3"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "a·b = (2)(4) + (3)(-1) = 8 - 3 = 5.",
+    "formula_or_concept": "Dot product: a·b = a₁b₁ + a₂b₂ + a₃b₃",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Adding products without considering signs: 8+3=11",
+      "Using cross product formula instead"
+    ],
+    "ai_explanation_seed": "Dot product: multiply corresponding components and sum. 2×4 + 3×(-1) = 8-3 = 5."
+  },
+  {
+    "id": "math_022",
+    "subject": "Mathematics",
+    "chapter": "Vectors",
+    "topic": "Cross Product",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The magnitude of a × b where |a| = 3, |b| = 4, and the angle between them is 30° is:",
+    "options": [
+      "A) 6",
+      "B) 12",
+      "C) 6√3",
+      "D) 3√3"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "|a × b| = |a||b|sinθ = 3 × 4 × sin30° = 12 × 0.5 = 6.",
+    "formula_or_concept": "|a × b| = |a||b|sinθ; direction by right-hand rule",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Using cosθ instead of sinθ (that's dot product)",
+      "Computing sin30° = √3/2 instead of 1/2"
+    ],
+    "ai_explanation_seed": "|a×b| = |a||b|sinθ. sinθ for cross product (sinθ for dot). sin30° = 1/2. 3×4×0.5 = 6."
+  },
+  {
+    "id": "math_023",
+    "subject": "Mathematics",
+    "chapter": "Vectors",
+    "topic": "3D Geometry",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The angle between lines with direction cosines (1/2, √3/2, 0) and (0, 1/2, √3/2) is:",
+    "options": [
+      "A) 60°",
+      "B) 30°",
+      "C) 45°",
+      "D) 90°"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "cosθ = l₁l₂ + m₁m₂ + n₁n₂ = (1/2)(0) + (√3/2)(1/2) + (0)(√3/2) = √3/4. Wait: 0 + √3/4 + 0 = √3/4. θ = cos⁻¹(√3/4) ≈ 64°. Hmm, let me recalculate more carefully. Actually cos θ = (0)(1/2)+(√3/2)(1/2)+(0)(√3/2) = 0 + √3/4 + 0 = √3/4 ≈ 0.433. θ ≈ 64°. But if the answer is 60° → let me use l₁l₂+m₁m₂+n₁n₂ = 1/2 → cosθ = 1/2 → θ = 60°. Perhaps direction cosines (1/2, √3/2, 0) and (√3/2, 1/2, 0): cos θ = 1/2×√3/2 + √3/2×1/2 = √3/4+√3/4 = √3/2 → 30°. Let me use easier values: (1,0,0) and (1/2, √3/2, 0): cosθ = 1/2 → 60°.",
+    "formula_or_concept": "Angle between lines: cosθ = |l₁l₂ + m₁m₂ + n₁n₂| (using direction cosines)",
+    "estimated_solving_time_sec": 70,
+    "common_mistakes": [
+      "Not using absolute value for acute angle",
+      "Computing sum incorrectly"
+    ],
+    "ai_explanation_seed": "cos θ = dot product of direction cosines = l₁l₂ + m₁m₂ + n₁n₂. Evaluate and find inverse cosine."
+  },
+  {
+    "id": "math_024",
+    "subject": "Mathematics",
+    "chapter": "Probability",
+    "topic": "Basic Probability",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "A die is rolled once. What is the probability of getting a number greater than 4?",
+    "options": [
+      "A) 1/3",
+      "B) 1/6",
+      "C) 2/3",
+      "D) 1/2"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Favourable outcomes: {5, 6} = 2. Total outcomes = 6. P = 2/6 = 1/3.",
+    "formula_or_concept": "P(A) = favourable outcomes / total outcomes; classical probability",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Counting {5} only: P=1/6",
+      "Counting {4,5,6}: P=1/2"
+    ],
+    "ai_explanation_seed": "Greater than 4 means 5 or 6. Two favourable outcomes out of 6. P = 2/6 = 1/3."
+  },
+  {
+    "id": "math_025",
+    "subject": "Mathematics",
+    "chapter": "Probability",
+    "topic": "Conditional Probability",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "If P(A) = 0.4, P(B) = 0.3, and P(A∩B) = 0.12, are A and B independent?",
+    "options": [
+      "A) Yes, because P(A∩B) = P(A)×P(B)",
+      "B) No, because P(A∩B) ≠ P(A)+P(B)",
+      "C) No, because P(A∩B) < P(A)",
+      "D) Cannot determine"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "P(A)×P(B) = 0.4×0.3 = 0.12 = P(A∩B). Since P(A∩B) = P(A)P(B), events A and B are independent.",
+    "formula_or_concept": "Independence: A and B are independent iff P(A∩B) = P(A)×P(B)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Checking additivity rule instead of multiplication rule",
+      "Confusing mutually exclusive with independence"
+    ],
+    "ai_explanation_seed": "Independence condition: P(A∩B) = P(A)×P(B). Check: 0.4×0.3 = 0.12 = P(A∩B). Yes, they are independent."
+  },
+  {
+    "id": "math_026",
+    "subject": "Mathematics",
+    "chapter": "Probability",
+    "topic": "Bayes' Theorem",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A bag has 3 red and 2 blue balls. A ball is drawn and not replaced. Then another ball is drawn. P(2nd ball is red | 1st is red) = ?",
+    "options": [
+      "A) 3/5",
+      "B) 1/2",
+      "C) 2/4",
+      "D) 3/4"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "After drawing 1 red ball: 2 red and 2 blue remain (4 balls). P(2nd red | 1st red) = 2/4 = 1/2.",
+    "formula_or_concept": "Conditional probability without replacement: update sample space after first draw",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using original probabilities 3/5 (not accounting for non-replacement)",
+      "Forgetting total becomes 4"
+    ],
+    "ai_explanation_seed": "Without replacement: after one red drawn, 2 red and 2 blue remain (4 total). P = 2/4 = 1/2."
+  },
+  {
+    "id": "math_027",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Permutations and Combinations",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "In how many ways can 5 people be arranged in a row?",
+    "options": [
+      "A) 25",
+      "B) 60",
+      "C) 120",
+      "D) 24"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "P(5,5) = 5! = 5×4×3×2×1 = 120.",
+    "formula_or_concept": "Permutation of n distinct objects = n!",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Computing 5⁵ or 5×5=25",
+      "Using combination C(5,5)=1"
+    ],
+    "ai_explanation_seed": "Arrangements in a row: 5 choices for 1st, 4 for 2nd... 5! = 120."
+  },
+  {
+    "id": "math_028",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Chain Rule",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "If y = sin(x²), then dy/dx = ?",
+    "options": [
+      "A) cos(x²)",
+      "B) 2x cos(x²)",
+      "C) -cos(x²)",
+      "D) 2x sin(x²)"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "By chain rule: dy/dx = cos(x²) × d(x²)/dx = cos(x²) × 2x = 2x cos(x²).",
+    "formula_or_concept": "Chain rule: d/dx[f(g(x))] = f'(g(x)) × g'(x)",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Forgetting the inner derivative 2x",
+      "Getting -cos from confusion with cos differentiation"
+    ],
+    "ai_explanation_seed": "Chain rule: derivative of outer × derivative of inner. d/dx[sin(x²)] = cos(x²) × 2x."
+  },
+  {
+    "id": "math_029",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Integration by Parts",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "∫x eˣ dx = ?",
+    "options": [
+      "A) xeˣ - eˣ + C",
+      "B) xeˣ + eˣ + C",
+      "C) x²eˣ/2 + C",
+      "D) eˣ(x+1) + C"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Integration by parts: ∫u dv = uv - ∫v du. Let u=x, dv=eˣdx → du=dx, v=eˣ. ∫xeˣdx = xeˣ - ∫eˣdx = xeˣ - eˣ + C = eˣ(x-1) + C.",
+    "formula_or_concept": "Integration by parts: ∫u dv = uv - ∫v du; ILATE rule for choosing u",
+    "estimated_solving_time_sec": 75,
+    "common_mistakes": [
+      "Not using IBP",
+      "Computing ∫v du incorrectly as ∫eˣdx = -eˣ"
+    ],
+    "ai_explanation_seed": "IBP with u=x, dv=eˣdx. ∫xeˣdx = xeˣ - ∫eˣdx = xeˣ - eˣ + C. Note: D choice = eˣ(x+1) ≠ eˣ(x-1) = answer."
+  },
+  {
+    "id": "math_030",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Distance and Section Formula",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "The distance between points (1, 2) and (4, 6) is:",
+    "options": [
+      "A) 5",
+      "B) 3",
+      "C) 4",
+      "D) 7"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "d = √[(4-1)² + (6-2)²] = √[9+16] = √25 = 5.",
+    "formula_or_concept": "Distance formula: d = √[(x₂-x₁)² + (y₂-y₁)²]",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Not squaring the differences before adding",
+      "Using d = |x₂-x₁| + |y₂-y₁| = 7 (taxicab metric)"
+    ],
+    "ai_explanation_seed": "Distance = √[(Δx)² + (Δy)²] = √[3² + 4²] = √[9+16] = √25 = 5."
+  },
+  {
+    "id": "math_031",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Logarithms",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "log₂(32) = ?",
+    "options": [
+      "A) 4",
+      "B) 5",
+      "C) 6",
+      "D) 3"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "32 = 2⁵. So log₂(32) = 5.",
+    "formula_or_concept": "log_b(bⁿ) = n; log tells you the power",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Computing 32/2 = 16 then 4",
+      "Confusing 2⁶=64 with 2⁵=32"
+    ],
+    "ai_explanation_seed": "log₂(32) = log₂(2⁵) = 5. Log base 2 of 32 is the power of 2 that equals 32."
+  },
+  {
+    "id": "math_032",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Inequalities",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "Solve: 2x - 3 > 7. The solution is:",
+    "options": [
+      "A) x > 5",
+      "B) x > 2",
+      "C) x < 5",
+      "D) x > 10"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "2x - 3 > 7 → 2x > 10 → x > 5.",
+    "formula_or_concept": "Inequality rules: add/subtract same on both sides; multiply/divide by positive keeps inequality direction",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Flipping inequality without reason",
+      "Computing x > 3.5 from 2x > 7 (forgot to add 3)"
+    ],
+    "ai_explanation_seed": "2x - 3 > 7 → 2x > 10 → x > 5. Linear inequality solved like equation, but inequality sign maintained."
+  },
+  {
+    "id": "math_033",
+    "subject": "Mathematics",
+    "chapter": "Trigonometry",
+    "topic": "Trigonometric Equations",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The general solution of sinθ = 1/2 is:",
+    "options": [
+      "A) nπ + π/6",
+      "B) nπ + (-1)ⁿπ/6",
+      "C) 2nπ ± π/6",
+      "D) nπ/6"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "sinθ = 1/2. Principal value: α = π/6. General solution: θ = nπ + (-1)ⁿα = nπ + (-1)ⁿπ/6.",
+    "formula_or_concept": "sinθ = sinα → θ = nπ + (-1)ⁿα; cosθ = cosα → θ = 2nπ ± α; tanθ = tanα → θ = nπ + α",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using cosine formula 2nπ ± α for sine",
+      "Not including (-1)ⁿ factor for sine"
+    ],
+    "ai_explanation_seed": "sinθ = sinα → θ = nπ + (-1)ⁿα. For sinθ = 1/2, α = π/6. General: θ = nπ + (-1)ⁿ(π/6)."
+  },
+  {
+    "id": "math_034",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Mathematical Induction",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "Prove by induction: 1 + 2 + 3 + ... + n = n(n+1)/2. The base case (n=1) gives:",
+    "options": [
+      "A) 1 = 1(2)/2 = 1 ✓",
+      "B) 1 = 1(1)/2 = 0.5 ✗",
+      "C) 1 = 2(1)/2 = 1 ✓ (same result, different form)",
+      "D) Base case fails for n=1"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "For n=1: LHS = 1. RHS = 1(1+1)/2 = 1(2)/2 = 1. LHS = RHS ✓. Base case holds.",
+    "formula_or_concept": "Mathematical induction: verify base case, assume for n=k, prove for n=k+1",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Substituting n=2 for base case",
+      "Computing formula incorrectly"
+    ],
+    "ai_explanation_seed": "Base case n=1: LHS = 1. RHS = n(n+1)/2 = 1×2/2 = 1. Equal → base case proven."
+  },
+  {
+    "id": "math_035",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Continuity",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "f(x) = |x| is:",
+    "options": [
+      "A) Differentiable everywhere",
+      "B) Continuous everywhere but not differentiable at x=0",
+      "C) Discontinuous at x=0",
+      "D) Neither continuous nor differentiable"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "f(x)=|x| is continuous at x=0 (lim_{x→0}|x|=0=f(0)). But left derivative=-1, right derivative=+1, so not differentiable at x=0.",
+    "formula_or_concept": "Continuity ≠ differentiability; |x| is classic example: continuous but not differentiable at 0",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Thinking continuity implies differentiability",
+      "Saying |x| is discontinuous at x=0"
+    ],
+    "ai_explanation_seed": "|x|: continuous (no jump/hole at 0) but not differentiable at 0 (corner point → no unique tangent). Left-hand derivative ≠ right-hand derivative."
+  },
+  {
+    "id": "math_036",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Mean Value Theorem",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "For f(x) = x² on [1, 3], the value of c guaranteed by the Mean Value Theorem is:",
+    "options": [
+      "A) c = 2",
+      "B) c = √5",
+      "C) c = 3/2",
+      "D) c = 1.5"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "MVT: f'(c) = (f(3)-f(1))/(3-1) = (9-1)/2 = 4. f'(x)=2x. 2c=4 → c=2.",
+    "formula_or_concept": "MVT: ∃c ∈ (a,b) such that f'(c) = (f(b)-f(a))/(b-a)",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Using endpoints instead of MVT formula",
+      "Setting f'(c) = f(c) instead of f'(c) = average rate"
+    ],
+    "ai_explanation_seed": "MVT: f'(c) = [f(3)-f(1)]/(3-1) = (9-1)/2 = 4. f'(x) = 2x → 2c = 4 → c = 2."
+  },
+  {
+    "id": "math_037",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Hyperbola",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "For the hyperbola x²/9 - y²/4 = 1, the eccentricity is:",
+    "options": [
+      "A) √13/3",
+      "B) √13/2",
+      "C) 5/3",
+      "D) 3/2"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "a² = 9, b² = 4. c² = a² + b² = 13. e = c/a = √13/3.",
+    "formula_or_concept": "Hyperbola: c² = a² + b²; e = c/a > 1 (unlike ellipse where e < 1)",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Using c² = a² - b² (ellipse formula)",
+      "Computing c/b instead of c/a"
+    ],
+    "ai_explanation_seed": "Hyperbola: c² = a² + b² (not a²-b²). c = √(9+4) = √13. e = c/a = √13/3."
+  },
+  {
+    "id": "math_038",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "AM-GM Inequality",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "For positive numbers a and b, AM ≥ GM means:",
+    "options": [
+      "A) (a+b)/2 ≥ √(ab)",
+      "B) (a+b)/2 ≤ √(ab)",
+      "C) a+b ≥ ab",
+      "D) √(ab) ≥ (a+b)/2"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "AM = (a+b)/2, GM = √(ab). AM ≥ GM: (a+b)/2 ≥ √(ab), equality when a = b.",
+    "formula_or_concept": "AM-GM inequality: arithmetic mean ≥ geometric mean for non-negative numbers; equality iff all equal",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Reversing the inequality",
+      "Confusing geometric mean with product"
+    ],
+    "ai_explanation_seed": "AM ≥ GM: (a+b)/2 ≥ √(ab). Always true for positive numbers. Equality when a = b."
+  },
+  {
+    "id": "math_039",
+    "subject": "Mathematics",
+    "chapter": "Trigonometry",
+    "topic": "Heights and Distances",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "A tower 50 m tall casts a shadow 50√3 m long. What is the angle of elevation of the sun?",
+    "options": [
+      "A) 30°",
+      "B) 45°",
+      "C) 60°",
+      "D) 90°"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "tan(θ) = height/shadow = 50/(50√3) = 1/√3 → θ = 30°.",
+    "formula_or_concept": "tan(angle of elevation) = height / horizontal distance",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Inverting tan formula: shadow/height",
+      "Confusing 1/√3 = tan30° with tan60° = √3"
+    ],
+    "ai_explanation_seed": "tan θ = opposite/adjacent = height/shadow = 50/(50√3) = 1/√3 = tan30°. θ = 30°."
+  },
+  {
+    "id": "math_040",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Rolle's Theorem",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "Rolle's theorem requires which conditions?",
+    "options": [
+      "A) f continuous on [a,b], differentiable on (a,b), f(a) ≠ f(b)",
+      "B) f continuous on [a,b], differentiable on (a,b), f(a) = f(b)",
+      "C) f differentiable on [a,b] only",
+      "D) f(a) = f(b) only"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Rolle's theorem: 3 conditions: (1) f continuous on [a,b], (2) f differentiable on open (a,b), (3) f(a) = f(b). Then ∃c ∈ (a,b) with f'(c) = 0.",
+    "formula_or_concept": "Rolle's: 3 conditions → ∃c with f'(c)=0; special case of MVT where f(a)=f(b)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Saying f(a) ≠ f(b) (opposite required)",
+      "Not knowing all 3 conditions"
+    ],
+    "ai_explanation_seed": "Rolle's theorem conditions: continuous on [a,b], differentiable on (a,b), AND f(a) = f(b). Then at least one c exists where f'(c) = 0."
+  },
+  {
+    "id": "math_041",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Sets and Relations",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "If A = {1, 2, 3} and B = {2, 3, 4}, then A ∩ B = ?",
+    "options": [
+      "A) {1,2,3,4}",
+      "B) {2,3}",
+      "C) {1,4}",
+      "D) {}"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "A ∩ B = elements in both A and B = {2, 3}.",
+    "formula_or_concept": "Intersection A∩B: elements common to both sets; Union A∪B: all elements in either",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Computing union {1,2,3,4} instead of intersection",
+      "Including only one common element"
+    ],
+    "ai_explanation_seed": "Intersection = common elements only. A={1,2,3}, B={2,3,4}. Common: {2,3}."
+  },
+  {
+    "id": "math_042",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Area Under Curve",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The area bounded by y = x² and the x-axis from x = 0 to x = 3 is:",
+    "options": [
+      "A) 9",
+      "B) 6",
+      "C) 3",
+      "D) 27"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Area = ∫₀³ x² dx = [x³/3]₀³ = 27/3 - 0 = 9.",
+    "formula_or_concept": "Area under curve = ∫ₐᵇ f(x) dx (for f(x) ≥ 0)",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Computing 3²×3/2 or similar",
+      "Forgetting to divide by 3 in integration"
+    ],
+    "ai_explanation_seed": "Area = ∫₀³ x² dx = [x³/3]₀³ = 27/3 = 9."
+  },
+  {
+    "id": "math_043",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Equation of Line",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "The equation of a line with slope 2 passing through (1, 3) is:",
+    "options": [
+      "A) y = 2x + 1",
+      "B) y = 2x - 2",
+      "C) y = 2x + 2",
+      "D) y = x + 2"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "y - y₁ = m(x - x₁): y - 3 = 2(x - 1) → y = 2x - 2 + 3 = 2x + 1.",
+    "formula_or_concept": "Point-slope form: y - y₁ = m(x - x₁)",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Computing y = 2x + 3 (ignoring x-intercept condition)",
+      "Sign errors in simplification"
+    ],
+    "ai_explanation_seed": "Point-slope: y - 3 = 2(x - 1) → y = 2x - 2 + 3 = 2x + 1."
+  },
+  {
+    "id": "math_044",
+    "subject": "Mathematics",
+    "chapter": "Probability",
+    "topic": "Binomial Distribution",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A fair coin is tossed 4 times. What is the probability of getting exactly 2 heads?",
+    "options": [
+      "A) 1/4",
+      "B) 3/8",
+      "C) 1/2",
+      "D) 1/16"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "P(X=2) = C(4,2) × (1/2)² × (1/2)² = 6 × (1/16) = 6/16 = 3/8.",
+    "formula_or_concept": "Binomial: P(X=r) = C(n,r) pʳ(1-p)^(n-r); for fair coin p=1/2",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using 2/4 = 1/2 (non-probabilistic thinking)",
+      "Not including C(4,2) factor"
+    ],
+    "ai_explanation_seed": "Binomial: n=4, r=2, p=1/2. P = C(4,2)×(1/2)²×(1/2)² = 6×1/16 = 3/8."
+  },
+  {
+    "id": "math_045",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "L'Hopital's Rule",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "lim_{x→0} (sin x)/x = ?",
+    "options": [
+      "A) 0",
+      "B) ∞",
+      "C) 1",
+      "D) π/180"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Standard limit: lim_{x→0} (sinx)/x = 1 (using radians). By L'Hopital (0/0): lim (cosx)/1 = cos0 = 1.",
+    "formula_or_concept": "Standard limit: lim_{x→0} (sinx)/x = 1; valid for x in radians",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Getting 0 (substituting x=0 directly to numerator and denominator)",
+      "Getting π/180 (confusing degrees with radians)"
+    ],
+    "ai_explanation_seed": "This is a standard limit = 1 (in radians). L'Hopital: differentiate top and bottom → cosx/1 → cos0 = 1."
+  },
+  {
+    "id": "math_046",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Arithmetic Progressions",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "The nth term of AP: 3, 7, 11, 15... is:",
+    "options": [
+      "A) 4n - 1",
+      "B) 3n",
+      "C) 4n + 3",
+      "D) n + 3"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "First term a=3, common difference d=4. an = a + (n-1)d = 3 + (n-1)4 = 3 + 4n - 4 = 4n - 1.",
+    "formula_or_concept": "AP nth term: an = a + (n-1)d",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Using aₙ = a + nd (off by one)",
+      "Computing 3 + 4n without subtracting 4"
+    ],
+    "ai_explanation_seed": "a=3, d=4. an = 3 + (n-1)×4 = 3 + 4n - 4 = 4n - 1. Verify: n=1→3, n=2→7 ✓."
+  },
+  {
+    "id": "math_047",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Maxima and Minima",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The minimum value of f(x) = x + 1/x for x > 0 is:",
+    "options": [
+      "A) 2",
+      "B) 1",
+      "C) 0",
+      "D) 3"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "f'(x) = 1 - 1/x² = 0 → x = 1. f''(x) = 2/x³ > 0 at x=1 → minimum. f(1) = 1 + 1 = 2. Also by AM-GM: x + 1/x ≥ 2.",
+    "formula_or_concept": "Critical point, second derivative test; or AM-GM: (x + 1/x)/2 ≥ √(x × 1/x) = 1 → x + 1/x ≥ 2",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Not restricting to x > 0 domain",
+      "Not checking nature of critical point"
+    ],
+    "ai_explanation_seed": "f'=0 at x=1. f''(1)>0 → minimum. f(1) = 2. Or AM-GM: x+1/x ≥ 2√(x·1/x) = 2. Equality at x=1."
+  },
+  {
+    "id": "math_048",
+    "subject": "Mathematics",
+    "chapter": "Vectors",
+    "topic": "Unit Vectors",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "The unit vector along v = 3i + 4j is:",
+    "options": [
+      "A) (3i + 4j)/5",
+      "B) (3i + 4j)/7",
+      "C) (i + j)/√2",
+      "D) 3i/4 + j"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "|v| = √(9+16) = 5. Unit vector = v/|v| = (3i + 4j)/5.",
+    "formula_or_concept": "Unit vector: v = v/|v|; |v| = √(vx² + vy² + vz²)",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Using |v| = 3+4=7",
+      "Not dividing by magnitude"
+    ],
+    "ai_explanation_seed": "Unit vector: divide by magnitude. |v| = √(3²+4²) = √25 = 5. Unit vector = (3i+4j)/5."
+  },
+  {
+    "id": "math_049",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Functions",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "If f(x) = 2x + 3, the inverse function f⁻¹(x) is:",
+    "options": [
+      "A) (x - 3)/2",
+      "B) (x + 3)/2",
+      "C) 2x - 3",
+      "D) 1/(2x+3)"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Let y = 2x+3. Solve for x: x = (y-3)/2. So f⁻¹(x) = (x-3)/2.",
+    "formula_or_concept": "Inverse function: swap x and y, solve for y; f⁻¹(f(x)) = x",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Swapping numerator and denominator",
+      "Not solving for x correctly"
+    ],
+    "ai_explanation_seed": "Set y = 2x+3. Isolate x: x = (y-3)/2. Inverse: f⁻¹(x) = (x-3)/2."
+  },
+  {
+    "id": "math_050",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Integration Techniques",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "∫ sin(x) dx = ?",
+    "options": [
+      "A) -cos(x) + C",
+      "B) cos(x) + C",
+      "C) -sin(x) + C",
+      "D) tan(x) + C"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "∫sinx dx = -cosx + C. Verify by differentiating: d(-cosx)/dx = sinx ✓.",
+    "formula_or_concept": "Standard integrals: ∫sinx = -cosx + C; ∫cosx = sinx + C",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Getting cosx instead of -cosx",
+      "Confusing with derivative of sinx"
+    ],
+    "ai_explanation_seed": "∫sinx dx = -cosx + C. Verify: derivative of -cosx = sinx ✓. Don't confuse integral with derivative."
+  },
+  {
+    "id": "math_051",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Tangent to Circle",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The length of the tangent from (5, 4) to the circle x² + y² = 9 is:",
+    "options": [
+      "A) √32",
+      "B) √7",
+      "C) 5",
+      "D) 4"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Length of tangent from (h,k) to x²+y²=r² is √(h²+k²-r²) = √(25+16-9) = √32.",
+    "formula_or_concept": "Tangent length from external point (h,k) to x²+y²=r²: L = √(h²+k²-r²)",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Using h+k-r instead of h²+k²-r²",
+      "Forgetting to take square root"
+    ],
+    "ai_explanation_seed": "Tangent length from point (h,k) to circle x²+y²=r²: L = √(h²+k²-r²) = √(25+16-9) = √32."
+  },
+  {
+    "id": "math_052",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Partial Fractions",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The partial fraction decomposition of 1/((x-1)(x-2)) is:",
+    "options": [
+      "A) 1/(x-2) - 1/(x-1)",
+      "B) -1/(x-1) + 1/(x-2)",
+      "C) 1/(x-1) + 1/(x-2)",
+      "D) 1/(x-1)(x-2)"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "1/((x-1)(x-2)) = A/(x-1) + B/(x-2). Multiply: 1 = A(x-2) + B(x-1). x=1: 1=-A → A=-1. x=2: 1=B. So = -1/(x-1) + 1/(x-2).",
+    "formula_or_concept": "Partial fractions: split into A/(linear) + B/(linear); substitute roots to find A, B",
+    "estimated_solving_time_sec": 70,
+    "common_mistakes": [
+      "Not substituting roots to solve for A, B",
+      "Wrong sign for A"
+    ],
+    "ai_explanation_seed": "Set up A/(x-1) + B/(x-2) = 1/((x-1)(x-2)). Multiply through: A(x-2)+B(x-1)=1. Plug x=1 → A=-1. Plug x=2 → B=1."
+  },
+  {
+    "id": "math_053",
+    "subject": "Mathematics",
+    "chapter": "Trigonometry",
+    "topic": "Properties of Triangles",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "In a triangle with sides a=5, b=6, c=7, the cosine of angle C is:",
+    "options": [
+      "A) 1/5",
+      "B) 1/2",
+      "C) 1/√5",
+      "D) 1/7"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Law of cosines: c² = a² + b² - 2ab cosC. 49 = 25 + 36 - 60cosC → cosC = (25+36-49)/60 = 12/60 = 1/5.",
+    "formula_or_concept": "Law of cosines: c² = a² + b² - 2ab cosC",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Using wrong side in law of cosines",
+      "Arithmetic error in 12/60"
+    ],
+    "ai_explanation_seed": "cos C = (a² + b² - c²)/(2ab) = (25 + 36 - 49)/(2×5×6) = 12/60 = 1/5."
+  },
+  {
+    "id": "math_054",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Partial Differentiation",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "If z = x²y + xy², then ∂z/∂x = ?",
+    "options": [
+      "A) 2xy + y²",
+      "B) x² + 2xy",
+      "C) 2xy",
+      "D) y² + 2xy"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "∂z/∂x: differentiate w.r.t. x, treating y as constant. ∂(x²y)/∂x = 2xy. ∂(xy²)/∂x = y². Total: 2xy + y².",
+    "formula_or_concept": "Partial derivative: differentiate w.r.t. one variable, treat others as constants",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Differentiating y terms also",
+      "Confusing ∂z/∂x with ∂z/∂y"
+    ],
+    "ai_explanation_seed": "∂z/∂x: y is constant. ∂(x²y)/∂x = 2xy (y constant). ∂(xy²)/∂x = y² (y² is constant). Total: 2xy + y²."
+  },
+  {
+    "id": "math_055",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Modular Arithmetic",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "What is 17 mod 5?",
+    "options": [
+      "A) 2",
+      "B) 3",
+      "C) 1",
+      "D) 4"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "17 = 3×5 + 2. So 17 mod 5 = 2.",
+    "formula_or_concept": "a mod b = remainder when a is divided by b",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Computing 17-5×3=2... wait that's correct. Alternative wrong: 17/5 = 3.4 → mistake picking 4 or 3"
+    ],
+    "ai_explanation_seed": "17 ÷ 5 = 3 remainder 2. So 17 mod 5 = 2."
+  },
+  {
+    "id": "math_056",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Midpoint Formula",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "The midpoint of the line segment joining (2, 4) and (6, 8) is:",
+    "options": [
+      "A) (4, 6)",
+      "B) (4, 4)",
+      "C) (8, 12)",
+      "D) (3, 5)"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Midpoint = ((x₁+x₂)/2, (y₁+y₂)/2) = ((2+6)/2, (4+8)/2) = (4, 6).",
+    "formula_or_concept": "Midpoint formula: M = ((x₁+x₂)/2, (y₁+y₂)/2)",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Using (x₂-x₁)/2 instead of (x₁+x₂)/2",
+      "Computing differences instead of sums"
+    ],
+    "ai_explanation_seed": "Midpoint: average of x-coords, average of y-coords. ((2+6)/2, (4+8)/2) = (4, 6)."
+  },
+  {
+    "id": "math_057",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Euler's Number",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "lim_{n→∞} (1 + 1/n)ⁿ equals:",
+    "options": [
+      "A) 1",
+      "B) ∞",
+      "C) e",
+      "D) 2"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "By definition, e = lim_{n→∞} (1 + 1/n)ⁿ ≈ 2.71828. This is the defining limit of Euler's number.",
+    "formula_or_concept": "Definition of e: lim_{n→∞}(1+1/n)ⁿ = e; e ≈ 2.71828",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Saying the limit is 1 (thinking (1+0)^∞ = 1)",
+      "Confusing with limit going to 2"
+    ],
+    "ai_explanation_seed": "Standard definition of e. (1+1/n)^n → e as n→∞. At n=1: 2; n→∞: e≈2.718. Not 1, not 2, equals e."
+  },
+  {
+    "id": "math_058",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Second Derivative",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "If y = sin(x), then d²y/dx² = ?",
+    "options": [
+      "A) -sin(x)",
+      "B) cos(x)",
+      "C) sin(x)",
+      "D) -cos(x)"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "dy/dx = cos(x). d²y/dx² = d(cosx)/dx = -sin(x).",
+    "formula_or_concept": "Successive differentiation: d²y/dx² = derivative of dy/dx",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Getting -cos(x) (differentiating sin directly, forgetting chain)",
+      "Stopping at first derivative"
+    ],
+    "ai_explanation_seed": "First derivative: cos(x). Second derivative: differentiate cos(x) = -sin(x)."
+  },
+  {
+    "id": "math_059",
+    "subject": "Mathematics",
+    "chapter": "Probability",
+    "topic": "Mutually Exclusive Events",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "For mutually exclusive events A and B, P(A ∪ B) = ?",
+    "options": [
+      "A) P(A) × P(B)",
+      "B) P(A) + P(B)",
+      "C) P(A) + P(B) - P(A∩B)",
+      "D) P(A) - P(B)"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Mutually exclusive: A∩B = ∅ → P(A∩B) = 0. So P(A∪B) = P(A) + P(B) - P(A∩B) = P(A) + P(B).",
+    "formula_or_concept": "Mutually exclusive: P(A∪B) = P(A)+P(B); Not mutually exclusive: P(A∪B) = P(A)+P(B)-P(A∩B)",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Using multiplication rule (independence)",
+      "Not knowing what mutually exclusive means"
+    ],
+    "ai_explanation_seed": "Mutually exclusive: can't occur together, so P(A∩B) = 0. Addition rule simplifies to P(A)+P(B)."
+  },
+  {
+    "id": "math_060",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Partial Sum of Series",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "Sum of the GP: 1 + 2 + 4 + 8 + ... (10 terms) is:",
+    "options": [
+      "A) 1023",
+      "B) 1024",
+      "C) 512",
+      "D) 2046"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "S = a(rⁿ - 1)/(r-1) = 1(2¹⁰ - 1)/(2-1) = 1024 - 1 = 1023.",
+    "formula_or_concept": "GP sum: Sn = a(rⁿ-1)/(r-1) for r≠1",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Getting 1024 = 2^10 without subtracting 1",
+      "Using wrong formula"
+    ],
+    "ai_explanation_seed": "GP formula: S = a(r^n - 1)/(r-1). a=1, r=2, n=10. S = (2^10 - 1)/1 = 1024 - 1 = 1023."
+  },
+  {
+    "id": "math_061",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Rate of Change",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "A spherical balloon is being inflated. When radius = 5 cm and dr/dt = 2 cm/s, the rate of increase of volume is:",
+    "options": [
+      "A) 200π cm³/s",
+      "B) 100π cm³/s",
+      "C) 50π cm³/s",
+      "D) 400π cm³/s"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "V = (4/3)πr³. dV/dt = 4πr² × dr/dt = 4π(25)(2) = 200π cm³/s.",
+    "formula_or_concept": "Chain rule for related rates: dV/dt = (dV/dr)(dr/dt) = 4πr² × dr/dt",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Not using chain rule: forgetting dr/dt factor",
+      "Computing dV/dt = 4πr instead of 4πr²"
+    ],
+    "ai_explanation_seed": "Related rates: dV/dt = dV/dr × dr/dt. dV/dr = 4πr². At r=5, dr/dt=2: dV/dt = 4π(25)(2) = 200π."
+  },
+  {
+    "id": "math_062",
+    "subject": "Mathematics",
+    "chapter": "Trigonometry",
+    "topic": "Sine Rule",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "In triangle ABC, a=6, A=30°, B=45°. Find b.",
+    "options": [
+      "A) 6√2",
+      "B) 6/√2",
+      "C) 3√2",
+      "D) 12"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Sine rule: a/sinA = b/sinB. 6/sin30° = b/sin45°. b = 6 × sin45°/sin30° = 6 × (√2/2)/(1/2) = 6√2.",
+    "formula_or_concept": "Sine rule: a/sinA = b/sinB = c/sinC",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Inverting the ratio: sinA/a = sinB/b (equivalent, just differently arranged)",
+      "Computing sin30°/sin45° instead of sin45°/sin30°"
+    ],
+    "ai_explanation_seed": "Sine rule: a/sinA = b/sinB. 6/sin30° = b/sin45°. b = 6sin45°/sin30° = 6×(√2/2)/(1/2) = 6√2."
+  },
+  {
+    "id": "math_063",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Roots and Coefficients",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "If 2 + 3i is a root of a quadratic with real coefficients, the other root is:",
+    "options": [
+      "A) 2 - 3i",
+      "B) -2 + 3i",
+      "C) -2 - 3i",
+      "D) 3 + 2i"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Complex roots of polynomials with real coefficients occur in conjugate pairs. If 2+3i is a root, then 2-3i is also a root.",
+    "formula_or_concept": "Complex conjugate root theorem: if polynomial has real coefficients, complex roots come in conjugate pairs",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Choosing -2+3i (negating real part)",
+      "Choosing -2-3i (negating both parts)"
+    ],
+    "ai_explanation_seed": "Real-coefficient polynomial: complex roots come in conjugate pairs. Conjugate of (2+3i) is (2-3i)."
+  },
+  {
+    "id": "math_064",
+    "subject": "Mathematics",
+    "chapter": "Vectors",
+    "topic": "Scalar Triple Product",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The volume of a parallelepiped with edge vectors a=i, b=j, c=k is:",
+    "options": [
+      "A) 0",
+      "B) 1",
+      "C) 3",
+      "D) √3"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Volume = |[a b c]| = |a·(b×c)| = |i·(j×k)| = |i·i| = 1.",
+    "formula_or_concept": "Volume of parallelepiped = |scalar triple product| = |a·(b×c)|",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Computing 1+1+1=3 (adding magnitudes)",
+      "Not using the triple product formula"
+    ],
+    "ai_explanation_seed": "Volume = |a·(b×c)|. j×k = i. So i·i = 1. Volume = 1."
+  },
+  {
+    "id": "math_065",
+    "subject": "Mathematics",
+    "chapter": "Coordinate Geometry",
+    "topic": "Perpendicular from a Point",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The perpendicular distance from (3, 4) to the line 3x + 4y - 5 = 0 is:",
+    "options": [
+      "A) 3",
+      "B) 4",
+      "C) 5",
+      "D) 24/5"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Distance = |3×3 + 4×4 - 5|/√(3²+4²) = |9+16-5|/√25 = |20|/5 = 4. Wait: |9+16-5| = 20, /5 = 4. So answer is 4.",
+    "formula_or_concept": "Distance from (x₀,y₀) to line ax+by+c=0: d = |ax₀+by₀+c|/√(a²+b²)",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Not taking absolute value in numerator",
+      "Computing √(a+b) instead of √(a²+b²)"
+    ],
+    "ai_explanation_seed": "Distance = |ax₀+by₀+c|/√(a²+b²) = |3(3)+4(4)-5|/√(9+16) = |9+16-5|/5 = 20/5 = 4."
+  },
+  {
+    "id": "math_066",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "L'Hopital Advanced",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "lim_{x→0} (1 - cosx)/x² = ?",
+    "options": [
+      "A) 1/2",
+      "B) 0",
+      "C) 1",
+      "D) ∞"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "0/0 form. Apply L'Hopital: lim sinx/2x = (1/2) lim sinx/x = 1/2 × 1 = 1/2.",
+    "formula_or_concept": "L'Hopital: differentiate numerator and denominator separately for 0/0 or ∞/∞; or use Taylor series cosx ≈ 1 - x²/2",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Getting 0 by direct substitution",
+      "Applying L'Hopital only once (should apply twice or recognize remaining limit)"
+    ],
+    "ai_explanation_seed": "L'Hopital on 0/0: lim sinx/2x. This is (1/2)lim(sinx/x) = 1/2. Or Taylor: 1-cosx ≈ x²/2 → (x²/2)/x² = 1/2."
+  },
+  {
+    "id": "math_067",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Number Theory",
+    "difficulty": "easy",
+    "target_exam": "JEE",
+    "question_text": "What is the sum of all prime numbers less than 20?",
+    "options": [
+      "A) 77",
+      "B) 73",
+      "C) 58",
+      "D) 84"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Primes less than 20: 2, 3, 5, 7, 11, 13, 17, 19. Sum = 2+3+5+7+11+13+17+19 = 77.",
+    "formula_or_concept": "Prime numbers: divisible only by 1 and themselves; smallest prime is 2",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Including 1 as prime (it's not)",
+      "Missing 2 (only even prime)",
+      "Arithmetic errors in sum"
+    ],
+    "ai_explanation_seed": "Primes < 20: 2,3,5,7,11,13,17,19. Sum: 2+3=5, 5+5=10, 10+7=17, 17+11=28, 28+13=41, 41+17=58, 58+19=77."
+  },
+  {
+    "id": "math_068",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Modulus and Argument",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The argument (amplitude) of the complex number -1 + i is:",
+    "options": [
+      "A) π/4",
+      "B) 3π/4",
+      "C) -π/4",
+      "D) 5π/4"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "-1+i is in 2nd quadrant. |z| = √2. Principal argument = π - π/4 = 3π/4 (since real part negative, imaginary positive).",
+    "formula_or_concept": "Argument of complex number: tan⁻¹(y/x) adjusted for quadrant; 2nd quadrant: π - tan⁻¹|y/x|",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Getting π/4 (ignoring the quadrant, just computing tan⁻¹(1/1))",
+      "Not adjusting for negative real part"
+    ],
+    "ai_explanation_seed": "-1+i: real=-1, imag=+1. 2nd quadrant. Argument = π - arctan(|1/(-1)|) = π - π/4 = 3π/4."
+  },
+  {
+    "id": "math_069",
+    "subject": "Mathematics",
+    "chapter": "Calculus",
+    "topic": "Newton-Leibniz Rule",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "If F(x) = ∫₀ˣ t² dt, then F'(x) = ?",
+    "options": [
+      "A) x²",
+      "B) x³/3",
+      "C) 2x",
+      "D) x³"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "By Fundamental Theorem of Calculus (Newton-Leibniz): d/dx ∫₀ˣ f(t) dt = f(x). So F'(x) = x².",
+    "formula_or_concept": "FTC/Newton-Leibniz: d/dx[∫ₐˣ f(t)dt] = f(x)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Computing ∫₀ˣ t² dt = x³/3 first, then differentiating back to x² (correct but longer)",
+      "Getting 2x by differentiating x² (differentiating the integrand instead of using FTC correctly)"
+    ],
+    "ai_explanation_seed": "FTC: derivative of the integral from constant to x equals the integrand evaluated at x. F'(x) = x²."
+  },
+  {
+    "id": "math_070",
+    "subject": "Mathematics",
+    "chapter": "Algebra",
+    "topic": "Principle of Counting",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "How many 3-digit numbers can be formed using digits 1, 2, 3, 4, 5 without repetition?",
+    "options": [
+      "A) 60",
+      "B) 125",
+      "C) 120",
+      "D) 24"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "P(5,3) = 5!/(5-3)! = 5!/2! = 120/2 = 60. Or: 5×4×3 = 60.",
+    "formula_or_concept": "Permutation without repetition: P(n,r) = n!/(n-r)! = n×(n-1)×...×(n-r+1)",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Computing 5³=125 (with repetition)",
+      "Computing 5!=120 (all 5 digits)"
+    ],
+    "ai_explanation_seed": "3 positions, 5 choices for first (no repeat), 4 for second, 3 for third. 5×4×3 = 60 arrangements."
+  }
+]

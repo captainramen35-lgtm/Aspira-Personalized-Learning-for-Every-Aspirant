@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "phy_001",
+    "subject": "Physics",
+    "chapter": "Kinematics",
+    "topic": "Equations of Motion",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A car starts from rest and accelerates uniformly at 4 m/s² for 5 seconds. What is the distance covered?",
+    "options": [
+      "A) 25 m",
+      "B) 50 m",
+      "C) 100 m",
+      "D) 20 m"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Using s = ut + ½at². u=0, a=4 m/s², t=5s. s = 0 + ½ × 4 × 25 = 50 m.",
+    "formula_or_concept": "s = ut + ½at² (second equation of motion)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Forgetting to halve the acceleration term",
+      "Using v=u+at instead of displacement equation"
+    ],
+    "ai_explanation_seed": "Uniform acceleration from rest; apply second equation of motion directly."
+  },
+  {
+    "id": "phy_002",
+    "subject": "Physics",
+    "chapter": "Kinematics",
+    "topic": "Projectile Motion",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A ball is thrown horizontally with velocity 20 m/s from a height of 80 m. What is the horizontal range? (g = 10 m/s²)",
+    "options": [
+      "A) 40 m",
+      "B) 60 m",
+      "C) 80 m",
+      "D) 100 m"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Time to fall: h = ½gt² → 80 = ½×10×t² → t = 4 s. Range = u×t = 20×4 = 80 m.",
+    "formula_or_concept": "Time of flight from free fall; horizontal range = horizontal velocity × time",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Using projectile formula for range (only valid for equal height launch/land)",
+      "Forgetting to calculate time first"
+    ],
+    "ai_explanation_seed": "Horizontal throw: vertical motion is free fall, horizontal is uniform. Find time from vertical, then horizontal range."
+  },
+  {
+    "id": "phy_003",
+    "subject": "Physics",
+    "chapter": "Kinematics",
+    "topic": "Relative Motion",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Train A moves east at 60 km/h and train B moves west at 90 km/h on parallel tracks. What is the speed of B relative to A?",
+    "options": [
+      "A) 30 km/h",
+      "B) 90 km/h",
+      "C) 150 km/h",
+      "D) 60 km/h"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Taking east as positive: v_A = +60, v_B = -90. Relative velocity of B w.r.t. A = v_B - v_A = -90 - 60 = -150 km/h. Speed = 150 km/h.",
+    "formula_or_concept": "Relative velocity: v_BA = v_B - v_A",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Subtracting speeds instead of using sign convention for direction",
+      "Confusing which velocity to subtract from which"
+    ],
+    "ai_explanation_seed": "Relative velocity requires sign convention. Opposite directions means speeds add up."
+  },
+  {
+    "id": "phy_004",
+    "subject": "Physics",
+    "chapter": "Kinematics",
+    "topic": "Velocity-Time Graphs",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "The area under a velocity-time graph gives:",
+    "options": [
+      "A) Acceleration",
+      "B) Displacement",
+      "C) Speed",
+      "D) Force"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Area under v-t graph = ∫v dt = displacement. The slope of v-t graph gives acceleration.",
+    "formula_or_concept": "Area under v-t graph = displacement; slope of v-t graph = acceleration",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Confusing slope (acceleration) with area (displacement)",
+      "Saying distance instead of displacement"
+    ],
+    "ai_explanation_seed": "Integral of velocity with respect to time is displacement. This is a fundamental calculus-kinematics connection."
+  },
+  {
+    "id": "phy_005",
+    "subject": "Physics",
+    "chapter": "Kinematics",
+    "topic": "Equations of Motion",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A particle starts from rest and moves with acceleration a = (2t + 1) m/s². What is its velocity at t = 3 s?",
+    "options": [
+      "A) 12 m/s",
+      "B) 9 m/s",
+      "C) 15 m/s",
+      "D) 10 m/s"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "a = dv/dt = 2t + 1. Integrating: v = t² + t + C. At t=0, v=0 → C=0. At t=3: v = 9 + 3 = 12 m/s.",
+    "formula_or_concept": "Variable acceleration: a = dv/dt; integrate to find velocity",
+    "estimated_solving_time_sec": 90,
+    "common_mistakes": [
+      "Using constant-acceleration equations for variable acceleration",
+      "Forgetting the integration constant and applying initial conditions"
+    ],
+    "ai_explanation_seed": "Variable acceleration requires calculus. Integrate a = dv/dt with respect to time and apply initial conditions."
+  },
+  {
+    "id": "phy_006",
+    "subject": "Physics",
+    "chapter": "Laws of Motion",
+    "topic": "Newton's Second Law",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A net force of 20 N acts on a body of mass 4 kg. What is the acceleration produced?",
+    "options": [
+      "A) 2.5 m/s²",
+      "B) 5 m/s²",
+      "C) 10 m/s²",
+      "D) 80 m/s²"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "F = ma → a = F/m = 20/4 = 5 m/s².",
+    "formula_or_concept": "Newton's Second Law: F = ma",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Dividing mass by force instead of force by mass",
+      "Forgetting units"
+    ],
+    "ai_explanation_seed": "Direct application of Newton's second law. F=ma → a=F/m."
+  },
+  {
+    "id": "phy_007",
+    "subject": "Physics",
+    "chapter": "Laws of Motion",
+    "topic": "Friction",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A block of mass 5 kg is on a surface with μ = 0.3. What minimum force (horizontal) is needed to move it? (g = 10 m/s²)",
+    "options": [
+      "A) 10 N",
+      "B) 15 N",
+      "C) 20 N",
+      "D) 1.5 N"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Normal force N = mg = 5×10 = 50 N. Maximum static friction = μN = 0.3×50 = 15 N. Applied force must exceed 15 N to cause motion; minimum = 15 N (just overcome static friction).",
+    "formula_or_concept": "f_s(max) = μₛN; object moves when applied force > maximum static friction",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using kinetic friction coefficient when asking about starting motion",
+      "Forgetting to calculate normal force first"
+    ],
+    "ai_explanation_seed": "To just start motion, applied force must equal maximum static friction. Calculate N = mg, then f_max = μN."
+  },
+  {
+    "id": "phy_008",
+    "subject": "Physics",
+    "chapter": "Laws of Motion",
+    "topic": "Atwood Machine",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "In an Atwood machine, masses 3 kg and 5 kg are connected by a string over a frictionless pulley. What is the acceleration of the system? (g = 10 m/s²)",
+    "options": [
+      "A) 1.5 m/s²",
+      "B) 2.5 m/s²",
+      "C) 4 m/s²",
+      "D) 5 m/s²"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "a = (m₂ - m₁)g / (m₁ + m₂) = (5-3)×10 / (5+3) = 20/8 = 2.5 m/s².",
+    "formula_or_concept": "Atwood machine acceleration: a = (m₂ - m₁)g / (m₁ + m₂)",
+    "estimated_solving_time_sec": 75,
+    "common_mistakes": [
+      "Not accounting for both masses in denominator",
+      "Using net mass difference only without summing total mass"
+    ],
+    "ai_explanation_seed": "Apply Newton's second law to each mass separately, then solve simultaneous equations. Net force = difference in weights; total inertia = sum of masses."
+  },
+  {
+    "id": "phy_009",
+    "subject": "Physics",
+    "chapter": "Laws of Motion",
+    "topic": "Circular Motion",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A car moves in a circular path of radius 100 m at 20 m/s. What is the centripetal acceleration?",
+    "options": [
+      "A) 2 m/s²",
+      "B) 4 m/s²",
+      "C) 5 m/s²",
+      "D) 0.2 m/s²"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "a_c = v²/r = (20)²/100 = 400/100 = 4 m/s².",
+    "formula_or_concept": "Centripetal acceleration: a_c = v²/r = ω²r",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Using a = v/r instead of v²/r",
+      "Confusing centripetal acceleration with tangential acceleration"
+    ],
+    "ai_explanation_seed": "Centripetal acceleration is v²/r. Direction is toward the center of the circle."
+  },
+  {
+    "id": "phy_010",
+    "subject": "Physics",
+    "chapter": "Laws of Motion",
+    "topic": "Impulse and Momentum",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A ball of mass 0.5 kg moving at 10 m/s hits a wall and rebounds at 8 m/s. What is the impulse on the ball?",
+    "options": [
+      "A) 1 N·s",
+      "B) 9 N·s",
+      "C) 5 N·s",
+      "D) 4 N·s"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Impulse = Δp = m(v_f - v_i). Taking initial direction as positive: v_i = +10, v_f = -8. Δp = 0.5×(-8-10) = 0.5×(-18) = -9 N·s. Magnitude = 9 N·s.",
+    "formula_or_concept": "Impulse = change in momentum = m(v_f - v_i); direction matters",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Forgetting that rebound velocity is negative (opposite direction)",
+      "Computing 0.5×(10-8) = 1 N·s ignoring sign"
+    ],
+    "ai_explanation_seed": "Impulse is vector quantity. Rebound means velocity reverses sign. Impulse = m(v_f - v_i) with signs."
+  },
+  {
+    "id": "phy_011",
+    "subject": "Physics",
+    "chapter": "Work, Energy and Power",
+    "topic": "Work-Energy Theorem",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A force of 50 N displaces an object by 6 m at 60° to the direction of force. What is the work done?",
+    "options": [
+      "A) 300 J",
+      "B) 150 J",
+      "C) 259 J",
+      "D) 0 J"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "W = Fd cosθ = 50 × 6 × cos60° = 50 × 6 × 0.5 = 150 J.",
+    "formula_or_concept": "W = F·d·cosθ; work depends on component of force along displacement",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Using sinθ instead of cosθ",
+      "Ignoring the angle and computing F×d directly"
+    ],
+    "ai_explanation_seed": "Work is the dot product of force and displacement. Only the component of force along the displacement does work."
+  },
+  {
+    "id": "phy_012",
+    "subject": "Physics",
+    "chapter": "Work, Energy and Power",
+    "topic": "Conservation of Energy",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A ball of mass 2 kg is dropped from a height of 10 m. What is its kinetic energy just before hitting the ground? (g = 10 m/s²)",
+    "options": [
+      "A) 100 J",
+      "B) 200 J",
+      "C) 50 J",
+      "D) 400 J"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "By conservation of energy: KE = Loss in PE = mgh = 2×10×10 = 200 J.",
+    "formula_or_concept": "Conservation of mechanical energy: KE gained = PE lost = mgh",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Computing KE = ½mv² without finding v first",
+      "Using wrong formula for PE"
+    ],
+    "ai_explanation_seed": "Energy conservation: all potential energy converts to kinetic energy when dropped from rest."
+  },
+  {
+    "id": "phy_013",
+    "subject": "Physics",
+    "chapter": "Work, Energy and Power",
+    "topic": "Power",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A motor lifts a 200 kg load to a height of 20 m in 40 s. What is the power of the motor? (g = 10 m/s²)",
+    "options": [
+      "A) 1000 W",
+      "B) 2000 W",
+      "C) 500 W",
+      "D) 4000 W"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Work done = mgh = 200×10×20 = 40000 J. Power = W/t = 40000/40 = 1000 W.",
+    "formula_or_concept": "Power = Work/time = Fv",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Forgetting to include g in weight calculation",
+      "Dividing by mass instead of time"
+    ],
+    "ai_explanation_seed": "Power is the rate of doing work. Calculate work first (W=mgh), then divide by time."
+  },
+  {
+    "id": "phy_014",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "topic": "First Law of Thermodynamics",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "800 J of heat is supplied to a gas and the gas does 300 J of work. What is the change in internal energy?",
+    "options": [
+      "A) 500 J",
+      "B) 1100 J",
+      "C) 300 J",
+      "D) 800 J"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "ΔU = Q - W = 800 - 300 = 500 J. (First Law: Q = ΔU + W)",
+    "formula_or_concept": "First Law of Thermodynamics: ΔU = Q - W",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Adding Q and W instead of subtracting",
+      "Confusing sign conventions (W done by gas is positive here)"
+    ],
+    "ai_explanation_seed": "First Law: heat added equals increase in internal energy plus work done by gas. ΔU = Q - W."
+  },
+  {
+    "id": "phy_015",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "topic": "Ideal Gas Laws",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "At constant temperature, a gas at 2 atm occupies 4 L. What volume does it occupy at 8 atm?",
+    "options": [
+      "A) 1 L",
+      "B) 2 L",
+      "C) 16 L",
+      "D) 8 L"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Boyle's Law: P₁V₁ = P₂V₂. 2×4 = 8×V₂ → V₂ = 8/8 = 1 L.",
+    "formula_or_concept": "Boyle's Law: P₁V₁ = P₂V₂ (at constant T)",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Using P₁/V₁ = P₂/V₂ (inverse relationship is P₁V₁ = P₂V₂)",
+      "Confusing Boyle's with Charles's Law"
+    ],
+    "ai_explanation_seed": "Boyle's Law: pressure and volume are inversely proportional at constant temperature."
+  },
+  {
+    "id": "phy_016",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "topic": "Carnot Engine",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A Carnot engine operates between 500 K and 300 K. What is its efficiency?",
+    "options": [
+      "A) 40%",
+      "B) 60%",
+      "C) 50%",
+      "D) 30%"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "η = 1 - T_cold/T_hot = 1 - 300/500 = 1 - 0.6 = 0.4 = 40%.",
+    "formula_or_concept": "Carnot efficiency: η = 1 - T_L/T_H (temperatures in Kelvin)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Using Celsius instead of Kelvin",
+      "Computing T_hot/T_cold instead of T_cold/T_hot"
+    ],
+    "ai_explanation_seed": "Carnot efficiency = 1 - T_cold/T_hot. Always use Kelvin. Maximum possible efficiency between two reservoirs."
+  },
+  {
+    "id": "phy_017",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "topic": "Specific Heat",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "How much heat is required to raise 2 kg of water from 20°C to 70°C? (Specific heat of water = 4200 J/kg·K)",
+    "options": [
+      "A) 210 kJ",
+      "B) 420 kJ",
+      "C) 84 kJ",
+      "D) 588 kJ"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Q = mcΔT = 2 × 4200 × (70-20) = 2 × 4200 × 50 = 420000 J = 420 kJ.",
+    "formula_or_concept": "Q = mcΔT where c is specific heat capacity",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Using temperature values instead of temperature difference",
+      "Forgetting to multiply by mass"
+    ],
+    "ai_explanation_seed": "Heat transferred Q = mcΔT. Calculate temperature change ΔT first, then multiply by mass and specific heat."
+  },
+  {
+    "id": "phy_018",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "topic": "Coulomb's Law",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Two charges of +4 μC and -4 μC are separated by 2 m. How does the force change if the separation is halved?",
+    "options": [
+      "A) Force doubles",
+      "B) Force quadruples",
+      "C) Force halves",
+      "D) Force unchanged"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "F ∝ 1/r². If r → r/2, F → F × (r/(r/2))² = F × 4. Force quadruples.",
+    "formula_or_concept": "Coulomb's Law: F = kq₁q₂/r²; force varies inversely as square of distance",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking force doubles when distance halves (linear thinking)",
+      "Not applying inverse square correctly"
+    ],
+    "ai_explanation_seed": "Inverse square law: halving distance → distance factor of (1/2)² = 1/4 in denominator → force multiplies by 4."
+  },
+  {
+    "id": "phy_019",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "topic": "Electric Potential",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The electric potential at a point 0.3 m from a charge of 3×10⁻⁹ C is (k = 9×10⁹ N·m²/C²):",
+    "options": [
+      "A) 90 V",
+      "B) 9 V",
+      "C) 900 V",
+      "D) 0.9 V"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "V = kq/r = (9×10⁹ × 3×10⁻⁹) / 0.3 = 27/0.3 = 90 V.",
+    "formula_or_concept": "Electric potential: V = kq/r (scalar quantity)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using the field formula E = kq/r² instead of potential V = kq/r",
+      "Getting the exponent arithmetic wrong"
+    ],
+    "ai_explanation_seed": "Electric potential V = kq/r. Note it's 1/r (not 1/r² like the field)."
+  },
+  {
+    "id": "phy_020",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "topic": "Capacitance",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Two capacitors of 4 μF and 6 μF are connected in series. What is the equivalent capacitance?",
+    "options": [
+      "A) 10 μF",
+      "B) 2.4 μF",
+      "C) 24 μF",
+      "D) 5 μF"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "1/C = 1/C₁ + 1/C₂ = 1/4 + 1/6 = 3/12 + 2/12 = 5/12. C = 12/5 = 2.4 μF.",
+    "formula_or_concept": "Series capacitors: 1/C_eq = 1/C₁ + 1/C₂ (opposite of resistors!)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using C₁+C₂ formula (parallel, not series)",
+      "Inverting the final answer"
+    ],
+    "ai_explanation_seed": "Series capacitors: reciprocals add (like parallel resistors). In series, capacitance decreases."
+  },
+  {
+    "id": "phy_021",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "topic": "Ohm's Law",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A 12 V battery is connected to a 4 Ω resistor. What current flows?",
+    "options": [
+      "A) 48 A",
+      "B) 0.33 A",
+      "C) 3 A",
+      "D) 8 A"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "I = V/R = 12/4 = 3 A.",
+    "formula_or_concept": "Ohm's Law: V = IR → I = V/R",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Inverting: I = R/V",
+      "Unit errors"
+    ],
+    "ai_explanation_seed": "Basic Ohm's Law: current = voltage divided by resistance."
+  },
+  {
+    "id": "phy_022",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "topic": "Resistors in Series and Parallel",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Three resistors of 2 Ω, 3 Ω, and 6 Ω are connected in parallel. What is the equivalent resistance?",
+    "options": [
+      "A) 11 Ω",
+      "B) 1 Ω",
+      "C) 3 Ω",
+      "D) 2 Ω"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "1/R = 1/2 + 1/3 + 1/6 = 3/6 + 2/6 + 1/6 = 6/6 = 1. R = 1 Ω.",
+    "formula_or_concept": "Parallel resistors: 1/R_eq = 1/R₁ + 1/R₂ + 1/R₃",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Adding resistances directly (series formula)",
+      "Arithmetic errors in fractions"
+    ],
+    "ai_explanation_seed": "Parallel resistors: conductances add. 1/R_eq = sum of 1/each R."
+  },
+  {
+    "id": "phy_023",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "topic": "Kirchhoff's Laws",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "In a circuit, two branches carry 3 A and 5 A toward a junction. What current leaves the junction through the third branch?",
+    "options": [
+      "A) 2 A",
+      "B) 8 A",
+      "C) 15 A",
+      "D) 5 A"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "By Kirchhoff's Current Law (KCL): sum of currents entering = sum leaving. 3 + 5 = 8 A leaves through third branch.",
+    "formula_or_concept": "KCL: ΣI_in = ΣI_out at any junction",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Subtracting currents instead of adding for KCL",
+      "Confusing KCL with KVL"
+    ],
+    "ai_explanation_seed": "Kirchhoff's Current Law: charge conservation means total current in equals total current out at any node."
+  },
+  {
+    "id": "phy_024",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "topic": "Magnetic Force on Current",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A 0.5 m wire carrying 4 A current is placed perpendicular to a 0.3 T magnetic field. What is the force on the wire?",
+    "options": [
+      "A) 0.6 N",
+      "B) 6 N",
+      "C) 0.06 N",
+      "D) 1.2 N"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "F = BIL sinθ = 0.3 × 4 × 0.5 × sin90° = 0.3 × 4 × 0.5 × 1 = 0.6 N.",
+    "formula_or_concept": "Force on current-carrying conductor: F = BIL sinθ",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Forgetting sinθ factor (=1 for perpendicular)",
+      "Getting order of multiplication wrong"
+    ],
+    "ai_explanation_seed": "F = BIL sinθ. Perpendicular means θ = 90°, sinθ = 1. Multiply B, I, L."
+  },
+  {
+    "id": "phy_025",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "topic": "Electromagnetic Induction",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A coil has 100 turns and the magnetic flux through it changes from 0.02 Wb to 0.08 Wb in 0.3 s. What is the induced EMF?",
+    "options": [
+      "A) 20 V",
+      "B) 0.2 V",
+      "C) 2 V",
+      "D) 200 V"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "EMF = -N × dΦ/dt = 100 × (0.08 - 0.02)/0.3 = 100 × 0.06/0.3 = 100 × 0.2 = 20 V.",
+    "formula_or_concept": "Faraday's Law: EMF = -N(dΦ/dt); magnitude = N × ΔΦ/Δt",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Forgetting to multiply by number of turns N",
+      "Dividing flux change incorrectly"
+    ],
+    "ai_explanation_seed": "Faraday's Law: induced EMF magnitude = N × rate of change of flux. More turns → more EMF."
+  },
+  {
+    "id": "phy_026",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Refraction and Snell's Law",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Light travels from glass (n=1.5) to air (n=1.0). What is the critical angle for total internal reflection?",
+    "options": [
+      "A) 30°",
+      "B) 42°",
+      "C) 45°",
+      "D) 60°"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "sin(θ_c) = n₂/n₁ = 1.0/1.5 = 2/3. θ_c = sin⁻¹(2/3) ≈ 41.8° ≈ 42°.",
+    "formula_or_concept": "Critical angle: sin(θ_c) = n_rare / n_dense",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Inverting n₁ and n₂",
+      "Confusing which medium light is coming from"
+    ],
+    "ai_explanation_seed": "TIR occurs when light moves from denser to rarer medium. Critical angle: sin θ_c = n_rare/n_dense."
+  },
+  {
+    "id": "phy_027",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Lens Formula",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "An object is placed 30 cm from a convex lens of focal length 20 cm. Where is the image formed?",
+    "options": [
+      "A) 60 cm on same side",
+      "B) 60 cm on other side",
+      "C) 12 cm on other side",
+      "D) At infinity"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "1/f = 1/v - 1/u. Using sign convention: u = -30, f = +20. 1/v = 1/20 + 1/(-30) → 1/v = 1/20 - 1/30 = 3/60 - 2/60 = 1/60. v = +60 cm (real, on other side).",
+    "formula_or_concept": "Lens formula: 1/f = 1/v - 1/u; sign convention: real objects have u negative",
+    "estimated_solving_time_sec": 75,
+    "common_mistakes": [
+      "Using 1/f = 1/v + 1/u (mirror formula)",
+      "Not applying sign convention for u"
+    ],
+    "ai_explanation_seed": "Lens formula 1/f = 1/v - 1/u. Object on left: u is negative. Positive v means real image on right."
+  },
+  {
+    "id": "phy_028",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Young's Double Slit",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "In Young's double slit experiment, slit separation d = 0.5 mm, screen distance D = 1 m, wavelength λ = 600 nm. What is the fringe width?",
+    "options": [
+      "A) 0.6 mm",
+      "B) 1.2 mm",
+      "C) 0.3 mm",
+      "D) 2.4 mm"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Fringe width β = λD/d = (600×10⁻⁹ × 1) / (0.5×10⁻³) = 600×10⁻⁹ / 5×10⁻⁴ = 1.2×10⁻³ m = 1.2 mm.",
+    "formula_or_concept": "Fringe width in YDSE: β = λD/d",
+    "estimated_solving_time_sec": 75,
+    "common_mistakes": [
+      "Unit conversion errors (nm to m, mm to m)",
+      "Using diameter instead of separation"
+    ],
+    "ai_explanation_seed": "YDSE fringe width β = λD/d. Be careful with units: λ in meters, d in meters, D in meters."
+  },
+  {
+    "id": "phy_029",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "topic": "Photoelectric Effect",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "In the photoelectric effect, what happens when the intensity of light is doubled?",
+    "options": [
+      "A) Kinetic energy of electrons doubles",
+      "B) Number of emitted electrons doubles",
+      "C) Threshold frequency doubles",
+      "D) Stopping potential doubles"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Intensity ∝ number of photons per second. More photons → more electrons emitted. KE depends only on frequency, not intensity. Threshold frequency is a material property.",
+    "formula_or_concept": "Photoelectric effect: KE = hf - φ; intensity affects number of photoelectrons, not their energy",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Thinking higher intensity means higher energy electrons",
+      "Confusing intensity with frequency"
+    ],
+    "ai_explanation_seed": "KE of photoelectrons depends only on frequency (hf - work function). Intensity controls how many electrons are emitted per second."
+  },
+  {
+    "id": "phy_030",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "topic": "de Broglie Wavelength",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "An electron has kinetic energy 1.6×10⁻¹⁸ J. What is its de Broglie wavelength? (h = 6.6×10⁻³⁴ J·s, m = 9×10⁻³¹ kg)",
+    "options": [
+      "A) 3.46 Å",
+      "B) 1.7 Å",
+      "C) 0.55 Å",
+      "D) 6.6 Å"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "KE = p²/2m → p = √(2mKE) = √(2 × 9×10⁻³¹ × 1.6×10⁻¹⁸) = √(2.88×10⁻⁴⁸) ≈ 1.7×10⁻²⁴ kg·m/s. λ = h/p = 6.6×10⁻³⁴ / 1.7×10⁻²⁴ ≈ 3.88×10⁻¹⁰ m ≈ 3.46 Å.",
+    "formula_or_concept": "de Broglie: λ = h/p; for KE given: p = √(2mKE)",
+    "estimated_solving_time_sec": 100,
+    "common_mistakes": [
+      "Using λ = h/mv without finding v or p from KE",
+      "Arithmetic errors with powers of 10"
+    ],
+    "ai_explanation_seed": "Find momentum from KE: p = √(2mKE). Then λ = h/p. Careful with powers of 10."
+  },
+  {
+    "id": "phy_031",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "topic": "Wave Properties",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A wave has frequency 500 Hz and wavelength 0.68 m. What is its speed?",
+    "options": [
+      "A) 340 m/s",
+      "B) 34 m/s",
+      "C) 3400 m/s",
+      "D) 0.00136 m/s"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "v = fλ = 500 × 0.68 = 340 m/s.",
+    "formula_or_concept": "Wave speed: v = fλ",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Using v = f/λ instead of v = fλ",
+      "Confusion about which quantity is given"
+    ],
+    "ai_explanation_seed": "Wave equation: speed = frequency × wavelength. v = fλ."
+  },
+  {
+    "id": "phy_032",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "topic": "Doppler Effect",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A source emitting sound at 1000 Hz moves toward a stationary observer at 30 m/s. What frequency does the observer hear? (Speed of sound = 330 m/s)",
+    "options": [
+      "A) 1100 Hz",
+      "B) 917 Hz",
+      "C) 1090 Hz",
+      "D) 1000 Hz"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "f' = f × v/(v - v_s) = 1000 × 330/(330-30) = 1000 × 330/300 = 1100 Hz.",
+    "formula_or_concept": "Doppler formula (source moving toward observer): f' = f × v/(v - v_s)",
+    "estimated_solving_time_sec": 70,
+    "common_mistakes": [
+      "Using v+v_s in denominator (source moving away formula)",
+      "Confusing observer motion with source motion formulas"
+    ],
+    "ai_explanation_seed": "Source approaching observer: apparent frequency increases. f' = f × v/(v - v_s). Note subtraction in denominator."
+  },
+  {
+    "id": "phy_033",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "topic": "Standing Waves",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A string of length 1.2 m is fixed at both ends. What is the wavelength of the fundamental mode?",
+    "options": [
+      "A) 0.6 m",
+      "B) 1.2 m",
+      "C) 2.4 m",
+      "D) 0.4 m"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "For fundamental mode in a fixed-fixed string: L = λ/2 → λ = 2L = 2×1.2 = 2.4 m.",
+    "formula_or_concept": "Fundamental mode: L = λ/2 (both ends fixed); wavelength = 2L",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Using λ = L for fundamental mode",
+      "Confusing open and closed pipe formulas with string"
+    ],
+    "ai_explanation_seed": "String fixed at both ends: nodes at both ends. Fundamental has half-wavelength fitting in length. λ = 2L."
+  },
+  {
+    "id": "phy_034",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "topic": "Gravitational Force",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "If the mass of Earth is doubled and its radius remains the same, how does the acceleration due to gravity change?",
+    "options": [
+      "A) Doubles",
+      "B) Halves",
+      "C) Quadruples",
+      "D) Remains same"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "g = GM/R². If M doubles and R is constant: g doubles.",
+    "formula_or_concept": "Acceleration due to gravity: g = GM/R²",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Including the object's mass in the formula",
+      "Thinking radius change would be involved"
+    ],
+    "ai_explanation_seed": "g = GM/R². Only mass of Earth and radius matter. Object mass cancels out."
+  },
+  {
+    "id": "phy_035",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "topic": "Orbital Motion",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "What is the escape velocity from a planet of radius R with surface gravitational acceleration g?",
+    "options": [
+      "A) √(gR)",
+      "B) √(2gR)",
+      "C) 2√(gR)",
+      "D) gR"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Setting KE = gravitational PE: ½mv² = GMm/R = m(gR²/R)=mgR → v² = 2gR → v = √(2gR).",
+    "formula_or_concept": "Escape velocity: v_e = √(2gR) = √(2GM/R)",
+    "estimated_solving_time_sec": 75,
+    "common_mistakes": [
+      "Forgetting factor of 2 (only using orbital velocity formula)",
+      "Confusing orbital velocity √(gR) with escape velocity √(2gR)"
+    ],
+    "ai_explanation_seed": "Escape velocity: set total mechanical energy to zero. ½mv² = GMm/R = mgR → v = √(2gR)."
+  },
+  {
+    "id": "phy_036",
+    "subject": "Physics",
+    "chapter": "Rotational Motion",
+    "topic": "Moment of Inertia",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The moment of inertia of a solid sphere of mass M and radius R about its diameter is:",
+    "options": [
+      "A) MR²",
+      "B) (2/5)MR²",
+      "C) (2/3)MR²",
+      "D) (1/2)MR²"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Moment of inertia of a solid sphere about its diameter = (2/5)MR². This is a standard result derived by integration.",
+    "formula_or_concept": "Solid sphere about diameter: I = (2/5)MR². Other: hollow sphere = (2/3)MR², disk = (1/2)MR²",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Confusing solid sphere with hollow sphere (2/3)",
+      "Using disk formula (1/2)MR²"
+    ],
+    "ai_explanation_seed": "Standard MI results: solid sphere = 2/5 MR², hollow sphere = 2/3 MR², disk = 1/2 MR². Learn these by heart."
+  },
+  {
+    "id": "phy_037",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "topic": "Gauss's Law",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "Using Gauss's Law, the electric field inside a uniformly charged hollow spherical shell is:",
+    "options": [
+      "A) kQ/R²",
+      "B) kQ/r² (r < R)",
+      "C) Zero",
+      "D) Depends on position inside"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "By Gauss's Law, for a Gaussian surface inside the hollow shell, the enclosed charge q_enc = 0. Therefore E×4πr² = 0 → E = 0.",
+    "formula_or_concept": "Gauss's Law: ∮E·dA = q_enc/ε₀; no enclosed charge → no field inside",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Thinking the charge on the shell creates a field inside",
+      "Applying the point charge formula for r < R"
+    ],
+    "ai_explanation_seed": "Gauss's Law: if no charge is enclosed by the Gaussian surface, the net flux is zero → E = 0 everywhere inside a charged hollow shell."
+  },
+  {
+    "id": "phy_038",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "topic": "Wheatstone Bridge",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "In a Wheatstone bridge with P = 3 Ω, Q = 6 Ω, R = 4 Ω, what value of S gives balance?",
+    "options": [
+      "A) 8 Ω",
+      "B) 4 Ω",
+      "C) 2 Ω",
+      "D) 12 Ω"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Balanced condition: P/Q = R/S → 3/6 = 4/S → S = 4×6/3 = 8 Ω.",
+    "formula_or_concept": "Wheatstone bridge balance: P/Q = R/S (no current through galvanometer)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using P/R = Q/S (wrong arrangement)",
+      "Cross multiplying incorrectly"
+    ],
+    "ai_explanation_seed": "Wheatstone bridge balanced when P/Q = R/S. Cross multiply to solve for unknown resistance."
+  },
+  {
+    "id": "phy_039",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Dispersion of Light",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which colour of light has the highest speed in a glass medium?",
+    "options": [
+      "A) Violet",
+      "B) Red",
+      "C) Green",
+      "D) All colours have same speed"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Red light has the lowest refractive index in glass (least deviation), meaning it travels fastest (v = c/n). Violet has highest n, so lowest speed.",
+    "formula_or_concept": "v = c/n; lower refractive index → higher speed; red has lowest n in glass",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Thinking violet is fastest because it has higher frequency",
+      "Confusing speed in glass with speed in vacuum"
+    ],
+    "ai_explanation_seed": "In glass, different colours have different refractive indices (dispersion). Red: n lowest → highest speed. Violet: n highest → lowest speed."
+  },
+  {
+    "id": "phy_040",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "topic": "Nuclear Physics",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The half-life of a radioactive substance is 20 years. After 60 years, what fraction remains?",
+    "options": [
+      "A) 1/4",
+      "B) 1/6",
+      "C) 1/8",
+      "D) 1/3"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Number of half-lives = 60/20 = 3. Fraction remaining = (1/2)³ = 1/8.",
+    "formula_or_concept": "Radioactive decay: N = N₀(1/2)^(t/T½); after n half-lives: N/N₀ = (1/2)ⁿ",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Dividing by 3 directly instead of using (1/2)^3",
+      "Confusing number of half-lives with time"
+    ],
+    "ai_explanation_seed": "Count half-lives: t/T½ = 60/20 = 3. After 3 half-lives: 1/2 × 1/2 × 1/2 = 1/8 remains."
+  },
+  {
+    "id": "phy_041",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "topic": "Entropy and Second Law",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "Which process has zero change in entropy for a reversible process?",
+    "options": [
+      "A) Isothermal",
+      "B) Isobaric",
+      "C) Adiabatic reversible",
+      "D) Isochoric"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "For a reversible adiabatic (isentropic) process, Q = 0 → ΔS = Q/T = 0. It is an isentropic process.",
+    "formula_or_concept": "ΔS = Q/T for reversible process; adiabatic: Q = 0 → ΔS = 0",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Thinking isothermal has zero entropy change (it doesn't — heat is exchanged)",
+      "Confusing adiabatic reversible with irreversible adiabatic"
+    ],
+    "ai_explanation_seed": "Entropy change ΔS = Q/T. For adiabatic process Q = 0, so ΔS = 0. This is why adiabatic reversible is called isentropic."
+  },
+  {
+    "id": "phy_042",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "topic": "Energy Stored in Capacitor",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A 10 μF capacitor is charged to 100 V. What is the energy stored?",
+    "options": [
+      "A) 0.05 J",
+      "B) 0.5 J",
+      "C) 5 J",
+      "D) 50 J"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "U = ½CV² = ½ × 10×10⁻⁶ × (100)² = ½ × 10⁻⁵ × 10⁴ = ½ × 0.1 = 0.05 J.",
+    "formula_or_concept": "Energy in capacitor: U = ½CV² = Q²/(2C) = QV/2",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Using U = CV² without the factor of ½",
+      "Unit errors with μF"
+    ],
+    "ai_explanation_seed": "Energy stored in capacitor = ½CV². Don't forget the factor of ½. Convert μF to F."
+  },
+  {
+    "id": "phy_043",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "topic": "Beats",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Two tuning forks of frequency 256 Hz and 260 Hz vibrate simultaneously. How many beats per second are heard?",
+    "options": [
+      "A) 2",
+      "B) 4",
+      "C) 516",
+      "D) 258"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Beat frequency = |f₁ - f₂| = |260 - 256| = 4 beats/second.",
+    "formula_or_concept": "Beat frequency = |f₁ - f₂|",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Adding the frequencies",
+      "Dividing the frequencies"
+    ],
+    "ai_explanation_seed": "Beats occur due to superposition of two slightly different frequencies. Beat frequency = difference of the two frequencies."
+  },
+  {
+    "id": "phy_044",
+    "subject": "Physics",
+    "chapter": "Rotational Motion",
+    "topic": "Angular Momentum",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "A figure skater spinning with arms outstretched pulls her arms in, reducing moment of inertia to half. Her angular velocity:",
+    "options": [
+      "A) Halves",
+      "B) Doubles",
+      "C) Remains same",
+      "D) Quadruples"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Conservation of angular momentum: L = Iω = constant. If I halves, ω doubles.",
+    "formula_or_concept": "Conservation of angular momentum: Iω = constant (no external torque)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking angular velocity decreases as they come in",
+      "Not applying conservation law (no external torque)"
+    ],
+    "ai_explanation_seed": "Angular momentum L = Iω is conserved. If I halves → ω must double to keep L constant."
+  },
+  {
+    "id": "phy_045",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "topic": "Power Dissipation",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A 100 Ω resistor carries a current of 2 A. What is the power dissipated?",
+    "options": [
+      "A) 200 W",
+      "B) 400 W",
+      "C) 50 W",
+      "D) 100 W"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "P = I²R = (2)² × 100 = 4 × 100 = 400 W.",
+    "formula_or_concept": "Power dissipation: P = I²R = V²/R = IV",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Using P = IR instead of I²R",
+      "Using P = V/R formulas incorrectly"
+    ],
+    "ai_explanation_seed": "Power in resistor: P = I²R when current is given. Three equivalent forms: P = IV = I²R = V²/R."
+  },
+  {
+    "id": "phy_046",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "topic": "Moving Charge in Magnetic Field",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A proton moves perpendicular to a uniform magnetic field. The path of the proton is:",
+    "options": [
+      "A) Straight line",
+      "B) Parabola",
+      "C) Circle",
+      "D) Helix"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "The magnetic force F = qv×B is always perpendicular to velocity → no work done → speed constant → path is a circle. The radius r = mv/qB.",
+    "formula_or_concept": "Charged particle perpendicular to B: circular motion, r = mv/(qB)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking it's a parabola (that's electric field, like projectile)",
+      "Thinking force does work and changes speed"
+    ],
+    "ai_explanation_seed": "Magnetic force is always ⊥ to velocity → no work → constant speed → circular path. r = mv/qB."
+  },
+  {
+    "id": "phy_047",
+    "subject": "Physics",
+    "chapter": "Work, Energy and Power",
+    "topic": "Elastic and Inelastic Collisions",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A 2 kg ball moving at 6 m/s collides perfectly inelastically with a 4 kg ball at rest. What is the final velocity of the combined mass?",
+    "options": [
+      "A) 2 m/s",
+      "B) 3 m/s",
+      "C) 4 m/s",
+      "D) 6 m/s"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "By conservation of momentum: m₁v₁ = (m₁+m₂)v'. 2×6 = 6×v'. v' = 12/6 = 2 m/s.",
+    "formula_or_concept": "Perfectly inelastic collision: m₁v₁ + m₂v₂ = (m₁+m₂)v'; momentum conserved, KE not",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Trying to conserve kinetic energy (it's inelastic)",
+      "Not adding masses in the denominator"
+    ],
+    "ai_explanation_seed": "Perfectly inelastic: they stick together. Use momentum conservation only: m₁v₁ = (m₁+m₂)v_f."
+  },
+  {
+    "id": "phy_048",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "topic": "Parallel Plate Capacitor",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A parallel plate capacitor with plate separation d is filled with a dielectric of constant K. How does capacitance change?",
+    "options": [
+      "A) Decreases by K",
+      "B) Increases by K",
+      "C) Unchanged",
+      "D) Increases by K²"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "C = Kε₀A/d. Introducing dielectric increases capacitance by factor K.",
+    "formula_or_concept": "Capacitance with dielectric: C = Kε₀A/d; K > 1 always increases capacitance",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Thinking the dielectric reduces capacitance",
+      "Squaring K"
+    ],
+    "ai_explanation_seed": "Dielectric constant K > 1. C = Kε₀A/d → introducing dielectric multiplies capacitance by K."
+  },
+  {
+    "id": "phy_049",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "topic": "Kepler's Laws",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "If a planet's orbital radius increases by a factor of 4, how does its orbital period change?",
+    "options": [
+      "A) Increases by 4",
+      "B) Increases by 8",
+      "C) Increases by 2",
+      "D) Increases by 16"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Kepler's Third Law: T² ∝ r³. T' = T(r'/r)^(3/2) = T×4^(3/2) = T×8. Period increases by 8.",
+    "formula_or_concept": "Kepler's Third Law: T² ∝ a³; T ∝ r^(3/2)",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Using T ∝ r (not r^3/2)",
+      "Computing 4² = 16 instead of 4^(3/2) = 8"
+    ],
+    "ai_explanation_seed": "Kepler's Third: T ∝ r^(3/2). If r → 4r: T → T × (4)^(3/2) = T × 8."
+  },
+  {
+    "id": "phy_050",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "topic": "Sound Intensity",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "If the intensity of sound doubles, the change in sound level in decibels is approximately:",
+    "options": [
+      "A) 2 dB",
+      "B) 3 dB",
+      "C) 6 dB",
+      "D) 10 dB"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "ΔL = 10 log(I₂/I₁) = 10 log(2) ≈ 10 × 0.301 ≈ 3 dB.",
+    "formula_or_concept": "Sound level: L = 10 log(I/I₀); doubling intensity ≈ +3 dB, 10× intensity = +10 dB",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Using 20 log (that's for pressure ratio)",
+      "Thinking doubling = +6 dB"
+    ],
+    "ai_explanation_seed": "dB change = 10 log(I₂/I₁). Doubling intensity: 10 log 2 ≈ 3 dB. Tenfold: 10 log 10 = 10 dB."
+  },
+  {
+    "id": "phy_051",
+    "subject": "Physics",
+    "chapter": "Kinematics",
+    "topic": "Maximum Height",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A ball is thrown upward with velocity 20 m/s. What is the maximum height reached? (g = 10 m/s²)",
+    "options": [
+      "A) 10 m",
+      "B) 20 m",
+      "C) 40 m",
+      "D) 5 m"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "At max height, v = 0. Using v² = u² - 2gh: 0 = 400 - 2×10×h → h = 400/20 = 20 m.",
+    "formula_or_concept": "v² = u² - 2gh; at max height v = 0",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Forgetting that v = 0 at maximum height",
+      "Using h = v/g instead of v²/(2g)"
+    ],
+    "ai_explanation_seed": "At max height velocity = 0. Use v² = u² - 2gh with v = 0 → h = u²/(2g)."
+  },
+  {
+    "id": "phy_052",
+    "subject": "Physics",
+    "chapter": "Laws of Motion",
+    "topic": "Free Body Diagram",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A block of mass 10 kg is on a smooth horizontal surface. Forces of 30 N (east) and 40 N (north) act on it simultaneously. What is the net acceleration?",
+    "options": [
+      "A) 3 m/s²",
+      "B) 4 m/s²",
+      "C) 5 m/s²",
+      "D) 7 m/s²"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Net force = √(30² + 40²) = √(900+1600) = √2500 = 50 N. a = F/m = 50/10 = 5 m/s².",
+    "formula_or_concept": "Resultant of perpendicular forces: F_net = √(F₁² + F₂²); then a = F/m",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Adding forces algebraically (3+4=7) instead of using Pythagoras",
+      "Finding components instead of resultant first"
+    ],
+    "ai_explanation_seed": "Perpendicular forces: resultant by Pythagoras. F_net = √(30² + 40²) = 50 N. a = F/m = 5 m/s²."
+  },
+  {
+    "id": "phy_053",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "topic": "Kinetic Theory of Gases",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The rms speed of gas molecules is proportional to:",
+    "options": [
+      "A) √T",
+      "B) T",
+      "C) T²",
+      "D) 1/√T"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "v_rms = √(3RT/M). So v_rms ∝ √T (at constant molar mass M).",
+    "formula_or_concept": "RMS speed: v_rms = √(3RT/M) ∝ √T",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Thinking v_rms ∝ T (missing square root)",
+      "Including pressure in the relationship"
+    ],
+    "ai_explanation_seed": "RMS speed formula: v = √(3RT/M). Temperature appears under square root, so v ∝ √T."
+  },
+  {
+    "id": "phy_054",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "topic": "Solenoid",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A solenoid of length 0.5 m has 1000 turns and carries 2 A. The magnetic field inside is (μ₀ = 4π×10⁻⁷ T·m/A):",
+    "options": [
+      "A) 16π×10⁻⁴ T",
+      "B) 8π×10⁻⁴ T",
+      "C) 4π×10⁻⁴ T",
+      "D) 2π×10⁻⁴ T"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "B = μ₀nI where n = N/L = 1000/0.5 = 2000 turns/m. B = 4π×10⁻⁷ × 2000 × 2 = 16π×10⁻⁴ T.",
+    "formula_or_concept": "Solenoid field: B = μ₀nI = μ₀(N/L)I",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Using N instead of n = N/L",
+      "Forgetting to divide turns by length"
+    ],
+    "ai_explanation_seed": "B = μ₀nI where n = turns per unit length = N/L. Not N directly."
+  },
+  {
+    "id": "phy_055",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "topic": "Bohr Model",
+    "difficulty": "hard",
+    "target_exam": "both",
+    "question_text": "In the Bohr model of hydrogen, the energy of the nth orbit is En = -13.6/n² eV. What is the energy required to excite the electron from n=1 to n=3?",
+    "options": [
+      "A) 12.09 eV",
+      "B) 13.6 eV",
+      "C) 1.51 eV",
+      "D) 10.2 eV"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "E₁ = -13.6 eV, E₃ = -13.6/9 ≈ -1.51 eV. ΔE = E₃ - E₁ = -1.51 - (-13.6) = 12.09 eV.",
+    "formula_or_concept": "Hydrogen energy levels: En = -13.6/n² eV; transition energy = E_final - E_initial",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Computing E₁ - E₃ (getting negative)",
+      "Using 13.6/1 - 13.6/9 without the negative signs"
+    ],
+    "ai_explanation_seed": "Energy to excite = E_final - E_initial. Both are negative; final is less negative. ΔE = E₃ - E₁ = (-1.51) - (-13.6) = 12.09 eV."
+  },
+  {
+    "id": "phy_056",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Mirrors",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "An object is placed 15 cm in front of a concave mirror of focal length 10 cm. The image distance is:",
+    "options": [
+      "A) 30 cm in front of mirror",
+      "B) 6 cm behind mirror",
+      "C) 30 cm behind mirror",
+      "D) 6 cm in front of mirror"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Mirror formula: 1/f = 1/v + 1/u. u = -15 cm (in front), f = -10 cm (concave). 1/v = 1/f - 1/u = 1/(-10) - 1/(-15) = -3/30 + 2/30 = -1/30. v = -30 cm (30 cm in front, real image).",
+    "formula_or_concept": "Mirror formula: 1/f = 1/v + 1/u; concave mirror f is negative",
+    "estimated_solving_time_sec": 75,
+    "common_mistakes": [
+      "Using lens formula (1/f = 1/v - 1/u)",
+      "Wrong sign convention for concave mirror"
+    ],
+    "ai_explanation_seed": "Mirror formula: 1/v + 1/u = 1/f. For concave, f is negative. Object in front: u is negative. Real image: v is negative."
+  },
+  {
+    "id": "phy_057",
+    "subject": "Physics",
+    "chapter": "Laws of Motion",
+    "topic": "Projectile on Incline",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A block of mass m is placed on a frictionless incline of angle 30°. What is the acceleration of the block down the incline?",
+    "options": [
+      "A) g sin30° = g/2",
+      "B) g cos30°",
+      "C) g",
+      "D) g tan30°"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "The component of gravity along the incline = mg sin θ. Net force = mg sin30°. a = g sin30° = g/2 = 5 m/s².",
+    "formula_or_concept": "Acceleration on frictionless incline: a = g sinθ",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Using cosθ instead of sinθ for along-incline component",
+      "Including normal force in net force calculation"
+    ],
+    "ai_explanation_seed": "Resolve gravity: along incline = mg sinθ, perpendicular = mg cosθ. Net force along incline = mg sinθ → a = g sinθ."
+  },
+  {
+    "id": "phy_058",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "topic": "Electric Field Lines",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Electric field lines always originate from which type of charge?",
+    "options": [
+      "A) Negative charges",
+      "B) Positive charges",
+      "C) Both equally",
+      "D) They don't originate from charges"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Electric field lines start from positive charges and terminate at negative charges. They represent the direction of force on a positive test charge.",
+    "formula_or_concept": "Field line convention: from + to -; tangent to field line gives direction of E",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Thinking lines originate from negative charge",
+      "Confusing direction of field lines with electron motion"
+    ],
+    "ai_explanation_seed": "Field lines show direction of force on positive test charge: emerge from + charge, end at - charge."
+  },
+  {
+    "id": "phy_059",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "topic": "Temperature and Resistance",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A metallic conductor has resistance 10 Ω at 20°C. If α = 0.004/°C, what is resistance at 70°C?",
+    "options": [
+      "A) 12 Ω",
+      "B) 10.2 Ω",
+      "C) 14 Ω",
+      "D) 11 Ω"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "R_T = R₀(1 + αΔT) = 10 × (1 + 0.004 × 50) = 10 × 1.2 = 12 Ω.",
+    "formula_or_concept": "Resistance with temperature: R_T = R₀(1 + αΔT)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using T directly instead of ΔT = 70-20 = 50",
+      "Multiplying α by T instead of ΔT"
+    ],
+    "ai_explanation_seed": "Use R = R₀(1 + αΔT). ΔT = 70-20 = 50°C. R = 10(1 + 0.004×50) = 10 × 1.2 = 12 Ω."
+  },
+  {
+    "id": "phy_060",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "topic": "Self Inductance",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "An inductor of L = 2 H has current changing at rate 3 A/s. What is the magnitude of the induced back-EMF?",
+    "options": [
+      "A) 1.5 V",
+      "B) 6 V",
+      "C) 0.67 V",
+      "D) 3 V"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "EMF = L × dI/dt = 2 × 3 = 6 V.",
+    "formula_or_concept": "Self-induced EMF: |ε| = L |dI/dt|",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Dividing instead of multiplying L and dI/dt",
+      "Confusing inductance with capacitance formulas"
+    ],
+    "ai_explanation_seed": "Self-induced EMF = L × (rate of change of current). ε = L × dI/dt. Simple multiplication."
+  },
+  {
+    "id": "phy_061",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "topic": "Resolving Power",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The resolving power of a telescope depends on:",
+    "options": [
+      "A) Focal length of eyepiece",
+      "B) Diameter of objective lens",
+      "C) Magnification",
+      "D) Focal length of objective"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Resolving power ∝ D/λ where D is the diameter of the objective lens. Larger objective → better resolution.",
+    "formula_or_concept": "Telescope resolving power = D/(1.22λ); depends on objective aperture D",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Confusing resolving power with magnifying power",
+      "Thinking focal length determines resolution"
+    ],
+    "ai_explanation_seed": "Resolution of telescope is limited by diffraction. RP = D/(1.22λ). Larger objective diameter → better ability to distinguish close objects."
+  },
+  {
+    "id": "phy_062",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "topic": "Gravitational Potential Energy",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "What is the gravitational potential energy of a 2 kg mass at a height of 5 m above the ground? (g = 10 m/s²)",
+    "options": [
+      "A) 100 J",
+      "B) 50 J",
+      "C) 25 J",
+      "D) 200 J"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "PE = mgh = 2 × 10 × 5 = 100 J.",
+    "formula_or_concept": "Gravitational PE near Earth surface: U = mgh",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Forgetting to include g",
+      "Using PE = mh (without g)"
+    ],
+    "ai_explanation_seed": "U = mgh. All three factors: mass, gravity, height must be multiplied."
+  },
+  {
+    "id": "phy_063",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "topic": "X-Rays",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The minimum wavelength of X-rays produced in an X-ray tube operated at 40 kV is (h = 6.6×10⁻³⁴ J·s, c = 3×10⁸ m/s):",
+    "options": [
+      "A) 0.031 Å",
+      "B) 0.31 Å",
+      "C) 3.1 Å",
+      "D) 0.0031 nm"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "λ_min = hc/(eV) = (6.6×10⁻³⁴ × 3×10⁸)/(1.6×10⁻¹⁹ × 40000) = 1.98×10⁻²⁵/6.4×10⁻¹⁵ ≈ 3.09×10⁻¹¹ m ≈ 0.31 Å.",
+    "formula_or_concept": "Duane-Hunt limit: λ_min = hc/(eV)",
+    "estimated_solving_time_sec": 80,
+    "common_mistakes": [
+      "Using energy in kV directly without converting to eV",
+      "Forgetting factor of electron charge"
+    ],
+    "ai_explanation_seed": "λ_min = hc/eV. Convert 40 kV to energy: eV = 1.6×10⁻¹⁹ × 40000 J. Then λ = hc/energy."
+  },
+  {
+    "id": "phy_064",
+    "subject": "Physics",
+    "chapter": "Work, Energy and Power",
+    "topic": "Potential Energy Curve",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A particle at equilibrium position in a potential energy curve has:",
+    "options": [
+      "A) Maximum PE",
+      "B) Zero force",
+      "C) Maximum KE always",
+      "D) Zero PE always"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "F = -dU/dx. At equilibrium, F = 0 → dU/dx = 0 → the PE curve has zero slope (extremum: minimum for stable, maximum for unstable).",
+    "formula_or_concept": "F = -dU/dx; equilibrium at dU/dx = 0; stable equilibrium at PE minimum",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Thinking equilibrium means zero PE",
+      "Confusing zero force with zero PE"
+    ],
+    "ai_explanation_seed": "Force = -dU/dx. Zero force means slope of PE curve = 0 (extremum). Stable equilibrium: PE minimum."
+  },
+  {
+    "id": "phy_065",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "topic": "Work Done by Gas",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A gas expands at constant pressure of 4×10⁵ Pa from volume 2L to 5L. Work done by the gas is:",
+    "options": [
+      "A) 120 J",
+      "B) 1200 J",
+      "C) 12000 J",
+      "D) 800 J"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "W = PΔV = 4×10⁵ × (5-2)×10⁻³ = 4×10⁵ × 3×10⁻³ = 1200 J... Wait, let me recalculate. 4×10⁵ × 3×10⁻³ = 1200 J. So answer is B.",
+    "formula_or_concept": "Isobaric work: W = PΔV; convert liters to m³ (1L = 10⁻³ m³)",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Not converting liters to m³",
+      "Using different volumes"
+    ],
+    "ai_explanation_seed": "W = PΔV. ΔV = 3L = 3×10⁻³ m³. W = 4×10⁵ × 3×10⁻³ = 1200 J."
+  },
+  {
+    "id": "phy_066",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "topic": "Resonance",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A closed pipe of length 1 m resonates in its fundamental mode. The frequency of resonance is (speed of sound = 340 m/s):",
+    "options": [
+      "A) 85 Hz",
+      "B) 170 Hz",
+      "C) 340 Hz",
+      "D) 680 Hz"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Closed pipe: L = λ/4 → λ = 4L = 4 m. f = v/λ = 340/4 = 85 Hz.",
+    "formula_or_concept": "Closed pipe fundamental: L = λ/4, f = v/(4L)",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Using L = λ/2 (open pipe formula)",
+      "Getting λ = L instead of 4L"
+    ],
+    "ai_explanation_seed": "Closed pipe: one end node, one end antinode → fundamental at L = λ/4 → λ = 4L. f = v/λ."
+  },
+  {
+    "id": "phy_067",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "topic": "Van de Graaff Generator",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "In a Van de Graaff generator, charge accumulates on the outer surface of the sphere because:",
+    "options": [
+      "A) Inner surface has more area",
+      "B) Charge on conductors resides on outer surface",
+      "C) The sphere is hollow",
+      "D) Charge is pumped to outer surface by motor"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Electrostatic charge on a conductor always resides on the outer surface to minimize potential energy. This is a direct consequence of Gauss's Law — no net charge inside a conductor.",
+    "formula_or_concept": "Conductors in electrostatics: charge on outer surface, field inside = 0",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Thinking the motor directly places charge on outside",
+      "Confusing with charge distribution in capacitors"
+    ],
+    "ai_explanation_seed": "Conductor property: charge always distributes on outer surface. E = 0 inside conductor. Gauss's Law confirms no enclosed charge."
+  },
+  {
+    "id": "phy_068",
+    "subject": "Physics",
+    "chapter": "Rotational Motion",
+    "topic": "Torque",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A force of 10 N is applied perpendicular to a rod at a distance of 0.5 m from the pivot. What is the torque?",
+    "options": [
+      "A) 5 N·m",
+      "B) 20 N·m",
+      "C) 2 N·m",
+      "D) 0.05 N·m"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "τ = r × F × sinθ = 0.5 × 10 × sin90° = 5 N·m.",
+    "formula_or_concept": "Torque: τ = rF sinθ; maximum when F ⊥ r",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Using τ = F/r",
+      "Forgetting sinθ (=1 here since perpendicular)"
+    ],
+    "ai_explanation_seed": "Torque = r × F × sinθ. Perpendicular means θ = 90°, sin 90° = 1. τ = r × F."
+  },
+  {
+    "id": "phy_069",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "topic": "Stefan-Boltzmann Law",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "If the temperature of a black body doubles, by what factor does the radiated power increase?",
+    "options": [
+      "A) 2",
+      "B) 4",
+      "C) 8",
+      "D) 16"
+    ],
+    "correct_answer": "D",
+    "detailed_solution": "Stefan-Boltzmann Law: P = σT⁴. If T → 2T: P' = σ(2T)⁴ = 16σT⁴ = 16P. Power increases by factor 16.",
+    "formula_or_concept": "Stefan-Boltzmann Law: P = σAT⁴; P ∝ T⁴",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Using T² (inverse square law) instead of T⁴",
+      "Computing 2⁴ = 8 arithmetic error"
+    ],
+    "ai_explanation_seed": "Radiated power ∝ T⁴. Double temperature: (2)⁴ = 16. Power increases 16-fold."
+  },
+  {
+    "id": "phy_070",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "topic": "Transformer",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A transformer has 200 primary turns and 1000 secondary turns. If primary voltage is 120 V, what is the secondary voltage?",
+    "options": [
+      "A) 24 V",
+      "B) 600 V",
+      "C) 240 V",
+      "D) 6000 V"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Vs/Vp = Ns/Np → Vs = Vp × Ns/Np = 120 × 1000/200 = 600 V.",
+    "formula_or_concept": "Transformer: Vs/Vp = Ns/Np = Ip/Is (step-up when Ns > Np)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Dividing Np by Ns instead of Ns by Np",
+      "Confusing step-up with step-down"
+    ],
+    "ai_explanation_seed": "Transformer ratio: Vs/Vp = Ns/Np. More turns on secondary → higher voltage (step-up). Vs = 120 × (1000/200) = 600 V."
+  }
+]

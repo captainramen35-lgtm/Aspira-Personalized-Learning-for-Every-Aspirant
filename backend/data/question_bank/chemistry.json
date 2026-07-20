@@ -1,0 +1,1682 @@
+[
+  {
+    "id": "chem_001",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "topic": "Bohr Model",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "The number of orbitals in the 3rd shell (n=3) of an atom is:",
+    "options": [
+      "A) 3",
+      "B) 6",
+      "C) 9",
+      "D) 18"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Number of orbitals in nth shell = n². For n=3: orbitals = 9 (one 3s, three 3p, five 3d).",
+    "formula_or_concept": "Orbitals per shell = n²; subshells s,p,d,f have 1,3,5,7 orbitals respectively",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Confusing orbitals with electrons (electrons = 2n²)",
+      "Counting 3 (number of subshells)"
+    ],
+    "ai_explanation_seed": "n=3 shell has 3s (1), 3p (3), 3d (5) = 9 orbitals. Total orbitals in nth shell = n²."
+  },
+  {
+    "id": "chem_002",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "topic": "Quantum Numbers",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "For an electron in the 4f orbital, the correct set of quantum numbers is:",
+    "options": [
+      "A) n=4, l=3, m_l=0",
+      "B) n=4, l=4, m_l=0",
+      "C) n=3, l=3, m_l=-1",
+      "D) n=4, l=2, m_l=-2"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "4f orbital: n=4, l=3 (f corresponds to l=3), m_l can be -3 to +3. Option A is valid.",
+    "formula_or_concept": "l values: s=0, p=1, d=2, f=3; l ranges 0 to n-1; m_l ranges -l to +l",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Setting l=4 for f orbital (f corresponds to l=3 not 4)",
+      "Confusing subshell letter with l value"
+    ],
+    "ai_explanation_seed": "4f: n=4, l=3 (f always means l=3). m_l can be any integer from -3 to +3. Option A satisfies all."
+  },
+  {
+    "id": "chem_003",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "topic": "Electronic Configuration",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The electronic configuration of Cr (Z=24) is:",
+    "options": [
+      "A) [Ar] 3d⁴ 4s²",
+      "B) [Ar] 3d⁵ 4s¹",
+      "C) [Ar] 3d⁶ 4s⁰",
+      "D) [Ar] 3d³ 4s²"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Cr is an exception: [Ar] 3d⁵ 4s¹ due to extra stability of half-filled 3d subshell. The expected [Ar] 3d⁴ 4s² is NOT correct.",
+    "formula_or_concept": "Exceptions: Cr=[Ar]3d⁵4s¹ and Cu=[Ar]3d¹⁰4s¹ (half-filled and fully-filled d subshell stability)",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Using the Aufbau principle directly (gives wrong answer for Cr)",
+      "Not knowing the exception"
+    ],
+    "ai_explanation_seed": "Cr (Z=24) is a classic exception. Half-filled d subshell (3d⁵) is extra stable → one electron from 4s promotes to 3d."
+  },
+  {
+    "id": "chem_004",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "topic": "VSEPR Theory",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The shape of PCl₅ molecule is:",
+    "options": [
+      "A) Tetrahedral",
+      "B) Trigonal bipyramidal",
+      "C) Octahedral",
+      "D) Square planar"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "PCl₅: P has 5 bond pairs, 0 lone pairs. Electron geometry and molecular geometry = trigonal bipyramidal.",
+    "formula_or_concept": "VSEPR: 5 bonding pairs, 0 lone pairs = trigonal bipyramidal",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Confusing trigonal bipyramidal with trigonal planar (3 bonds)",
+      "Thinking 5 bonds = square pyramidal"
+    ],
+    "ai_explanation_seed": "VSEPR: PCl₅ has 5 bond pairs, 0 lone pairs. 5 electron domains with no lone pairs → trigonal bipyramidal."
+  },
+  {
+    "id": "chem_005",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "topic": "Hybridization",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The hybridization of carbon in CO₂ is:",
+    "options": [
+      "A) sp",
+      "B) sp²",
+      "C) sp³",
+      "D) sp³d"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "CO₂: O=C=O. Carbon forms 2 double bonds. It has 2 sigma bonds (no lone pairs) → 2 electron domains → sp hybridization. Linear geometry.",
+    "formula_or_concept": "Hybridization based on steric number (sigma bonds + lone pairs): 2=sp, 3=sp², 4=sp³",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Counting π bonds in steric number (only count sigma bonds and lone pairs)",
+      "Choosing sp² for CO₂"
+    ],
+    "ai_explanation_seed": "CO₂: 2 double bonds with O. 2 sigma bonds, 0 lone pairs → steric number = 2 → sp hybridization → linear."
+  },
+  {
+    "id": "chem_006",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "topic": "Bond Order",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "Using MO theory, the bond order of O₂²⁻ (peroxide ion) is:",
+    "options": [
+      "A) 1",
+      "B) 1.5",
+      "C) 2",
+      "D) 0.5"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "O₂ has 16 electrons, O₂²⁻ has 18 electrons. MO configuration: (σ1s)²(σ*1s)²(σ2s)²(σ*2s)²(σ2p)²(π2p)⁴(π*2p)⁴. Bond order = (8-6)/2 = 1 (after antibonding)... Let me recalculate: bonding=8, antibonding=6, BO=(8-6)/2 = 1.",
+    "formula_or_concept": "Bond order = (bonding electrons - antibonding electrons)/2",
+    "estimated_solving_time_sec": 90,
+    "common_mistakes": [
+      "Calculating for O₂ instead of O₂²⁻",
+      "Miscounting electrons in MO diagram"
+    ],
+    "ai_explanation_seed": "O₂²⁻: 18 electrons total. Fill MO diagram: bond order = (bonding-antibonding)/2. Two extra antibonding electrons in π* compared to O₂."
+  },
+  {
+    "id": "chem_007",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "topic": "Hydrogen Bonding",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which of the following has the highest boiling point due to strong hydrogen bonding?",
+    "options": [
+      "A) HCl",
+      "B) H₂S",
+      "C) HF",
+      "D) HBr"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "HF has the strongest hydrogen bonding due to F being the most electronegative atom with small atomic radius. Despite being in the same group, HF > H₂O > NH₃ in H-bond strength per molecule.",
+    "formula_or_concept": "H-bonding strength: F-H...F > O-H...O > N-H...N; requires N, O, or F",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Choosing HBr because of higher molar mass",
+      "Thinking H₂S has H-bonding (S is too large)"
+    ],
+    "ai_explanation_seed": "H-bonding requires N, O, F. HCl, HBr, H₂S have H-bonding too weak to be significant. HF has strongest H-bond → highest BP."
+  },
+  {
+    "id": "chem_008",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics",
+    "topic": "Enthalpy and Hess's Law",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The enthalpy of combustion of carbon is -394 kJ/mol and of CO is -283 kJ/mol. What is ΔH for C + ½O₂ → CO?",
+    "options": [
+      "A) -111 kJ/mol",
+      "B) -677 kJ/mol",
+      "C) +111 kJ/mol",
+      "D) +283 kJ/mol"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Using Hess's Law: (C + O₂ → CO₂, ΔH₁=-394) minus (CO + ½O₂ → CO₂, ΔH₂=-283). Target = ΔH₁ - ΔH₂ = -394-(-283) = -111 kJ/mol.",
+    "formula_or_concept": "Hess's Law: ΔH of target = sum of ΔH of steps. Target = reaction 1 - reaction 2.",
+    "estimated_solving_time_sec": 75,
+    "common_mistakes": [
+      "Adding both ΔH values",
+      "Not reversing the CO combustion equation"
+    ],
+    "ai_explanation_seed": "Hess's Law: write C→CO₂ (ΔH₁=-394) and CO→CO₂ (ΔH₂=-283). Target: C→CO = reaction1 - reaction2 = -394-(-283) = -111 kJ."
+  },
+  {
+    "id": "chem_009",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics",
+    "topic": "Spontaneity and Gibbs Energy",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "A reaction has ΔH = -100 kJ/mol and ΔS = -200 J/mol·K. At what temperature does it become non-spontaneous?",
+    "options": [
+      "A) 250 K",
+      "B) 500 K",
+      "C) 750 K",
+      "D) 1000 K"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "ΔG = ΔH - TΔS. Non-spontaneous when ΔG > 0 → TΔS > ΔH → T > ΔH/ΔS = -100000/-200 = 500 K. At T > 500 K: ΔG > 0.",
+    "formula_or_concept": "ΔG = ΔH - TΔS; spontaneous when ΔG < 0; crossover T = ΔH/ΔS",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Not converting kJ to J (100 kJ = 100000 J)",
+      "Not understanding the sign conditions"
+    ],
+    "ai_explanation_seed": "Crossover temperature: ΔG = 0 when T = ΔH/ΔS. Convert units carefully. Above 500 K: ΔG > 0 (non-spontaneous)."
+  },
+  {
+    "id": "chem_010",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "topic": "Nernst Equation",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "For the cell Zn|Zn²⁺||Cu²⁺|Cu, E°_cell = 1.10 V. At 25°C, if [Zn²⁺] = 1 M and [Cu²⁺] = 0.01 M, the cell EMF is approximately (RT/F = 0.025 V):",
+    "options": [
+      "A) 1.04 V",
+      "B) 1.16 V",
+      "C) 1.10 V",
+      "D) 0.96 V"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "E = E° - (RT/nF) ln([Zn²⁺]/[Cu²⁺]) = 1.10 - (0.025/2) × ln(1/0.01) = 1.10 - 0.0125 × 4.605 ≈ 1.10 - 0.058 ≈ 1.04 V.",
+    "formula_or_concept": "Nernst equation: E = E° - (RT/nF) ln Q = E° - (0.059/n) log Q at 25°C",
+    "estimated_solving_time_sec": 100,
+    "common_mistakes": [
+      "Not dividing by n=2 in Nernst equation",
+      "Inverting the reaction quotient Q"
+    ],
+    "ai_explanation_seed": "Nernst: E = E° - (0.025/n)×lnQ. Q = [products]/[reactants] = [Zn²⁺]/[Cu²⁺]. n=2 electrons."
+  },
+  {
+    "id": "chem_011",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "topic": "Faraday's Laws of Electrolysis",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "How many moles of silver are deposited when 2 F of charge is passed through AgNO₃ solution?",
+    "options": [
+      "A) 1 mol",
+      "B) 2 mol",
+      "C) 0.5 mol",
+      "D) 4 mol"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Ag⁺ + e⁻ → Ag. 1 F deposits 1 mol Ag (n=1 for Ag). 2 F deposits 2 mol Ag.",
+    "formula_or_concept": "Faraday's law: moles of substance = charge (in F) / n-factor; Ag has n=1",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Dividing by 2 thinking Ag has n=2 (it doesn't)",
+      "Confusing Faraday with other units"
+    ],
+    "ai_explanation_seed": "Ag⁺ + e⁻ → Ag. Requires 1 electron per Ag (n=1). 1 F = 1 mol electrons. 2 F = 2 mol Ag deposited."
+  },
+  {
+    "id": "chem_012",
+    "subject": "Chemistry",
+    "chapter": "Chemical Kinetics",
+    "topic": "Rate Law",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A reaction is first order in A and second order in B. If [A] doubles and [B] stays the same, the rate:",
+    "options": [
+      "A) Doubles",
+      "B) Quadruples",
+      "C) Remains same",
+      "D) Increases 8 times"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Rate = k[A]¹[B]². If [A] doubles: Rate' = k[2A]¹[B]² = 2 × k[A][B]² = 2 × Rate. Rate doubles.",
+    "formula_or_concept": "Rate law: rate = k[A]^m[B]^n; rate changes based on individual order",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Using overall order (1+2=3) to determine effect of doubling A",
+      "Applying B's order to A's change"
+    ],
+    "ai_explanation_seed": "Rate = k[A]¹[B]². Only [A] changes, it doubles → rate doubles. [B] unchanged means B term unchanged."
+  },
+  {
+    "id": "chem_013",
+    "subject": "Chemistry",
+    "chapter": "Chemical Kinetics",
+    "topic": "Half Life",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A first-order reaction has a half-life of 20 minutes. What fraction of reactant remains after 60 minutes?",
+    "options": [
+      "A) 1/8",
+      "B) 1/4",
+      "C) 1/6",
+      "D) 1/3"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Number of half-lives = 60/20 = 3. Remaining fraction = (1/2)³ = 1/8.",
+    "formula_or_concept": "First-order: t½ = 0.693/k; after n half-lives: [A] = [A]₀(1/2)ⁿ",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Dividing by 3 instead of (1/2)^3",
+      "Not dividing total time by half-life first"
+    ],
+    "ai_explanation_seed": "After n half-lives, fraction = (1/2)^n. n = 60/20 = 3. Fraction = 1/8."
+  },
+  {
+    "id": "chem_014",
+    "subject": "Chemistry",
+    "chapter": "Chemical Kinetics",
+    "topic": "Arrhenius Equation",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A reaction has activation energy 40 kJ/mol. If temperature increases from 300 K to 310 K, the rate constant ratio k₂/k₁ is approximately (R = 8.314 J/mol·K):",
+    "options": [
+      "A) 1.72",
+      "B) 2.5",
+      "C) 1.3",
+      "D) 1.1"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "ln(k₂/k₁) = Ea/R × (1/T₁ - 1/T₂) = 40000/8.314 × (1/300 - 1/310) = 4811 × (0.00333 - 0.00323) = 4811 × 0.000107 ≈ 0.515. k₂/k₁ = e^0.515 ≈ 1.67 ≈ 1.72.",
+    "formula_or_concept": "Arrhenius: ln(k₂/k₁) = (Ea/R)(1/T₁ - 1/T₂)",
+    "estimated_solving_time_sec": 100,
+    "common_mistakes": [
+      "Using Ea in kJ without converting to J",
+      "Inverting T₁ and T₂"
+    ],
+    "ai_explanation_seed": "Arrhenius: ln(k₂/k₁) = (Ea/R)(1/T₁-1/T₂). Convert Ea to J. Careful with temperature subtraction order."
+  },
+  {
+    "id": "chem_015",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "IUPAC Nomenclature",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "The IUPAC name of CH₃-CH₂-CH₂-OH is:",
+    "options": [
+      "A) Propanol",
+      "B) 1-Propanol",
+      "C) Propan-1-ol",
+      "D) 3-Propanol"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Chain: 3 carbons (propan). OH at C-1 (propan-1-ol). Modern IUPAC uses propan-1-ol format.",
+    "formula_or_concept": "IUPAC: name parent chain, add suffix -ol for alcohol, number from end nearest OH",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Using older naming format",
+      "Numbering from wrong end"
+    ],
+    "ai_explanation_seed": "3-carbon chain = propan. OH at carbon 1 = propan-1-ol. Modern IUPAC puts locant before suffix."
+  },
+  {
+    "id": "chem_016",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Isomerism",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which pair represents chain isomers?",
+    "options": [
+      "A) n-Butane and Isobutane",
+      "B) n-Butane and 1-Butanol",
+      "C) Ethanol and Dimethyl ether",
+      "D) Glucose and Fructose"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Chain isomers have same molecular formula but different carbon skeleton (chain). n-Butane (CH₃CH₂CH₂CH₃) and isobutane (CH₃CH(CH₃)CH₃) are both C₄H₁₀ with different chains.",
+    "formula_or_concept": "Chain isomers: same formula, different carbon skeleton; position: same skeleton, different substituent position; functional group: different functional groups",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Confusing chain isomers with functional group isomers",
+      "Not checking molecular formula is same"
+    ],
+    "ai_explanation_seed": "Chain isomers: same molecular formula, different carbon chain structure. n-Butane and isobutane: both C₄H₁₀, different branching."
+  },
+  {
+    "id": "chem_017",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Reactions of Alcohols",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "What is the product when ethanol is heated with concentrated H₂SO₄ at 170°C?",
+    "options": [
+      "A) Diethyl ether",
+      "B) Acetic acid",
+      "C) Ethene",
+      "D) Ethyl hydrogen sulphate"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "At 170°C: dehydration by intramolecular elimination → ethene (CH₂=CH₂) + H₂O. At 140°C: intermolecular dehydration → diethyl ether.",
+    "formula_or_concept": "Ethanol + H₂SO₄: at 170°C → ethene (elimination); at 140°C → ether (substitution/dehydration)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing ether (that's 140°C condition)",
+      "Choosing acetic acid (that's oxidation, not dehydration)"
+    ],
+    "ai_explanation_seed": "Temperature determines product. 170°C: high temp → elimination → alkene (ethene). 140°C: lower temp → ether."
+  },
+  {
+    "id": "chem_018",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Aromatic Compounds",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which of the following is an electrophilic aromatic substitution reaction?",
+    "options": [
+      "A) Nitration of benzene",
+      "B) Addition of Cl₂ to benzene in UV light",
+      "C) Oxidation of toluene",
+      "D) Reduction of benzene"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Nitration (C₆H₆ + HNO₃/H₂SO₄ → C₆H₅NO₂) is classic EAS. Cl₂/UV is free radical substitution. Aromatic ring generally undergoes substitution (not addition) to maintain aromaticity.",
+    "formula_or_concept": "EAS reactions: nitration, halogenation (Lewis acid catalyst), sulfonation, Friedel-Crafts alkylation/acylation",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Choosing halogenation in UV light (that's free radical)",
+      "Confusing addition with substitution for aromatics"
+    ],
+    "ai_explanation_seed": "EAS: electrophile attacks aromatic ring. Nitration: NO₂⁺ (nitronium ion) is electrophile. Cl₂/UV is free radical mechanism."
+  },
+  {
+    "id": "chem_019",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Aldehydes and Ketones",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which reagent distinguishes between an aldehyde and a ketone?",
+    "options": [
+      "A) Tollens' reagent",
+      "B) Bromine water",
+      "C) HCN",
+      "D) NaOH solution"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Tollens' reagent (ammoniacal AgNO₃) gives silver mirror test only with aldehydes (not ketones). Aldehydes reduce Ag⁺ to Ag; ketones cannot.",
+    "formula_or_concept": "Aldehydes are reducing agents (have H on carbonyl carbon). Tollens', Fehling's: only aldehydes react",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Saying Fehling's works for all aldehydes (it doesn't work for aromatic ones)",
+      "Choosing HCN (both react)"
+    ],
+    "ai_explanation_seed": "Aldehydes: -CHO can be oxidized (reducing). Tollens': Ag mirror only with aldehydes. Ketones cannot be oxidized this way."
+  },
+  {
+    "id": "chem_020",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Amines",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The order of basicity for aliphatic amines in aqueous solution is:",
+    "options": [
+      "A) Primary > Secondary > Tertiary > NH₃",
+      "B) Secondary > Primary > Tertiary > NH₃",
+      "C) Tertiary > Secondary > Primary > NH₃",
+      "D) NH₃ > Primary > Secondary > Tertiary"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "In aqueous solution: 2° > 1° > 3° > NH₃. Solvation effect reduces basicity of 3° amines in water. 2° amines balance electron-donating alkyl groups and solvation best.",
+    "formula_or_concept": "Basicity in water: solvation stabilizes ammonium ions. 2° best balanced. 3° hindered from solvation.",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using gas phase order (3° > 2° > 1°)",
+      "Thinking more alkyl groups always means more basic in water"
+    ],
+    "ai_explanation_seed": "Aqueous basicity ≠ gas phase. In water: 2° > 1° > 3° > NH₃ due to solvation effects. Steric hindrance reduces 3° amine's ability to be solvated."
+  },
+  {
+    "id": "chem_021",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Periodic Trends",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which element has the highest electronegativity?",
+    "options": [
+      "A) Oxygen",
+      "B) Fluorine",
+      "C) Chlorine",
+      "D) Nitrogen"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Fluorine (F) has the highest electronegativity of all elements (Pauling scale: 3.98). It is the most electronegative element.",
+    "formula_or_concept": "Electronegativity: increases across period (L to R), decreases down group; F is highest",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing oxygen (2nd highest)",
+      "Thinking the trend changes at the top"
+    ],
+    "ai_explanation_seed": "Fluorine: top-right of periodic table. Highest electronegativity. EN: F > O > N > Cl on Pauling scale."
+  },
+  {
+    "id": "chem_022",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "p-Block Elements",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "PCl₃ + Cl₂ → PCl₅ illustrates which property of phosphorus?",
+    "options": [
+      "A) Reducing nature",
+      "B) Expanding octet",
+      "C) Disproportionation",
+      "D) Inert pair effect"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "P has empty 3d orbitals. It can expand its octet beyond 8 electrons by utilizing d orbitals. PCl₅ has 10 electrons around P. This is 'expanding the octet'.",
+    "formula_or_concept": "3rd period and below: can expand octet using empty d orbitals; P in PCl₅ has 10 valence electrons",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Confusing with inert pair effect (relevant for Sn, Pb etc.)",
+      "Thinking N can also form NCl₅ (it cannot — no 2d orbitals)"
+    ],
+    "ai_explanation_seed": "P is in 3rd period: has empty 3d orbitals. Can accommodate more than 8 electrons. N (2nd period) cannot — no 2d orbitals."
+  },
+  {
+    "id": "chem_023",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "d-Block Elements",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Cu has electronic configuration [Ar] 3d¹⁰ 4s¹. The Cu²⁺ ion has the configuration:",
+    "options": [
+      "A) [Ar] 3d⁹",
+      "B) [Ar] 3d⁸ 4s¹",
+      "C) [Ar] 3d¹⁰",
+      "D) [Ar] 3d⁸ 4s²"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Cu atom: [Ar] 3d¹⁰ 4s¹. Cu²⁺ loses 2 electrons. First from 4s, then from 3d: [Ar] 3d⁹. (4s electrons are lost first in cation formation.)",
+    "formula_or_concept": "Ionization: 4s electrons removed before 3d; Cu²⁺ = [Ar]3d⁹",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Removing from 3d first instead of 4s",
+      "Thinking Cu²⁺ = [Ar]3d¹⁰ 4s⁻¹ (impossible)"
+    ],
+    "ai_explanation_seed": "For cation formation, 4s electrons are removed first (higher energy in context of the ion). Cu: [Ar]3d¹⁰4s¹ → lose 4s¹ then one 3d → Cu²⁺: [Ar]3d⁹."
+  },
+  {
+    "id": "chem_024",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Coordination Chemistry",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The complex [Co(NH₃)₄Cl₂]⁺ exhibits which type of isomerism?",
+    "options": [
+      "A) Linkage isomerism",
+      "B) Ionization isomerism",
+      "C) Geometrical isomerism",
+      "D) Optical isomerism only"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "MA₄B₂ type complex (octahedral): exhibits geometric isomerism (cis and trans forms). Cis: two Cl adjacent; trans: two Cl opposite. No linkage isomerism since Cl⁻ has only one binding mode.",
+    "formula_or_concept": "Geometric isomerism in octahedral MA₄B₂: cis (Cl adjacent) and trans (Cl opposite)",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Confusing with linkage isomerism (requires ambidentate ligand)",
+      "Not knowing MA₄B₂ pattern"
+    ],
+    "ai_explanation_seed": "Octahedral MA₄B₂: two like ligands can be cis (90°) or trans (180°). This is geometric isomerism. Linkage needs ambidentate ligand like SCN⁻."
+  },
+  {
+    "id": "chem_025",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "topic": "Colligative Properties",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "2 moles of a non-electrolyte solute is dissolved in 1 kg water. The elevation in boiling point is (Kb for water = 0.52 K·kg/mol):",
+    "options": [
+      "A) 0.52 K",
+      "B) 1.04 K",
+      "C) 2.08 K",
+      "D) 0.26 K"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "ΔTb = Kb × m = 0.52 × 2 = 1.04 K.",
+    "formula_or_concept": "Elevation of boiling point: ΔTb = Kb × m (molality); colligative property",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Dividing Kb by molality instead of multiplying",
+      "Confusing boiling point elevation with depression"
+    ],
+    "ai_explanation_seed": "ΔTb = Kb × molality. m = 2 mol/kg. ΔTb = 0.52 × 2 = 1.04 K. Boiling point increases with solute."
+  },
+  {
+    "id": "chem_026",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "topic": "Raoult's Law",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "A solution contains 0.6 mol of benzene and 0.4 mol of toluene. Vapour pressures of pure benzene and toluene are 150 mmHg and 60 mmHg respectively. What is the total vapour pressure?",
+    "options": [
+      "A) 114 mmHg",
+      "B) 90 mmHg",
+      "C) 105 mmHg",
+      "D) 210 mmHg"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "P_total = x_B × P°_B + x_T × P°_T = 0.6×150 + 0.4×60 = 90 + 24 = 114 mmHg.",
+    "formula_or_concept": "Raoult's Law: P_total = x₁P°₁ + x₂P°₂; mole fractions must sum to 1",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Using moles directly instead of mole fractions",
+      "Adding pure vapour pressures"
+    ],
+    "ai_explanation_seed": "Raoult's Law: partial pressure of each component = mole fraction × pure vapour pressure. x_benzene = 0.6/(0.6+0.4) = 0.6. P = 0.6×150 + 0.4×60 = 114 mmHg."
+  },
+  {
+    "id": "chem_027",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Carboxylic Acids",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "What is the product of the reaction between ethanoic acid and ethanol in the presence of H₂SO₄?",
+    "options": [
+      "A) Ethyl ethanoate",
+      "B) Diethyl ether",
+      "C) Ethene",
+      "D) Ethanal"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Fischer esterification: RCOOH + R'OH → RCOOR' + H₂O. CH₃COOH + C₂H₅OH → CH₃COOC₂H₅ (ethyl ethanoate) + H₂O.",
+    "formula_or_concept": "Esterification: acid + alcohol → ester + water (reversible; H₂SO₄ as dehydrating agent)",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Choosing ether (that's from two alcohols, not acid+alcohol)",
+      "Confusing esterification with aldol condensation"
+    ],
+    "ai_explanation_seed": "Acid + Alcohol → Ester + Water. This is esterification. Product: ethyl ethanoate (ethyl acetate). H₂SO₄ as catalyst/dehydrating agent."
+  },
+  {
+    "id": "chem_028",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Polymers",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Nylon-6,6 is an example of:",
+    "options": [
+      "A) Addition polymer",
+      "B) Condensation polymer",
+      "C) Natural polymer",
+      "D) Vinyl polymer"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Nylon-6,6 is formed by condensation polymerization of hexamethylenediamine and adipic acid, releasing water. It has amide (-CO-NH-) linkages.",
+    "formula_or_concept": "Condensation polymer: formed by reaction of two monomers with loss of small molecule (H₂O, HCl); nylon, polyester are condensation polymers",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Confusing with addition polymers (like PVC, polythene)",
+      "Thinking nylon is a natural polymer"
+    ],
+    "ai_explanation_seed": "Condensation polymers: formed by polymerization with loss of water or HCl. Nylon (amide bond), polyester (ester bond) are condensation polymers."
+  },
+  {
+    "id": "chem_029",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "topic": "Heisenberg Uncertainty Principle",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "The Heisenberg uncertainty principle states that it is impossible to simultaneously determine, with precision, both:",
+    "options": [
+      "A) Mass and velocity",
+      "B) Position and momentum",
+      "C) Energy and mass",
+      "D) Charge and spin"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Δx × Δp ≥ ℏ/2. Simultaneous precise measurement of position (Δx) and momentum (Δp) is fundamentally impossible for quantum particles.",
+    "formula_or_concept": "HUP: Δx·Δp ≥ h/(4π); also ΔE·Δt ≥ h/(4π)",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Saying velocity and mass (mass is not uncertain)",
+      "Confusing with wave-particle duality"
+    ],
+    "ai_explanation_seed": "HUP: Δx·Δp ≥ ℏ/2. Greater certainty in position (small Δx) → greater uncertainty in momentum (large Δp). Fundamental quantum limit."
+  },
+  {
+    "id": "chem_030",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics",
+    "topic": "Bond Enthalpy",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "Using bond enthalpies: C-H = 412, C=C = 614, C-C = 348, H-H = 436 kJ/mol. ΔH for CH₂=CH₂ + H₂ → CH₃-CH₃ is:",
+    "options": [
+      "A) -124 kJ/mol",
+      "B) +124 kJ/mol",
+      "C) -137 kJ/mol",
+      "D) -248 kJ/mol"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Bonds broken: C=C (614) + H-H (436) = 1050 kJ. Bonds formed: C-C (348) + 2×C-H (2×412=824) = 1172 kJ. ΔH = 1050 - 1172 = -122 ≈ -124 kJ/mol.",
+    "formula_or_concept": "ΔH = Σ(bonds broken) - Σ(bonds formed); exothermic when more energy released forming bonds",
+    "estimated_solving_time_sec": 90,
+    "common_mistakes": [
+      "Subtracting in wrong direction (formed - broken)",
+      "Not accounting for all C-H bonds formed"
+    ],
+    "ai_explanation_seed": "ΔH = bonds broken - bonds formed. Ethene hydrogenation: break C=C + H-H; form C-C + 2 new C-H bonds. Count carefully."
+  },
+  {
+    "id": "chem_031",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "topic": "Galvanic Cells",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "In a galvanic cell, which electrode acts as the anode?",
+    "options": [
+      "A) The electrode at higher potential",
+      "B) The electrode where reduction occurs",
+      "C) The electrode where oxidation occurs",
+      "D) The positive electrode"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Anode: oxidation occurs (loss of electrons). Cathode: reduction occurs (gain of electrons). In galvanic cells, anode is negative and cathode is positive.",
+    "formula_or_concept": "Anode: oxidation (OIL); Cathode: reduction (RIG); Mnemonic: OIL RIG, AN OX, RED CAT",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Confusing with electrolytic cells (where anode is positive)",
+      "Thinking anode = higher potential always"
+    ],
+    "ai_explanation_seed": "Mnemonic: OIL RIG (Oxidation Is Loss, Reduction Is Gain). AN OX = ANode OXidation. RED CAT = REDuction CATHode."
+  },
+  {
+    "id": "chem_032",
+    "subject": "Chemistry",
+    "chapter": "Chemical Equilibrium",
+    "topic": "Le Chatelier's Principle",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "For N₂ + 3H₂ ⇌ 2NH₃ + heat, increasing temperature will:",
+    "options": [
+      "A) Shift equilibrium right, more NH₃",
+      "B) Shift equilibrium left, less NH₃",
+      "C) Have no effect",
+      "D) Increase Kp only"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "The reaction is exothermic (releases heat). Increasing temperature is like adding heat → equilibrium shifts left (toward endothermic direction) → less NH₃.",
+    "formula_or_concept": "Le Chatelier: adding heat shifts equilibrium toward endothermic side; Kc decreases for exothermic reactions when T increases",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Thinking more temperature always means more product",
+      "Confusing effect on equilibrium position vs. rate"
+    ],
+    "ai_explanation_seed": "Heat is a 'reactant' in endothermic, a 'product' in exothermic. NH₃ synthesis is exothermic: heat is product. Add heat → shift left → less NH₃."
+  },
+  {
+    "id": "chem_033",
+    "subject": "Chemistry",
+    "chapter": "Chemical Equilibrium",
+    "topic": "Equilibrium Constant",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "For the equilibrium A + B ⇌ C + D, the expression for Kc is:",
+    "options": [
+      "A) Kc = [C][D]/[A][B]",
+      "B) Kc = [A][B]/[C][D]",
+      "C) Kc = [C]+[D]/[A]+[B]",
+      "D) Kc = [A][B][C][D]"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Kc = [products]/[reactants] = [C][D]/[A][B] at equilibrium.",
+    "formula_or_concept": "Kc = [products]^stoich / [reactants]^stoich; only aqueous and gas concentrations; pure solids/liquids excluded",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Inverting numerator and denominator",
+      "Including solids or pure liquids"
+    ],
+    "ai_explanation_seed": "Kc = concentration of products / concentration of reactants at equilibrium. Each concentration raised to its stoichiometric coefficient."
+  },
+  {
+    "id": "chem_034",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "s-Block Elements",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which alkali metal reacts most vigorously with water?",
+    "options": [
+      "A) Lithium",
+      "B) Sodium",
+      "C) Potassium",
+      "D) Caesium"
+    ],
+    "correct_answer": "D",
+    "detailed_solution": "Reactivity of alkali metals with water increases down the group: Li < Na < K < Rb < Cs. Caesium reacts most vigorously (explosively).",
+    "formula_or_concept": "Alkali metals + water: 2M + 2H₂O → 2MOH + H₂; reactivity increases down group",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Choosing Na (most commonly discussed) or Li (smallest)",
+      "Thinking smallest atom reacts fastest"
+    ],
+    "ai_explanation_seed": "Reactivity increases down Group 1 as ionization energy decreases. Cs has lowest IE → most reactive. Li reacts slowly; Na vigorously; Cs explosively."
+  },
+  {
+    "id": "chem_035",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Oxides",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which of the following oxides is amphoteric?",
+    "options": [
+      "A) Na₂O",
+      "B) CaO",
+      "C) Al₂O₃",
+      "D) SO₃"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Al₂O₃ reacts with both acids (Al₂O₃ + 6HCl → 2AlCl₃ + 3H₂O) and bases (Al₂O₃ + 2NaOH → 2NaAlO₂ + H₂O), making it amphoteric.",
+    "formula_or_concept": "Amphoteric oxides: react with both acids and bases; Al₂O₃, ZnO, SnO₂ are classic examples",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Confusing acidic oxides (SO₃) with amphoteric",
+      "Thinking Na₂O is amphoteric (it's basic)"
+    ],
+    "ai_explanation_seed": "Amphoteric: reacts with both acid AND base. Al₂O₃ is the classic example. Na₂O and CaO: basic oxides. SO₃: acidic oxide."
+  },
+  {
+    "id": "chem_036",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Reaction Mechanisms",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The SN1 reaction is favored by:",
+    "options": [
+      "A) Primary alkyl halides with strong nucleophiles",
+      "B) Tertiary alkyl halides with weak nucleophiles in polar protic solvents",
+      "C) Primary alkyl halides in non-polar solvents",
+      "D) Secondary alkyl halides with strong bases"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "SN1: two-step mechanism via carbocation. Tertiary carbocations are most stable. Weak nucleophiles can't force SN2. Polar protic solvents stabilize carbocation intermediate. Rate depends only on substrate concentration.",
+    "formula_or_concept": "SN1: tertiary substrate, weak nucleophile, polar protic solvent; SN2: primary substrate, strong nucleophile, polar aprotic solvent",
+    "estimated_solving_time_sec": 70,
+    "common_mistakes": [
+      "Confusing SN1 and SN2 conditions",
+      "Thinking strong nucleophile favors SN1"
+    ],
+    "ai_explanation_seed": "SN1 needs stable carbocation (3°). Weak nucleophile → not SN2. Polar protic solvent stabilizes cation. SN2 needs strong nucleophile, unhindered substrate."
+  },
+  {
+    "id": "chem_037",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "topic": "Atomic Spectra",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The Balmer series of hydrogen spectrum appears in the:",
+    "options": [
+      "A) Ultraviolet region",
+      "B) Visible region",
+      "C) Infrared region",
+      "D) X-ray region"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Balmer series: transitions to n=2. Wavelengths 410-656 nm → visible light. Lyman (→n=1): UV. Paschen (→n=3): IR.",
+    "formula_or_concept": "H spectrum series: Lyman→UV; Balmer→visible; Paschen→near IR; Brackett/Pfund→far IR",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Choosing UV (that's Lyman series)",
+      "Confusing series by name"
+    ],
+    "ai_explanation_seed": "Balmer series: n=3,4,5... → n=2 transitions. Wavelengths in visible range (410-656 nm). Only Balmer is visible to human eye."
+  },
+  {
+    "id": "chem_038",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Grignard Reagents",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "CH₃MgBr reacts with CO₂ followed by H₃O⁺. The product is:",
+    "options": [
+      "A) Methanol",
+      "B) Acetic acid",
+      "C) Formaldehyde",
+      "D) Formic acid"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Grignard + CO₂: R-MgBr + CO₂ → R-COO-MgBr (salt) → R-COOH after H₃O⁺. CH₃MgBr + CO₂ → CH₃COOMgBr → CH₃COOH (acetic acid).",
+    "formula_or_concept": "Grignard + CO₂ → carboxylic acid; adds one carbon to give one carbon more than original R group",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Stopping at the salt without hydrolysis step",
+      "Forgetting that CO₂ adds one C to give acid"
+    ],
+    "ai_explanation_seed": "Grignard reagent (R-MgBr) acts as R⁻. Attacks CO₂ to give R-COO-MgBr. Acidic workup (H₃O⁺) gives carboxylic acid R-COOH."
+  },
+  {
+    "id": "chem_039",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "topic": "Van't Hoff Factor",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The van't Hoff factor for Na₂SO₄ assuming complete dissociation is:",
+    "options": [
+      "A) 1",
+      "B) 2",
+      "C) 3",
+      "D) 4"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Na₂SO₄ → 2Na⁺ + SO₄²⁻ = 3 ions. Van't Hoff factor i = number of particles after dissociation = 3.",
+    "formula_or_concept": "Van't Hoff factor i = actual particles in solution / formula units dissolved; for electrolytes: count all ions",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Counting i=2 (thinking it's diatomic)",
+      "Including the original formula unit in the count"
+    ],
+    "ai_explanation_seed": "Na₂SO₄ → 2Na⁺ + SO₄²⁻ = 3 total ions. i = 3. Van't Hoff factor multiplies colligative properties for electrolytes."
+  },
+  {
+    "id": "chem_040",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Transition Metals",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which property is characteristic of transition metal compounds?",
+    "options": [
+      "A) They are mostly colourless",
+      "B) They show variable oxidation states",
+      "C) They are diamagnetic",
+      "D) They don't form complexes"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Transition metals have incompletely filled d orbitals. They show variable oxidation states because d electrons can be lost in different amounts (e.g., Fe can be +2 or +3). They are often coloured and paramagnetic.",
+    "formula_or_concept": "Transition metals: variable oxidation states, coloured ions, paramagnetism, catalytic activity, complex formation",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Choosing diamagnetic (d-block often paramagnetic due to unpaired electrons)",
+      "Thinking they have fixed oxidation states"
+    ],
+    "ai_explanation_seed": "Transition metals: characteristic properties include variable OS, coloured compounds (d-d transitions), paramagnetism (unpaired d electrons), complex formation."
+  },
+  {
+    "id": "chem_041",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Glucose and Carbohydrates",
+    "difficulty": "easy",
+    "target_exam": "NEET",
+    "question_text": "Glucose is an example of which type of carbohydrate?",
+    "options": [
+      "A) Disaccharide",
+      "B) Polysaccharide",
+      "C) Monosaccharide",
+      "D) Oligosaccharide"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Glucose (C₆H₁₂O₆) is a monosaccharide — the simplest form of carbohydrate that cannot be further hydrolyzed. Sucrose is disaccharide; starch is polysaccharide.",
+    "formula_or_concept": "Monosaccharides: glucose, fructose, galactose; Disaccharides: sucrose, lactose, maltose; Polysaccharides: starch, glycogen, cellulose",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Confusing with fructose classification (also monosaccharide)",
+      "Thinking hexose sugars are disaccharides"
+    ],
+    "ai_explanation_seed": "Monosaccharides are single sugar units (cannot be hydrolyzed further). Glucose, fructose, galactose are monosaccharides."
+  },
+  {
+    "id": "chem_042",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Amino Acids and Proteins",
+    "difficulty": "medium",
+    "target_exam": "NEET",
+    "question_text": "The peptide bond in proteins is formed between:",
+    "options": [
+      "A) Two amino groups",
+      "B) Two carboxyl groups",
+      "C) Amino group of one and carboxyl group of another",
+      "D) Side chains of two amino acids"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Peptide bond: -CO-NH- formed by condensation between the -COOH of one amino acid and -NH₂ of the next, releasing water.",
+    "formula_or_concept": "Peptide bond: -CONH- formed by condensation reaction (-COOH + H₂N- → -CO-NH- + H₂O)",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Thinking it forms between side chains (R groups)",
+      "Confusing with disulfide bond (cysteine)"
+    ],
+    "ai_explanation_seed": "Peptide bond = amide bond. -COOH of one AA + -NH₂ of next → -CO-NH- + H₂O. Backbone linkage in proteins."
+  },
+  {
+    "id": "chem_043",
+    "subject": "Chemistry",
+    "chapter": "Chemical Kinetics",
+    "topic": "Zero and Second Order Reactions",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "For a zero-order reaction, which graph gives a straight line?",
+    "options": [
+      "A) [A] vs time",
+      "B) ln[A] vs time",
+      "C) 1/[A] vs time",
+      "D) [A]² vs time"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Zero order: d[A]/dt = -k → [A] = [A]₀ - kt. Linear plot of [A] vs t with slope = -k.",
+    "formula_or_concept": "Zero order: [A] vs t linear; 1st order: ln[A] vs t linear; 2nd order: 1/[A] vs t linear",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Confusing order with the corresponding integrated rate law graph",
+      "Choosing ln[A] (that's first order)"
+    ],
+    "ai_explanation_seed": "Integrated rate laws: 0th: [A]=f(t) linear; 1st: ln[A]=f(t) linear; 2nd: 1/[A]=f(t) linear. Zero order → plain [A] vs t."
+  },
+  {
+    "id": "chem_044",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "topic": "Dipole Moment",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Which molecule has zero dipole moment despite having polar bonds?",
+    "options": [
+      "A) H₂O",
+      "B) NH₃",
+      "C) CO₂",
+      "D) HCl"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "CO₂ has linear geometry (O=C=O). The two C=O bond dipoles are equal and opposite, they cancel → zero net dipole. H₂O and NH₃ are bent/pyramidal, dipoles don't cancel.",
+    "formula_or_concept": "Net dipole = vector sum of individual bond dipoles; symmetric molecules: dipoles cancel",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking polar bonds always mean polar molecule",
+      "Forgetting to consider geometry"
+    ],
+    "ai_explanation_seed": "CO₂ is linear and symmetric. Two equal C=O dipoles point in opposite directions → cancel → μ = 0. Shape determines whether dipoles cancel."
+  },
+  {
+    "id": "chem_045",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Nucleophilic Addition",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "HCN adds to acetaldehyde (CH₃CHO) to give:",
+    "options": [
+      "A) Lactic acid on hydrolysis",
+      "B) Glycine",
+      "C) A Grignard product",
+      "D) Acetic acid"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "CH₃CHO + HCN → CH₃CH(OH)CN (cyanohydrin). On hydrolysis: CH₃CH(OH)COOH = lactic acid (2-hydroxypropanoic acid).",
+    "formula_or_concept": "Cyanohydrin formation: RCHO + HCN → RCH(OH)CN; hydrolysis gives α-hydroxy acid",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Stopping at cyanohydrin and not recognizing lactic acid after hydrolysis",
+      "Confusing with addition to ketone"
+    ],
+    "ai_explanation_seed": "HCN + acetaldehyde → cyanohydrin. Hydrolyze CN → COOH: product is CH₃CH(OH)COOH = lactic acid."
+  },
+  {
+    "id": "chem_046",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Extraction of Metals",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Froth flotation process is used for the concentration of:",
+    "options": [
+      "A) Oxide ores",
+      "B) Carbonate ores",
+      "C) Sulphide ores",
+      "D) Halide ores"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Froth flotation: sulphide ore particles are preferentially wetted by pine oil and carried to the surface as froth. Gangue particles are wetted by water and sink.",
+    "formula_or_concept": "Concentration methods: froth flotation (sulphide ores), gravity separation (oxide/native metals), magnetic separation (magnetic ores)",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Confusing froth flotation with leaching (used for oxide ores)",
+      "Thinking it applies to oxide ores"
+    ],
+    "ai_explanation_seed": "Froth flotation: selective wetting by pine oil makes sulphide ore hydrophobic → floats. Used specifically for sulphide ores."
+  },
+  {
+    "id": "chem_047",
+    "subject": "Chemistry",
+    "chapter": "Chemical Equilibrium",
+    "topic": "Degree of Dissociation",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "At equilibrium, PCl₅ ⇌ PCl₃ + Cl₂, if Kp = 1 atm and total pressure is 1 atm, the degree of dissociation α satisfies:",
+    "options": [
+      "A) α = 0.5",
+      "B) α = 0.707",
+      "C) α = 0.414",
+      "D) α = 1"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Mole fractions: PCl₅: (1-α)/(1+α), PCl₃: α/(1+α), Cl₂: α/(1+α). Kp = (α/(1+α) × P) × (α/(1+α) × P) / ((1-α)/(1+α) × P) = α²P/(1-α²). With Kp=P=1: α² = 1-α² → 2α² = 1 → α = 1/√2 ≈ 0.707.",
+    "formula_or_concept": "Degree of dissociation: use ICE table, express mole fractions, write Kp in terms of α",
+    "estimated_solving_time_sec": 110,
+    "common_mistakes": [
+      "Not setting up mole fractions correctly with (1+α) total moles",
+      "Algebra errors in solving for α"
+    ],
+    "ai_explanation_seed": "Total moles = 1+α (from 1 mol PCl₅). Each component's mole fraction includes (1+α) denominator. Kp = α²P/(1-α²). Solve with Kp = P = 1."
+  },
+  {
+    "id": "chem_048",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Dyes and Drugs",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Aspirin is chemically known as:",
+    "options": [
+      "A) Acetyl salicylic acid",
+      "B) Methyl salicylate",
+      "C) Salicylic acid",
+      "D) Acetaminophen"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "Aspirin = acetylsalicylic acid (2-acetoxybenzoic acid). Made by acetylation of salicylic acid with acetic anhydride.",
+    "formula_or_concept": "Aspirin: analgesic/anti-inflammatory/antipyretic drug; IUPAC: 2-acetoxybenzoic acid",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Confusing with paracetamol (acetaminophen)",
+      "Choosing salicylic acid (precursor, not aspirin itself)"
+    ],
+    "ai_explanation_seed": "Aspirin = acetylsalicylic acid. Synthesized from salicylic acid + acetic anhydride. Antipyretic, analgesic, anti-inflammatory."
+  },
+  {
+    "id": "chem_049",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Hydrogen",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Heavy water (D₂O) differs from ordinary water in all EXCEPT:",
+    "options": [
+      "A) Boiling point",
+      "B) Chemical properties towards organic compounds",
+      "C) Physical density",
+      "D) Density"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "D₂O and H₂O have very similar chemical properties. Physical properties differ (D₂O: BP=101.4°C, density=1.11 g/cm³). Chemical reactivity is similar but reactions slightly slower due to isotope effect.",
+    "formula_or_concept": "Heavy water properties: higher BP, density, freezing point than H₂O; used as moderator in nuclear reactors",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Thinking D₂O has very different chemical properties",
+      "Confusing deuterium with radioactive isotope"
+    ],
+    "ai_explanation_seed": "D₂O and H₂O: same chemical properties (similar reactivity). Physical properties differ due to mass. D₂O: slightly denser, higher BP."
+  },
+  {
+    "id": "chem_050",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "topic": "Conductance",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Molar conductance of a solution increases with dilution because:",
+    "options": [
+      "A) Number of ions increases",
+      "B) Degree of dissociation increases for weak electrolytes",
+      "C) Viscosity increases",
+      "D) Speed of ions decreases"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "For weak electrolytes, molar conductance increases with dilution because more dissociation occurs, giving more ions per mole. For strong electrolytes, the increase is due to reduced inter-ionic interactions.",
+    "formula_or_concept": "Molar conductance Λm increases with dilution; at infinite dilution: Λm° = maximum; Kohlrausch's law",
+    "estimated_solving_time_sec": 50,
+    "common_mistakes": [
+      "Thinking viscosity decrease (not increase) explains it",
+      "Confusing equivalent and molar conductance"
+    ],
+    "ai_explanation_seed": "Dilution → more dissociation for weak electrolytes → more ions carrying charge per mole → higher molar conductance."
+  },
+  {
+    "id": "chem_051",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Stereochemistry",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "A compound with 3 stereocenters (all different) can have a maximum of how many stereoisomers?",
+    "options": [
+      "A) 3",
+      "B) 6",
+      "C) 8",
+      "D) 4"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Maximum stereoisomers = 2ⁿ where n = number of stereocenters. For n=3: 2³ = 8 maximum stereoisomers.",
+    "formula_or_concept": "Max stereoisomers = 2ⁿ (n = stereocenters); may be fewer if meso compounds exist",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Using n instead of 2ⁿ (linear not exponential)",
+      "Confusing stereocenters with structural isomers"
+    ],
+    "ai_explanation_seed": "Each stereocenter has R or S configuration. n stereocenters → max 2ⁿ stereoisomers. For 3 stereocenters: 2³ = 8."
+  },
+  {
+    "id": "chem_052",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "topic": "Lattice Energy",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The lattice energy of NaCl is 787 kJ/mol. Which factor has the MOST influence on lattice energy?",
+    "options": [
+      "A) Electronegativity difference",
+      "B) Ion charges and interionic distance",
+      "C) Melting point",
+      "D) Electron affinity only"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Lattice energy ∝ (q⁺ × q⁻)/r (Born-Landé equation). Higher charges and smaller interionic distance → greater lattice energy. MgO > NaCl because Mg²⁺ and O²⁻ have higher charges.",
+    "formula_or_concept": "Lattice energy: U ∝ (q⁺ × q⁻)/r; Born-Haber cycle; higher charges/smaller size → greater lattice energy",
+    "estimated_solving_time_sec": 60,
+    "common_mistakes": [
+      "Choosing electronegativity (not directly related to lattice energy)",
+      "Ignoring the distance factor"
+    ],
+    "ai_explanation_seed": "Lattice energy ∝ q₊q₋/r. MgO has 2× charges → ~4× higher lattice energy than NaCl. Distance (ionic radii) also matters."
+  },
+  {
+    "id": "chem_053",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics",
+    "topic": "Heat Capacity",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "For a monoatomic ideal gas, the ratio Cp/Cv (γ) is:",
+    "options": [
+      "A) 1.4",
+      "B) 1.67",
+      "C) 1.3",
+      "D) 1.0"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Monoatomic gas: Cv = (3/2)R, Cp = (5/2)R. γ = Cp/Cv = 5/3 ≈ 1.67.",
+    "formula_or_concept": "γ values: monoatomic = 5/3 ≈ 1.67; diatomic = 7/5 = 1.4; polyatomic ≈ 1.3",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Using γ = 1.4 (that's diatomic like O₂, N₂)",
+      "Confusing Cv and Cp values"
+    ],
+    "ai_explanation_seed": "Monoatomic: 3 translational DOF only. Cv = 3/2 R, Cp = 5/2 R. γ = Cp/Cv = 5/3 ≈ 1.67. Diatomic: 1.4."
+  },
+  {
+    "id": "chem_054",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Nucleophilic Substitution",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "In the SN2 mechanism, the nucleophile attacks from:",
+    "options": [
+      "A) The same side as the leaving group",
+      "B) The opposite side to the leaving group (backside attack)",
+      "C) Any angle, it doesn't matter",
+      "D) Through the carbon framework"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "SN2: concerted backside attack (Walden inversion). Nucleophile attacks the carbon 180° from the leaving group → configuration inverts (inversion of stereochemistry).",
+    "formula_or_concept": "SN2: one step, backside attack, inversion of configuration (Walden inversion), bimolecular",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Thinking SN2 has retention of configuration",
+      "Confusing SN1 and SN2 stereochemical outcomes"
+    ],
+    "ai_explanation_seed": "SN2: nucleophile approaches from back (180° to leaving group). Inversion of configuration occurs — like umbrella flipping inside out."
+  },
+  {
+    "id": "chem_055",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Oxoacids of Halogens",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The correct order of acid strength of oxoacids of chlorine is:",
+    "options": [
+      "A) HClO < HClO₂ < HClO₃ < HClO₄",
+      "B) HClO₄ < HClO₃ < HClO₂ < HClO",
+      "C) HClO > HClO₂ > HClO₃ > HClO₄",
+      "D) All equal"
+    ],
+    "correct_answer": "A",
+    "detailed_solution": "More oxygens on chlorine → more oxidation state → more electron withdrawal → O-H bond weakens → stronger acid. HClO₄ (perchloric) is strongest; HClO (hypochlorous) is weakest.",
+    "formula_or_concept": "Oxoacid strength: more O atoms → more electronegative central atom → weaker O-H bond → stronger acid",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Reversing the order",
+      "Confusing acid strength with oxidizing power"
+    ],
+    "ai_explanation_seed": "More oxygens on Cl → higher oxidation state → more electron withdrawal from O-H → weaker O-H → stronger acid. HClO₄ > HClO₃ > HClO₂ > HClO."
+  },
+  {
+    "id": "chem_056",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Friedel-Crafts",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "The Friedel-Crafts alkylation reaction uses which catalyst?",
+    "options": [
+      "A) H₂SO₄",
+      "B) AlCl₃ (anhydrous)",
+      "C) NaOH",
+      "D) Pd/C"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Friedel-Crafts: benzene + R-Cl → R-benzene + HCl, catalyzed by anhydrous AlCl₃ (Lewis acid catalyst). AlCl₃ generates the carbocation electrophile.",
+    "formula_or_concept": "Friedel-Crafts: Lewis acid AlCl₃ generates electrophile R⁺ from R-Cl; EAS reaction",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Choosing H₂SO₄ (used in nitration and sulfonation)",
+      "Using hydrated AlCl₃ which doesn't work"
+    ],
+    "ai_explanation_seed": "FC alkylation: anhydrous AlCl₃ (Lewis acid) abstracts Cl⁻ from R-Cl → R⁺ electrophile → EAS on benzene."
+  },
+  {
+    "id": "chem_057",
+    "subject": "Chemistry",
+    "chapter": "Chemical Equilibrium",
+    "topic": "Common Ion Effect",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Adding NaCl to a saturated solution of AgCl causes:",
+    "options": [
+      "A) More AgCl to dissolve",
+      "B) AgCl to precipitate further",
+      "C) No change in equilibrium",
+      "D) NaCl to precipitate"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "AgCl ⇌ Ag⁺ + Cl⁻. Adding NaCl introduces Cl⁻ (common ion). By Le Chatelier, equilibrium shifts left → more AgCl precipitates. Solubility decreases.",
+    "formula_or_concept": "Common ion effect: adding a common ion decreases solubility of slightly soluble salts",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking more Cl⁻ dissolves AgCl",
+      "Confusing with adding a different salt"
+    ],
+    "ai_explanation_seed": "Common ion effect: Cl⁻ from NaCl shifts AgCl equilibrium left. More AgCl precipitates. Solubility product Ksp is constant, but solubility decreases."
+  },
+  {
+    "id": "chem_058",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Benzene and Aromaticity",
+    "difficulty": "medium",
+    "target_exam": "JEE",
+    "question_text": "Which of the following is NOT aromatic according to Hückel's rule?",
+    "options": [
+      "A) Benzene (6 π electrons)",
+      "B) Naphthalene (10 π electrons)",
+      "C) Cyclooctatetraene (8 π electrons)",
+      "D) Cyclopentadienyl anion (6 π electrons)"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Hückel's rule: aromatic if (4n+2) π electrons (n=0,1,2...). Cyclooctatetraene has 8 = 4(2) π electrons (antiaromatic 4n rule). It adopts tub shape to avoid antiaromaticity.",
+    "formula_or_concept": "Hückel's rule: aromatic = 4n+2 π e⁻ (2,6,10,14...); antiaromatic = 4n π e⁻ (4,8,12...); must be cyclic, planar, conjugated",
+    "estimated_solving_time_sec": 65,
+    "common_mistakes": [
+      "Thinking cyclooctatetraene is aromatic (8 = 4n, not 4n+2)",
+      "Forgetting to check planarity requirement"
+    ],
+    "ai_explanation_seed": "4n+2 rule: 2,6,10,14... electrons = aromatic. 8 electrons = 4(2) = 4n → antiaromatic. COT avoids this by going non-planar."
+  },
+  {
+    "id": "chem_059",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "topic": "Osmotic Pressure",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "Osmotic pressure of a 0.2 M solution at 300 K is (R = 0.082 L·atm/mol·K):",
+    "options": [
+      "A) 0.492 atm",
+      "B) 4.92 atm",
+      "C) 24.6 atm",
+      "D) 2.46 atm"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "π = CRT = 0.2 × 0.082 × 300 = 4.92 atm.",
+    "formula_or_concept": "Osmotic pressure: π = CRT = nRT/V (van't Hoff equation for dilute solutions)",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Using wrong R value (8.314 instead of 0.082 for L·atm)",
+      "Forgetting units: C in mol/L"
+    ],
+    "ai_explanation_seed": "π = CRT. C = 0.2 mol/L, R = 0.082 L·atm/mol·K, T = 300 K. π = 0.2 × 0.082 × 300 = 4.92 atm."
+  },
+  {
+    "id": "chem_060",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Elimination Reactions",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "In Zaitsev's rule for elimination reactions, the major product is the:",
+    "options": [
+      "A) Least substituted alkene",
+      "B) Most substituted (most stable) alkene",
+      "C) Product formed from the most acidic H",
+      "D) Hofmann product"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Zaitsev's rule: elimination predominantly gives the more substituted (thermodynamically stable) alkene. More substituted = more hyperconjugation = more stable.",
+    "formula_or_concept": "Zaitsev rule: more substituted alkene (thermodynamic product); Hofmann rule: less substituted (bulky base, kinetic control)",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Confusing Zaitsev with Hofmann (bulky base gives Hofmann product)",
+      "Thinking most acidic proton determines major product in Zaitsev"
+    ],
+    "ai_explanation_seed": "Zaitsev: remove H from carbon giving more substituted, more stable double bond. Hofmann: bulky base removes less hindered H → less substituted alkene."
+  },
+  {
+    "id": "chem_061",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Ligand Field Theory",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "The colour of transition metal complexes arises due to:",
+    "options": [
+      "A) s-s electronic transitions",
+      "B) d-d electronic transitions",
+      "C) p-p electronic transitions",
+      "D) Nuclear transitions"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Transition metal complexes: ligand field splits d orbitals into t₂g and eg levels. Electrons absorb visible light to jump between split d levels (d-d transitions). Complementary colour is observed.",
+    "formula_or_concept": "d-d transitions: absorption of visible light by electrons in split d orbitals; crystal field splitting Δ",
+    "estimated_solving_time_sec": 45,
+    "common_mistakes": [
+      "Thinking s-s transitions cause colour in complexes",
+      "Forgetting that d-d transitions require partial d occupancy"
+    ],
+    "ai_explanation_seed": "Ligand field splits d orbitals. Electrons jump from lower (t₂g) to upper (eg) by absorbing visible light. Absorbed colour's complement is observed."
+  },
+  {
+    "id": "chem_062",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Spectroscopy",
+    "difficulty": "hard",
+    "target_exam": "JEE",
+    "question_text": "In IR spectroscopy, the O-H stretch of a carboxylic acid appears at approximately:",
+    "options": [
+      "A) 3300 cm⁻¹ (sharp)",
+      "B) 2500-3300 cm⁻¹ (broad)",
+      "C) 1715 cm⁻¹",
+      "D) 1650 cm⁻¹"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Carboxylic acid O-H stretch: broad absorption 2500-3300 cm⁻¹ due to H-bonding. The broad, low peak is diagnostic for -COOH. The C=O stretch appears near 1710-1725 cm⁻¹.",
+    "formula_or_concept": "IR: RCOOH O-H stretch = 2500-3300 cm⁻¹ (broad); alcohol O-H = ~3200-3600 cm⁻¹; C=O = ~1710-1725 cm⁻¹",
+    "estimated_solving_time_sec": 55,
+    "common_mistakes": [
+      "Choosing alcohol O-H stretch (3300-3600, sharp) for acid",
+      "Confusing O-H stretch with C=O stretch"
+    ],
+    "ai_explanation_seed": "Carboxylic acid: broad O-H stretch 2500-3300 cm⁻¹ (strong H-bonding). Alcohol: 3200-3600 sharp. Carboxylic C=O at 1710 cm⁻¹."
+  },
+  {
+    "id": "chem_063",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "topic": "Aufbau Principle",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which principle states that electrons fill orbitals of lowest energy first?",
+    "options": [
+      "A) Pauli Exclusion Principle",
+      "B) Hund's Rule",
+      "C) Aufbau Principle",
+      "D) Heisenberg Uncertainty Principle"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Aufbau (German: 'building up'): electrons fill orbitals in increasing order of energy. Order: 1s, 2s, 2p, 3s, 3p, 4s, 3d... Pauli: max 2 electrons per orbital. Hund's: maximize spin in degenerate orbitals.",
+    "formula_or_concept": "Aufbau: fill lowest energy first; Pauli: 2 electrons max, opposite spins; Hund: maximize multiplicity in degenerate orbitals",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Confusing Aufbau with Hund's rule",
+      "Thinking Aufbau is about electron spin"
+    ],
+    "ai_explanation_seed": "Aufbau = 'building up'. Fill lowest energy orbitals first. 1s before 2s before 2p etc. Energy order follows (n+l) rule."
+  },
+  {
+    "id": "chem_064",
+    "subject": "Chemistry",
+    "chapter": "Chemical Kinetics",
+    "topic": "Catalysis",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "A catalyst increases the rate of reaction by:",
+    "options": [
+      "A) Increasing activation energy",
+      "B) Decreasing activation energy",
+      "C) Changing the equilibrium constant",
+      "D) Increasing the temperature"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "A catalyst provides an alternate pathway of lower activation energy. It does NOT change ΔH, the equilibrium constant, or equilibrium position. It makes both forward and reverse reactions faster.",
+    "formula_or_concept": "Catalyst: lowers Ea, unchanged Kc, unchanged ΔH; increases forward and reverse rates equally",
+    "estimated_solving_time_sec": 35,
+    "common_mistakes": [
+      "Thinking catalyst changes equilibrium constant",
+      "Thinking catalyst changes ΔH of reaction"
+    ],
+    "ai_explanation_seed": "Catalyst: provides low-energy alternative pathway → lower Ea. Reaction goes faster. Equilibrium constant and ΔH unchanged. Both forward and reverse rates increase."
+  },
+  {
+    "id": "chem_065",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Benzene Derivatives",
+    "difficulty": "medium",
+    "target_exam": "both",
+    "question_text": "An electron-donating group on benzene directs incoming electrophiles to which positions?",
+    "options": [
+      "A) meta only",
+      "B) ortho and para",
+      "C) para only",
+      "D) ortho only"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "EDGs (like -OH, -NH₂, -CH₃, -OCH₃) activate the ring and direct electrophiles to ortho and para positions by resonance donation.",
+    "formula_or_concept": "EDGs: ortho/para directors (activating); EWGs (like -NO₂, -CHO, -COOH): meta directors (deactivating)",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Confusing EDG with EWG directing effects",
+      "Saying only para for EDGs (ortho also occurs)"
+    ],
+    "ai_explanation_seed": "EDGs donate electrons by resonance → ortho and para positions enriched in electron density → electrophile attacks there. EWGs: opposite → meta."
+  },
+  {
+    "id": "chem_066",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics",
+    "topic": "Standard Enthalpy of Formation",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "The standard enthalpy of formation of an element in its standard state is:",
+    "options": [
+      "A) +100 kJ/mol",
+      "B) Zero",
+      "C) -100 kJ/mol",
+      "D) Varies with element"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "By definition, the standard enthalpy of formation of an element in its standard state (e.g., O₂(g), Fe(s), C(graphite)) is zero.",
+    "formula_or_concept": "ΔHf°(element in standard state) = 0; this is the reference point for enthalpy calculations",
+    "estimated_solving_time_sec": 25,
+    "common_mistakes": [
+      "Assigning any non-zero value to pure element's ΔHf°",
+      "Confusing formation enthalpy with combustion enthalpy"
+    ],
+    "ai_explanation_seed": "Standard enthalpy of formation: defined as zero for elements in their standard state. O₂(g), N₂(g), C(graphite), Na(s) etc. all have ΔHf° = 0."
+  },
+  {
+    "id": "chem_067",
+    "subject": "Chemistry",
+    "chapter": "Inorganic Chemistry",
+    "topic": "Industrial Chemistry",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "The Haber process is used for industrial production of:",
+    "options": [
+      "A) Sulfuric acid",
+      "B) Ammonia",
+      "C) Nitric acid",
+      "D) Chlorine"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Haber process: N₂ + 3H₂ ⇌ 2NH₃. Conditions: 400-500°C, 200 atm, Fe catalyst. Ammonia is the product. Contact process makes H₂SO₄. Ostwald process makes HNO₃.",
+    "formula_or_concept": "Haber: NH₃; Contact: H₂SO₄; Ostwald: HNO₃; Chlor-alkali: Cl₂",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Confusing with Contact process (H₂SO₄) or Ostwald process (HNO₃)",
+      "Thinking Haber makes NO₃"
+    ],
+    "ai_explanation_seed": "Haber process: N₂ + 3H₂ → 2NH₃. Industrial ammonia synthesis. Fe catalyst, high P, moderate T (compromise between yield and rate)."
+  },
+  {
+    "id": "chem_068",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Oils and Fats",
+    "difficulty": "easy",
+    "target_exam": "NEET",
+    "question_text": "Oils differ from fats in that oils are:",
+    "options": [
+      "A) More saturated",
+      "B) Solid at room temperature",
+      "C) More unsaturated",
+      "D) Proteins not lipids"
+    ],
+    "correct_answer": "C",
+    "detailed_solution": "Oils: liquid at RT, more unsaturated fatty acids (more C=C bonds). Fats: solid at RT, more saturated fatty acids. Both are triglycerides (triacylglycerols).",
+    "formula_or_concept": "Fats: saturated, solid; Oils: unsaturated, liquid; both are triglycerides of glycerol and fatty acids",
+    "estimated_solving_time_sec": 30,
+    "common_mistakes": [
+      "Thinking oils are more saturated (opposite is true)",
+      "Confusing with mineral oils (hydrocarbons)"
+    ],
+    "ai_explanation_seed": "Oils: more C=C bonds (unsaturated) → kinks in chains → weaker intermolecular forces → liquid at RT. Fats: saturated → straight chains pack well → solid."
+  },
+  {
+    "id": "chem_069",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "topic": "Metallic Bonding",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "The 'electron sea' model explains which properties of metals?",
+    "options": [
+      "A) Brittleness and low melting point",
+      "B) Electrical conductivity and malleability",
+      "C) High reactivity with water",
+      "D) Formation of ionic compounds"
+    ],
+    "correct_answer": "B",
+    "detailed_solution": "Electron sea model: metal cations in lattice surrounded by delocalized electrons. Mobile electrons → electrical conductivity. Layers can slide (no directional bonds) → malleability and ductility.",
+    "formula_or_concept": "Metallic bond: delocalized electrons (electron sea); explains conductivity, malleability, ductility, lustre",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Thinking brittleness (that's ionic crystals, not metals)",
+      "Confusing with ionic bonding"
+    ],
+    "ai_explanation_seed": "Electron sea: free electrons explain conductivity. No directional bonds means planes can slide → malleable and ductile. Metals are not brittle."
+  },
+  {
+    "id": "chem_070",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "topic": "Biodegradability",
+    "difficulty": "easy",
+    "target_exam": "both",
+    "question_text": "Which polymer is biodegradable?",
+    "options": [
+      "A) Polythene",
+      "B) PVC",
+      "C) Nylon-6",
+      "D) PHBV (polyhydroxybutyrate-co-hydroxyvalerate)"
+    ],
+    "correct_answer": "D",
+    "detailed_solution": "PHBV is a natural polyester produced by bacteria. It is biodegradable. Polythene, PVC, Nylon-6 are synthetic polymers that are non-biodegradable.",
+    "formula_or_concept": "Biodegradable polymers: PHBV, poly(lactic acid); non-biodegradable: polythene, PVC, Teflon, Nylon",
+    "estimated_solving_time_sec": 40,
+    "common_mistakes": [
+      "Choosing Nylon (biodegrades slowly but not listed as biodegradable in curriculum)",
+      "Confusing natural rubber with synthetic polymers"
+    ],
+    "ai_explanation_seed": "Biodegradable: can be broken down by microorganisms. PHBV is a bio-based polyester produced by bacteria. Synthetic polymers like PE, PVC are non-biodegradable."
+  }
+]

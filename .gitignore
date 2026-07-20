@@ -9,7 +9,9 @@ backend/.venv/
 frontend/.env
 backend/.env
 *.json
-!backend/data/question_bank.json
+!backend/data/question_bank/*.json
+!frontend/package.json
+!frontend/package-lock.json
 !package.json
 !tsconfig.json
 
