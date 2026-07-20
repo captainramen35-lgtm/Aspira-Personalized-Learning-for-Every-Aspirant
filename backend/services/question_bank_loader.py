@@ -2,8 +2,11 @@ import os
 import json
 from typing import List, Dict, Any, Optional
 
+# Calculate absolute path to the data directory so it works reliably on Render
+DEFAULT_DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "question_bank")
+
 class QuestionBankLoader:
-    def __init__(self, data_dir: str = "backend/data/question_bank"):
+    def __init__(self, data_dir: str = DEFAULT_DATA_DIR):
         self.data_dir = data_dir
         self._questions: List[Dict[str, Any]] = []
         self._questions_by_id: Dict[str, Dict[str, Any]] = {}
