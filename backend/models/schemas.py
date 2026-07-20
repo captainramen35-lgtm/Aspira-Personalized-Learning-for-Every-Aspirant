@@ -32,6 +32,8 @@ class MasteryProfileResponse(BaseModel):
     name: str
     email: str
     mastery: Dict[str, MasteryTopicDetail]
+    chapters: Optional[Dict[str, MasteryTopicDetail]] = None
+    assigned_batch_name: Optional[str] = ""
     tests_completed: int
     joined_date: str
 

@@ -3,20 +3,20 @@ import { useNavigate } from "react-router-dom";
 import api from "../api";
 import QuestionCard from "../components/QuestionCard";
 import Navbar from "../components/Navbar";
-import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Loader2, CheckCircle2, AlertCircle, ArrowLeft, ArrowRight, Send, Clock } from "lucide-react";
 
 export default function DiagnosticTest() {
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({}); // q_id -> option
-  const [timestamps, setTimestamps] = useState({}); // q_id -> cumulative seconds
+  const [currentIdx, setCurrentIdx] = useState(0);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Track time spent per question
-  const questionTimes = useRef({});
-  const activeQuestionId = useRef(null);
+  // Timing states
+  const [totalElapsedTime, setTotalElapsedTime] = useState(0);
+  const questionTimes = useRef({}); // q_id -> accumulated seconds
   const lastTickTime = useRef(Date.now());
 
   useEffect(() => {
@@ -35,10 +35,6 @@ export default function DiagnosticTest() {
         });
         setAnswers(initialAnswers);
         questionTimes.current = initialTimes;
-
-        if (res.data.length > 0) {
-          activeQuestionId.current = res.data[0].id;
-        }
       } catch (err) {
         console.error(err);
         setError("Failed to load diagnostic questions. Please try again.");
@@ -47,37 +43,55 @@ export default function DiagnosticTest() {
       }
     }
     loadQuestions();
+  }, []);
 
-    // Start timer interval to track response speed
+  // Timer Tick Hook
+  useEffect(() => {
+    if (loading || questions.length === 0 || submitting) return;
+
     lastTickTime.current = Date.now();
     const interval = setInterval(() => {
       const now = Date.now();
       const deltaSec = (now - lastTickTime.current) / 1000;
       lastTickTime.current = now;
 
-      if (activeQuestionId.current) {
-        questionTimes.current[activeQuestionId.current] = 
-          (questionTimes.current[activeQuestionId.current] || 0) + deltaSec;
-      }
+      // Update total elapsed timer
+      setTotalElapsedTime((prev) => prev + deltaSec);
+
+      // Accumulate time for current active question
+      const currentQuestionId = questions[currentIdx].id;
+      questionTimes.current[currentQuestionId] = 
+        (questionTimes.current[currentQuestionId] || 0) + deltaSec;
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [loading, currentIdx, questions, submitting]);
 
-  // Update which question is currently focused for timing tracking
-  const handleSelectAnswer = (qId, option) => {
+  const handleSelectAnswer = (option) => {
+    const qId = questions[currentIdx].id;
     setAnswers((prev) => ({ ...prev, [qId]: option }));
-    activeQuestionId.current = qId;
+  };
+
+  const handleNext = () => {
+    if (currentIdx < questions.length - 1) {
+      setCurrentIdx(currentIdx + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentIdx > 0) {
+      setCurrentIdx(currentIdx - 1);
+    }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setError("");
 
     // Verify all questions are answered
-    const unanswered = questions.filter((q) => !answers[q.id]);
-    if (unanswered.length > 0) {
-      return setError(`Please answer all questions before submitting. (${unanswered.length} remaining)`);
+    const unansweredCount = questions.filter((q) => !answers[q.id]).length;
+    if (unansweredCount > 0) {
+      return setError(`Please answer all questions before submitting. (${unansweredCount} unanswered)`);
     }
 
     try {
@@ -102,6 +116,12 @@ export default function DiagnosticTest() {
     }
   };
 
+  const formatTime = (totalSeconds) => {
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = Math.floor(totalSeconds % 60);
+    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-brand-bg-light flex flex-col">
@@ -109,71 +129,112 @@ export default function DiagnosticTest() {
         <div className="flex-1 flex flex-col items-center justify-center p-6">
           <Loader2 className="w-12 h-12 text-brand-accent animate-spin mb-4" />
           <h2 className="text-xl font-bold text-brand-text-light">Loading Diagnostic Test...</h2>
-          <p className="text-sm text-brand-muted-light mt-1">Preparing your assessment questions</p>
+          <p className="text-sm text-brand-muted-light mt-1">Preparing your 25-question assessment</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (submitting) {
+    return (
+      <div className="min-h-screen bg-brand-bg-light flex flex-col">
+        <Navbar />
+        <div className="flex-1 flex flex-col items-center justify-center p-6 text-center">
+          <Loader2 className="w-16 h-16 text-brand-accent animate-spin mb-6" />
+          <h2 className="text-2xl font-bold text-brand-text-light mb-2">Analyzing Assessment</h2>
+          <p className="text-sm text-brand-muted-light max-w-sm">
+            Generating your personalized rolling mastery profile and building Socratic recommendations...
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-brand-bg-light flex flex-col">
+    <div className="min-h-screen bg-brand-bg-light flex flex-col pb-12">
       <Navbar />
 
-      <div className="flex-1 max-w-3xl mx-auto w-full px-6 py-10">
+      <div className="flex-1 max-w-3xl mx-auto w-full px-6 pt-10">
         
         {/* Page Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-extrabold tracking-tight text-brand-text-light mb-2">
-            Diagnostic Assessment
-          </h1>
-          <p className="text-sm text-brand-muted-light font-medium">
-            Answer all questions below to help us understand your strengths and areas for improvement.
-          </p>
+        <div className="mb-6 flex justify-between items-end border-b border-brand-border-light pb-4">
+          <div>
+            <h1 className="text-2xl font-extrabold tracking-tight text-brand-text-light">
+              Diagnostic Assessment
+            </h1>
+            <p className="text-xs text-brand-muted-light font-medium mt-1">
+              Complete this 25-question test to establish your initial mastery baseline.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2 bg-white border border-brand-border-light rounded-xl px-4 py-2 text-sm font-bold text-brand-text-light shadow-xs shrink-0">
+            <Clock className="w-4 h-4 text-brand-accent" />
+            <span>{formatTime(totalElapsedTime)}</span>
+          </div>
         </div>
 
         {/* Error Alert */}
         {error && (
-          <div className="flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 text-rose-700 text-sm p-4 rounded-xl mb-6 font-semibold">
+          <div className="flex items-center gap-2 bg-rose-500/10 border border-rose-500/20 text-rose-700 text-sm p-4 rounded-xl mb-6 font-semibold animate-fade-in">
             <AlertCircle className="w-5 h-5 shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
-        {/* Scrollable Questions list */}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {questions.map((q, idx) => (
-            <div key={q.id} onClick={() => { activeQuestionId.current = q.id; }}>
-              <QuestionCard
-                question={q}
-                currentIndex={idx + 1}
-                totalQuestions={questions.length}
-                selectedAnswer={answers[q.id]}
-                onSelectAnswer={(option) => handleSelectAnswer(q.id, option)}
-              />
-            </div>
-          ))}
-
-          {/* Submit Action */}
-          <div className="pt-4 pb-12 flex justify-center">
-            <button
-              type="submit"
-              disabled={submitting}
-              className="bg-brand-accent hover:bg-brand-accent-hover disabled:bg-brand-accent/50 text-white font-extrabold text-sm px-8 py-4 rounded-xl transition-all shadow-md hover:shadow-brand-accent/15 cursor-pointer flex items-center gap-2"
-            >
-              {submitting ? (
-                <>
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  Generating Mastery Profile...
-                </>
-              ) : (
-                <>
-                  <CheckCircle2 className="w-5 h-5" />
-                  Submit Diagnostic
-                </>
-              )}
-            </button>
+        {/* Progress bar */}
+        <div className="mb-6">
+          <div className="flex justify-between text-[10px] font-bold text-brand-muted-light mb-1.5">
+            <span>PROGRESS</span>
+            <span>{Math.round(((currentIdx + 1) / questions.length) * 100)}% ({currentIdx + 1}/{questions.length})</span>
           </div>
-        </form>
+          <div className="w-full h-2 bg-brand-border-light/40 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-brand-accent transition-all duration-300"
+              style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
+            />
+          </div>
+        </div>
+
+        {/* Current Question */}
+        {questions.length > 0 && (
+          <QuestionCard
+            question={questions[currentIdx]}
+            currentIndex={currentIdx + 1}
+            totalQuestions={questions.length}
+            selectedAnswer={answers[questions[currentIdx].id]}
+            onSelectAnswer={handleSelectAnswer}
+          />
+        )}
+
+        {/* Navigation Actions */}
+        <div className="flex items-center justify-between mt-6">
+          <button
+            onClick={handlePrev}
+            disabled={currentIdx === 0}
+            className="flex items-center gap-2 bg-white hover:bg-brand-bg-light/40 border border-brand-border-light disabled:opacity-50 text-brand-text-light px-5 py-3 rounded-xl font-bold transition-all shadow-xs cursor-pointer text-sm"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Previous
+          </button>
+
+          {currentIdx < questions.length - 1 ? (
+            <button
+              onClick={handleNext}
+              className="flex items-center gap-2 bg-brand-accent hover:bg-brand-accent-hover text-white px-5 py-3 rounded-xl font-bold transition-all shadow-xs cursor-pointer text-sm"
+            >
+              Next Question
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          ) : (
+            <button
+              onClick={handleSubmit}
+              className="flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-extrabold transition-all shadow-xs cursor-pointer text-sm"
+            >
+              <Send className="w-4 h-4" />
+              Submit Diagnostic
+            </button>
+          )}
+        </div>
 
       </div>
     </div>

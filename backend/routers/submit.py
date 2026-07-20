@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 import json
 import uuid
+import asyncio
 from firebase_admin import firestore
 from backend.models.schemas import TestSubmitRequest
 from backend.routers.auth import get_current_user
@@ -31,15 +32,15 @@ async def submit_test(req: TestSubmitRequest, user: dict = Depends(get_current_u
 
         question_ids = paper_data.get("question_ids", [])
 
-        # 2. Load the question bank
-        with open("backend/data/question_bank.json", "r") as f:
-            question_bank = json.load(f)
-            
-        q_map = {q["id"]: q for q in question_bank}
+        # 2. Use question_bank_loader to fetch questions
+        from backend.services.question_bank_loader import question_bank_loader
+        q_map = {q_id: question_bank_loader.get_question_by_id(q_id) for q_id in question_ids if question_bank_loader.get_question_by_id(q_id)}
 
         # 3. Grade each question
         submission_results = []
         score_count = 0
+        gemini_tasks = []
+        gemini_indices = []
 
         for q_id in question_ids:
             if q_id not in q_map:
@@ -52,54 +53,30 @@ async def submit_test(req: TestSubmitRequest, user: dict = Depends(get_current_u
 
             is_correct = (student_ans == correct_ans)
 
+            if is_correct:
+                score_count += 1
+
+            # Prepare placeholder structures
             ai_details = {}
             audit_details = {}
             socratic_feedback = {}
 
-            if is_correct:
-                score_count += 1
-                ai_details = {
-                    "reasoning": "Correct! The student's answer matches the correct option.",
-                    "mistake_type": "none"
-                }
-                audit_details = {"score": 1}
-            else:
-                # Retrieve AI evaluation for incorrect answers
-                ai_details = gemini_client.get_ai_score(
+            # Queue async concurrent Gemini request for ALL questions!
+            gemini_tasks.append(
+                gemini_client.get_combined_feedback_async(
                     question_text=q["question_text"],
                     options=q["options"],
                     correct_answer=correct_ans,
                     student_answer=student_ans
                 )
-                
-                # Retrieve independent AI Auditor check
-                audit_details = gemini_client.get_ai_audit(
-                    question_text=q["question_text"],
-                    options=q["options"],
-                    correct_answer=correct_ans,
-                    student_answer=student_ans
-                )
-
-                # Reconcile scorer vs auditor (Trust & fairness check)
-                # If auditor thinks it is correct (score=1) but scorer said wrong, reconcile to correct.
-                # Since this is an MCQ, if student_ans != correct_ans, it is mathematically wrong.
-                # However, if they disagree on the score, we flag it or align it.
-                if audit_details.get("score") == 1 and not is_correct:
-                    # Auditor false positive or close answer, we stick to MCQ correctness but log reconciliation
-                    audit_details["reconciliation"] = "MCQ key mismatch resolved to incorrect; auditor override ignored."
-                    audit_details["score"] = 0
-
-                # Generate 3 Socratic hints and worked solution
-                socratic_feedback = gemini_client.get_socratic_feedback(
-                    question_text=q["question_text"],
-                    correct_answer=correct_ans,
-                    student_answer=student_ans
-                )
+            )
+            gemini_indices.append(len(submission_results))
 
             submission_results.append({
                 "q_id": q_id,
                 "subject": q["subject"],
                 "topic": q["topic"],
+                "chapter": q.get("chapter", "General"),
                 "difficulty": q["difficulty"],
                 "question_text": q["question_text"],
                 "options": q["options"],
@@ -111,6 +88,35 @@ async def submit_test(req: TestSubmitRequest, user: dict = Depends(get_current_u
                 "ai_audit_details": audit_details,
                 "socratic_feedback": socratic_feedback
             })
+
+        # Process all questions concurrently
+        if gemini_tasks:
+            gemini_results = await asyncio.gather(*gemini_tasks, return_exceptions=True)
+            for idx, gemini_res in zip(gemini_indices, gemini_results):
+                is_correct = submission_results[idx]["is_correct"]
+                correct_ans = submission_results[idx]["correct_answer"]
+                student_ans = submission_results[idx]["student_answer"]
+                
+                if isinstance(gemini_res, Exception):
+                    submission_results[idx]["ai_score_details"] = {
+                        "reasoning": f"Correct! The student answered {student_ans}." if is_correct else f"Student answered {student_ans}. The correct answer is {correct_ans}.",
+                        "mistake_type": "none" if is_correct else "conceptual"
+                    }
+                    submission_results[idx]["ai_audit_details"] = {"score": 1 if is_correct else 0}
+                    submission_results[idx]["socratic_feedback"] = {}
+                else:
+                    submission_results[idx]["ai_score_details"] = gemini_res.get("ai_score_details", {})
+                    # Ensure mistake_type is 'none' for correct answers
+                    if is_correct:
+                        submission_results[idx]["ai_score_details"]["mistake_type"] = "none"
+                        
+                    submission_results[idx]["ai_audit_details"] = gemini_res.get("ai_audit_details", {})
+                    
+                    # Only include Socratic feedback hints if the answer was incorrect
+                    if not is_correct:
+                        submission_results[idx]["socratic_feedback"] = gemini_res.get("socratic_feedback", {})
+                    else:
+                        submission_results[idx]["socratic_feedback"] = {}
 
         # 4. Save results to Firestore
         submission_id = str(uuid.uuid4())
@@ -130,6 +136,7 @@ async def submit_test(req: TestSubmitRequest, user: dict = Depends(get_current_u
             {
                 "q_id": r["q_id"],
                 "topic": r["topic"],
+                "chapter": r.get("chapter", "General"),
                 "is_correct": r["is_correct"],
                 "time_spent": r["time_spent"]
             }

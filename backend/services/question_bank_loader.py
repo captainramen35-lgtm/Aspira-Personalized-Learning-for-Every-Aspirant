@@ -1,0 +1,68 @@
+import os
+import json
+from typing import List, Dict, Any, Optional
+
+class QuestionBankLoader:
+    def __init__(self, data_dir: str = "backend/data/question_bank"):
+        self.data_dir = data_dir
+        self._questions: List[Dict[str, Any]] = []
+        self._questions_by_id: Dict[str, Dict[str, Any]] = {}
+        self.load_all_questions()
+
+    def load_all_questions(self) -> List[Dict[str, Any]]:
+        """
+        Loads all questions from the subject-specific JSON files in data_dir
+        and caches them.
+        """
+        questions = []
+        subjects = ["physics", "chemistry", "mathematics", "biology"]
+        
+        for subject in subjects:
+            file_path = os.path.join(self.data_dir, f"{subject}.json")
+            if os.path.exists(file_path):
+                try:
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        subject_questions = json.load(f)
+                        # Add a default explanation field if not present, referencing detailed_solution
+                        for q in subject_questions:
+                            if "explanation" not in q and "detailed_solution" in q:
+                                q["explanation"] = q["detailed_solution"]
+                        questions.extend(subject_questions)
+                except Exception as e:
+                    print(f"Warning: Failed to load question bank for {subject}: {e}")
+            else:
+                # Fallback check for case differences or path setup
+                print(f"Warning: Subject file {file_path} does not exist.")
+
+        self._questions = questions
+        self._questions_by_id = {q["id"]: q for q in questions}
+        return self._questions
+
+    def get_all_questions(self, force_reload: bool = False) -> List[Dict[str, Any]]:
+        """
+        Returns all cached questions, reloading if force_reload is True.
+        """
+        if force_reload or not self._questions:
+            return self.load_all_questions()
+        return self._questions
+
+    def get_question_by_id(self, q_id: str) -> Optional[Dict[str, Any]]:
+        """
+        Retrieves a question by its unique ID.
+        """
+        return self._questions_by_id.get(q_id)
+
+    def get_questions_by_subject(self, subject: str) -> List[Dict[str, Any]]:
+        """
+        Retrieves all questions for a specific subject (case-insensitive).
+        """
+        return [q for q in self.get_all_questions() if q["subject"].lower() == subject.lower()]
+
+    def get_questions_by_ids(self, q_ids: List[str]) -> List[Dict[str, Any]]:
+        """
+        Retrieves a list of questions corresponding to the list of IDs.
+        """
+        return [self._questions_by_id[q_id] for q_id in q_ids if q_id in self._questions_by_id]
+
+# Singleton instance
+question_bank_loader = QuestionBankLoader()

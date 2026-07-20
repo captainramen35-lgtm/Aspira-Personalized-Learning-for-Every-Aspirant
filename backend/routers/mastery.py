@@ -14,56 +14,73 @@ async def get_mastery_profile(user: dict = Depends(get_current_user)):
     """
     student_id = user["uid"]
     
-    # 1. Fetch user doc for metadata
+    # 1. Fetch user doc for metadata and batch info
     user_doc = db.collection("users").document(student_id).get()
     name = "Student"
     email = user.get("email", "")
     joined_date = "July 2026"
+    assigned_batch_id = None
+    assigned_batch_name = "Not Enrolled"
     
     if user_doc.exists:
         udata = user_doc.to_dict()
         name = udata.get("name", name)
         email = udata.get("email", email)
         joined_date = udata.get("joined_date", joined_date)
+        assigned_batch_id = udata.get("assigned_batch_id")
+        
+    if assigned_batch_id:
+        batch_doc = db.collection("batches").document(assigned_batch_id).get()
+        if batch_doc.exists:
+            assigned_batch_name = batch_doc.to_dict().get("name", "Active Student")
         
     # 2. Fetch mastery profile doc
     profile_doc = db.collection("mastery_profiles").document(student_id).get()
     
-    default_topics = [
-        "Mechanics", "Thermodynamics", "Electrochemistry", "Organic Chemistry",
-        "Inorganic Chemistry", "Calculus", "Genetics", "Human Physiology"
-    ]
+    mastery = {}
+    chapters = {}
+    tests_completed = 0
     
     if profile_doc.exists:
         pdata = profile_doc.to_dict()
         mastery = pdata.get("mastery", {})
+        chapters = pdata.get("chapters", {})
         tests_completed = pdata.get("tests_completed", 0)
-    else:
-        mastery = {}
-        tests_completed = 0
 
-    # Ensure all topics exist in the returned dictionary
+    # Cast topics to schema structure
     mastery_response = {}
-    for topic in default_topics:
-        if topic in mastery:
-            # Cast from Firestore to MasteryTopicDetail schema structure
-            mastery_response[topic] = MasteryTopicDetail(
-                accuracy=float(mastery[topic].get("accuracy", 0.0)),
-                attempts=int(mastery[topic].get("attempts", 0)),
-                avg_time_sec=float(mastery[topic].get("avg_time_sec", 0.0))
-            )
-        else:
-            mastery_response[topic] = MasteryTopicDetail(
-                accuracy=0.0,
-                attempts=0,
-                avg_time_sec=0.0
-            )
+    for topic, data in mastery.items():
+        mastery_response[topic] = MasteryTopicDetail(
+            accuracy=float(data.get("accuracy", 0.0)),
+            attempts=int(data.get("attempts", 0)),
+            avg_time_sec=float(data.get("avg_time_sec", 0.0))
+        )
+
+    # Cast chapters to schema structure
+    chapters_response = {}
+    for chap, data in chapters.items():
+        chapters_response[chap] = MasteryTopicDetail(
+            accuracy=float(data.get("accuracy", 0.0)),
+            attempts=int(data.get("attempts", 0)),
+            avg_time_sec=float(data.get("avg_time_sec", 0.0))
+        )
+
+    # Fallback to defaults if empty
+    if not mastery_response:
+        default_topics = [
+            "Kinematics", "Laws of Motion", "Thermodynamics", "Chemical Bonding",
+            "Chemical Kinetics", "Algebra", "Calculus", "Cell Biology", "Genetics"
+        ]
+        for topic in default_topics:
+            mastery_response[topic] = MasteryTopicDetail(accuracy=0.0, attempts=0, avg_time_sec=0.0)
 
     return MasteryProfileResponse(
         student_id=student_id,
         name=name,
         email=email,
         mastery=mastery_response,
+        chapters=chapters_response,
+        assigned_batch_name=assigned_batch_name,
         tests_completed=tests_completed,
         joined_date=joined_date
     )

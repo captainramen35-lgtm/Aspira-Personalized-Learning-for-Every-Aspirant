@@ -140,7 +140,7 @@ export default function TestPage() {
         <div className="flex-1 flex flex-col items-center justify-center p-6">
           <Loader2 className="w-12 h-12 text-brand-accent animate-spin mb-4" />
           <h2 className="text-xl font-bold text-brand-text-light">Assembling Custom Paper...</h2>
-          <p className="text-sm text-brand-muted-light mt-1">Weighting 60% of questions toward your weakest topics</p>
+          <p className="text-sm text-brand-muted-light mt-1">Weighting 60% of questions toward your weakest topics (75 questions total)</p>
         </div>
       </div>
     );
@@ -154,7 +154,7 @@ export default function TestPage() {
           <Loader2 className="w-16 h-16 text-brand-accent animate-spin mb-6" />
           <h2 className="text-2xl font-bold text-brand-text-light mb-2">Grading Test Submission</h2>
           <p className="text-sm text-brand-muted-light max-w-sm">
-            Our AI Scorer and AI Auditor are evaluating your inputs and generating Socratic hints...
+            Our AI Scorer and AI Auditor are evaluating your inputs, updating your rolling chapter-level mastery profile, and generating Socratic insights...
           </p>
         </div>
       </div>
@@ -178,7 +178,7 @@ export default function TestPage() {
               Adaptive Practice Session
             </h1>
             <p className="text-sm text-brand-muted-light max-w-md mx-auto mb-8 font-medium leading-relaxed">
-              Generate a personalized 10-question practice test. The personalization engine uses your mastery history to weight 60% of questions toward your weakest chapters.
+              Generate a personalized 75-question adaptive test (25 questions per subject). The personalization engine uses your mastery history to weight 60% of questions toward your weakest chapters.
             </p>
 
             {error && (
@@ -191,7 +191,7 @@ export default function TestPage() {
               onClick={handleStartTest}
               className="bg-brand-accent hover:bg-brand-accent-hover text-white font-extrabold px-8 py-4 rounded-xl transition-all shadow-md hover:shadow-brand-accent/20 cursor-pointer text-sm"
             >
-              Generate Personalized Test
+              Generate 75Q Adaptive Test
             </button>
           </div>
         ) : (

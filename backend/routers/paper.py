@@ -10,13 +10,19 @@ router = APIRouter(prefix="/api/paper", tags=["paper"])
 @router.post("/generate")
 async def generate_personalized_paper(user: dict = Depends(get_current_user)):
     """
-    Generates a personalized 10-question test paper matching the student's mastery profile.
+    Generates a personalized 75-question adaptive test paper matching the student's mastery profile.
     Saves the list of question IDs to Firestore to cross-reference on submission.
     """
     student_id = user["uid"]
     try:
-        # Generate questions using personalization engine
-        questions = personalization_engine.generate_paper(student_id, num_questions=10)
+        # Fetch target_exam from user document
+        user_doc = db.collection("users").document(student_id).get()
+        target_exam = "JEE"
+        if user_doc.exists:
+            target_exam = user_doc.to_dict().get("target_exam", "JEE")
+
+        # Generate 75 questions using personalization engine
+        questions = personalization_engine.generate_paper(student_id, target_exam=target_exam, num_questions=75)
         
         # Save generated paper meta to Firestore
         paper_id = str(uuid.uuid4())

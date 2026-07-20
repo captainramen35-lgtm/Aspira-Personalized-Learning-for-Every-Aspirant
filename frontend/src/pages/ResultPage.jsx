@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
+import api from "../api";
 import Navbar from "../components/Navbar";
 import HintReveal from "../components/HintReveal";
-import { CheckCircle2, XCircle, Award, ArrowRight, AlertTriangle, HelpCircle, Check, X } from "lucide-react";
+import {
+  CheckCircle2,
+  Award,
+  ArrowRight,
+  AlertTriangle,
+  HelpCircle,
+  Check,
+  X,
+  BookOpen,
+  Sparkles,
+  Loader2
+} from "lucide-react";
 
 export default function ResultPage() {
   const location = useLocation();
   const submissionData = location.state?.submissionData;
+
+  // Reflection states
+  const [reflectionInputs, setReflectionInputs] = useState({}); // q_id -> string
+  const [reflections, setReflections] = useState({}); // q_id -> analysis object
+  const [reflectionLoading, setReflectionLoading] = useState({}); // q_id -> boolean
+  const [reflectionErrors, setReflectionErrors] = useState({}); // q_id -> string
 
   if (!submissionData) {
     return (
@@ -27,7 +45,7 @@ export default function ResultPage() {
     );
   }
 
-  const { score, total_questions, results } = submissionData;
+  const { submission_id, score, total_questions, results } = submissionData;
   const accuracy = Math.round((score / total_questions) * 100);
 
   const getScoreMessage = (acc) => {
@@ -35,6 +53,35 @@ export default function ResultPage() {
     if (acc >= 70) return "Great job! Keep working on your weak areas.";
     if (acc >= 50) return "Good attempt! Revisit the hints and explanation.";
     return "Needs improvement. Take time to work through the Socratic guides.";
+  };
+
+  const handleSubmitReflection = async (qId) => {
+    const text = reflectionInputs[qId]?.strip() || "";
+    if (!text) {
+      setReflectionErrors((prev) => ({ ...prev, [qId]: "Please write a reflection before submitting." }));
+      return;
+    }
+
+    setReflectionLoading((prev) => ({ ...prev, [qId]: true }));
+    setReflectionErrors((prev) => ({ ...prev, [qId]: "" }));
+
+    try {
+      const res = await api.post("/api/reflection/submit", {
+        submission_id,
+        q_id: qId,
+        student_reflection: text
+      });
+
+      setReflections((prev) => ({ ...prev, [qId]: res.data.analysis }));
+    } catch (err) {
+      console.error(err);
+      setReflectionErrors((prev) => ({
+        ...prev,
+        [qId]: err.response?.data?.detail || "Failed to submit reflection."
+      }));
+    } finally {
+      setReflectionLoading((prev) => ({ ...prev, [qId]: false }));
+    }
   };
 
   return (
@@ -78,10 +125,11 @@ export default function ResultPage() {
           {results.map((res, idx) => {
             const isCorrect = res.is_correct;
             const errorType = res.ai_score_details?.mistake_type;
+            const qId = res.q_id;
 
             return (
               <div
-                key={res.q_id}
+                key={qId}
                 className={`bg-white rounded-xl border p-6 shadow-xs transition-all duration-300 ${
                   isCorrect ? "border-emerald-500/20" : "border-rose-500/20"
                 }`}
@@ -115,7 +163,7 @@ export default function ResultPage() {
                 </div>
 
                 {/* Question Text */}
-                <h3 className="text-md font-bold text-brand-text-light mb-4 leading-relaxed">
+                <h3 className="text-md font-bold text-brand-text-light mb-4 leading-relaxed text-left">
                   {res.question_text}
                 </h3>
 
@@ -163,16 +211,16 @@ export default function ResultPage() {
                 {!isCorrect ? (
                   <div className="mt-4 pt-4 border-t border-brand-border-light/40 space-y-4">
                     {/* Error type category pill */}
-                    <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-rose-500">
+                    <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-rose-500 text-left">
                       <AlertTriangle className="w-4 h-4 shrink-0" />
                       <span>Mistake style: {errorType} error</span>
                     </div>
 
-                    <div className="bg-brand-bg-light/35 border border-brand-border-light/50 rounded-lg p-4">
+                    <div className="bg-brand-bg-light/35 border border-brand-border-light/50 rounded-lg p-4 text-left">
                       <h4 className="text-xs font-bold text-brand-text-light uppercase tracking-wider mb-1.5">
                         AI Tutor Assessment
                       </h4>
-                      <p className="text-sm text-brand-text-light/90 leading-relaxed font-medium">
+                      <p className="text-sm text-brand-text-light/90 leading-relaxed font-medium whitespace-pre-line">
                         {res.ai_score_details?.reasoning}
                       </p>
                     </div>
@@ -181,11 +229,104 @@ export default function ResultPage() {
                     {res.socratic_feedback && (
                       <HintReveal socraticFeedback={res.socratic_feedback} />
                     )}
+
+                    {/* SOCRATIC REFLECTION WORKSPACE */}
+                    <div className="bg-amber-500/5 border border-brand-accent/20 rounded-xl p-5 mt-4 space-y-4 text-left">
+                      <h4 className="text-xs font-extrabold text-brand-text-light uppercase tracking-widest flex items-center gap-1.5">
+                        <BookOpen className="w-4 h-4 text-brand-accent" />
+                        Socratic Mistake Reflection
+                      </h4>
+
+                      {!reflections[qId] ? (
+                        <div className="space-y-3">
+                          <p className="text-xs text-brand-muted-light font-medium leading-relaxed">
+                            Reflect on why you selected the incorrect option and how to compute/solve this concept. Write a short statement of your logic to get feedback.
+                          </p>
+
+                          <textarea
+                            rows="2"
+                            value={reflectionInputs[qId] || ""}
+                            onChange={(e) =>
+                              setReflectionInputs((prev) => ({ ...prev, [qId]: e.target.value }))
+                            }
+                            placeholder="e.g. 'I forgot to multiply the base by 2 in the Vieta's product term, which caused me to compute 19 instead of 13...'"
+                            className="w-full bg-white border border-brand-border-light rounded-lg p-3 text-xs focus:outline-none focus:border-brand-accent font-medium"
+                          />
+
+                          {reflectionErrors[qId] && (
+                            <p className="text-xs text-rose-600 font-bold">{reflectionErrors[qId]}</p>
+                          )}
+
+                          <div className="flex justify-end">
+                            <button
+                              type="button"
+                              onClick={() => handleSubmitReflection(qId)}
+                              disabled={reflectionLoading[qId]}
+                              className="bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-bold px-4 py-2 rounded-lg cursor-pointer transition-colors shadow-xs flex items-center gap-1"
+                            >
+                              {reflectionLoading[qId] ? (
+                                <>
+                                  <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                  Analyzing...
+                                </>
+                              ) : (
+                                <>
+                                  <Sparkles className="w-3.5 h-3.5" />
+                                  Submit Reflection
+                                </>
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="space-y-3 divide-y divide-brand-accent/10">
+                          {/* Student reflection content */}
+                          <div className="pb-3">
+                            <span className="text-[10px] text-brand-muted-light font-bold uppercase tracking-wider block mb-1">Your Analysis</span>
+                            <p className="text-xs text-brand-text-light font-medium italic">
+                              "{reflectionInputs[qId]}"
+                            </p>
+                          </div>
+
+                          {/* AI Socratic feedback */}
+                          <div className="pt-3 space-y-3">
+                            <div className="flex items-center gap-3">
+                              <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded border uppercase tracking-wider ${
+                                reflections[qId].status === "approved"
+                                  ? "bg-emerald-50 text-emerald-600 border-emerald-200"
+                                  : "bg-amber-50 text-amber-600 border-amber-200"
+                              }`}>
+                                Status: {reflections[qId].status}
+                              </span>
+                              <span className="text-[10px] text-brand-muted-light font-bold">
+                                UNDERSTANDING: {reflections[qId].conceptual_understanding}
+                              </span>
+                            </div>
+
+                            <p className="text-xs text-brand-text-light font-medium leading-relaxed bg-white/70 border border-brand-border-light/40 rounded-lg p-3">
+                              {reflections[qId].socratic_nudge}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ) : (
-                  <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3 mt-2 text-sm text-emerald-700 font-semibold flex items-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Option {res.correct_answer} is correct. You spent {res.time_spent} seconds on this question.</span>
+                  <div className="space-y-4 mt-4">
+                    <div className="bg-emerald-500/5 border border-emerald-500/20 rounded-lg p-3 text-sm text-emerald-700 font-semibold flex items-center gap-1.5 text-left">
+                      <CheckCircle2 className="w-4 h-4" />
+                      <span>Option {res.correct_answer} is correct. You spent {res.time_spent} seconds on this question.</span>
+                    </div>
+                    {res.ai_score_details?.reasoning && (
+                      <div className="bg-brand-bg-light/35 border border-brand-border-light/50 rounded-lg p-4 text-left">
+                        <h4 className="text-xs font-bold text-brand-text-light uppercase tracking-wider mb-1.5">
+                          AI Tutor Explanation
+                        </h4>
+                        <p className="text-sm text-brand-text-light/90 leading-relaxed font-medium whitespace-pre-line">
+                          {res.ai_score_details.reasoning}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

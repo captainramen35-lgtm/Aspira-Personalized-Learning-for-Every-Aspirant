@@ -1,6 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider, useAuth } from "./context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
+import RoleGuard from "./components/RoleGuard";
+
+// Existing pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -11,96 +14,140 @@ import MasteryProfile from "./pages/MasteryProfile";
 import TeacherDashboard from "./pages/TeacherDashboard";
 import Feedback from "./pages/Feedback";
 
-// Protected Route Component to handle role verification and routing redirects
-function ProtectedRoute({ children, allowedRoles }) {
-  const { currentUser, userRole, loading } = useAuth();
+// Phase 1 — new pages
+import OnboardingSurvey from "./pages/OnboardingSurvey";
+import BatchSelection from "./pages/BatchSelection";
+import EnrollmentStatus from "./pages/EnrollmentStatus";
+import TeacherOnboarding from "./pages/TeacherOnboarding";
+import AdminDashboard from "./pages/AdminDashboard";
 
-  // If globally loading OR we have a user but haven't fetched their role yet
-  if (loading || (currentUser && !userRole)) {
-    return (
-      <div className="min-h-screen bg-brand-bg-light flex items-center justify-center">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-brand-accent"></div>
-      </div>
-    );
-  }
-
-  if (!currentUser) {
-    return <Navigate to="/login" replace />;
-  }
-
-  if (allowedRoles && !allowedRoles.includes(userRole)) {
-    // Redirect if they have the wrong role
-    return userRole === "teacher" 
-      ? <Navigate to="/teacher" replace /> 
-      : <Navigate to="/profile" replace />;
-  }
-
-  return children;
-}
+// Phase 4 — new pages
+import StudentDashboard from "./pages/StudentDashboard";
+import StudyPlan from "./pages/StudyPlan";
 
 export default function App() {
   return (
     <AuthProvider>
       <Router>
         <Routes>
-          {/* Public Routes */}
+          {/* ── Public Routes ─────────────────────────────────────────────── */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 
-          {/* Student Protected Routes */}
+          {/* ── Student Onboarding Funnel (auth required, no enrollment needed) ── */}
+          <Route
+            path="/onboarding-survey"
+            element={
+              <RoleGuard allowedRoles={["student"]}>
+                <OnboardingSurvey />
+              </RoleGuard>
+            }
+          />
+          <Route
+            path="/batch-selection"
+            element={
+              <RoleGuard allowedRoles={["student"]}>
+                <BatchSelection />
+              </RoleGuard>
+            }
+          />
+          <Route
+            path="/enrollment-status"
+            element={
+              <RoleGuard allowedRoles={["student"]}>
+                <EnrollmentStatus />
+              </RoleGuard>
+            }
+          />
+
+          {/* ── Student Learning Routes (requires enrollment) ────────────── */}
           <Route
             path="/diagnostic"
             element={
-              <ProtectedRoute allowedRoles={["student"]}>
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
                 <DiagnosticTest />
-              </ProtectedRoute>
+              </RoleGuard>
             }
           />
           <Route
             path="/test"
             element={
-              <ProtectedRoute allowedRoles={["student"]}>
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
                 <TestPage />
-              </ProtectedRoute>
+              </RoleGuard>
             }
           />
           <Route
             path="/result"
             element={
-              <ProtectedRoute allowedRoles={["student"]}>
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
                 <ResultPage />
-              </ProtectedRoute>
+              </RoleGuard>
             }
           />
           <Route
             path="/profile"
             element={
-              <ProtectedRoute allowedRoles={["student"]}>
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
                 <MasteryProfile />
-              </ProtectedRoute>
+              </RoleGuard>
             }
           />
           <Route
             path="/feedback"
             element={
-              <ProtectedRoute allowedRoles={["student"]}>
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
                 <Feedback />
-              </ProtectedRoute>
+              </RoleGuard>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
+                <StudentDashboard />
+              </RoleGuard>
+            }
+          />
+          <Route
+            path="/study-plan"
+            element={
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
+                <StudyPlan />
+              </RoleGuard>
             }
           />
 
-          {/* Teacher Protected Routes */}
+          {/* ── Teacher Routes ───────────────────────────────────────────── */}
+          <Route
+            path="/teacher/onboarding"
+            element={
+              <RoleGuard allowedRoles={["teacher"]}>
+                <TeacherOnboarding />
+              </RoleGuard>
+            }
+          />
           <Route
             path="/teacher"
             element={
-              <ProtectedRoute allowedRoles={["teacher"]}>
+              <RoleGuard allowedRoles={["teacher"]} requireActivated={true}>
                 <TeacherDashboard />
-              </ProtectedRoute>
+              </RoleGuard>
             }
           />
 
-          {/* Catch-all Redirect */}
+          {/* ── Admin Routes ─────────────────────────────────────────────── */}
+          <Route
+            path="/admin"
+            element={
+              <RoleGuard allowedRoles={["admin"]}>
+                <AdminDashboard />
+              </RoleGuard>
+            }
+          />
+
+          {/* ── Catch-all ────────────────────────────────────────────────── */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>

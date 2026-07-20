@@ -1,0 +1,62 @@
+import React from "react";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
+/**
+ * RoleGuard — wraps a route and enforces:
+ *  1. User must be authenticated
+ *  2. User's role must be in `allowedRoles`
+ *  3. Optional: requireEnrolled — student must have assigned_batch_id
+ *  4. Optional: requireActivated — teacher must have status === "active"
+ */
+export default function RoleGuard({
+  children,
+  allowedRoles,
+  requireEnrolled = false,
+  requireActivated = false,
+}) {
+  const { currentUser, userRole, userProfile, loading } = useAuth();
+
+  if (loading || (currentUser && !userRole)) {
+    return (
+      <div className="min-h-screen bg-brand-bg-dark flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-10 h-10 border-2 border-brand-accent border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm text-gray-400">Loading your profile…</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Not logged in
+  if (!currentUser) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // Role mismatch → redirect to their home
+  if (allowedRoles && !allowedRoles.includes(userRole)) {
+    if (userRole === "admin") return <Navigate to="/admin" replace />;
+    if (userRole === "teacher") return <Navigate to="/teacher" replace />;
+    return <Navigate to="/profile" replace />;
+  }
+
+  // Teacher must complete onboarding before accessing dashboard
+  if (requireActivated && userRole === "teacher" && userProfile?.status === "pending_first_login") {
+    return <Navigate to="/teacher/onboarding" replace />;
+  }
+
+  // Student must be enrolled (have assigned_batch_id) before accessing tests
+  if (requireEnrolled && userRole === "student") {
+    const status = userProfile?.status;
+    const hasBatch = !!userProfile?.assigned_batch_id;
+
+    if (!hasBatch || status === "pending_approval") {
+      // Route to the correct step in the funnel
+      if (status === "pending_survey") return <Navigate to="/onboarding-survey" replace />;
+      if (status === "pending_batch") return <Navigate to="/batch-selection" replace />;
+      if (status === "pending_approval") return <Navigate to="/enrollment-status" replace />;
+    }
+  }
+
+  return children;
+}

@@ -99,17 +99,16 @@ export default function MasteryProfile() {
               <span className="text-brand-muted-light font-medium uppercase tracking-wider text-xs">Email</span>
               <span className="text-brand-text-light">{profile?.email}</span>
             </div>
-
             {/* ENROLLED */}
             <div className="flex items-center justify-between border-b border-brand-border-light/20 pb-3">
-              <span className="text-brand-muted-light font-medium uppercase tracking-wider text-xs">Enrolled</span>
-              <span className="text-brand-text-light">Not Enrolled</span>
+              <span className="text-brand-muted-light font-medium uppercase tracking-wider text-xs">Enrolled Batch</span>
+              <span className="text-brand-text-light">{profile?.assigned_batch_name || "Not Enrolled"}</span>
             </div>
 
             {/* PROGRESS */}
             <div className="flex items-center justify-between border-b border-brand-border-light/20 pb-3">
               <span className="text-brand-muted-light font-medium uppercase tracking-wider text-xs">Progress</span>
-              <span className="text-brand-text-light">{profile?.tests_completed} tests taken</span>
+              <span className="text-brand-text-light">{profile?.tests_completed || 0} tests taken</span>
             </div>
 
             {/* JOINED */}
@@ -121,18 +120,17 @@ export default function MasteryProfile() {
         </div>
 
         {/* Subject Mastery Profile */}
-        <div className="w-full bg-white rounded-xl border border-brand-border-light p-6 shadow-xs">
+        <div className="w-full bg-white rounded-xl border border-brand-border-light p-6 shadow-xs mb-8">
           <h3 className="text-lg font-bold text-brand-text-light mb-6 border-b border-brand-border-light/40 pb-2.5">
-            Subject Mastery Profile
+            Subject-wise Mastery
           </h3>
 
-          {profile && profile.mastery && (
+          {profile && profile.mastery && Object.keys(profile.mastery).length > 0 ? (
             <div className="space-y-4">
               {Object.keys(profile.mastery).map((topic) => {
                 const topicData = profile.mastery[topic];
-                const accPercent = topicData.accuracy <= 1.0 && topicData.accuracy > 0.0 
-                  ? topicData.accuracy * 100 
-                  : topicData.accuracy;
+                const rawAcc = topicData.accuracy;
+                const accPercent = Math.round(rawAcc <= 1.0 && rawAcc > 0.0 ? rawAcc * 100 : rawAcc);
                 
                 const isWeak = accPercent < 40;
                 const isStrong = accPercent >= 65;
@@ -167,6 +165,60 @@ export default function MasteryProfile() {
                 );
               })}
             </div>
+          ) : (
+            <p className="text-xs text-brand-muted-light italic">No subject mastery data yet.</p>
+          )}
+        </div>
+
+        {/* Chapter Mastery Profile (New Granular Layer) */}
+        <div className="w-full bg-white rounded-xl border border-brand-border-light p-6 shadow-xs">
+          <h3 className="text-lg font-bold text-brand-text-light mb-6 border-b border-brand-border-light/40 pb-2.5">
+            Chapter-level Granularity
+          </h3>
+
+          {profile && profile.chapters && Object.keys(profile.chapters).length > 0 ? (
+            <div className="space-y-4">
+              {Object.keys(profile.chapters).map((chapter) => {
+                const chapData = profile.chapters[chapter];
+                const rawAcc = chapData.accuracy;
+                const accPercent = Math.round(rawAcc <= 1.0 && rawAcc > 0.0 ? rawAcc * 100 : rawAcc);
+                
+                const isWeak = accPercent < 40;
+                const isStrong = accPercent >= 65;
+
+                let textColorClass = "text-amber-600";
+                if (isWeak) textColorClass = "text-rose-500";
+                if (isStrong) textColorClass = "text-emerald-600";
+
+                return (
+                  <div key={chapter} className="bg-brand-bg-light/25 border border-brand-border-light/40 rounded-xl p-4 flex flex-col gap-2">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-brand-text-light">{chapter}</span>
+                      <span className={`text-xs font-bold ${textColorClass}`}>
+                        {accPercent}% ({chapData.attempts} attempts &bull; {Math.round(chapData.avg_time_sec)}s avg)
+                      </span>
+                    </div>
+
+                    <div className="w-full h-2.5 bg-brand-border-light/40 rounded-full overflow-hidden relative">
+                      <div
+                        className={`h-full rounded-full transition-all duration-500 ${
+                          isWeak 
+                            ? "bg-rose-500" 
+                            : isStrong 
+                              ? "bg-emerald-500" 
+                              : "bg-amber-500"
+                        }`}
+                        style={{ width: `${Math.max(accPercent, 2)}%` }}
+                      />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <p className="text-xs text-brand-muted-light italic text-center py-6">
+              Complete practice sessions to unlock chapter-level rolling accuracy stats.
+            </p>
           )}
         </div>
 

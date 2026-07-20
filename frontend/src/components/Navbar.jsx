@@ -55,6 +55,12 @@ export default function Navbar() {
               // Student Links
               <div className="flex items-center gap-6">
                 <Link
+                  to="/dashboard"
+                  className={location.pathname === "/dashboard" ? activeLinkClass : inactiveLinkClass}
+                >
+                  Dashboard
+                </Link>
+                <Link
                   to="/diagnostic"
                   className={location.pathname === "/diagnostic" ? activeLinkClass : inactiveLinkClass}
                 >
@@ -67,16 +73,16 @@ export default function Navbar() {
                   Test
                 </Link>
                 <Link
-                  to="/feedback"
-                  className={location.pathname === "/feedback" ? activeLinkClass : inactiveLinkClass}
-                >
-                  Feedback
-                </Link>
-                <Link
                   to="/profile"
                   className={location.pathname === "/profile" ? activeLinkClass : inactiveLinkClass}
                 >
                   Profile
+                </Link>
+                <Link
+                  to="/feedback"
+                  className={location.pathname === "/feedback" ? activeLinkClass : inactiveLinkClass}
+                >
+                  Feedback
                 </Link>
                 <button
                   onClick={handleLogout}

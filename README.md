@@ -18,8 +18,17 @@ Every student preparing for highly competitive exams like JEE/NEET has a unique 
 1. **Dynamic Mastery Profile**: Every student starts with an 8-topic diagnostic test to map out their baseline accuracy, speed, and conceptual trends.
 2. **Personalized Test Engine**: Practice papers are automatically compiled using a strict **60/40 rule** — 60% of the questions target their weak topics (accuracy < 50%), and 40% reinforce strong topics, avoiding question repetition.
 3. **Double-Verification AI Scorer & Auditor**: Correctness is verified using a FastAPI backend backed by **Google Gemini**. A primary scorer assesses mistakes, and an independent auditor double-checks the grade to catch grading errors.
-4. **Socratic Hint System**: Instead of showing the full solution instantly, incorrect questions offer a progressive **3-stage hint system** to guide students to the answer without robbing them of the "aha!" moment.
+4. **Socratic Hint System & Study Plans**: Instead of showing the full solution instantly, incorrect questions offer a progressive **3-stage hint system** to guide students to the answer without robbing them of the "aha!" moment. AI also generates actionable daily study plans based on the student's mastery profile.
 5. **Class Pulse Teacher Dashboard**: A dual-pane command center mapping student rosters, tracking topic-wise average mastery, highlighting students at risk of falling behind, and aggregating AI-summarized recurring mistake patterns.
+
+---
+
+## 🆕 New Features & Recent Updates
+* **Role-Based Workflows**: Segregated dashboards for Students, Teachers, and Admins.
+* **Enrollment & Batches**: Teachers can manage distinct batches (e.g., Target JEE 2026, Target NEET 2026) and students seamlessly select and enroll in them during their personalized onboarding survey.
+* **Socratic AI Study Plans**: A fully dedicated Study Plan generator that uses the student's active mastery profile to create specific, actionable focus areas.
+* **Concurrent Gemini AI Grading**: Test grading speed has been optimized heavily (< 3 seconds) using concurrent asynchronous calls.
+* **Detailed Step-by-Step AI Solutions**: AI now provides explicit mathematical breakdowns for *every* question (both correct and incorrect) on all tests (Diagnostic + Personalized) without restating the prompt, ensuring rich actionable feedback.
 
 ---
 
