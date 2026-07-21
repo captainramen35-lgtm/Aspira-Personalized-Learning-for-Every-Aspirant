@@ -31,6 +31,10 @@ Every student preparing for highly competitive exams like JEE/NEET has a unique 
 * **Concurrent Gemini AI Grading**: Test grading speed has been optimized heavily (< 3 seconds) using concurrent asynchronous calls.
 * **Detailed Step-by-Step AI Solutions**: AI now provides explicit mathematical breakdowns for *every* question (both correct and incorrect) on all tests (Diagnostic + Personalized) without restating the prompt, ensuring rich actionable feedback.
 * **Teacher Dashboard Analytics**: Improved Teacher Dashboard with batch filtering, deduplicated student rosters, and robust batch archive/unarchive capabilities.
+* **Bulk Reassignment & Batch Archiving**: Teachers can safely archive completed batches and bulk-reassign active students to new batches to keep their class rosters clean.
+* **Enrollment Profile Rejection**: Teachers can reject enrollment requests specifically due to incomplete profiles, instantly routing students back to their onboarding survey to provide the missing learning style or goals data.
+* **Strict Onboarding Enforcement**: Hard-gated routes using an advanced `RoleGuard` prevent students from accessing the app until their diagnostic profile and goals survey are fully completed.
+* **Chapter-Level Topic Grouping**: Mastery tracking and feedback generation have been upgraded to group subjects into logical chapters (e.g. "Mechanics", "Calculus") for more coherent learning analytics.
 
 ---
 

@@ -165,6 +165,19 @@ export function AuthProvider({ children }) {
     return signOut(auth);
   }
 
+  // ─── Refresh Profile ──────────────────────────────────────────────────────
+  async function refreshProfile() {
+    if (!currentUser) return;
+    try {
+      const profile = await fetchUserProfile(currentUser);
+      localStorage.setItem("aspira_profile", JSON.stringify(profile));
+      setUserProfile(profile);
+      setUserRole(profile.role || "student");
+    } catch (e) {
+      console.error("Could not refresh profile:", e);
+    }
+  }
+
   // ─── Get Auth Token ───────────────────────────────────────────────────────
   async function getToken() {
     if (!currentUser) return null;
@@ -183,7 +196,8 @@ export function AuthProvider({ children }) {
     changePassword,
     resendEmailVerification,
     markEmailVerified,
-    getToken
+    getToken,
+    refreshProfile
   };
 
   return (

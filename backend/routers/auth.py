@@ -188,3 +188,17 @@ async def save_onboarding_survey(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to save survey: {e}")
 
+
+@router.get("/onboarding-survey")
+async def get_onboarding_survey(user: dict = Depends(get_current_user)):
+    """
+    Retrieves the student's previously submitted onboarding survey, if it exists.
+    """
+    uid = user["uid"]
+    try:
+        survey_doc = db.collection("students").document(uid).collection("onboarding_survey").document("data").get()
+        if survey_doc.exists:
+            return {"status": "success", "data": survey_doc.to_dict()}
+        return {"status": "success", "data": None}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch survey: {e}")

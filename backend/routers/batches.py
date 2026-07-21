@@ -25,10 +25,11 @@ class UpdateBatchRequest(BaseModel):
 @router.get("")
 async def list_batches(
     exam: Optional[str] = None,
+    include_archived: bool = False,
     user: dict = Depends(get_current_user)
 ):
     """
-    Returns active batches.
+    Returns active batches (and optionally archived ones).
     - Students: filtered by target_exam (query param).
     - Teachers: returns their own batches.
     """
@@ -40,13 +41,14 @@ async def list_batches(
 
     try:
         if role == "teacher":
-            query = db.collection("batches").where("teacher_id", "==", uid).where("status", "==", "active")
+            query = db.collection("batches").where("teacher_id", "==", uid)
+            if not include_archived:
+                query = query.where("status", "==", "active")
         else:
             # Student: filter by exam if provided
+            query = db.collection("batches").where("status", "==", "active")
             if exam:
-                query = db.collection("batches").where("target_exam", "==", exam).where("status", "==", "active")
-            else:
-                query = db.collection("batches").where("status", "==", "active")
+                query = query.where("target_exam", "==", exam)
 
         batches = []
         for doc in query.stream():
@@ -134,11 +136,82 @@ async def archive_batch(
     batch_doc = db.collection("batches").document(batch_id).get()
     if not batch_doc.exists:
         raise HTTPException(status_code=404, detail="Batch not found.")
-    if batch_doc.to_dict().get("teacher_id") != teacher_id:
+    
+    batch_data = batch_doc.to_dict()
+    if batch_data.get("teacher_id") != teacher_id:
         raise HTTPException(status_code=403, detail="You do not own this batch.")
+
+    if batch_data.get("current_count", 0) > 0:
+        raise HTTPException(
+            status_code=400, 
+            detail="Cannot archive batch with enrolled students. Please reassign them first."
+        )
 
     try:
         db.collection("batches").document(batch_id).update({"status": "archived"})
         return {"status": "success", "message": "Batch archived."}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to archive batch: {e}")
+
+
+class BulkReassignRequest(BaseModel):
+    target_batch_id: str
+
+
+@router.post("/{batch_id}/bulk-reassign")
+async def bulk_reassign_students(
+    batch_id: str,
+    req: BulkReassignRequest,
+    user: dict = Depends(require_role(["teacher"]))
+):
+    """Reassign all students from one batch to another."""
+    teacher_id = user["uid"]
+    
+    # Verify source batch
+    source_doc = db.collection("batches").document(batch_id).get()
+    if not source_doc.exists:
+        raise HTTPException(status_code=404, detail="Source batch not found.")
+    if source_doc.to_dict().get("teacher_id") != teacher_id:
+        raise HTTPException(status_code=403, detail="You do not own the source batch.")
+
+    # Verify target batch
+    target_doc = db.collection("batches").document(req.target_batch_id).get()
+    if not target_doc.exists:
+        raise HTTPException(status_code=404, detail="Target batch not found.")
+    target_data = target_doc.to_dict()
+    if target_data.get("teacher_id") != teacher_id:
+        raise HTTPException(status_code=403, detail="You do not own the target batch.")
+    if target_data.get("status") == "archived":
+        raise HTTPException(status_code=400, detail="Cannot reassign to an archived batch.")
+
+    try:
+        # Find all active students in the source batch
+        students_ref = db.collection("users").where("assigned_batch_id", "==", batch_id).where("role", "==", "student").stream()
+        student_ids = [doc.id for doc in students_ref]
+        
+        if not student_ids:
+            return {"status": "success", "message": "No students to reassign.", "reassigned_count": 0}
+
+        # Use batch write to reassign students and update counts safely
+        batch_writer = db.batch()
+        
+        for sid in student_ids:
+            batch_writer.update(db.collection("users").document(sid), {"assigned_batch_id": req.target_batch_id})
+            
+        # Update enrollment counts
+        batch_writer.update(db.collection("batches").document(req.target_batch_id), {
+            "current_count": firestore.Increment(len(student_ids))
+        })
+        batch_writer.update(db.collection("batches").document(batch_id), {
+            "current_count": firestore.Increment(-len(student_ids))
+        })
+        
+        batch_writer.commit()
+
+        return {
+            "status": "success", 
+            "message": f"Successfully reassigned {len(student_ids)} students.",
+            "reassigned_count": len(student_ids)
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to bulk reassign students: {e}")

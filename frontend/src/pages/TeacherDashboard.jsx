@@ -83,9 +83,21 @@ export default function TeacherDashboard() {
   const [decisionMode, setDecisionMode] = useState(""); // 'approve' | 'reassign' | 'reject'
   const [decisionForm, setDecisionForm] = useState({
     reason: "",
-    target_batch_id: ""
+    target_batch_id: "",
+    incomplete_profile: false
   });
   const [processingDecision, setProcessingDecision] = useState(false);
+
+  // Archive & Reassign
+  const [archivedBatches, setArchivedBatches] = useState([]);
+  const [showReassignModal, setShowReassignModal] = useState(false);
+  const [reassignForm, setReassignForm] = useState({
+    source_batch_id: "",
+    target_batch_id: "",
+    source_batch_name: ""
+  });
+  const [reassigning, setReassigning] = useState(false);
+  const [batchTab, setBatchTab] = useState("active"); // 'active' | 'archived'
 
   // Initial fetch on mount
   useEffect(() => {
@@ -126,8 +138,10 @@ export default function TeacherDashboard() {
   const fetchBatches = async () => {
     setLoadingBatches(true);
     try {
-      const res = await api.get("/api/batches");
-      setBatches(res.data.batches || []);
+      const resActive = await api.get("/api/batches");
+      setBatches(resActive.data.batches || []);
+      const resArchived = await api.get("/api/batches?include_archived=true");
+      setArchivedBatches((resArchived.data.batches || []).filter(b => b.status === "archived"));
     } catch (err) {
       console.error(err);
       setError("Failed to fetch batches.");
@@ -234,7 +248,31 @@ export default function TeacherDashboard() {
       fetchBatches();
     } catch (err) {
       console.error(err);
-      setError("Failed to archive batch.");
+      if (err.response?.status === 400 && err.response?.data?.detail?.includes("reassign")) {
+        setReassignForm({ source_batch_id: batchId, target_batch_id: "", source_batch_name: batchName });
+        setShowReassignModal(true);
+      } else {
+        setError(err.response?.data?.detail || "Failed to archive batch.");
+      }
+    }
+  };
+
+  const handleBulkReassignSubmit = async (e) => {
+    e.preventDefault();
+    setReassigning(true);
+    try {
+      const res = await api.post(`/api/batches/${reassignForm.source_batch_id}/bulk-reassign`, {
+        target_batch_id: reassignForm.target_batch_id
+      });
+      setSuccessMsg(res.data.message || "Students reassigned successfully. You can now archive the batch.");
+      setShowReassignModal(false);
+      fetchBatches();
+      fetchClassAnalytics();
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.detail || "Failed to reassign students.");
+    } finally {
+      setReassigning(false);
     }
   };
 
@@ -245,14 +283,15 @@ export default function TeacherDashboard() {
     setDecisionMode(mode);
     setDecisionForm({
       reason: "",
-      target_batch_id: mode === "reassign" ? "" : (req.batch_id || "")
+      target_batch_id: mode === "reassign" ? "" : (req.batch_id || ""),
+      incomplete_profile: false
     });
   };
 
   const handleCloseDecision = () => {
     setSelectedRequest(null);
     setDecisionMode("");
-    setDecisionForm({ reason: "", target_batch_id: "" });
+    setDecisionForm({ reason: "", target_batch_id: "", incomplete_profile: false });
   };
 
   const handleSubmitDecision = async (e) => {
@@ -273,7 +312,8 @@ export default function TeacherDashboard() {
       } else if (decisionMode === "reject") {
         endpoint = `/api/enrollment/requests/${selectedRequest.request_id}/reject`;
         payload = {
-          reason: decisionForm.reason
+          reason: decisionForm.reason,
+          incomplete_profile: decisionForm.incomplete_profile
         };
       }
 
@@ -773,38 +813,58 @@ export default function TeacherDashboard() {
         )}
 
         {/* --- TAB 2: BATCH MANAGEMENT --- */}
-        {activeTab === "batches" && (
-          <div className="flex-1 overflow-y-auto p-8 max-w-6xl mx-auto w-full">
-            <div className="flex items-center justify-between mb-6">
-              <div>
-                <h1 className="text-2xl font-extrabold text-brand-text-light">Batch Management</h1>
-                <p className="text-xs text-brand-muted-light font-medium mt-1">
-                  Organize, edit and monitor enrollment limits for your active learning batches.
-                </p>
+        {activeTab === "batches" && (() => {
+          const displayedBatches = batchTab === "active" ? batches : archivedBatches;
+
+          return (
+          <div className="flex-1 flex flex-col overflow-hidden">
+            <div className="px-8 pt-8 pb-4">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h1 className="text-2xl font-extrabold text-brand-text-light">Batch Management</h1>
+                  <p className="text-xs text-brand-muted-light font-medium mt-1">
+                    Organize, edit and monitor enrollment limits for your learning batches.
+                  </p>
+                </div>
+                <button
+                  onClick={handleOpenCreateBatch}
+                  className="flex items-center gap-1.5 bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors cursor-pointer"
+                >
+                  <Plus className="w-4 h-4" />
+                  Create Batch
+                </button>
               </div>
-              <button
-                onClick={handleOpenCreateBatch}
-                className="flex items-center gap-1.5 bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm transition-colors cursor-pointer"
-              >
-                <Plus className="w-4 h-4" />
-                Create Batch
-              </button>
+
+              {/* Batches sub-tabs */}
+              <div className="flex gap-4 border-b border-brand-border-light max-w-6xl mx-auto w-full">
+                <button 
+                  onClick={() => setBatchTab("active")} 
+                  className={`pb-2 text-sm font-bold border-b-2 transition-colors ${batchTab === "active" ? "border-brand-accent text-brand-accent" : "border-transparent text-brand-muted-light hover:text-brand-text-light"}`}
+                >Active Batches</button>
+                <button 
+                  onClick={() => setBatchTab("archived")} 
+                  className={`pb-2 text-sm font-bold border-b-2 transition-colors ${batchTab === "archived" ? "border-brand-accent text-brand-accent" : "border-transparent text-brand-muted-light hover:text-brand-text-light"}`}
+                >Archived Batches</button>
+              </div>
             </div>
 
+            <div className="flex-1 overflow-y-auto p-8 pt-4 max-w-6xl mx-auto w-full">
             {loadingBatches ? (
               <div className="py-20 flex justify-center">
                 <Loader2 className="w-8 h-8 text-brand-accent animate-spin" />
               </div>
-            ) : batches.length > 0 ? (
+            ) : displayedBatches.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {batches.map((batch) => {
+                {displayedBatches.map((batch) => {
                   const percent = Math.min(Math.round((batch.current_count / batch.capacity) * 100), 100);
                   const isFull = batch.current_count >= batch.capacity;
 
                   return (
                     <div
                       key={batch.batch_id}
-                      className="bg-white border border-brand-border-light rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all relative overflow-hidden"
+                      className={`bg-white border rounded-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all relative overflow-hidden ${
+                        batch.status === "archived" ? "border-brand-border-light/60 opacity-80" : "border-brand-border-light"
+                      }`}
                     >
                       {/* Top banner tag for Exam type */}
                       <div className="absolute top-0 right-0">
@@ -817,7 +877,10 @@ export default function TeacherDashboard() {
 
                       <div className="space-y-3">
                         <div>
-                          <h3 className="font-extrabold text-base text-brand-text-light pr-12 line-clamp-1">{batch.name}</h3>
+                          <h3 className="font-extrabold text-base text-brand-text-light pr-12 line-clamp-1 flex items-center gap-2">
+                            {batch.name}
+                            {batch.status === "archived" && <span className="text-[10px] bg-brand-bg-light text-brand-muted-light px-2 py-0.5 rounded uppercase">Archived</span>}
+                          </h3>
                           <span className="text-[10px] text-brand-muted-light font-bold uppercase tracking-wider block mt-0.5">
                             ID: {batch.batch_id.slice(0, 8)}
                           </span>
@@ -826,15 +889,15 @@ export default function TeacherDashboard() {
                         {/* Capacity meter */}
                         <div className="space-y-1.5">
                           <div className="flex justify-between text-xs font-bold">
-                            <span className="text-brand-muted-light">Enrollment</span>
-                            <span className={isFull ? "text-rose-500" : "text-brand-text-light"}>
-                              {batch.current_count} / {batch.capacity} Students {isFull && "(Full)"}
+                            <span className="text-brand-muted-light">{batch.status === "archived" ? "Final Enrollment" : "Enrollment"}</span>
+                            <span className={isFull && batch.status === "active" ? "text-rose-500" : "text-brand-text-light"}>
+                              {batch.current_count} / {batch.capacity} Students {isFull && batch.status === "active" && "(Full)"}
                             </span>
                           </div>
                           <div className="w-full h-2 bg-brand-bg-light/60 rounded-full overflow-hidden">
                             <div
                               className={`h-full rounded-full transition-all duration-300 ${
-                                isFull ? "bg-rose-500" : percent > 85 ? "bg-amber-500" : "bg-brand-accent"
+                                batch.status === "archived" ? "bg-brand-muted-light" : isFull ? "bg-rose-500" : percent > 85 ? "bg-amber-500" : "bg-brand-accent"
                               }`}
                               style={{ width: `${percent}%` }}
                             />
@@ -850,23 +913,25 @@ export default function TeacherDashboard() {
                         </div>
                       </div>
 
-                      {/* Action buttons */}
-                      <div className="flex items-center gap-3 border-t border-brand-border-light/40 mt-5 pt-4">
-                        <button
-                          onClick={() => handleOpenEditBatch(batch)}
-                          className="flex-1 flex items-center justify-center gap-1 border border-brand-border-light text-brand-text-light hover:bg-brand-bg-light text-xs font-bold py-2 rounded-lg transition-colors cursor-pointer"
-                        >
-                          <Edit2 className="w-3.5 h-3.5" />
-                          Edit
-                        </button>
-                        <button
-                          onClick={() => handleArchiveBatch(batch.batch_id, batch.name)}
-                          className="flex-1 flex items-center justify-center gap-1 border border-rose-100 hover:bg-rose-50 text-rose-500 text-xs font-bold py-2 rounded-lg transition-colors cursor-pointer"
-                        >
-                          <Archive className="w-3.5 h-3.5" />
-                          Archive
-                        </button>
-                      </div>
+                      {/* Action buttons (only if active) */}
+                      {batch.status === "active" && (
+                        <div className="flex items-center gap-3 border-t border-brand-border-light/40 mt-5 pt-4">
+                          <button
+                            onClick={() => handleOpenEditBatch(batch)}
+                            className="flex-1 flex items-center justify-center gap-1 border border-brand-border-light text-brand-text-light hover:bg-brand-bg-light text-xs font-bold py-2 rounded-lg transition-colors cursor-pointer"
+                          >
+                            <Edit2 className="w-3.5 h-3.5" />
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleArchiveBatch(batch.batch_id, batch.name)}
+                            className="flex-1 flex items-center justify-center gap-1 border border-rose-100 hover:bg-rose-50 text-rose-500 text-xs font-bold py-2 rounded-lg transition-colors cursor-pointer"
+                          >
+                            <Archive className="w-3.5 h-3.5" />
+                            Archive
+                          </button>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
@@ -874,20 +939,23 @@ export default function TeacherDashboard() {
             ) : (
               <div className="bg-white border border-brand-border-light rounded-xl p-12 text-center max-w-md mx-auto mt-12">
                 <Users className="w-12 h-12 text-brand-muted-light mx-auto mb-4" />
-                <h3 className="font-bold text-brand-text-light text-base mb-1">Create Your First Batch</h3>
+                <h3 className="font-bold text-brand-text-light text-base mb-1">{batchTab === "active" ? "Create Your First Batch" : "No Archived Batches"}</h3>
                 <p className="text-xs text-brand-muted-light mb-6">
-                  You need to create a batch before students can submit enrollment requests to join your classes.
+                  {batchTab === "active" ? "You need to create a batch before students can submit enrollment requests to join your classes." : "Batches you archive will appear here."}
                 </p>
-                <button
-                  onClick={handleOpenCreateBatch}
-                  className="bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer shadow-sm transition-colors"
-                >
-                  Get Started
-                </button>
+                {batchTab === "active" && (
+                  <button
+                    onClick={handleOpenCreateBatch}
+                    className="bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-bold px-4 py-2.5 rounded-xl cursor-pointer shadow-sm transition-colors"
+                  >
+                    Get Started
+                  </button>
+                )}
               </div>
             )}
+            </div>
           </div>
-        )}
+        )})}
 
         {/* --- TAB 3: ENROLLMENT REQUESTS --- */}
         {activeTab === "requests" && (
@@ -1102,6 +1170,24 @@ export default function TeacherDashboard() {
                         />
                       </div>
 
+                      {decisionMode === "reject" && (
+                        <div className="flex items-start gap-2 mt-2 bg-brand-bg-light/30 border border-brand-border-light p-3 rounded-lg">
+                          <input 
+                            type="checkbox" 
+                            id="incomplete_profile"
+                            checked={decisionForm.incomplete_profile}
+                            onChange={(e) => setDecisionForm({ ...decisionForm, incomplete_profile: e.target.checked })}
+                            className="mt-0.5 rounded border-brand-border-light text-brand-accent focus:ring-brand-accent cursor-pointer"
+                          />
+                          <label htmlFor="incomplete_profile" className="text-xs font-bold text-brand-text-light cursor-pointer select-none">
+                            Reject due to incomplete or insufficient profile
+                            <span className="block text-[10px] text-brand-muted-light mt-0.5 font-medium">
+                              This will route the student back to the Onboarding Survey to complete missing fields.
+                            </span>
+                          </label>
+                        </div>
+                      )}
+
                       <div className="flex items-center justify-end gap-3 pt-2">
                         <button
                           type="button"
@@ -1220,6 +1306,71 @@ export default function TeacherDashboard() {
                 className="bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-bold px-4 py-2 rounded-lg cursor-pointer shadow-sm transition-colors"
               >
                 {editingBatch ? "Save Changes" : "Create Batch"}
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* --- REASSIGN BATCH DIALOG MODAL --- */}
+      {showReassignModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-brand-bg-dark/50 backdrop-blur-sm p-6">
+          <form
+            onSubmit={handleBulkReassignSubmit}
+            className="bg-white border border-brand-border-light rounded-2xl w-full max-w-md p-6 space-y-4 shadow-xl animate-scale-in text-left"
+          >
+            <div className="flex items-center justify-between border-b border-brand-border-light/40 pb-3">
+              <h3 className="font-extrabold text-base text-brand-text-light flex items-center gap-2">
+                <ShieldAlert className="w-5 h-5 text-amber-500" />
+                Bulk Reassign Students
+              </h3>
+              <button
+                type="button"
+                onClick={() => setShowReassignModal(false)}
+                className="text-brand-muted-light hover:text-brand-text-light cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <p className="text-xs text-brand-text-light font-medium">
+              You cannot archive <span className="font-bold">"{reassignForm.source_batch_name}"</span> because it still has active students. Please move them to another batch first.
+            </p>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-bold text-brand-muted-light uppercase tracking-wider">Select Target Batch</label>
+              <select
+                required
+                value={reassignForm.target_batch_id}
+                onChange={(e) => setReassignForm({ ...reassignForm, target_batch_id: e.target.value })}
+                className="bg-brand-bg-light/40 border border-brand-border-light rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-brand-accent font-medium text-brand-text-light"
+              >
+                <option value="">-- Choose Target Batch --</option>
+                {batches
+                  .filter((b) => b.batch_id !== reassignForm.source_batch_id)
+                  .map((b) => (
+                    <option key={b.batch_id} value={b.batch_id}>
+                      {b.name} ({b.target_exam}) - {b.current_count}/{b.capacity} enrolled
+                    </option>
+                  ))}
+              </select>
+            </div>
+
+            <div className="flex items-center justify-end gap-3 pt-3 border-t border-brand-border-light/40 mt-4">
+              <button
+                type="button"
+                onClick={() => setShowReassignModal(false)}
+                className="px-4 py-2 border border-brand-border-light text-brand-text-light rounded-lg text-xs font-bold hover:bg-brand-bg-light transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={reassigning}
+                className="bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-bold px-4 py-2 rounded-lg cursor-pointer shadow-sm transition-colors flex items-center gap-1.5"
+              >
+                {reassigning && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
+                Reassign & Archive
               </button>
             </div>
           </form>

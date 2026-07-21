@@ -17,6 +17,7 @@ class EnrollmentRequestPayload(BaseModel):
 class EnrollmentDecisionPayload(BaseModel):
     reason: Optional[str] = ""
     target_batch_id: Optional[str] = None  # Only needed for reassign
+    incomplete_profile: Optional[bool] = False
 
 
 @router.post("/request")
@@ -166,7 +167,8 @@ async def approve_enrollment(
         teacher_id=user["uid"],
         action="approve",
         target_batch_id=None,
-        reason=""
+        reason="",
+        incomplete_profile=False
     )
 
 
@@ -184,7 +186,8 @@ async def reassign_enrollment(
         teacher_id=user["uid"],
         action="reassign",
         target_batch_id=payload.target_batch_id,
-        reason=payload.reason or ""
+        reason=payload.reason or "",
+        incomplete_profile=False
     )
 
 
@@ -200,7 +203,8 @@ async def reject_enrollment(
         teacher_id=user["uid"],
         action="reject",
         target_batch_id=None,
-        reason=payload.reason or ""
+        reason=payload.reason or "",
+        incomplete_profile=payload.incomplete_profile
     )
 
 
@@ -209,7 +213,8 @@ async def _process_enrollment_decision(
     teacher_id: str,
     action: str,
     target_batch_id: Optional[str],
-    reason: str
+    reason: str,
+    incomplete_profile: bool
 ):
     """Shared logic for approve / reassign / reject."""
     req_doc = db.collection("enrollment_requests").document(request_id).get()
@@ -231,7 +236,8 @@ async def _process_enrollment_decision(
             "status": "rejected",
             "rejection_reason": reason
         })
-        db.collection("users").document(student_id).update({"status": "pending_batch"})
+        new_status = "incomplete_profile_rejected" if incomplete_profile else "pending_batch"
+        db.collection("users").document(student_id).update({"status": new_status})
         return {"status": "success", "message": "Student enrollment rejected."}
 
     # Approve or Reassign

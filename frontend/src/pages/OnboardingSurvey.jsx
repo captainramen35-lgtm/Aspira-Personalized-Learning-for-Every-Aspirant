@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
@@ -31,7 +31,7 @@ const LEARNING_STYLES = [
 ];
 
 export default function OnboardingSurvey() {
-  const { currentUser, getToken } = useAuth();
+  const { currentUser, getToken, userProfile, refreshProfile } = useAuth();
   const navigate = useNavigate();
 
   const [step, setStep] = useState(1);
@@ -46,6 +46,35 @@ export default function OnboardingSurvey() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadExistingSurvey() {
+      try {
+        const token = await getToken();
+        if (!token) return;
+        const res = await axios.get(`${BACKEND_URL}/api/auth/onboarding-survey`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (res.data && res.data.survey) {
+          const s = res.data.survey;
+          setForm({
+            target_exam: s.target_exam || "",
+            class_level: s.class_level || "",
+            previous_coaching: s.previous_coaching || "",
+            difficult_subjects: s.difficult_subjects || [],
+            learning_style: s.learning_style || "",
+            academic_goals: s.academic_goals || "",
+            hours_per_day: s.hours_per_day || "",
+          });
+        }
+      } catch (err) {
+        if (err.response?.status !== 404) {
+          console.error("Failed to load existing survey:", err);
+        }
+      }
+    }
+    loadExistingSurvey();
+  }, [getToken]);
 
   function toggleSubject(subj) {
     setForm((f) => ({
@@ -71,6 +100,10 @@ export default function OnboardingSurvey() {
         form,
         { headers: { Authorization: `Bearer ${token}` } }
       );
+
+      if (refreshProfile) {
+        await refreshProfile();
+      }
 
       navigate("/batch-selection");
     } catch (err) {
@@ -116,6 +149,18 @@ export default function OnboardingSurvey() {
       </div>
 
       <div className="max-w-3xl mx-auto px-6 z-10 relative pb-16">
+        {userProfile?.status === "incomplete_profile_rejected" && (
+          <div className="bg-rose-500/10 border border-rose-500/30 rounded-xl p-4 flex items-start gap-3 mb-6">
+            <AlertCircle className="w-5 h-5 text-rose-500 shrink-0 mt-0.5" />
+            <div>
+              <h3 className="text-sm font-bold text-rose-400">Enrollment Rejected: Incomplete Profile</h3>
+              <p className="text-xs text-rose-300 mt-1">
+                Your previous enrollment request was rejected because your profile was missing necessary information. Please carefully review and complete all sections below so your teacher can better understand your needs.
+              </p>
+            </div>
+          </div>
+        )}
+
         <div className="glass-card rounded-2xl border border-brand-border-dark p-8 shadow-2xl">
 
           {error && (
@@ -309,7 +354,14 @@ export default function OnboardingSurvey() {
             {step < totalSteps ? (
               <button
                 onClick={() => {
-                  if (step === 1 && !form.target_exam) return setError("Please select your target exam.");
+                  if (step === 1) {
+                    if (!form.target_exam) return setError("Please select your target exam.");
+                    if (!form.class_level) return setError("Please select your current class.");
+                    if (!form.previous_coaching) return setError("Please select your coaching experience.");
+                  }
+                  if (step === 2) {
+                    if (!form.learning_style) return setError("Please select your preferred learning style.");
+                  }
                   setError("");
                   setStep((s) => s + 1);
                 }}

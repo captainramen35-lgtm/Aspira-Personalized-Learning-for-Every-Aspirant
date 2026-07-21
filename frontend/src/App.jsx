@@ -39,7 +39,9 @@ function IndexRoute() {
       return <Navigate to="/admin" replace />;
     }
     if (userProfile.role === "student" && userProfile.status !== "active") {
-      if (!userProfile.target_exam) return <Navigate to="/onboarding-survey" replace />;
+      if (!userProfile.target_exam || userProfile.status === "incomplete_profile_rejected" || userProfile.status === "pending_survey") {
+        return <Navigate to="/onboarding-survey" replace />;
+      }
       if (!userProfile.assigned_batch_id) return <Navigate to="/batch-selection" replace />;
       return <Navigate to="/enrollment-status" replace />;
     }
@@ -69,7 +71,7 @@ export default function App() {
           <Route
             path="/batch-selection"
             element={
-              <RoleGuard allowedRoles={["student"]}>
+              <RoleGuard allowedRoles={["student"]} requireSurveyComplete={true}>
                 <BatchSelection />
               </RoleGuard>
             }
@@ -77,7 +79,7 @@ export default function App() {
           <Route
             path="/enrollment-status"
             element={
-              <RoleGuard allowedRoles={["student"]}>
+              <RoleGuard allowedRoles={["student"]} requireSurveyComplete={true}>
                 <EnrollmentStatus />
               </RoleGuard>
             }

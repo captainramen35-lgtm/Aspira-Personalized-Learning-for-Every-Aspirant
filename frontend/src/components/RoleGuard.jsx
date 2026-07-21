@@ -14,6 +14,7 @@ export default function RoleGuard({
   allowedRoles,
   requireEnrolled = false,
   requireActivated = false,
+  requireSurveyComplete = false,
 }) {
   const { currentUser, userRole, userProfile, loading } = useAuth();
 
@@ -45,6 +46,14 @@ export default function RoleGuard({
     return <Navigate to="/teacher/onboarding" replace />;
   }
 
+  // Student must complete survey before accessing batch selection or enrollment status
+  if (requireSurveyComplete && userRole === "student") {
+    const status = userProfile?.status;
+    if (status === "pending_survey" || status === "incomplete_profile_rejected" || !userProfile?.target_exam) {
+      return <Navigate to="/onboarding-survey" replace />;
+    }
+  }
+
   // Student must be enrolled (have assigned_batch_id) before accessing tests
   if (requireEnrolled && userRole === "student") {
     const status = userProfile?.status;
@@ -52,7 +61,7 @@ export default function RoleGuard({
 
     if (!hasBatch || status === "pending_approval") {
       // Route to the correct step in the funnel
-      if (status === "pending_survey") return <Navigate to="/onboarding-survey" replace />;
+      if (status === "pending_survey" || status === "incomplete_profile_rejected") return <Navigate to="/onboarding-survey" replace />;
       if (status === "pending_batch") return <Navigate to="/batch-selection" replace />;
       if (status === "pending_approval") return <Navigate to="/enrollment-status" replace />;
     }
