@@ -36,7 +36,17 @@ async def submit_test(req: TestSubmitRequest, user: dict = Depends(get_current_u
         from backend.services.question_bank_loader import question_bank_loader
         q_map = {q_id: question_bank_loader.get_question_by_id(q_id) for q_id in question_ids if question_bank_loader.get_question_by_id(q_id)}
 
-        # 3. Grade each question
+        # 3. Fetch current mastery profile to pass tier context to Gemini
+        profile_ref = db.collection("mastery_profiles").document(student_id)
+        profile_doc = profile_ref.get()
+        chapters = {}
+        mastery = {}
+        if profile_doc.exists:
+            p_data = profile_doc.to_dict()
+            chapters = p_data.get("chapters", {})
+            mastery = p_data.get("mastery", {})
+
+        # 4. Grade each question
         submission_results = []
         score_count = 0
         gemini_tasks = []
@@ -61,13 +71,31 @@ async def submit_test(req: TestSubmitRequest, user: dict = Depends(get_current_u
             audit_details = {}
             socratic_feedback = {}
 
+            # Determine mastery tier for context
+            chap = q.get("chapter", "General")
+            topic = q["topic"]
+            
+            data = chapters.get(chap) or mastery.get(topic)
+            mastery_tier = "Moderate"
+            reflection_trend = "stable"
+            
+            if data:
+                acc = data.get("accuracy", 50.0)
+                if acc < 40.0:
+                    mastery_tier = "Weak"
+                elif acc > 65.0:
+                    mastery_tier = "Strong"
+                reflection_trend = data.get("trend", "stable")
+
             # Queue async concurrent Gemini request for ALL questions!
             gemini_tasks.append(
                 gemini_client.get_combined_feedback_async(
                     question_text=q["question_text"],
                     options=q["options"],
                     correct_answer=correct_ans,
-                    student_answer=student_ans
+                    student_answer=student_ans,
+                    mastery_tier=mastery_tier,
+                    reflection_trend=reflection_trend
                 )
             )
             gemini_indices.append(len(submission_results))

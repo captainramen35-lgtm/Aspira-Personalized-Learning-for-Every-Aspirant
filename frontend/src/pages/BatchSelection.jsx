@@ -89,7 +89,7 @@ export default function BatchSelection() {
         <div className="mb-8">
           <h1 className="text-3xl font-extrabold mb-2">Select Your Batch</h1>
           <p className="text-gray-400 text-sm">
-            Choose a {targetExam} batch below. Your teacher will review your profile and confirm your placement.
+            Choose a batch below. Your teacher will review your profile and confirm your placement.
           </p>
         </div>
 
@@ -109,7 +109,7 @@ export default function BatchSelection() {
             <BookOpen className="w-12 h-12 text-gray-600 mx-auto mb-4" />
             <h3 className="text-lg font-bold mb-2">No batches available yet</h3>
             <p className="text-gray-400 text-sm">
-              No {targetExam} batches are currently open for enrollment. Please check back later or contact your institute.
+              No batches are currently open for enrollment. Please check back later or contact your institute.
             </p>
           </div>
         ) : (

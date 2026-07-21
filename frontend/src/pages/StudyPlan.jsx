@@ -16,6 +16,7 @@ import {
 
 export default function StudyPlan() {
   const [studyPlan, setStudyPlan] = useState(null);
+  const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -23,8 +24,12 @@ export default function StudyPlan() {
   useEffect(() => {
     async function fetchPlan() {
       try {
-        const res = await api.get("/api/study-plan/current");
-        setStudyPlan(res.data.plan);
+        const [planRes, profileRes] = await Promise.all([
+          api.get("/api/study-plan/current").catch(() => ({ data: { plan: null } })),
+          api.get("/api/mastery").catch(() => ({ data: null }))
+        ]);
+        setStudyPlan(planRes.data?.plan || null);
+        setProfile(profileRes.data || null);
       } catch (err) {
         console.error(err);
         setError("Failed to fetch study plan.");
@@ -41,6 +46,29 @@ export default function StudyPlan() {
         <Navbar />
         <div className="flex-1 flex items-center justify-center p-6">
           <Loader2 className="w-10 h-10 text-brand-accent animate-spin" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!profile || profile.tests_completed === 0) {
+    return (
+      <div className="min-h-screen bg-brand-bg-light flex flex-col">
+        <Navbar />
+        <div className="flex-1 flex flex-col items-center justify-center p-6 text-center max-w-md mx-auto">
+          <div className="bg-brand-accent/10 p-5 rounded-full mb-5">
+            <BookOpen className="w-12 h-12 text-brand-accent" />
+          </div>
+          <h4 className="text-brand-text-light font-extrabold text-2xl mb-3">Unlock Your Study Plan</h4>
+          <p className="text-brand-muted-light text-base mb-8 leading-relaxed font-medium">
+            Take your Diagnostic Practice Test to unlock your Personalized Mastery Profile and AI Study Plan.
+          </p>
+          <Link
+            to="/diagnostic"
+            className="px-8 py-4 bg-brand-accent text-white font-extrabold rounded-xl shadow-md hover:-translate-y-0.5 transition-transform text-lg cursor-pointer"
+          >
+            Take Diagnostic
+          </Link>
         </div>
       </div>
     );

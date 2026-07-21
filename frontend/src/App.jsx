@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import RoleGuard from "./components/RoleGuard";
 
 // Existing pages
@@ -25,13 +25,35 @@ import AdminDashboard from "./pages/AdminDashboard";
 import StudentDashboard from "./pages/StudentDashboard";
 import StudyPlan from "./pages/StudyPlan";
 
+function IndexRoute() {
+  const { currentUser, userProfile } = useAuth();
+  
+  if (currentUser && userProfile) {
+    if (userProfile.role === "student" && userProfile.status === "active") {
+      return <Navigate to="/dashboard" replace />;
+    }
+    if (userProfile.role === "teacher") {
+      return <Navigate to="/teacher" replace />;
+    }
+    if (userProfile.role === "admin") {
+      return <Navigate to="/admin" replace />;
+    }
+    if (userProfile.role === "student" && userProfile.status !== "active") {
+      if (!userProfile.target_exam) return <Navigate to="/onboarding-survey" replace />;
+      if (!userProfile.assigned_batch_id) return <Navigate to="/batch-selection" replace />;
+      return <Navigate to="/enrollment-status" replace />;
+    }
+  }
+  return <Home />;
+}
+
 export default function App() {
   return (
     <AuthProvider>
       <Router>
         <Routes>
           {/* ── Public Routes ─────────────────────────────────────────────── */}
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<IndexRoute />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 

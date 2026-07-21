@@ -24,11 +24,13 @@ Every student preparing for highly competitive exams like JEE/NEET has a unique 
 ---
 
 ## 🆕 New Features & Recent Updates
-* **Role-Based Workflows**: Segregated dashboards for Students, Teachers, and Admins.
-* **Enrollment & Batches**: Teachers can manage distinct batches (e.g., Target JEE 2026, Target NEET 2026) and students seamlessly select and enroll in them during their personalized onboarding survey.
+* **Role-Based Workflows**: Segregated dashboards for Students, Teachers, and Admins. Custom intelligent `IndexRoute` handling redirects.
+* **Enrollment & Batches**: Teachers can manage distinct batches (e.g., Target JEE 2026, Target NEET 2026) and archive them. Students seamlessly view and enroll in all active batches dynamically during onboarding.
+* **Dynamic Onboarding Survey**: Dynamically loads chapter options depending on whether the student is targeting JEE (PCM) or NEET (PCB).
 * **Socratic AI Study Plans**: A fully dedicated Study Plan generator that uses the student's active mastery profile to create specific, actionable focus areas.
 * **Concurrent Gemini AI Grading**: Test grading speed has been optimized heavily (< 3 seconds) using concurrent asynchronous calls.
 * **Detailed Step-by-Step AI Solutions**: AI now provides explicit mathematical breakdowns for *every* question (both correct and incorrect) on all tests (Diagnostic + Personalized) without restating the prompt, ensuring rich actionable feedback.
+* **Teacher Dashboard Analytics**: Improved Teacher Dashboard with batch filtering, deduplicated student rosters, and robust batch archive/unarchive capabilities.
 
 ---
 

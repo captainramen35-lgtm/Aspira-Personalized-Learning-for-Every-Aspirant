@@ -26,6 +26,7 @@ import {
   Check,
   X,
   ChevronRight,
+  ChevronDown,
   Eye,
   BookOpen,
   ArrowRight,
@@ -60,6 +61,8 @@ export default function TeacherDashboard() {
   const [selectedStudentId, setSelectedStudentId] = useState(null);
   const [studentDetail, setStudentDetail] = useState(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
+  const [expandedStudentChapters, setExpandedStudentChapters] = useState({});
+  const [selectedBatchId, setSelectedBatchId] = useState("ALL");
 
   // Tab 2: Batch Management
   const [batches, setBatches] = useState([]);
@@ -368,15 +371,19 @@ export default function TeacherDashboard() {
 
   // --- SUB-RENDERERS ---
 
-  const renderStudentMasteryBars = (mastery) => {
-    if (!mastery || Object.keys(mastery).length === 0) {
+  const renderStudentMasteryBars = (studentDetail) => {
+    const chapters = studentDetail.chapters;
+    const mastery = studentDetail.mastery;
+    const chapterTopics = studentDetail.chapter_topics || {};
+
+    if (!chapters || Object.keys(chapters).length === 0) {
       return <p className="text-xs text-brand-muted-light">No subject mastery data yet. Student needs to submit tests.</p>;
     }
     return (
       <div className="space-y-4">
-        {Object.keys(mastery).map((topic) => {
-          const tdata = mastery[topic];
-          const acc = Math.round(tdata.accuracy || 0);
+        {Object.keys(chapters).map((chapter) => {
+          const chapData = chapters[chapter];
+          const acc = Math.round(chapData.accuracy || 0);
           
           let progressColor = "bg-amber-500";
           let labelColor = "text-amber-600";
@@ -388,18 +395,56 @@ export default function TeacherDashboard() {
             labelColor = "text-rose-500";
           }
 
+          const childTopics = chapterTopics[chapter] || [];
+          const isExpanded = !!expandedStudentChapters[chapter];
+
           return (
-            <div key={topic} className="flex flex-col gap-1.5">
-              <div className="flex items-center justify-between text-xs font-bold">
-                <span className="text-brand-text-light">{topic}</span>
+            <div key={chapter} className="flex flex-col gap-1.5 border border-brand-border-light/20 bg-brand-bg-light/10 rounded-lg p-2">
+              <div 
+                className="flex items-center justify-between text-xs font-bold cursor-pointer hover:bg-brand-bg-light/30 p-1 rounded transition-colors"
+                onClick={() => setExpandedStudentChapters(prev => ({ ...prev, [chapter]: !prev[chapter] }))}
+              >
+                <div className="flex items-center gap-1.5">
+                  {childTopics.length > 0 ? (
+                    isExpanded ? <ChevronDown className="w-3.5 h-3.5 text-brand-muted-light" /> : <ChevronRight className="w-3.5 h-3.5 text-brand-muted-light" />
+                  ) : <div className="w-3.5 h-3.5" />}
+                  <span className="text-brand-text-light">{chapter}</span>
+                </div>
                 <span className={labelColor}>{acc}%</span>
               </div>
-              <div className="w-full h-2 bg-brand-bg-light/40 rounded-full overflow-hidden relative">
+              <div className="w-full h-1.5 bg-brand-bg-light/40 rounded-full overflow-hidden relative ml-5" style={{ width: 'calc(100% - 1.25rem)' }}>
                 <div
                   className={`h-full rounded-full transition-all duration-300 ${progressColor}`}
                   style={{ width: `${Math.max(acc, 2)}%` }}
                 />
               </div>
+
+              {/* Drill-down Topics */}
+              {isExpanded && childTopics.length > 0 && (
+                <div className="pl-6 pt-2 space-y-2 border-t border-brand-border-light/10 mt-1">
+                  {childTopics.map(topic => {
+                    const tData = mastery?.[topic];
+                    if (!tData) return null;
+                    const tAcc = Math.round(tData.accuracy || 0);
+                    let tColor = "bg-amber-500";
+                    let tLabelColor = "text-amber-600";
+                    if (tAcc >= 65) { tColor = "bg-emerald-500"; tLabelColor = "text-emerald-600"; }
+                    else if (tAcc < 40) { tColor = "bg-rose-500"; tLabelColor = "text-rose-500"; }
+
+                    return (
+                      <div key={topic} className="flex flex-col gap-1">
+                        <div className="flex justify-between items-center text-[10px] font-semibold">
+                          <span className="text-brand-muted-light">{topic}</span>
+                          <span className={tLabelColor}>{tAcc}%</span>
+                        </div>
+                        <div className="w-full h-1 bg-brand-bg-light/30 rounded-full overflow-hidden relative">
+                          <div className={`h-full rounded-full ${tColor}`} style={{ width: `${Math.max(tAcc, 2)}%` }} />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           );
         })}
@@ -483,22 +528,51 @@ export default function TeacherDashboard() {
       <div className="flex-1 flex overflow-hidden">
         
         {/* --- TAB 1: CLASS PULSE --- */}
-        {activeTab === "pulse" && (
+        {activeTab === "pulse" && (() => {
+          // Deduplicate and filter roster
+          const uniqueRoster = classData?.roster ? Array.from(new Map(classData.roster.map(s => [s.student_id, s])).values()) : [];
+          const filteredRoster = uniqueRoster.filter(s => selectedBatchId === "ALL" || s.batch_id === selectedBatchId);
+          
+          return (
           <div className="flex-1 flex h-full overflow-hidden">
             {/* Left Side: Roster */}
-            <div className="w-80 h-full shrink-0 border-r border-brand-border-light">
-              {classData && (
-                <StudentTable
-                  students={classData.roster || []}
-                  selectedStudentId={selectedStudentId}
-                  onSelectStudent={handleSelectStudent}
-                />
-              )}
-              {!classData?.roster?.length && (
-                <div className="p-8 text-center text-sm text-brand-muted-light font-bold">
-                  No active students enrolled in your batches yet.
+            <div className="w-80 h-full shrink-0 border-r border-brand-border-light flex flex-col">
+              <div className="p-4 border-b border-brand-border-light/50">
+                <label className="block text-[10px] font-extrabold text-brand-muted-light uppercase tracking-wider mb-1">
+                  Filter by Batch
+                </label>
+                <div className="relative">
+                  <select
+                    value={selectedBatchId}
+                    onChange={(e) => setSelectedBatchId(e.target.value)}
+                    className="w-full appearance-none bg-white border border-brand-border-light text-brand-text-light text-xs font-bold rounded-lg px-3 py-2 outline-none focus:border-brand-accent transition-colors cursor-pointer"
+                  >
+                    <option value="ALL">All Active Batches</option>
+                    {batches.map(b => (
+                      <option key={b.batch_id} value={b.batch_id}>
+                        {b.name}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-brand-muted-light">
+                    <ChevronDown className="w-4 h-4" />
+                  </div>
                 </div>
-              )}
+              </div>
+              <div className="flex-1 overflow-y-auto">
+                {classData && (
+                  <StudentTable
+                    students={filteredRoster}
+                    selectedStudentId={selectedStudentId}
+                    onSelectStudent={handleSelectStudent}
+                  />
+                )}
+                {!filteredRoster.length && (
+                  <div className="p-8 text-center text-sm text-brand-muted-light font-bold">
+                    No active students enrolled in this selection.
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* Right Side: Analytical Canvas */}
@@ -540,19 +614,10 @@ export default function TeacherDashboard() {
 
                     <div className="mt-8">
                       <h3 className="text-sm font-bold text-brand-text-light uppercase tracking-wider mb-4 border-b border-brand-border-light/40 pb-2 text-left">
-                        Subject Mastery Profile
+                        Chapter-Level Mastery Profile
                       </h3>
-                      {renderStudentMasteryBars(studentDetail.mastery)}
+                      {renderStudentMasteryBars(studentDetail)}
                     </div>
-
-                    {studentDetail.chapters && Object.keys(studentDetail.chapters).length > 0 && (
-                      <div className="mt-8">
-                        <h3 className="text-sm font-bold text-brand-text-light uppercase tracking-wider mb-4 border-b border-brand-border-light/40 pb-2 text-left">
-                          Chapter Mastery Profile
-                        </h3>
-                        {renderStudentMasteryBars(studentDetail.chapters)}
-                      </div>
-                    )}
 
                     <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Mistake patterns */}

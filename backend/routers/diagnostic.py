@@ -34,7 +34,7 @@ NEET_DIAGNOSTIC_IDS = [
 @router.get("/questions", response_model=List[TestQuestionResponse])
 async def get_diagnostic_questions(user: dict = Depends(get_current_user)):
     """
-    Returns the fixed 25-question diagnostic test based on the student's target exam (JEE or NEET).
+    Returns a dynamic 15-question diagnostic test based on heavy-weight chapters.
     """
     uid = user["uid"]
     try:
@@ -44,9 +44,40 @@ async def get_diagnostic_questions(user: dict = Depends(get_current_user)):
         if user_doc.exists:
             target_exam = user_doc.to_dict().get("target_exam", "JEE")
 
-        question_ids = NEET_DIAGNOSTIC_IDS if target_exam == "NEET" else JEE_DIAGNOSTIC_IDS
-        diagnostic_questions = question_bank_loader.get_questions_by_ids(question_ids)
-        return diagnostic_questions
+        import random
+        all_qs = question_bank_loader.get_all_questions()
+        
+        if target_exam == "NEET":
+            heavy_chapters = ["Kinematics", "Thermodynamics", "Chemical Bonding", "Genetics", "Human Physiology"]
+        else:
+            heavy_chapters = ["Kinematics", "Thermodynamics", "Chemical Bonding", "Coordinate Geometry", "Calculus"]
+
+        chapter_qs = {}
+        for q in all_qs:
+            chap = q.get("chapter", "General")
+            if chap in heavy_chapters and q.get("difficulty") in ["Easy", "Medium"]:
+                chapter_qs.setdefault(chap, []).append(q)
+
+        selected_qs = []
+        for chap in heavy_chapters:
+            qs = chapter_qs.get(chap, [])
+            if qs:
+                # Use a stable seed based on uid so the student gets the same diagnostic if they refresh
+                random.seed(f"{uid}_{chap}")
+                random.shuffle(qs)
+                selected_qs.extend(qs[:3])
+            
+            if len(selected_qs) >= 15:
+                break
+                
+        selected_qs = selected_qs[:15]
+        
+        # Fallback if selected_qs is empty (e.g. data missing)
+        if not selected_qs:
+            question_ids = NEET_DIAGNOSTIC_IDS if target_exam == "NEET" else JEE_DIAGNOSTIC_IDS
+            selected_qs = question_bank_loader.get_questions_by_ids(question_ids)[:15]
+
+        return selected_qs
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to load diagnostic questions: {e}")
 
@@ -136,12 +167,13 @@ async def submit_diagnostic(req: DiagnosticSubmitRequest, user: dict = Depends(g
                 "q_id": r["q_id"],
                 "topic": r["topic"],
                 "chapter": r["chapter"],
+                "difficulty": r["difficulty"],
                 "is_correct": r["is_correct"],
                 "time_spent": r["time_spent"]
             }
             for r in results
         ]
-        profile = mastery_calculator.update_profile(student_id, profile_results)
+        profile = mastery_calculator.update_profile(student_id, profile_results, test_type="diagnostic")
         
         # 4. Save diagnostic test submission details in a standard format
         from backend.firebase_admin_init import db

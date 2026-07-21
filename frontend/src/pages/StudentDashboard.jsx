@@ -157,26 +157,24 @@ export default function StudentDashboard() {
           </div>
         )}
 
-        {/* Diagnostic Requirement Warning */}
-        {!hasSubmissions && (
-          <div className="bg-amber-50 border border-brand-accent/20 rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <AlertTriangle className="w-6 h-6 text-brand-accent shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-extrabold text-sm text-brand-text-light">Diagnostic Test Pending</h4>
-                <p className="text-xs text-brand-muted-light font-semibold mt-1">
-                  You haven't established your diagnostic baseline yet. Complete it to unlock custom 75Q practice sessions and study planners.
-                </p>
-              </div>
+        {/* Diagnostic Requirement Warning / Empty State */}
+        {!hasSubmissions ? (
+          <div className="text-center py-12 bg-white rounded-xl border border-brand-border-light shadow-xs flex flex-col items-center justify-center p-10">
+            <div className="bg-brand-accent/10 p-5 rounded-full mb-5">
+              <BookOpen className="w-12 h-12 text-brand-accent" />
             </div>
+            <h4 className="text-brand-text-light font-extrabold text-2xl mb-3">Unlock Your Learning Journey</h4>
+            <p className="text-brand-muted-light text-base max-w-md mx-auto mb-8 leading-relaxed font-medium">
+              Take your Diagnostic Practice Test to unlock your Personalized Mastery Profile and AI Study Plan.
+            </p>
             <Link
               to="/diagnostic"
-              className="bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-bold px-5 py-3 rounded-xl shadow-sm transition-all cursor-pointer whitespace-nowrap"
+              className="px-8 py-4 bg-brand-accent text-white font-extrabold rounded-xl shadow-md hover:-translate-y-0.5 transition-transform text-lg"
             >
-              Take Diagnostic Test
+              Take Diagnostic
             </Link>
           </div>
-        )}
+        ) : (
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
@@ -404,6 +402,7 @@ export default function StudentDashboard() {
           </div>
 
         </div>
+        )}
 
       </div>
     </div>

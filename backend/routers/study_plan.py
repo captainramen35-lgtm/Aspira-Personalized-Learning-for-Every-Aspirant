@@ -29,33 +29,33 @@ async def generate_study_plan(user: dict = Depends(get_current_user)):
             target_exam = udata.get("target_exam", "JEE")
             student_name = udata.get("name", "Student")
             
-        mastery = {}
+        chapters = {}
         if profile_doc.exists:
-            mastery = profile_doc.to_dict().get("mastery", {})
+            chapters = profile_doc.to_dict().get("chapters", {})
             
         # 2. Extract weak, moderate, and strong areas
-        weak_topics = []
-        moderate_topics = []
-        strong_topics = []
+        weak_chapters = []
+        moderate_chapters = []
+        strong_chapters = []
         
-        for topic, data in mastery.items():
+        for chap, data in chapters.items():
             acc = data.get("accuracy", 0.0)
             attempts = data.get("attempts", 0)
             if attempts == 0:
                 continue
             if acc < 40.0:
-                weak_topics.append(f"{topic} (accuracy: {acc}%)")
+                weak_chapters.append(f"{chap} (accuracy: {acc}%)")
             elif acc < 65.0:
-                moderate_topics.append(f"{topic} (accuracy: {acc}%)")
+                moderate_chapters.append(f"{chap} (accuracy: {acc}%)")
             else:
-                strong_topics.append(f"{topic} (accuracy: {acc}%)")
+                strong_chapters.append(f"{chap} (accuracy: {acc}%)")
                 
-        # If no profile data exists, provide fallback topics based on exam pathway
-        if not weak_topics and not moderate_topics and not strong_topics:
+        # If no profile data exists, provide fallback chapters based on exam pathway
+        if not weak_chapters and not moderate_chapters and not strong_chapters:
             if target_exam == "NEET":
-                weak_topics = ["Cell Biology", "Genetics", "Human Physiology"]
+                weak_chapters = ["Cell Biology", "Genetics", "Human Physiology"]
             else:
-                weak_topics = ["Calculus", "Algebra", "Kinematics"]
+                weak_chapters = ["Calculus", "Algebra", "Kinematics"]
         
         # 3. Create Gemini prompt
         prompt = f"""
@@ -63,28 +63,28 @@ You are a senior academic coach designing a personalized 2-week daily study plan
 Target Exam: {target_exam}
 
 Student's Rolling Mastery Data:
-- Weak Topics (Needs highest priority): {", ".join(weak_topics) if weak_topics else "None detected yet"}
-- Moderate Topics (Needs solid practice): {", ".join(moderate_topics) if moderate_topics else "None detected yet"}
-- Strong Topics (Needs brief maintenance): {", ".join(strong_topics) if strong_topics else "None detected yet"}
+- Weak Chapters (Needs highest priority): {", ".join(weak_chapters) if weak_chapters else "None detected yet"}
+- Moderate Chapters (Needs solid practice): {", ".join(moderate_chapters) if moderate_chapters else "None detected yet"}
+- Strong Chapters (Needs brief maintenance): {", ".join(strong_chapters) if strong_chapters else "None detected yet"}
 
 Design a daily study plan for 14 days (2 weeks of 7 days each).
 Ensure the schedule allocates:
-- 60% of the focus to Weak Topics (especially in Week 1).
-- 30% of the focus to Moderate Topics.
-- 10% of the focus to maintenance of Strong Topics (e.g. quick practice/recaps in Week 2).
+- 60% of the focus to Weak Chapters (especially in Week 1).
+- 30% of the focus to Moderate Chapters.
+- 10% of the focus to maintenance of Strong Chapters (e.g. quick practice/recaps in Week 2).
 
 You must return a valid JSON object matching this schema:
 {{
   "title": "2-Week Custom Study Roadmap",
   "overview": "A warm, encouraging paragraph outlining the rationale behind this study roadmap.",
-  "focus_areas": ["Weakest topic A", "Moderate topic B"],
+  "focus_areas": ["Weakest chapter A", "Moderate chapter B"],
   "weeks": [
     {{
       "week_number": 1,
       "days": [
         {{
           "day_number": 1,
-          "topic": "Topic Name",
+          "topic": "Chapter Name",
           "tasks": [
             "Specific task 1 (e.g. review formulas)",
             "Specific task 2 (e.g. solve 10 practice questions)"

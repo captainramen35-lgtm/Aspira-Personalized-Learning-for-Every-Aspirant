@@ -137,7 +137,7 @@ Your response must be in JSON:
             logger.error(f"Gemini Async API error: {e}")
             raise e
 
-    async def get_combined_feedback_async(self, question_text: str, options: list, correct_answer: str, student_answer: str) -> dict:
+    async def get_combined_feedback_async(self, question_text: str, options: list, correct_answer: str, student_answer: str, mastery_tier: str = "Unknown", reflection_trend: str = "stable") -> dict:
         """Calls Gemini once asynchronously to grade, audit, and generate Socratic hints."""
         prompt = f"""
 You are an expert JEE/NEET tutor and Socratic teacher. Analyze this student's response.
@@ -145,6 +145,11 @@ Question: {question_text}
 Options: {options}
 Correct Option: {correct_answer}
 Student Option: {student_answer}
+
+Student Profile Context:
+- Current Mastery Tier for this area: {mastery_tier}
+- Recent Performance Trend: {reflection_trend}
+(Tailor your feedback tone and depth based on their mastery tier. For example, if Weak, provide a very foundational explanation. If Strong, keep the explanation tight and focus on speed/shortcuts.)
 
 Provide:
 1. AI Score details: A highly detailed step-by-step reasoning explaining why the student is right or wrong, and how to solve the question. Categorize the mistake as "conceptual" (misunderstood core formula/principle), "computational" (made a basic arithmetic/algebra error but set it up right), or "none" (if correct).

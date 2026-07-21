@@ -54,6 +54,8 @@ async def get_class_analytics(user: dict = Depends(get_current_user)):
                 "student_id": s_id,
                 "name": meta["name"],
                 "email": meta["email"],
+                "batch_id": meta.get("assigned_batch_id"),
+                "batch_name": meta.get("assigned_batch_name"),
                 "tests_completed": profile.get("tests_completed", 0),
                 "avg_accuracy": round(avg_acc * 100, 1)  # Scale to percentage
             })
@@ -61,31 +63,30 @@ async def get_class_analytics(user: dict = Depends(get_current_user)):
         # Sort roster alphabetically by name
         roster.sort(key=lambda x: x["name"])
 
-        # 4. Calculate Topic-wise Average Mastery (Class Pulse)
-        # Combine default topics with any custom topics in the student profiles
-        all_topics = set(default_topics)
+        # 4. Calculate Chapter-wise Average Mastery (Class Pulse)
+        all_chapters = set()
         for profile in student_profiles.values():
-            mastery = profile.get("mastery", {})
-            all_topics.update(mastery.keys())
+            chapters_data = profile.get("chapters", {})
+            all_chapters.update(chapters_data.keys())
 
-        topic_sums = {topic: [] for topic in all_topics}
+        chapter_sums = {chapter: [] for chapter in all_chapters}
         for profile in student_profiles.values():
-            mastery = profile.get("mastery", {})
-            for topic in all_topics:
-                tdata = mastery.get(topic, {})
-                if tdata.get("attempts", 0) > 0:
-                    topic_sums[topic].append(tdata.get("accuracy", 0.0))
+            chapters_data = profile.get("chapters", {})
+            for chapter in all_chapters:
+                cdata = chapters_data.get(chapter, {})
+                if cdata.get("attempts", 0) > 0:
+                    chapter_sums[chapter].append(cdata.get("accuracy", 0.0))
 
-        weakest_topics = []
-        for topic in all_topics:
-            acc_list = topic_sums[topic]
+        weakest_topics = [] # Renaming to weakest_topics in payload so frontend doesn't break instantly, but it contains chapters
+        for chapter in all_chapters:
+            acc_list = chapter_sums[chapter]
             avg_val = sum(acc_list) / len(acc_list) if acc_list else 0.50  # Default to 50%
             weakest_topics.append({
-                "topic": topic,
+                "topic": chapter,
                 "avg_accuracy": round(avg_val * 100, 1)
             })
 
-        # Sort topics so weaker ones appear first
+        # Sort chapters so weaker ones appear first
         weakest_topics.sort(key=lambda x: x["avg_accuracy"])
 
         # 5. Weak / Strong distribution
@@ -98,14 +99,14 @@ async def get_class_analytics(user: dict = Depends(get_current_user)):
             else:
                 weak_count += 1
                 
-        # 6. Flagged students (students with declining trend in 1 or more topics)
+        # 6. Flagged students (students with declining trend in 1 or more chapters)
         flagged_students = []
         for s_id, profile in student_profiles.items():
-            mastery = profile.get("mastery", {})
+            chapters_data = profile.get("chapters", {})
             declining_topics = []
-            for topic, tdata in mastery.items():
-                if tdata.get("trend") == "declining":
-                    declining_topics.append(topic)
+            for chapter, cdata in chapters_data.items():
+                if cdata.get("trend") == "declining":
+                    declining_topics.append(chapter)
             if declining_topics:
                 meta = student_metadata.get(s_id, {"name": "Unknown"})
                 flagged_students.append({
@@ -235,6 +236,8 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
                 "avg_time_sec": cdata.get("avg_time_sec", 0.0)
             }
 
+        chapter_topics = profile_data.get("chapter_topics", {})
+
         # Speed analysis
         avg_speed_sec = round(total_time / total_attempts, 1) if total_attempts > 0 else 0.0
         speed_status = "STABLE"
@@ -290,11 +293,11 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
                 rec_list.append(f"Student is pacing fast ({avg_speed_sec}s avg). Remind them to double check their algebra to reduce slips.")
             
             # Weak topic
-            weak_list = [topic for topic, data in mastery_response.items() if data["accuracy"] < 40.0]
+            weak_list = [chap for chap, data in chapters_response.items() if data["accuracy"] < 40.0]
             if weak_list:
-                rec_list.append(f"Weak subjects detected: {', '.join(weak_list)}. Assign custom targets focusing on these areas.")
+                rec_list.append(f"Weak chapters detected: {', '.join(weak_list)}. Assign custom targets focusing on these areas.")
             else:
-                rec_list.append("Student shows great baseline accuracy across all active subjects.")
+                rec_list.append("Student shows great baseline accuracy across all active chapters.")
 
             # Socratic Mistake Reflection Recommendations
             if mistake_counts.get("conceptual", 0) > mistake_counts.get("computational", 0):
@@ -311,6 +314,7 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
             "tests_completed": tests_completed,
             "mastery": mastery_response,
             "chapters": chapters_response,
+            "chapter_topics": chapter_topics,
             "speed": {
                 "avg_time_sec": avg_speed_sec,
                 "status": speed_status

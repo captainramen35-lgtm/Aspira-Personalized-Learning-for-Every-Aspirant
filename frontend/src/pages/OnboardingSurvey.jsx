@@ -9,10 +9,18 @@ import {
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
 
-const DIFFICULT_SUBJECTS = [
-  "Physics", "Chemistry", "Mathematics", "Biology",
+const JEE_CHAPTERS = [
+  "Physics", "Chemistry", "Mathematics",
+  "Mechanics", "Thermodynamics", "Electromagnetism", "Optics",
   "Physical Chemistry", "Organic Chemistry", "Inorganic Chemistry",
-  "Mechanics", "Electrostatics", "Thermodynamics", "Calculus", "Algebra"
+  "Calculus", "Algebra", "Coordinate Geometry", "Trigonometry"
+];
+
+const NEET_CHAPTERS = [
+  "Physics", "Chemistry", "Biology",
+  "Mechanics", "Thermodynamics", "Electromagnetism", "Optics",
+  "Physical Chemistry", "Organic Chemistry", "Inorganic Chemistry",
+  "Human Physiology", "Genetics", "Plant Physiology", "Ecology"
 ];
 
 const LEARNING_STYLES = [
@@ -202,7 +210,7 @@ export default function OnboardingSurvey() {
                   Subjects / Topics I find difficult <span className="text-gray-600 normal-case font-normal">(select all that apply)</span>
                 </label>
                 <div className="flex flex-wrap gap-2">
-                  {DIFFICULT_SUBJECTS.map((subj) => (
+                  {(form.target_exam === "NEET" ? NEET_CHAPTERS : JEE_CHAPTERS).map((subj) => (
                     <button
                       key={subj}
                       onClick={() => toggleSubject(subj)}

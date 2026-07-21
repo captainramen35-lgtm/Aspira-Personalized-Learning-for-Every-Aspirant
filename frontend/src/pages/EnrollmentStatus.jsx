@@ -41,7 +41,7 @@ const STATUS_CONFIG = {
 };
 
 export default function EnrollmentStatus() {
-  const { getToken, userProfile } = useAuth();
+  const { getToken, userProfile, logout } = useAuth();
   const navigate = useNavigate();
 
   const [request, setRequest] = useState(null);
@@ -173,6 +173,16 @@ export default function EnrollmentStatus() {
               >
                 <RefreshCw className="w-4 h-4" />
                 Check for Updates
+              </button>
+
+              <button
+                onClick={async () => {
+                  await logout();
+                  navigate("/login");
+                }}
+                className="w-full flex items-center justify-center gap-2 py-3 border border-red-500/20 hover:border-red-500/50 rounded-xl text-red-400 hover:bg-red-500/10 font-semibold transition-all text-sm mt-2"
+              >
+                Logout
               </button>
             </div>
 
