@@ -810,8 +810,8 @@ export default function TeacherDashboard() {
               )}
             </div>
           </div>
-        )}
-
+          );
+        })()}
         {/* --- TAB 2: BATCH MANAGEMENT --- */}
         {activeTab === "batches" && (() => {
           const displayedBatches = batchTab === "active" ? batches : archivedBatches;
@@ -955,8 +955,8 @@ export default function TeacherDashboard() {
             )}
             </div>
           </div>
-        )})}
-
+          );
+        })()}
         {/* --- TAB 3: ENROLLMENT REQUESTS --- */}
         {activeTab === "requests" && (
           <div className="flex-1 overflow-hidden flex h-full">
