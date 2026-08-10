@@ -26,7 +26,12 @@ async def get_class_analytics(user: dict = Depends(get_current_user)):
             student_metadata[s.id] = {
                 "name": sdata.get("name", "Unknown Student"),
                 "email": sdata.get("email", ""),
-                "joined_date": sdata.get("joined_date", "July 2026")
+                "joined_date": sdata.get("joined_date", "July 2026"),
+                # FIX: these were missing before, so every roster entry's
+                # batch_id/batch_name fell back to None regardless of the
+                # student's actual assigned batch, breaking the batch filter.
+                "assigned_batch_id": sdata.get("assigned_batch_id"),
+                "assigned_batch_name": sdata.get("assigned_batch_name")
             }
 
         profiles_ref = db.collection("mastery_profiles").stream()
@@ -236,7 +241,10 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
                 "avg_time_sec": cdata.get("avg_time_sec", 0.0)
             }
 
-        chapter_topics = profile_data.get("chapter_topics", {})
+        # FIX: this referenced an undefined variable `profile_data` before
+        # (only `pdata` and `profile_doc` exist in this scope), which would
+        # raise a NameError / 500 error any time this endpoint was hit.
+        chapter_topics = pdata.get("chapter_topics", {}) if profile_doc.exists else {}
 
         # Speed analysis
         avg_speed_sec = round(total_time / total_attempts, 1) if total_attempts > 0 else 0.0

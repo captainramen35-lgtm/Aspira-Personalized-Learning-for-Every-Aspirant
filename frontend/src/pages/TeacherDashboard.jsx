@@ -47,6 +47,37 @@ ChartJS.register(
   Legend
 );
 
+// --- HELPER: robustly extract a batch id from a student object, no matter
+// what shape the backend sent it in (batch_id, batchId, nested batch.batch_id,
+// nested batch._id, ObjectId, etc). Always returns a plain string (or null).
+function getStudentBatchId(student) {
+  if (!student) return null;
+
+  const candidates = [
+    student.batch_id,
+    student.batchId,
+    student.batch?.batch_id,
+    student.batch?._id,
+    student.batch?.id,
+    student.batch, // sometimes "batch" itself is just the id string
+  ];
+
+  for (const val of candidates) {
+    if (val === undefined || val === null) continue;
+    // Mongo ObjectId (or any object) -> stringify safely
+    if (typeof val === "object") {
+      if (val.$oid) return String(val.$oid);
+      if (typeof val.toString === "function") {
+        const s = val.toString();
+        if (s && s !== "[object Object]") return s;
+      }
+      continue;
+    }
+    return String(val);
+  }
+  return null;
+}
+
 export default function TeacherDashboard() {
   // Tabs: 'pulse' | 'batches' | 'requests'
   const [activeTab, setActiveTab] = useState("pulse");
@@ -127,6 +158,8 @@ export default function TeacherDashboard() {
     try {
       const res = await api.get("/api/teacher/analytics");
       setClassData(res.data);
+      // TEMP DEBUG - remove once confirmed fixed:
+      // console.log("roster sample:", res.data?.roster?.[0]);
     } catch (err) {
       console.error(err);
       // Don't show global error if they haven't set up any students yet
@@ -571,7 +604,14 @@ export default function TeacherDashboard() {
         {activeTab === "pulse" && (() => {
           // Deduplicate and filter roster
           const uniqueRoster = classData?.roster ? Array.from(new Map(classData.roster.map(s => [s.student_id, s])).values()) : [];
-          const filteredRoster = uniqueRoster.filter(s => selectedBatchId === "ALL" || s.batch_id === selectedBatchId);
+
+          // Robust filter: normalize both sides to strings and try multiple
+          // possible field-name shapes so backend field-naming differences
+          // (batch_id vs batchId vs nested batch object vs ObjectId) don't
+          // silently break the filter.
+          const filteredRoster = selectedBatchId === "ALL"
+            ? uniqueRoster
+            : uniqueRoster.filter(s => getStudentBatchId(s) === String(selectedBatchId));
           
           return (
           <div className="flex-1 flex h-full overflow-hidden">
