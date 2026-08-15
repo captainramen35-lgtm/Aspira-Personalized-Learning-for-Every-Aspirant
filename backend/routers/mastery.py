@@ -65,14 +65,7 @@ async def get_mastery_profile(user: dict = Depends(get_current_user)):
             avg_time_sec=float(data.get("avg_time_sec", 0.0))
         )
 
-    # Fallback to defaults if empty
-    if not mastery_response:
-        default_topics = [
-            "Kinematics", "Laws of Motion", "Thermodynamics", "Chemical Bonding",
-            "Chemical Kinetics", "Algebra", "Calculus", "Cell Biology", "Genetics"
-        ]
-        for topic in default_topics:
-            mastery_response[topic] = MasteryTopicDetail(accuracy=0.0, attempts=0, avg_time_sec=0.0)
+    # Keep mastery_response empty if no attempts exist yet
 
     return MasteryProfileResponse(
         student_id=student_id,

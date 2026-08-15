@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { Lock, Mail, User, Eye, EyeOff, GraduationCap, AlertCircle, CheckCircle, ShieldCheck } from "lucide-react";
+import { Lock, Mail, User, Eye, EyeOff, GraduationCap, AlertCircle, CheckCircle, } from "lucide-react";
 
 function PasswordStrengthBar({ password }) {
   const checks = [
@@ -77,12 +77,9 @@ export default function Register() {
               <CheckCircle className="w-8 h-8 text-green-400" />
             </div>
           </div>
-          <h2 className="text-2xl font-extrabold text-white mb-2">Check your email!</h2>
-          <p className="text-gray-400 text-sm mb-2">
-            We've sent a verification link to <span className="text-white font-semibold">{email}</span>.
-          </p>
+          <h2 className="text-2xl font-extrabold text-white mb-2">Account created!</h2>
           <p className="text-gray-400 text-sm mb-8">
-            Click the link in that email to verify your account, then come back and log in to continue.
+            Your account has been created successfully. Go to sign in to continue.
           </p>
           <div className="flex flex-col gap-3">
             <RouterLink
@@ -92,10 +89,6 @@ export default function Register() {
               Go to Sign In
             </RouterLink>
           </div>
-          <p className="mt-6 text-xs text-gray-500">
-            Didn't receive it? Check your spam folder or{" "}
-            <RouterLink to="/login" className="text-brand-accent hover:underline">sign in to resend</RouterLink>.
-          </p>
         </div>
       </div>
     );
@@ -213,13 +206,7 @@ export default function Register() {
               </div>
             </div>
 
-            {/* Security note */}
-            <div className="flex items-start gap-2 bg-brand-accent/5 border border-brand-accent/15 rounded-xl p-3">
-              <ShieldCheck className="w-4 h-4 text-brand-accent mt-0.5 shrink-0" />
-              <p className="text-xs text-gray-400">
-                A verification email will be sent after registration. You'll need to verify before accessing your dashboard.
-              </p>
-            </div>
+
 
             <button
               type="submit"

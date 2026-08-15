@@ -41,6 +41,8 @@ const STATUS_CONFIG = {
 };
 
 export default function EnrollmentStatus() {
+  console.log("🔥 ENROLLMENT STATUS COMPONENT RENDERED");
+
   const { getToken, userProfile, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -48,6 +50,13 @@ export default function EnrollmentStatus() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [polling, setPolling] = useState(false);
+
+  console.log("🔥 EnrollmentStatus state:", {
+    userProfile,
+    request,
+    loading,
+    error,
+  });
 
   const fetchStatus = useCallback(async () => {
     try {
@@ -78,10 +87,10 @@ export default function EnrollmentStatus() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-brand-bg-dark flex items-center justify-center">
-        <div className="flex flex-col items-center gap-4">
+      <div className="min-h-screen bg-brand-bg-dark text-white flex items-center justify-center p-6">
+        <div className="flex flex-col items-center gap-3">
           <Loader2 className="w-8 h-8 text-brand-accent animate-spin" />
-          <p className="text-gray-400 text-sm">Checking your enrollment status…</p>
+          <p className="text-sm text-gray-400">Loading enrollment status...</p>
         </div>
       </div>
     );

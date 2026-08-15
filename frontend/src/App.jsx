@@ -24,6 +24,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 // Phase 4 — new pages
 import StudentDashboard from "./pages/StudentDashboard";
 import StudyPlan from "./pages/StudyPlan";
+import MiniTestPage from "./pages/MiniTestPage";
+import MiniTestExecutionPage from "./pages/MiniTestExecutionPage";
 
 function IndexRoute() {
   const { currentUser, userProfile } = useAuth();
@@ -39,12 +41,27 @@ function IndexRoute() {
       return <Navigate to="/admin" replace />;
     }
     if (userProfile.role === "student" && userProfile.status !== "active") {
-      if (!userProfile.target_exam || userProfile.status === "incomplete_profile_rejected" || userProfile.status === "pending_survey") {
-        return <Navigate to="/onboarding-survey" replace />;
-      }
-      if (!userProfile.assigned_batch_id) return <Navigate to="/batch-selection" replace />;
-      return <Navigate to="/enrollment-status" replace />;
-    }
+  if (
+    !userProfile.target_exam ||
+    userProfile.status === "incomplete_profile_rejected" ||
+    userProfile.status === "pending_survey"
+  ) {
+    return <Navigate to="/onboarding-survey" replace />;
+  }
+
+  // Student has already submitted an enrollment request
+  // and is waiting for teacher approval.
+  if (userProfile.status === "pending_approval") {
+    return <Navigate to="/enrollment-status" replace />;
+  }
+
+  // Student has completed survey but hasn't requested enrollment yet.
+  if (!userProfile.assigned_batch_id) {
+    return <Navigate to="/batch-selection" replace />;
+  }
+
+  return <Navigate to="/enrollment-status" replace />;
+}
   }
   return <Home />;
 }
@@ -139,6 +156,22 @@ export default function App() {
             element={
               <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
                 <StudyPlan />
+              </RoleGuard>
+            }
+          />
+          <Route
+            path="/mini-test"
+            element={
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
+                <MiniTestPage />
+              </RoleGuard>
+            }
+          />
+          <Route
+            path="/mini-test/take"
+            element={
+              <RoleGuard allowedRoles={["student"]} requireEnrolled={true}>
+                <MiniTestExecutionPage />
               </RoleGuard>
             }
           />

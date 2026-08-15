@@ -23,13 +23,16 @@ export default function TestPage() {
   const questionTimes = useRef({}); // q_id -> accumulated time in seconds
   const lastTickTime = useRef(Date.now());
 
-  // Generate the custom personalized paper
+  // Generate the custom 150-Question Personalized Master Test paper
   const handleStartTest = async () => {
     try {
       setGenerating(true);
       setError("");
       
-      const res = await api.post("/api/paper/generate");
+      const res = await api.post("/api/paper/generate", {
+        num_questions: 150,
+        test_type: "personalized"
+      });
       setPaperId(res.data.paper_id);
       setQuestions(res.data.questions);
       
@@ -169,30 +172,35 @@ export default function TestPage() {
         
         {/* Launcher Screen (If test has not started) */}
         {!testStarted ? (
-          <div className="bg-white rounded-xl border border-brand-border-light p-8 shadow-sm text-center">
-            <div className="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto mb-6">
+          <div className="bg-white rounded-xl border border-brand-border-light p-8 shadow-sm text-center space-y-6">
+            <div className="w-16 h-16 rounded-full bg-amber-500/10 flex items-center justify-center mx-auto">
               <Play className="w-8 h-8 text-brand-accent ml-1" />
             </div>
 
-            <h1 className="text-3xl font-extrabold text-brand-text-light mb-3 tracking-tight">
-              Adaptive Practice Session
-            </h1>
-            <p className="text-sm text-brand-muted-light max-w-md mx-auto mb-8 font-medium leading-relaxed">
-              Generate a personalized 75-question adaptive test (25 questions per subject). The personalization engine uses your mastery history to weight 60% of questions toward your weakest chapters.
-            </p>
+            <div>
+              <h1 className="text-3xl font-extrabold text-brand-text-light mb-2 tracking-tight">
+                Personalized Master Test
+              </h1>
+              <p className="text-sm text-brand-muted-light max-w-md mx-auto font-medium leading-relaxed">
+                Full 150-question comprehensive assessment weighted 60% toward your weakest chapters across all exam subjects.
+              </p>
+            </div>
 
             {error && (
-              <div className="max-w-md mx-auto bg-rose-500/10 border border-rose-500/20 text-rose-700 text-sm p-4 rounded-xl mb-6 font-semibold flex items-center justify-center gap-2">
+              <div className="max-w-md mx-auto bg-rose-500/10 border border-rose-500/20 text-rose-700 text-sm p-4 rounded-xl font-semibold flex items-center justify-center gap-2">
                 <span>{error}</span>
               </div>
             )}
 
-            <button
-              onClick={handleStartTest}
-              className="bg-brand-accent hover:bg-brand-accent-hover text-white font-extrabold px-8 py-4 rounded-xl transition-all shadow-md hover:shadow-brand-accent/20 cursor-pointer text-sm"
-            >
-              Generate 75Q Adaptive Test
-            </button>
+            <div className="pt-2">
+              <button
+                onClick={handleStartTest}
+                className="w-full bg-brand-accent hover:bg-brand-accent-hover text-white text-base font-extrabold px-8 py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <Play className="w-5 h-5 fill-current" />
+                Start 150-Question Personalized Test
+              </button>
+            </div>
           </div>
         ) : (
           /* Active Test Screen */

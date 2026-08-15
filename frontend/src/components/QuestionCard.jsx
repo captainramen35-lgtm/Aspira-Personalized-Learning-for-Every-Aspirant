@@ -26,9 +26,16 @@ export default function QuestionCard({
     <div className="w-full bg-white rounded-xl border border-brand-border-light p-6 shadow-sm mb-6 transition-all duration-300">
       {/* Meta Header */}
       <div className="flex items-center justify-between mb-4 border-b border-brand-border-light/40 pb-3">
-        <span className="text-xs font-semibold uppercase tracking-wider text-brand-muted-light">
-          {question.subject} &bull; {question.topic}
-        </span>
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="text-xs font-semibold uppercase tracking-wider text-brand-muted-light">
+            {question.subject} &bull; {question.chapter || "General"} &bull; {question.topic}
+          </span>
+          {question.estimated_solving_time_sec && (
+            <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-bg-light text-brand-muted-light border border-brand-border-light">
+              ~{question.estimated_solving_time_sec}s
+            </span>
+          )}
+        </div>
         <span
           className={`text-xs font-bold px-2.5 py-0.5 rounded-full border uppercase tracking-wider ${getDifficultyColor(
             question.difficulty
