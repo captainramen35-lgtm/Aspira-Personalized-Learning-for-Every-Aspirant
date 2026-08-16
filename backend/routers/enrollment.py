@@ -57,9 +57,7 @@ async def create_enrollment_request(
     if not batch_doc.exists:
         raise HTTPException(status_code=404, detail="Batch not found.")
     batch_data = batch_doc.to_dict()
-    if batch_data.get("status") == "archived":
-        raise HTTPException(status_code=400, detail="This batch is no longer accepting students.")
-
+    
     # Fetch student's onboarding survey for the snapshot
     survey_doc = db.collection("students").document(uid).collection("onboarding_survey").document("data").get()
     survey_snapshot = survey_doc.to_dict() if survey_doc.exists else {}
@@ -271,7 +269,8 @@ async def _process_enrollment_decision(
     # Update student's assigned_batch_id and status
     db.collection("users").document(student_id).update({
         "assigned_batch_id": final_batch_id,
-        "status": "active"
+        "status": "active",
+        "enrolled_at": firestore.SERVER_TIMESTAMP
     })
 
     # Increment batch enrollment count

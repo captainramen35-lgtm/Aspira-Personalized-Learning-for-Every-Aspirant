@@ -28,11 +28,10 @@ def get_current_user(authorization: str = Header(None)) -> dict:
 
     token = authorization.split(" ")[1]
     try:
-        decoded_token = firebase_auth.verify_id_token(token)
+        decoded_token = firebase_auth.verify_id_token(token, clock_skew_seconds=10)
         return decoded_token
     except Exception as e:
         raise HTTPException(status_code=401, detail=f"Token verification failed: {e}")
-
 
 def require_role(allowed_roles: list):
     """
