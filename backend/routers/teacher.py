@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException
 from backend.routers.auth import get_current_user
 from backend.firebase_admin_init import db
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 router = APIRouter(prefix="/api/teacher", tags=["teacher"])
 
 @router.get("/analytics")
-async def get_class_analytics(user: dict = Depends(get_current_user)):
+async def get_class_analytics(batch_id: Optional[str] = None, user: dict = Depends(get_current_user)):
     """
     Returns class-wide aggregated analytics and the student roster list.
     Verifies that the requesting user is a teacher.
@@ -16,10 +16,30 @@ async def get_class_analytics(user: dict = Depends(get_current_user)):
     teacher_doc = db.collection("users").document(uid).get()
     if not teacher_doc.exists or teacher_doc.to_dict().get("role") != "teacher":
         raise HTTPException(status_code=403, detail="Access denied. Only teachers can access this panel.")
-        
+
+    # 1b. If a specific batch is requested, confirm it exists and belongs to this teacher.
+    batch_name = None
+    if batch_id:
+        batch_doc = db.collection("batches").document(batch_id).get()
+        if not batch_doc.exists:
+            raise HTTPException(status_code=404, detail="Batch not found.")
+        batch_data = batch_doc.to_dict()
+        if batch_data.get("teacher_id") != uid:
+            raise HTTPException(status_code=403, detail="You do not own this batch.")
+        batch_name = batch_data.get("name", "")
+
     try:
-        # 2. Fetch all student profiles and users
-        students_ref = db.collection("users").where("role", "==", "student").stream()
+        # 2. Fetch student profiles and users - scoped to the selected batch if provided
+        if batch_id:
+            students_ref = (
+                db.collection("users")
+                .where("role", "==", "student")
+                .where("assigned_batch_id", "==", batch_id)
+                .stream()
+            )
+        else:
+            students_ref = db.collection("users").where("role", "==", "student").stream()
+
         student_metadata = {}
         for s in students_ref:
             sdata = s.to_dict()
@@ -34,11 +54,15 @@ async def get_class_analytics(user: dict = Depends(get_current_user)):
                 "assigned_batch_name": sdata.get("assigned_batch_name")
             }
 
+        # Only pull in mastery profiles for students within the current scope
+        # (all students, or just the selected batch), so every metric below -
+        # roster, chapter averages, strong/weak split, flagged students, and
+        # recommendations - is naturally computed for that scope only.
         profiles_ref = db.collection("mastery_profiles").stream()
         student_profiles = {}
         for p in profiles_ref:
-            pdata = p.to_dict()
-            student_profiles[p.id] = pdata
+            if p.id in student_metadata:
+                student_profiles[p.id] = p.to_dict()
 
         # 3. Build Roster
         roster = []
@@ -162,7 +186,11 @@ async def get_class_analytics(user: dict = Depends(get_current_user)):
             "weakest_topics": weakest_topics,
             "strong_weak_ratio": {"strong": strong_count, "weak": weak_count},
             "flagged_students": flagged_students,
-            "teaching_recommendations": recommendations
+            "teaching_recommendations": recommendations,
+            "scope": {
+                "batch_id": batch_id,
+                "batch_name": batch_name
+            }
         }
         
     except Exception as e:

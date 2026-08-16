@@ -22,14 +22,21 @@ class UpdateBatchRequest(BaseModel):
     syllabus_notes: Optional[str] = None
 
 
+class DeleteBatchRequest(BaseModel):
+    target_batch_id: Optional[str] = None  # if set, students are moved here instead of deleted
+
+
+class StudentReassignRequest(BaseModel):
+    target_batch_id: str
+
+
 @router.get("")
 async def list_batches(
     exam: Optional[str] = None,
-    include_archived: bool = False,
     user: dict = Depends(get_current_user)
 ):
     """
-    Returns active batches (and optionally archived ones).
+    Returns batches.
     - Students: filtered by target_exam (query param).
     - Teachers: returns their own batches.
     """
@@ -42,11 +49,8 @@ async def list_batches(
     try:
         if role == "teacher":
             query = db.collection("batches").where("teacher_id", "==", uid)
-            if not include_archived:
-                query = query.where("status", "==", "active")
         else:
-            # Student: filter by exam if provided
-            query = db.collection("batches").where("status", "==", "active")
+            query = db.collection("batches")
             if exam:
                 query = query.where("target_exam", "==", exam)
 
@@ -59,7 +63,6 @@ async def list_batches(
                 "target_exam": data.get("target_exam", ""),
                 "capacity": data.get("capacity", 50),
                 "current_count": data.get("current_count", 0),
-                "status": data.get("status", "active"),
                 "syllabus_notes": data.get("syllabus_notes", ""),
                 "teacher_id": data.get("teacher_id", ""),
             })
@@ -91,7 +94,6 @@ async def create_batch(
             "target_exam": req.target_exam,
             "capacity": req.capacity,
             "current_count": 0,
-            "status": "active",
             "syllabus_notes": req.syllabus_notes or "",
             "waitlist": [],
             "created_at": firestore.SERVER_TIMESTAMP,
@@ -126,92 +128,339 @@ async def update_batch(
         raise HTTPException(status_code=500, detail=f"Failed to update batch: {e}")
 
 
-@router.patch("/{batch_id}/archive")
-async def archive_batch(
+@router.get("/{batch_id}/students")
+async def list_batch_students(
     batch_id: str,
     user: dict = Depends(require_role(["teacher"]))
 ):
-    """Teacher archives a completed batch."""
+    """
+    Returns the list of students currently enrolled in a batch.
+    Used by the Edit Batch dialog so a teacher can remove or reassign
+    individual students without deleting the whole batch.
+    """
     teacher_id = user["uid"]
     batch_doc = db.collection("batches").document(batch_id).get()
     if not batch_doc.exists:
         raise HTTPException(status_code=404, detail="Batch not found.")
-    
-    batch_data = batch_doc.to_dict()
-    if batch_data.get("teacher_id") != teacher_id:
+    if batch_doc.to_dict().get("teacher_id") != teacher_id:
         raise HTTPException(status_code=403, detail="You do not own this batch.")
 
-    if batch_data.get("current_count", 0) > 0:
-        raise HTTPException(
-            status_code=400, 
-            detail="Cannot archive batch with enrolled students. Please reassign them first."
-        )
-
     try:
-        db.collection("batches").document(batch_id).update({"status": "archived"})
-        return {"status": "success", "message": "Batch archived."}
+        students_ref = (
+            db.collection("users")
+            .where("assigned_batch_id", "==", batch_id)
+            .where("role", "==", "student")
+            .stream()
+        )
+        students = []
+        for doc in students_ref:
+            data = doc.to_dict()
+            students.append({
+                "student_id": doc.id,
+                "name": data.get("name", ""),
+                "email": data.get("email", ""),
+                "enrolled_year": _extract_enrollment_year(data),
+            })
+        students.sort(key=lambda s: s["name"])
+        return {"batch_id": batch_id, "students": students, "count": len(students)}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to archive batch: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to load student list: {e}")
 
 
-class BulkReassignRequest(BaseModel):
-    target_batch_id: str
-
-
-@router.post("/{batch_id}/bulk-reassign")
-async def bulk_reassign_students(
+@router.patch("/{batch_id}/students/{student_id}")
+async def reassign_student(
     batch_id: str,
-    req: BulkReassignRequest,
+    student_id: str,
+    req: StudentReassignRequest,
     user: dict = Depends(require_role(["teacher"]))
 ):
-    """Reassign all students from one batch to another."""
+    """Reassigns a single student from this batch to another batch owned by the same teacher."""
     teacher_id = user["uid"]
-    
-    # Verify source batch
-    source_doc = db.collection("batches").document(batch_id).get()
-    if not source_doc.exists:
-        raise HTTPException(status_code=404, detail="Source batch not found.")
-    if source_doc.to_dict().get("teacher_id") != teacher_id:
-        raise HTTPException(status_code=403, detail="You do not own the source batch.")
 
-    # Verify target batch
+    batch_doc = db.collection("batches").document(batch_id).get()
+    if not batch_doc.exists:
+        raise HTTPException(status_code=404, detail="Batch not found.")
+    if batch_doc.to_dict().get("teacher_id") != teacher_id:
+        raise HTTPException(status_code=403, detail="You do not own this batch.")
+
+    student_doc = db.collection("users").document(student_id).get()
+    if not student_doc.exists:
+        raise HTTPException(status_code=404, detail="Student not found.")
+    student_data = student_doc.to_dict()
+    if student_data.get("assigned_batch_id") != batch_id:
+        raise HTTPException(status_code=400, detail="This student is not enrolled in this batch.")
+
+    if not req.target_batch_id:
+        raise HTTPException(status_code=400, detail="target_batch_id is required.")
+    if req.target_batch_id == batch_id:
+        raise HTTPException(status_code=400, detail="Student is already in this batch.")
+
     target_doc = db.collection("batches").document(req.target_batch_id).get()
     if not target_doc.exists:
         raise HTTPException(status_code=404, detail="Target batch not found.")
     target_data = target_doc.to_dict()
     if target_data.get("teacher_id") != teacher_id:
         raise HTTPException(status_code=403, detail="You do not own the target batch.")
-    if target_data.get("status") == "archived":
-        raise HTTPException(status_code=400, detail="Cannot reassign to an archived batch.")
 
     try:
-        # Find all active students in the source batch
-        students_ref = db.collection("users").where("assigned_batch_id", "==", batch_id).where("role", "==", "student").stream()
-        student_ids = [doc.id for doc in students_ref]
-        
-        if not student_ids:
-            return {"status": "success", "message": "No students to reassign.", "reassigned_count": 0}
-
-        # Use batch write to reassign students and update counts safely
-        batch_writer = db.batch()
-        
-        for sid in student_ids:
-            batch_writer.update(db.collection("users").document(sid), {"assigned_batch_id": req.target_batch_id})
-            
-        # Update enrollment counts
-        batch_writer.update(db.collection("batches").document(req.target_batch_id), {
-            "current_count": firestore.Increment(len(student_ids))
+        writer = db.batch()
+        writer.update(db.collection("users").document(student_id), {
+            "assigned_batch_id": req.target_batch_id,
+            "assigned_batch_name": target_data.get("name", ""),
         })
-        batch_writer.update(db.collection("batches").document(batch_id), {
-            "current_count": firestore.Increment(-len(student_ids))
+        writer.update(db.collection("batches").document(batch_id), {
+            "current_count": firestore.Increment(-1)
         })
-        
-        batch_writer.commit()
+        writer.update(db.collection("batches").document(req.target_batch_id), {
+            "current_count": firestore.Increment(1)
+        })
+        writer.commit()
 
         return {
-            "status": "success", 
-            "message": f"Successfully reassigned {len(student_ids)} students.",
-            "reassigned_count": len(student_ids)
+            "status": "success",
+            "message": f"Student moved to \"{target_data.get('name', 'the new batch')}\".",
+            "action": "reassigned",
         }
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Failed to bulk reassign students: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to reassign student: {e}")
+
+
+@router.delete("/{batch_id}/students/{student_id}")
+async def delete_student_from_batch(
+    batch_id: str,
+    student_id: str,
+    user: dict = Depends(require_role(["teacher"]))
+):
+    """
+    Permanently deletes a single student from a batch: their user profile and
+    any enrollment requests are removed entirely. The batch itself is untouched.
+
+    NOTE: this only removes Firestore data. It does not delete the student's
+    Firebase Authentication account — do that separately if you want the
+    login itself gone.
+    """
+    teacher_id = user["uid"]
+
+    batch_doc = db.collection("batches").document(batch_id).get()
+    if not batch_doc.exists:
+        raise HTTPException(status_code=404, detail="Batch not found.")
+    if batch_doc.to_dict().get("teacher_id") != teacher_id:
+        raise HTTPException(status_code=403, detail="You do not own this batch.")
+
+    student_doc = db.collection("users").document(student_id).get()
+    if not student_doc.exists:
+        raise HTTPException(status_code=404, detail="Student not found.")
+    student_data = student_doc.to_dict()
+    if student_data.get("assigned_batch_id") != batch_id:
+        raise HTTPException(status_code=400, detail="This student is not enrolled in this batch.")
+
+    try:
+        writer = db.batch()
+        writer.delete(db.collection("users").document(student_id))
+
+        req_docs = db.collection("enrollment_requests").where("student_id", "==", student_id).stream()
+        for rdoc in req_docs:
+            writer.delete(db.collection("enrollment_requests").document(rdoc.id))
+
+        writer.update(db.collection("batches").document(batch_id), {
+            "current_count": firestore.Increment(-1)
+        })
+        writer.commit()
+
+        return {
+            "status": "success",
+            "message": f"{student_data.get('name', 'Student')} was permanently deleted from the batch.",
+            "action": "deleted",
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete student: {e}")
+
+
+@router.delete("/{batch_id}/students")
+async def clear_all_students(
+    batch_id: str,
+    user: dict = Depends(require_role(["teacher"]))
+):
+    """
+    Permanently deletes every student currently enrolled in this batch
+    (profiles + their enrollment requests). The batch document itself is
+    kept, just emptied out (current_count reset to 0).
+
+    NOTE: this only removes Firestore data. It does not delete students'
+    Firebase Authentication accounts — do that separately if you want the
+    logins themselves gone.
+    """
+    teacher_id = user["uid"]
+    batch_doc = db.collection("batches").document(batch_id).get()
+    if not batch_doc.exists:
+        raise HTTPException(status_code=404, detail="Batch not found.")
+    if batch_doc.to_dict().get("teacher_id") != teacher_id:
+        raise HTTPException(status_code=403, detail="You do not own this batch.")
+
+    try:
+        students_ref = (
+            db.collection("users")
+            .where("assigned_batch_id", "==", batch_id)
+            .where("role", "==", "student")
+            .stream()
+        )
+        student_ids = [doc.id for doc in students_ref]
+
+        writer = db.batch()
+        for sid in student_ids:
+            writer.delete(db.collection("users").document(sid))
+            req_docs = db.collection("enrollment_requests").where("student_id", "==", sid).stream()
+            for rdoc in req_docs:
+                writer.delete(db.collection("enrollment_requests").document(rdoc.id))
+
+        writer.update(db.collection("batches").document(batch_id), {"current_count": 0})
+        writer.commit()
+
+        return {
+            "status": "success",
+            "message": f"{len(student_ids)} student(s) permanently deleted. The batch is now empty.",
+            "deleted_count": len(student_ids),
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to clear students from batch: {e}")
+
+
+def _extract_enrollment_year(user_data: dict) -> str:
+    """Best-effort extraction of the year a student joined this batch."""
+    for field in ("enrolled_at", "joined_date", "created_at"):
+        val = user_data.get(field)
+        if val is None:
+            continue
+        if hasattr(val, "year"):
+            return str(val.year)
+        if isinstance(val, str) and len(val) >= 4:
+            return val[:4]
+    return "Unknown"
+
+
+@router.get("/{batch_id}/delete-preview")
+async def delete_preview(
+    batch_id: str,
+    user: dict = Depends(require_role(["teacher"]))
+):
+    """
+    Returns the list of students currently enrolled in a batch, with the
+    year they enrolled, so the teacher can decide whether to reassign them
+    before deleting the batch.
+    """
+    teacher_id = user["uid"]
+    batch_doc = db.collection("batches").document(batch_id).get()
+    if not batch_doc.exists:
+        raise HTTPException(status_code=404, detail="Batch not found.")
+    if batch_doc.to_dict().get("teacher_id") != teacher_id:
+        raise HTTPException(status_code=403, detail="You do not own this batch.")
+
+    try:
+        students_ref = (
+            db.collection("users")
+            .where("assigned_batch_id", "==", batch_id)
+            .where("role", "==", "student")
+            .stream()
+        )
+        students = []
+        for doc in students_ref:
+            data = doc.to_dict()
+            students.append({
+                "student_id": doc.id,
+                "name": data.get("name", ""),
+                "email": data.get("email", ""),
+                "enrolled_year": _extract_enrollment_year(data),
+            })
+        students.sort(key=lambda s: s["name"])
+        return {"batch_name": batch_doc.to_dict().get("name", ""), "students": students, "count": len(students)}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to load student list: {e}")
+
+
+@router.delete("/{batch_id}")
+async def delete_batch(
+    batch_id: str,
+    req: DeleteBatchRequest,
+    user: dict = Depends(require_role(["teacher"]))
+):
+    """
+    Deletes a batch.
+    - If target_batch_id is provided: all enrolled students are moved there first.
+    - If not provided: all enrolled students' profiles (and their enrollment
+      requests) are permanently deleted along with the batch.
+
+    NOTE: this only removes Firestore data. It does not delete the student's
+    Firebase Authentication account — do that separately if you want the
+    login itself gone.
+    """
+    teacher_id = user["uid"]
+    batch_doc = db.collection("batches").document(batch_id).get()
+    if not batch_doc.exists:
+        raise HTTPException(status_code=404, detail="Batch not found.")
+    batch_data = batch_doc.to_dict()
+    if batch_data.get("teacher_id") != teacher_id:
+        raise HTTPException(status_code=403, detail="You do not own this batch.")
+
+    try:
+        students_ref = (
+            db.collection("users")
+            .where("assigned_batch_id", "==", batch_id)
+            .where("role", "==", "student")
+            .stream()
+        )
+        student_ids = [doc.id for doc in students_ref]
+
+        if req.target_batch_id:
+            # --- Move students to another batch, then delete this one ---
+            target_doc = db.collection("batches").document(req.target_batch_id).get()
+            if not target_doc.exists:
+                raise HTTPException(status_code=404, detail="Target batch not found.")
+            if target_doc.to_dict().get("teacher_id") != teacher_id:
+                raise HTTPException(status_code=403, detail="You do not own the target batch.")
+
+            writer = db.batch()
+            for sid in student_ids:
+                writer.update(db.collection("users").document(sid), {"assigned_batch_id": req.target_batch_id})
+            if student_ids:
+                writer.update(db.collection("batches").document(req.target_batch_id), {
+                    "current_count": firestore.Increment(len(student_ids))
+                })
+            writer.delete(db.collection("batches").document(batch_id))
+            writer.commit()
+
+            return {
+                "status": "success",
+                "message": f"Batch deleted. {len(student_ids)} student(s) moved to the new batch.",
+                "moved_count": len(student_ids),
+                "deleted_count": 0
+            }
+        else:
+            # --- Hard delete: batch + every enrolled student's profile ---
+            writer = db.batch()
+
+            for sid in student_ids:
+                writer.delete(db.collection("users").document(sid))
+                # Clean up any enrollment_requests tied to this student
+                req_docs = db.collection("enrollment_requests").where("student_id", "==", sid).stream()
+                for rdoc in req_docs:
+                    writer.delete(db.collection("enrollment_requests").document(rdoc.id))
+
+            writer.delete(db.collection("batches").document(batch_id))
+            writer.commit()
+
+            return {
+                "status": "success",
+                "message": f"Batch deleted permanently along with {len(student_ids)} student record(s).",
+                "moved_count": 0,
+                "deleted_count": len(student_ids)
+            }
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to delete batch: {e}")
