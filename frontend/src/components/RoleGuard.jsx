@@ -17,7 +17,15 @@ export default function RoleGuard({
   requireSurveyComplete = false,
 }) {
   const { currentUser, userRole, userProfile, loading } = useAuth();
-
+  console.log("ROLE GUARD CHECK:", {
+    currentUser,
+    userRole,
+    userProfile,
+    status: userProfile?.status,
+    target_exam: userProfile?.target_exam,
+    assigned_batch_id: userProfile?.assigned_batch_id,
+    loading,
+  });
   if (loading || (currentUser && !userRole)) {
     return (
       <div className="min-h-screen bg-brand-bg-dark flex items-center justify-center">
@@ -49,8 +57,21 @@ export default function RoleGuard({
   // Student must complete survey before accessing batch selection or enrollment status
   if (requireSurveyComplete && userRole === "student") {
     const status = userProfile?.status;
-    if (status === "pending_survey" || status === "incomplete_profile_rejected" || !userProfile?.target_exam) {
+    console.log("SURVEY GUARD STATUS:", status);
+
+    if (
+      status === "pending_survey" ||
+      status === "incomplete_profile_rejected" ||
+      !userProfile?.target_exam
+    ) {
       return <Navigate to="/onboarding-survey" replace />;
+    }
+
+    // Student already submitted an enrollment request.
+    // Don't allow them back into batch selection.
+    if (status === "pending_approval" && window.location.pathname !== "/enrollment-status") {
+      console.log("REDIRECTING TO ENROLLMENT STATUS");
+      return <Navigate to="/enrollment-status" replace />;
     }
   }
 

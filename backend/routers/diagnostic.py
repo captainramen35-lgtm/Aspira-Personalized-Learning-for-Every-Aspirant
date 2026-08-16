@@ -8,7 +8,7 @@ from backend.services.mastery_calculator import mastery_calculator
 from backend.services.question_bank_loader import question_bank_loader
 from backend.services.gemini_client import gemini_client
 from firebase_admin import firestore
-from typing import List
+from typing import List, Optional
 
 router = APIRouter(prefix="/api/diagnostic", tags=["diagnostic"])
 
@@ -32,9 +32,10 @@ NEET_DIAGNOSTIC_IDS = [
 ]
 
 @router.get("/questions", response_model=List[TestQuestionResponse])
-async def get_diagnostic_questions(user: dict = Depends(get_current_user)):
+async def get_diagnostic_questions(subject: Optional[str] = None, user: dict = Depends(get_current_user)):
     """
-    Returns a dynamic 15-question diagnostic test based on heavy-weight chapters.
+    Returns a subject-specific 30-question diagnostic test based on broad syllabus coverage.
+    If no subject is passed, defaults to Physics.
     """
     uid = user["uid"]
     try:
@@ -44,40 +45,55 @@ async def get_diagnostic_questions(user: dict = Depends(get_current_user)):
         if user_doc.exists:
             target_exam = user_doc.to_dict().get("target_exam", "JEE")
 
+        # Determine target subject
+        req_subject = subject.capitalize() if subject else ("Biology" if target_exam == "NEET" else "Physics")
+
+        # Validation: Bio not for JEE, Math not for NEET
+        if target_exam == "NEET" and req_subject == "Mathematics":
+            raise HTTPException(status_code=400, detail="Mathematics diagnostic is not available for NEET students.")
+        if target_exam == "JEE" and req_subject == "Biology":
+            raise HTTPException(status_code=400, detail="Biology diagnostic is not available for JEE students.")
+
+        all_subject_qs = question_bank_loader.get_filtered_questions(
+            subject=req_subject,
+            target_exam=target_exam
+        )
+
+        if not all_subject_qs:
+            all_subject_qs = question_bank_loader.get_questions_by_subject(req_subject)
+
+        # Categorize by difficulty
+        easy_pool = [q for q in all_subject_qs if q.get("difficulty", "").lower() == "easy"]
+        medium_pool = [q for q in all_subject_qs if q.get("difficulty", "").lower() == "medium"]
+        hard_pool = [q for q in all_subject_qs if q.get("difficulty", "").lower() == "hard"]
+
         import random
-        all_qs = question_bank_loader.get_all_questions()
-        
-        if target_exam == "NEET":
-            heavy_chapters = ["Kinematics", "Thermodynamics", "Chemical Bonding", "Genetics", "Human Physiology"]
-        else:
-            heavy_chapters = ["Kinematics", "Thermodynamics", "Chemical Bonding", "Coordinate Geometry", "Calculus"]
+        # Stable seed per user + subject so user gets consistent paper on refresh
+        random.seed(f"{uid}_{req_subject}_diag_v2")
 
-        chapter_qs = {}
-        for q in all_qs:
-            chap = q.get("chapter", "General")
-            if chap in heavy_chapters and q.get("difficulty") in ["Easy", "Medium"]:
-                chapter_qs.setdefault(chap, []).append(q)
+        random.shuffle(easy_pool)
+        random.shuffle(medium_pool)
+        random.shuffle(hard_pool)
 
+        # Target distribution: ~30% Easy (9), ~50% Medium (15), ~20% Hard (6) -> 30 Qs total
         selected_qs = []
-        for chap in heavy_chapters:
-            qs = chapter_qs.get(chap, [])
-            if qs:
-                # Use a stable seed based on uid so the student gets the same diagnostic if they refresh
-                random.seed(f"{uid}_{chap}")
-                random.shuffle(qs)
-                selected_qs.extend(qs[:3])
-            
-            if len(selected_qs) >= 15:
-                break
-                
-        selected_qs = selected_qs[:15]
-        
-        # Fallback if selected_qs is empty (e.g. data missing)
-        if not selected_qs:
-            question_ids = NEET_DIAGNOSTIC_IDS if target_exam == "NEET" else JEE_DIAGNOSTIC_IDS
-            selected_qs = question_bank_loader.get_questions_by_ids(question_ids)[:15]
+        selected_qs.extend(easy_pool[:9])
+        selected_qs.extend(medium_pool[:15])
+        selected_qs.extend(hard_pool[:6])
 
-        return selected_qs
+        # Top up if any difficulty pool was short
+        if len(selected_qs) < 30:
+            remaining_needed = 30 - len(selected_qs)
+            already_selected_ids = {q["id"] for q in selected_qs}
+            leftovers = [q for q in all_subject_qs if q["id"] not in already_selected_ids]
+            random.shuffle(leftovers)
+            selected_qs.extend(leftovers[:remaining_needed])
+
+        # Final shuffle across the 30 questions
+        random.shuffle(selected_qs)
+        return selected_qs[:30]
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to load diagnostic questions: {e}")
 

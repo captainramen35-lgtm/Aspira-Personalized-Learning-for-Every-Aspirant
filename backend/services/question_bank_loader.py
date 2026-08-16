@@ -67,5 +67,31 @@ class QuestionBankLoader:
         """
         return [self._questions_by_id[q_id] for q_id in q_ids if q_id in self._questions_by_id]
 
+    def get_filtered_questions(
+        self,
+        subject: Optional[str] = None,
+        chapter: Optional[str] = None,
+        topic: Optional[str] = None,
+        target_exam: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        Returns questions matching the subject, chapter, topic, and target_exam constraints.
+        """
+        all_qs = self.get_all_questions()
+        results = []
+        for q in all_qs:
+            if subject and q["subject"].lower() != subject.lower():
+                continue
+            if chapter and q.get("chapter", "").lower() != chapter.lower():
+                continue
+            if topic and q.get("topic", "").lower() != topic.lower():
+                continue
+            if target_exam and target_exam != "both":
+                q_exam = q.get("target_exam", "both")
+                if q_exam != "both" and q_exam.upper() != target_exam.upper():
+                    continue
+            results.append(q)
+        return results
+
 # Singleton instance
 question_bank_loader = QuestionBankLoader()

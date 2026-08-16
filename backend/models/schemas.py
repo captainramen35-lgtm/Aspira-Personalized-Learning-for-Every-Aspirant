@@ -13,8 +13,11 @@ class TestSubmitRequest(BaseModel):
 class TestQuestionResponse(BaseModel):
     id: str
     subject: str
+    chapter: Optional[str] = "General"
     topic: str
     difficulty: str
+    target_exam: Optional[str] = "both"
+    estimated_solving_time_sec: Optional[int] = 60
     question_text: str
     options: List[str]
 

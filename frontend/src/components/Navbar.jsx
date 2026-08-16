@@ -67,10 +67,16 @@ export default function Navbar() {
                   Diagnostic
                 </Link>
                 <Link
+                  to="/mini-test"
+                  className={location.pathname === "/mini-test" ? activeLinkClass : inactiveLinkClass}
+                >
+                  Mini Tests
+                </Link>
+                <Link
                   to="/test"
                   className={location.pathname === "/test" ? activeLinkClass : inactiveLinkClass}
                 >
-                  Test
+                  Personalized Test
                 </Link>
                 <Link
                   to="/profile"

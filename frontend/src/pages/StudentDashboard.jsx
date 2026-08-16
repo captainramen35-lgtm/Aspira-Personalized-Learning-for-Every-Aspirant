@@ -19,6 +19,8 @@ import {
 export default function StudentDashboard() {
   const [profile, setProfile] = useState(null);
   const [studyPlan, setStudyPlan] = useState(null);
+  const [syllabus, setSyllabus] = useState(null);
+  const [selectedSyllabusSub, setSelectedSyllabusSub] = useState("Physics");
   const [loading, setLoading] = useState(true);
   const [generatingPlan, setGeneratingPlan] = useState(false);
   const [error, setError] = useState("");
@@ -33,8 +35,20 @@ export default function StudentDashboard() {
         setProfile(profileRes.data);
 
         // Fetch study plan
-        const planRes = await api.get("/api/study-plan/current");
-        setStudyPlan(planRes.data.plan);
+        try {
+          const planRes = await api.get("/api/study-plan/current");
+          setStudyPlan(planRes.data.plan);
+        } catch (e) {
+          console.log("No study plan yet.");
+        }
+
+        // Fetch syllabus
+        const syllabusRes = await api.get("/api/syllabus");
+        setSyllabus(syllabusRes.data);
+        const subKeys = Object.keys(syllabusRes.data.subjects || {});
+        if (subKeys.length > 0) {
+          setSelectedSyllabusSub(subKeys[0]);
+        }
       } catch (err) {
         console.error(err);
         setError("Failed to load dashboard insights.");
@@ -157,24 +171,94 @@ export default function StudentDashboard() {
           </div>
         )}
 
-        {/* Diagnostic Requirement Warning / Empty State */}
-        {!hasSubmissions ? (
-          <div className="text-center py-12 bg-white rounded-xl border border-brand-border-light shadow-xs flex flex-col items-center justify-center p-10">
-            <div className="bg-brand-accent/10 p-5 rounded-full mb-5">
-              <BookOpen className="w-12 h-12 text-brand-accent" />
+        {/* Informational Syllabus Section (Always Visible) */}
+        <div className="bg-white border border-brand-border-light rounded-xl p-6 shadow-sm space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-brand-border-light/40 pb-4">
+            <div>
+              <div className="inline-flex items-center gap-1 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full mb-1">
+                <BookOpen className="w-3 h-3 text-emerald-600" />
+                <span className="text-[10px] font-extrabold text-emerald-600 uppercase tracking-wider">Course Curriculum</span>
+              </div>
+              <h3 className="font-extrabold text-xl text-brand-text-light">
+                My Syllabus — {syllabus?.target_exam || "Exam"}
+              </h3>
+              <p className="text-xs text-brand-muted-light font-medium mt-0.5">
+                Authoritative chapter & topic roadmap for your targeted examination.
+              </p>
             </div>
-            <h4 className="text-brand-text-light font-extrabold text-2xl mb-3">Unlock Your Learning Journey</h4>
-            <p className="text-brand-muted-light text-base max-w-md mx-auto mb-8 leading-relaxed font-medium">
-              Take your Diagnostic Practice Test to unlock your Personalized Mastery Profile and AI Study Plan.
-            </p>
+          </div>
+
+          {/* Subject Tab Strip */}
+          <div className="flex items-center gap-2 border-b border-brand-border-light/40 pb-3 overflow-x-auto">
+            {syllabus && Object.keys(syllabus.subjects || {}).map((subName) => {
+              const isSelected = selectedSyllabusSub === subName;
+              return (
+                <button
+                  key={subName}
+                  onClick={() => setSelectedSyllabusSub(subName)}
+                  className={`px-4 py-2 rounded-lg text-xs font-extrabold transition-all cursor-pointer ${
+                    isSelected
+                      ? "bg-brand-accent text-white shadow-xs"
+                      : "bg-brand-bg-light/40 text-brand-text-light hover:bg-brand-bg-light"
+                  }`}
+                >
+                  {subName} ({syllabus.subjects[subName].chapter_count} Chapters)
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Complete Chapter List with Topics */}
+          {syllabus && syllabus.subjects[selectedSyllabusSub] && (
+            <div className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
+              {syllabus.subjects[selectedSyllabusSub].chapters.map((chap) => (
+                <div
+                  key={chap.name}
+                  className="bg-brand-bg-light/25 border border-brand-border-light/60 rounded-xl p-4 space-y-2"
+                >
+                  <div className="flex items-center justify-between border-b border-brand-border-light/30 pb-2">
+                    <h5 className="font-extrabold text-sm text-brand-text-light">
+                      {chap.name}
+                    </h5>
+                    <span className="text-[11px] text-brand-muted-light font-semibold">
+                      {chap.topic_count} Topics
+                    </span>
+                  </div>
+
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                    {chap.topics.map((t) => (
+                      <li key={t.name} className="text-xs text-brand-muted-light font-medium flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-accent shrink-0" />
+                        <span>{t.name}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Diagnostic Recommendation (Optional, non-gated) */}
+        {!hasSubmissions && (
+          <div className="bg-amber-500/10 border border-brand-accent/20 rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h4 className="font-extrabold text-sm text-brand-text-light flex items-center gap-1.5">
+                <Sparkles className="w-4 h-4 text-brand-accent" />
+                Want a complete baseline assessment?
+              </h4>
+              <p className="text-xs text-brand-muted-light font-medium">
+                Take a 30-question subject diagnostic test to benchmark your baseline across difficulty tiers.
+              </p>
+            </div>
             <Link
               to="/diagnostic"
-              className="px-8 py-4 bg-brand-accent text-white font-extrabold rounded-xl shadow-md hover:-translate-y-0.5 transition-transform text-lg"
+              className="bg-brand-accent hover:bg-brand-accent-hover text-white text-xs font-extrabold px-5 py-2.5 rounded-xl shadow-xs transition-all flex items-center gap-1 shrink-0 self-start md:self-auto cursor-pointer"
             >
-              Take Diagnostic
+              Take Diagnostic Assessment
             </Link>
           </div>
-        ) : (
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           
@@ -402,7 +486,6 @@ export default function StudentDashboard() {
           </div>
 
         </div>
-        )}
 
       </div>
     </div>

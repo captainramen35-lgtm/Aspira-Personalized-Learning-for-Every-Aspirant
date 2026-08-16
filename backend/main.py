@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.routers import auth, diagnostic, paper, submit, mastery, teacher, reflection, study_plan
+from backend.routers import auth, diagnostic, paper, submit, mastery, teacher, reflection, study_plan, syllabus
 from backend.routers import admin, teacher_onboarding, enrollment, batches
 
 app = FastAPI(
@@ -25,6 +25,7 @@ app.include_router(paper.router)
 app.include_router(submit.router)
 app.include_router(mastery.router)
 app.include_router(teacher.router)
+app.include_router(syllabus.router)
 
 # Phase 1: Auth & User Management
 app.include_router(admin.router)

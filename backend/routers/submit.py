@@ -147,6 +147,7 @@ async def submit_test(req: TestSubmitRequest, user: dict = Depends(get_current_u
                         submission_results[idx]["socratic_feedback"] = {}
 
         # 4. Save results to Firestore
+        test_type = paper_data.get("test_type", "personalized")
         submission_id = str(uuid.uuid4())
         db.collection("submissions").document(submission_id).set({
             "submission_id": submission_id,
@@ -155,7 +156,10 @@ async def submit_test(req: TestSubmitRequest, user: dict = Depends(get_current_u
             "score": score_count,
             "total_questions": len(question_ids),
             "results": submission_results,
-            "test_type": "personalized",
+            "test_type": test_type,
+            "subject": paper_data.get("subject"),
+            "chapter": paper_data.get("chapter"),
+            "topic": paper_data.get("topic"),
             "created_at": firestore.SERVER_TIMESTAMP
         })
 

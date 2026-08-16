@@ -55,9 +55,7 @@ class MasteryCalculator:
                 
                 current_accuracy = (current["correct_points"] / current["total_points"]) if current["total_points"] > 0 else 0.0
                 
-                if test_type == "diagnostic":
-                    current_accuracy = min(current_accuracy, 0.65)
-
+                # Weighting: Diagnostic acts as baseline, Mini & Personalized reflect current active mastery
                 new_accuracy = ((past_accuracy * past_attempts) + (current_accuracy * current["attempts"])) / total_attempts if total_attempts > 0 else 0.0
                 new_avg_time = ((past_avg_time * past_attempts) + current["total_time"]) / total_attempts if total_attempts > 0 else 0.0
 

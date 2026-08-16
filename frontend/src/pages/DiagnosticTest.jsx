@@ -6,10 +6,11 @@ import Navbar from "../components/Navbar";
 import { Loader2, CheckCircle2, AlertCircle, ArrowLeft, ArrowRight, Send, Clock } from "lucide-react";
 
 export default function DiagnosticTest() {
+  const [selectedSubject, setSelectedSubject] = useState(null); // 'Physics', 'Chemistry', 'Biology', 'Mathematics'
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState({}); // q_id -> option
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -19,31 +20,33 @@ export default function DiagnosticTest() {
   const questionTimes = useRef({}); // q_id -> accumulated seconds
   const lastTickTime = useRef(Date.now());
 
-  useEffect(() => {
-    // Fetch diagnostic questions
-    async function loadQuestions() {
-      try {
-        const res = await api.get("/api/diagnostic/questions");
-        setQuestions(res.data);
-        
-        // Initialize answer and time tracker structures
-        const initialAnswers = {};
-        const initialTimes = {};
-        res.data.forEach((q) => {
-          initialAnswers[q.id] = "";
-          initialTimes[q.id] = 0;
-        });
-        setAnswers(initialAnswers);
-        questionTimes.current = initialTimes;
-      } catch (err) {
-        console.error(err);
-        setError("Failed to load diagnostic questions. Please try again.");
-      } finally {
-        setLoading(false);
-      }
+  const loadQuestions = async (subject) => {
+    try {
+      setLoading(true);
+      setError("");
+      setSelectedSubject(subject);
+
+      const res = await api.get(`/api/diagnostic/questions?subject=${subject}`);
+      setQuestions(res.data);
+      
+      const initialAnswers = {};
+      const initialTimes = {};
+      res.data.forEach((q) => {
+        initialAnswers[q.id] = "";
+        initialTimes[q.id] = 0;
+      });
+      setAnswers(initialAnswers);
+      questionTimes.current = initialTimes;
+      setTotalElapsedTime(0);
+      setCurrentIdx(0);
+    } catch (err) {
+      console.error(err);
+      setError(err.response?.data?.detail || "Failed to load diagnostic questions. Please try again.");
+      setSelectedSubject(null);
+    } finally {
+      setLoading(false);
     }
-    loadQuestions();
-  }, []);
+  };
 
   // Timer Tick Hook
   useEffect(() => {
@@ -122,14 +125,93 @@ export default function DiagnosticTest() {
     return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
+  if (!selectedSubject && !loading) {
+    return (
+      <div className="min-h-screen bg-brand-bg-light flex flex-col pb-12">
+        <Navbar />
+        <div className="flex-1 max-w-4xl mx-auto w-full px-6 pt-10">
+          <div className="bg-white rounded-xl border border-brand-border-light p-8 shadow-sm text-center mb-8">
+            <h1 className="text-3xl font-extrabold text-brand-text-light mb-3 tracking-tight">
+              Subject Diagnostic Assessment
+            </h1>
+            <p className="text-sm text-brand-muted-light max-w-md mx-auto leading-relaxed">
+              Select a subject to take a focused 30-question diagnostic test to benchmark your chapter-level mastery.
+            </p>
+            {error && (
+              <div className="mt-4 bg-rose-500/10 border border-rose-500/20 text-rose-700 text-sm p-4 rounded-xl font-semibold">
+                {error}
+              </div>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+              onClick={() => loadQuestions("Physics")}
+              className="bg-white border border-brand-border-light hover:border-brand-accent rounded-xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer text-left group"
+            >
+              <span className="text-[10px] font-extrabold text-brand-accent uppercase tracking-widest block mb-1">
+                30 Questions &bull; 45 Mins
+              </span>
+              <h3 className="text-xl font-bold text-brand-text-light group-hover:text-brand-accent transition-colors">
+                Physics Diagnostic
+              </h3>
+              <p className="text-xs text-brand-muted-light mt-2 leading-relaxed">
+                Evaluates Kinematics, Thermodynamics, Optics, Modern Physics, Electrostatics, and Magnetism.
+              </p>
+              <div className="mt-6 flex items-center gap-1 text-xs font-bold text-brand-accent">
+                Start Assessment <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+
+            <div
+              onClick={() => loadQuestions("Chemistry")}
+              className="bg-white border border-brand-border-light hover:border-brand-accent rounded-xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer text-left group"
+            >
+              <span className="text-[10px] font-extrabold text-amber-500 uppercase tracking-widest block mb-1">
+                30 Questions &bull; 45 Mins
+              </span>
+              <h3 className="text-xl font-bold text-brand-text-light group-hover:text-amber-500 transition-colors">
+                Chemistry Diagnostic
+              </h3>
+              <p className="text-xs text-brand-muted-light mt-2 leading-relaxed">
+                Evaluates Organic, Inorganic, Physical, Chemical Bonding, and Equilibrium.
+              </p>
+              <div className="mt-6 flex items-center gap-1 text-xs font-bold text-amber-500">
+                Start Assessment <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+
+            <div
+              onClick={() => loadQuestions("Biology")}
+              className="bg-white border border-brand-border-light hover:border-brand-accent rounded-xl p-6 shadow-sm hover:shadow-md transition-all cursor-pointer text-left group"
+            >
+              <span className="text-[10px] font-extrabold text-emerald-500 uppercase tracking-widest block mb-1">
+                30 Questions &bull; NEET Specific
+              </span>
+              <h3 className="text-xl font-bold text-brand-text-light group-hover:text-emerald-500 transition-colors">
+                Biology Diagnostic
+              </h3>
+              <p className="text-xs text-brand-muted-light mt-2 leading-relaxed">
+                Evaluates Genetics, Human Physiology, Botany, Ecology, and Cell Biology.
+              </p>
+              <div className="mt-6 flex items-center gap-1 text-xs font-bold text-emerald-500">
+                Start Assessment <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen bg-brand-bg-light flex flex-col">
         <Navbar />
         <div className="flex-1 flex flex-col items-center justify-center p-6">
           <Loader2 className="w-12 h-12 text-brand-accent animate-spin mb-4" />
-          <h2 className="text-xl font-bold text-brand-text-light">Loading Diagnostic Test...</h2>
-          <p className="text-sm text-brand-muted-light mt-1">Preparing your 25-question assessment</p>
+          <h2 className="text-xl font-bold text-brand-text-light">Loading {selectedSubject} Diagnostic...</h2>
+          <p className="text-sm text-brand-muted-light mt-1">Preparing your 30-question assessment</p>
         </div>
       </div>
     );
