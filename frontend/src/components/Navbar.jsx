@@ -67,16 +67,10 @@ export default function Navbar() {
                   Diagnostic
                 </Link>
                 <Link
-                  to="/mini-test"
-                  className={location.pathname === "/mini-test" ? activeLinkClass : inactiveLinkClass}
-                >
-                  Mini Tests
-                </Link>
-                <Link
                   to="/test"
                   className={location.pathname === "/test" ? activeLinkClass : inactiveLinkClass}
                 >
-                  Personalized Test
+                  Test
                 </Link>
                 <Link
                   to="/profile"
@@ -101,9 +95,7 @@ export default function Navbar() {
             ) : (
               // Teacher Links
               <div className="flex items-center gap-4">
-                <span className="bg-brand-card-light dark:bg-brand-card-dark border border-brand-border-light font-bold text-xs px-3.5 py-1.5 rounded-[8px] uppercase tracking-wider text-brand-muted-light">
-                  NEET-2026 Morning Batch
-                </span>
+                
                 <button
                   onClick={handleLogout}
                   className="flex items-center gap-1 text-red-500 hover:text-red-600 font-semibold transition-colors cursor-pointer ml-2"
