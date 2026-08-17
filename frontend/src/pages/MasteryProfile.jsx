@@ -9,6 +9,9 @@ export default function MasteryProfile() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [expandedChapters, setExpandedChapters] = useState({});
+  // NEW: which subject tab (Physics / Chemistry / Mathematics or Biology)
+  // is currently selected. Defaults to the first subject once the profile loads.
+  const [selectedSubject, setSelectedSubject] = useState(null);
 
   const toggleChapter = (chapter) => {
     setExpandedChapters(prev => ({ ...prev, [chapter]: !prev[chapter] }));
@@ -19,6 +22,8 @@ export default function MasteryProfile() {
       try {
         const res = await api.get("/api/mastery");
         setProfile(res.data);
+        const firstSubject = res.data?.exam_subjects?.[0] || null;
+        setSelectedSubject(firstSubject);
       } catch (err) {
         console.error(err);
         setError("Failed to load your mastery profile details.");
@@ -64,6 +69,13 @@ export default function MasteryProfile() {
       </div>
     );
   }
+
+  // Chapters belonging to whichever subject tab is currently selected.
+  // Falls back to an empty object gracefully (e.g. before the profile
+  // loads, or if the backend hasn't been updated to send `subjects` yet).
+  const chaptersForSelectedSubject =
+    (profile?.subjects && selectedSubject && profile.subjects[selectedSubject]) || {};
+  const hasSubjectTabs = !!(profile?.exam_subjects && profile.exam_subjects.length > 0);
 
   return (
     <div className="min-h-screen bg-brand-bg-light flex flex-col pb-12">
@@ -145,92 +157,125 @@ export default function MasteryProfile() {
                 Take Diagnostic
               </button>
             </div>
-          ) : profile.chapters && Object.keys(profile.chapters).length > 0 ? (
-            <div className="space-y-4">
-              {Object.keys(profile.chapters).map((chapter) => {
-                const chapData = profile.chapters[chapter];
-                const rawAcc = chapData.accuracy;
-                const accPercent = Math.round(rawAcc <= 1.0 && rawAcc > 0.0 ? rawAcc * 100 : rawAcc);
-                
-                const isWeak = accPercent < 40;
-                const isStrong = accPercent >= 65;
-
-                let textColorClass = "text-amber-600";
-                if (isWeak) textColorClass = "text-rose-500";
-                if (isStrong) textColorClass = "text-emerald-600";
-
-                const isExpanded = !!expandedChapters[chapter];
-                const childTopics = profile.chapter_topics?.[chapter] || [];
-
-                return (
-                  <div key={chapter} className="bg-brand-bg-light/25 border border-brand-border-light/40 rounded-xl flex flex-col overflow-hidden transition-all">
-                    {/* Chapter Header Row */}
-                    <div 
-                      onClick={() => toggleChapter(chapter)}
-                      className="p-4 cursor-pointer hover:bg-brand-bg-light/50 transition-colors flex flex-col gap-2"
+          ) : hasSubjectTabs ? (
+            <div>
+              {/* Subject Tabs: Physics / Chemistry / Mathematics (or Biology) */}
+              <div className="flex flex-wrap gap-2 mb-6 border-b border-brand-border-light/40 pb-4">
+                {profile.exam_subjects.map((subject) => {
+                  const subjectChapters = profile.subjects?.[subject] || {};
+                  const chapterCount = Object.keys(subjectChapters).length;
+                  const isActive = selectedSubject === subject;
+                  return (
+                    <button
+                      key={subject}
+                      onClick={() => setSelectedSubject(subject)}
+                      className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${
+                        isActive
+                          ? "bg-brand-accent text-white shadow-sm"
+                          : "bg-brand-bg-light/60 text-brand-muted-light hover:bg-brand-bg-light hover:text-brand-text-light"
+                      }`}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          {childTopics.length > 0 ? (
-                            isExpanded ? <ChevronDown className="w-4 h-4 text-brand-muted-light" /> : <ChevronRight className="w-4 h-4 text-brand-muted-light" />
-                          ) : <div className="w-4 h-4" />}
-                          <span className="text-sm font-bold text-brand-text-light">{chapter}</span>
-                        </div>
-                        <span className={`text-xs font-bold ${textColorClass}`}>
-                          {accPercent}% ({chapData.attempts} attempts &bull; {Math.round(chapData.avg_time_sec)}s avg)
-                        </span>
-                      </div>
+                      {subject}
+                      <span className={`ml-2 text-[10px] font-bold ${isActive ? "text-white/80" : "text-brand-muted-light/70"}`}>
+                        {chapterCount}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
 
-                      <div className="w-full h-2.5 bg-brand-border-light/40 rounded-full overflow-hidden relative ml-6" style={{ width: 'calc(100% - 1.5rem)' }}>
+              {Object.keys(chaptersForSelectedSubject).length > 0 ? (
+                <div className="space-y-4">
+                  {Object.keys(chaptersForSelectedSubject).map((chapter) => {
+                    const chapData = chaptersForSelectedSubject[chapter];
+                    const rawAcc = chapData.accuracy;
+                    const accPercent = Math.round(rawAcc <= 1.0 && rawAcc > 0.0 ? rawAcc * 100 : rawAcc);
+
+                    const isWeak = accPercent < 40;
+                    const isStrong = accPercent >= 65;
+
+                    let textColorClass = "text-amber-600";
+                    if (isWeak) textColorClass = "text-rose-500";
+                    if (isStrong) textColorClass = "text-emerald-600";
+
+                    const isExpanded = !!expandedChapters[chapter];
+                    const childTopics = profile.chapter_topics?.[chapter] || [];
+
+                    return (
+                      <div key={chapter} className="bg-brand-bg-light/25 border border-brand-border-light/40 rounded-xl flex flex-col overflow-hidden transition-all">
+                        {/* Chapter Header Row */}
                         <div
-                          className={`h-full rounded-full transition-all duration-500 ${
-                            isWeak ? "bg-rose-500" : isStrong ? "bg-emerald-500" : "bg-amber-500"
-                          }`}
-                          style={{ width: `${Math.max(accPercent, 2)}%` }}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Drill-down Topics */}
-                    {isExpanded && childTopics.length > 0 && (
-                      <div className="bg-white/50 border-t border-brand-border-light/40 p-4 pl-10 space-y-3">
-                        {childTopics.map(topic => {
-                          const topicData = profile.mastery?.[topic];
-                          if (!topicData) return null;
-                          
-                          const tRawAcc = topicData.accuracy;
-                          const tAccPercent = Math.round(tRawAcc <= 1.0 && tRawAcc > 0.0 ? tRawAcc * 100 : tRawAcc);
-                          const tIsWeak = tAccPercent < 40;
-                          const tIsStrong = tAccPercent >= 65;
-                          
-                          let tColorClass = "text-amber-600";
-                          if (tIsWeak) tColorClass = "text-rose-500";
-                          if (tIsStrong) tColorClass = "text-emerald-600";
-
-                          return (
-                            <div key={topic} className="flex flex-col gap-1.5">
-                              <div className="flex items-center justify-between">
-                                <span className="text-xs font-semibold text-brand-muted-light">{topic}</span>
-                                <span className={`text-[10px] font-bold ${tColorClass}`}>
-                                  {getMasteryLabel(topicData.accuracy)}
-                                </span>
-                              </div>
-                              <div className="w-full h-1.5 bg-brand-border-light/30 rounded-full overflow-hidden relative">
-                                <div
-                                  className={`h-full rounded-full transition-all duration-500 ${
-                                    tIsWeak ? "bg-rose-500" : tIsStrong ? "bg-emerald-500" : "bg-amber-500"
-                                  }`}
-                                  style={{ width: `${Math.max(tAccPercent, 2)}%` }}
-                                />
-                              </div>
+                          onClick={() => toggleChapter(chapter)}
+                          className="p-4 cursor-pointer hover:bg-brand-bg-light/50 transition-colors flex flex-col gap-2"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              {childTopics.length > 0 ? (
+                                isExpanded ? <ChevronDown className="w-4 h-4 text-brand-muted-light" /> : <ChevronRight className="w-4 h-4 text-brand-muted-light" />
+                              ) : <div className="w-4 h-4" />}
+                              <span className="text-sm font-bold text-brand-text-light">{chapter}</span>
                             </div>
-                          );
-                        })}
+                            <span className={`text-xs font-bold ${textColorClass}`}>
+                              {accPercent}% ({chapData.attempts} attempts &bull; {Math.round(chapData.avg_time_sec)}s avg)
+                            </span>
+                          </div>
+
+                          <div className="w-full h-2.5 bg-brand-border-light/40 rounded-full overflow-hidden relative ml-6" style={{ width: 'calc(100% - 1.5rem)' }}>
+                            <div
+                              className={`h-full rounded-full transition-all duration-500 ${
+                                isWeak ? "bg-rose-500" : isStrong ? "bg-emerald-500" : "bg-amber-500"
+                              }`}
+                              style={{ width: `${Math.max(accPercent, 2)}%` }}
+                            />
+                          </div>
+                        </div>
+
+                        {/* Drill-down Topics */}
+                        {isExpanded && childTopics.length > 0 && (
+                          <div className="bg-white/50 border-t border-brand-border-light/40 p-4 pl-10 space-y-3">
+                            {childTopics.map(topic => {
+                              const topicData = profile.mastery?.[topic];
+                              if (!topicData) return null;
+
+                              const tRawAcc = topicData.accuracy;
+                              const tAccPercent = Math.round(tRawAcc <= 1.0 && tRawAcc > 0.0 ? tRawAcc * 100 : tRawAcc);
+                              const tIsWeak = tAccPercent < 40;
+                              const tIsStrong = tAccPercent >= 65;
+
+                              let tColorClass = "text-amber-600";
+                              if (tIsWeak) tColorClass = "text-rose-500";
+                              if (tIsStrong) tColorClass = "text-emerald-600";
+
+                              return (
+                                <div key={topic} className="flex flex-col gap-1.5">
+                                  <div className="flex items-center justify-between">
+                                    <span className="text-xs font-semibold text-brand-muted-light">{topic}</span>
+                                    <span className={`text-[10px] font-bold ${tColorClass}`}>
+                                      {getMasteryLabel(topicData.accuracy)}
+                                    </span>
+                                  </div>
+                                  <div className="w-full h-1.5 bg-brand-border-light/30 rounded-full overflow-hidden relative">
+                                    <div
+                                      className={`h-full rounded-full transition-all duration-500 ${
+                                        tIsWeak ? "bg-rose-500" : tIsStrong ? "bg-emerald-500" : "bg-amber-500"
+                                      }`}
+                                      style={{ width: `${Math.max(tAccPercent, 2)}%` }}
+                                    />
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
-                );
-              })}
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="text-xs text-brand-muted-light italic text-center py-6">
+                  No chapters attempted in {selectedSubject} yet. Complete a practice session in this subject to see mastery here.
+                </p>
+              )}
             </div>
           ) : (
             <p className="text-xs text-brand-muted-light italic text-center py-6">
