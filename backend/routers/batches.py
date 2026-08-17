@@ -57,12 +57,27 @@ async def list_batches(
         batches = []
         for doc in query.stream():
             data = doc.to_dict()
+            # FIX (issue 5): `current_count` on the batch doc is a counter that
+            # gets manually incremented/decremented across several endpoints
+            # (create, reassign, delete, clear, enrollment approval). Any
+            # partial write or edit outside those code paths lets it drift
+            # from reality - which is exactly why Batch Management could show
+            # "3 / 50" while Class Pulse (which always counts live from the
+            # `users` collection) showed "2 / 50" for the same batch. Counting
+            # live here, the same way teacher.py's Class Pulse endpoint does,
+            # makes both sections agree by construction.
+            live_count = len(list(
+                db.collection("users")
+                .where("assigned_batch_id", "==", doc.id)
+                .where("role", "==", "student")
+                .stream()
+            ))
             batches.append({
                 "batch_id": doc.id,
                 "name": data.get("name", ""),
                 "target_exam": data.get("target_exam", ""),
                 "capacity": data.get("capacity", 50),
-                "current_count": data.get("current_count", 0),
+                "current_count": live_count,
                 "syllabus_notes": data.get("syllabus_notes", ""),
                 "teacher_id": data.get("teacher_id", ""),
             })
