@@ -95,6 +95,9 @@ export default function TeacherDashboard() {
   const [studentDetail, setStudentDetail] = useState(null);
   const [loadingDetail, setLoadingDetail] = useState(false);
   const [expandedStudentChapters, setExpandedStudentChapters] = useState({});
+  // NEW: which subject tab (Physics / Chemistry / Mathematics or Biology)
+  // is active in the currently-open student's mastery profile.
+  const [selectedStudentSubject, setSelectedStudentSubject] = useState(null);
   const [selectedBatchId, setSelectedBatchId] = useState("ALL");
   const [loadingAnalytics, setLoadingAnalytics] = useState(false);
 
@@ -227,9 +230,12 @@ useEffect(() => {
 
     setSelectedStudentId(studentId);
     setLoadingDetail(true);
+    setExpandedStudentChapters({});
+    setSelectedStudentSubject(null);
     try {
       const res = await api.get(`/api/teacher/student/${studentId}`);
       setStudentDetail(res.data);
+      setSelectedStudentSubject(res.data?.exam_subjects?.[0] || null);
     } catch (err) {
       console.error(err);
       setError("Failed to load details for the selected student.");
@@ -582,82 +588,121 @@ useEffect(() => {
   // --- SUB-RENDERERS ---
 
   const renderStudentMasteryBars = (studentDetail) => {
-    const chapters = studentDetail.chapters;
     const mastery = studentDetail.mastery;
     const chapterTopics = studentDetail.chapter_topics || {};
+    const examSubjects = studentDetail.exam_subjects || [];
+    const subjects = studentDetail.subjects || {};
 
-    if (!chapters || Object.keys(chapters).length === 0) {
+    const hasAnySubjectData = examSubjects.length > 0;
+    if (!hasAnySubjectData) {
       return <p className="text-xs text-brand-muted-light">No subject mastery data yet. Student needs to submit tests.</p>;
     }
+
+    const activeSubject = selectedStudentSubject || examSubjects[0];
+    const chaptersForActiveSubject = subjects[activeSubject] || {};
+
     return (
-      <div className="space-y-4">
-        {Object.keys(chapters).map((chapter) => {
-          const chapData = chapters[chapter];
-          const acc = Math.round(chapData.accuracy || 0);
-          
-          let progressColor = "bg-amber-500";
-          let labelColor = "text-amber-600";
-          if (acc >= 65) {
-            progressColor = "bg-emerald-500";
-            labelColor = "text-emerald-600";
-          } else if (acc < 40) {
-            progressColor = "bg-rose-500";
-            labelColor = "text-rose-500";
-          }
-
-          const childTopics = chapterTopics[chapter] || [];
-          const isExpanded = !!expandedStudentChapters[chapter];
-
-          return (
-            <div key={chapter} className="flex flex-col gap-1.5 border border-brand-border-light/20 bg-brand-bg-light/10 rounded-lg p-2">
-              <div 
-                className="flex items-center justify-between text-xs font-bold cursor-pointer hover:bg-brand-bg-light/30 p-1 rounded transition-colors"
-                onClick={() => setExpandedStudentChapters(prev => ({ ...prev, [chapter]: !prev[chapter] }))}
+      <div>
+        {/* Subject Tabs: Physics / Chemistry / Mathematics (or Biology) */}
+        <div className="flex flex-wrap gap-2 mb-5">
+          {examSubjects.map((subject) => {
+            const subjectChapters = subjects[subject] || {};
+            const chapterCount = Object.keys(subjectChapters).length;
+            const isActive = activeSubject === subject;
+            return (
+              <button
+                key={subject}
+                onClick={() => setSelectedStudentSubject(subject)}
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                  isActive
+                    ? "bg-brand-accent text-white shadow-sm"
+                    : "bg-brand-bg-light/70 text-brand-muted-light hover:bg-brand-bg-light hover:text-brand-text-light"
+                }`}
               >
-                <div className="flex items-center gap-1.5">
-                  {childTopics.length > 0 ? (
-                    isExpanded ? <ChevronDown className="w-3.5 h-3.5 text-brand-muted-light" /> : <ChevronRight className="w-3.5 h-3.5 text-brand-muted-light" />
-                  ) : <div className="w-3.5 h-3.5" />}
-                  <span className="text-brand-text-light">{chapter}</span>
-                </div>
-                <span className={labelColor}>{acc}%</span>
-              </div>
-              <div className="w-full h-1.5 bg-brand-bg-light/40 rounded-full overflow-hidden relative ml-5" style={{ width: 'calc(100% - 1.25rem)' }}>
-                <div
-                  className={`h-full rounded-full transition-all duration-300 ${progressColor}`}
-                  style={{ width: `${Math.max(acc, 2)}%` }}
-                />
-              </div>
+                {subject}
+                <span className={`ml-1.5 ${isActive ? "text-white/80" : "text-brand-muted-light/70"}`}>
+                  {chapterCount}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-              {/* Drill-down Topics */}
-              {isExpanded && childTopics.length > 0 && (
-                <div className="pl-6 pt-2 space-y-2 border-t border-brand-border-light/10 mt-1">
-                  {childTopics.map(topic => {
-                    const tData = mastery?.[topic];
-                    if (!tData) return null;
-                    const tAcc = Math.round(tData.accuracy || 0);
-                    let tColor = "bg-amber-500";
-                    let tLabelColor = "text-amber-600";
-                    if (tAcc >= 65) { tColor = "bg-emerald-500"; tLabelColor = "text-emerald-600"; }
-                    else if (tAcc < 40) { tColor = "bg-rose-500"; tLabelColor = "text-rose-500"; }
+        {Object.keys(chaptersForActiveSubject).length === 0 ? (
+          <p className="text-xs text-brand-muted-light italic py-4">
+            No {activeSubject} chapters attempted by this student yet.
+          </p>
+        ) : (
+          <div className="space-y-4">
+            {Object.keys(chaptersForActiveSubject).map((chapter) => {
+              const chapData = chaptersForActiveSubject[chapter];
+              const acc = Math.round(chapData.accuracy || 0);
 
-                    return (
-                      <div key={topic} className="flex flex-col gap-1">
-                        <div className="flex justify-between items-center text-[10px] font-semibold">
-                          <span className="text-brand-muted-light">{topic}</span>
-                          <span className={tLabelColor}>{tAcc}%</span>
-                        </div>
-                        <div className="w-full h-1 bg-brand-bg-light/30 rounded-full overflow-hidden relative">
-                          <div className={`h-full rounded-full ${tColor}`} style={{ width: `${Math.max(tAcc, 2)}%` }} />
-                        </div>
-                      </div>
-                    );
-                  })}
+              let progressColor = "bg-amber-500";
+              let labelColor = "text-amber-600";
+              if (acc >= 65) {
+                progressColor = "bg-emerald-500";
+                labelColor = "text-emerald-600";
+              } else if (acc < 40) {
+                progressColor = "bg-rose-500";
+                labelColor = "text-rose-500";
+              }
+
+              const childTopics = chapterTopics[chapter] || [];
+              const isExpanded = !!expandedStudentChapters[chapter];
+
+              return (
+                <div key={chapter} className="flex flex-col gap-1.5 border border-brand-border-light/20 bg-brand-bg-light/10 rounded-lg p-2">
+                  <div
+                    className="flex items-center justify-between text-xs font-bold cursor-pointer hover:bg-brand-bg-light/30 p-1 rounded transition-colors"
+                    onClick={() => setExpandedStudentChapters(prev => ({ ...prev, [chapter]: !prev[chapter] }))}
+                  >
+                    <div className="flex items-center gap-1.5">
+                      {childTopics.length > 0 ? (
+                        isExpanded ? <ChevronDown className="w-3.5 h-3.5 text-brand-muted-light" /> : <ChevronRight className="w-3.5 h-3.5 text-brand-muted-light" />
+                      ) : <div className="w-3.5 h-3.5" />}
+                      <span className="text-brand-text-light">{chapter}</span>
+                    </div>
+                    <span className={labelColor}>{acc}%</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-brand-bg-light/40 rounded-full overflow-hidden relative ml-5" style={{ width: 'calc(100% - 1.25rem)' }}>
+                    <div
+                      className={`h-full rounded-full transition-all duration-300 ${progressColor}`}
+                      style={{ width: `${Math.max(acc, 2)}%` }}
+                    />
+                  </div>
+
+                  {/* Drill-down Topics */}
+                  {isExpanded && childTopics.length > 0 && (
+                    <div className="pl-6 pt-2 space-y-2 border-t border-brand-border-light/10 mt-1">
+                      {childTopics.map(topic => {
+                        const tData = mastery?.[topic];
+                        if (!tData) return null;
+                        const tAcc = Math.round(tData.accuracy || 0);
+                        let tColor = "bg-amber-500";
+                        let tLabelColor = "text-amber-600";
+                        if (tAcc >= 65) { tColor = "bg-emerald-500"; tLabelColor = "text-emerald-600"; }
+                        else if (tAcc < 40) { tColor = "bg-rose-500"; tLabelColor = "text-rose-500"; }
+
+                        return (
+                          <div key={topic} className="flex flex-col gap-1">
+                            <div className="flex justify-between items-center text-[10px] font-semibold">
+                              <span className="text-brand-muted-light">{topic}</span>
+                              <span className={tLabelColor}>{tAcc}%</span>
+                            </div>
+                            <div className="w-full h-1 bg-brand-bg-light/30 rounded-full overflow-hidden relative">
+                              <div className={`h-full rounded-full ${tColor}`} style={{ width: `${Math.max(tAcc, 2)}%` }} />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        )}
       </div>
     );
   };
@@ -847,6 +892,10 @@ useEffect(() => {
                       {renderStudentMasteryBars(studentDetail)}
                     </div>
 
+                    {/* Recurring mistake patterns + AI teaching recommendations sit at the
+                        very end of the mastery profile, in more detail than before:
+                        each item now has a short title, a fuller explanation, and a
+                        priority indicator instead of a single one-line bullet. */}
                     <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Mistake patterns */}
                       <div className="bg-brand-bg-light/45 border border-brand-border-light rounded-xl p-5 text-left">
@@ -854,18 +903,30 @@ useEffect(() => {
                           <ShieldAlert className="w-4 h-4 text-brand-accent" />
                           RECURRING MISTAKE PATTERNS
                         </h3>
-                        <ul className="space-y-2 text-xs text-brand-text-light font-medium pl-2">
+                        <div className="space-y-3">
                           {studentDetail.mistake_patterns?.length > 0 ? (
                             studentDetail.mistake_patterns.map((pattern, pIdx) => (
-                              <li key={pIdx} className="flex gap-2">
-                                <span className="text-brand-accent font-bold">&bull;</span>
-                                <span>{pattern}</span>
-                              </li>
+                              <div key={pIdx} className="border-l-2 border-brand-accent/40 pl-3 py-0.5">
+                                <div className="flex items-center gap-1.5">
+                                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                                    pattern.priority === "high" ? "bg-rose-500" :
+                                    pattern.priority === "medium" ? "bg-amber-500" : "bg-emerald-500"
+                                  }`} />
+                                  <span className="text-xs font-bold text-brand-text-light">
+                                    {pattern.title || pattern}
+                                  </span>
+                                </div>
+                                {pattern.detail && (
+                                  <p className="text-xs text-brand-muted-light font-medium mt-1 leading-relaxed">
+                                    {pattern.detail}
+                                  </p>
+                                )}
+                              </div>
                             ))
                           ) : (
-                            <li className="text-brand-muted-light italic">No critical mistake patterns detected by AI yet.</li>
+                            <p className="text-xs text-brand-muted-light italic">No critical mistake patterns detected by AI yet.</p>
                           )}
-                        </ul>
+                        </div>
                       </div>
 
                       {/* AI Recommendations */}
@@ -874,18 +935,30 @@ useEffect(() => {
                           <Sparkles className="w-4 h-4 text-brand-accent" />
                           AI TEACHING RECOMMENDATIONS
                         </h3>
-                        <ul className="space-y-2 text-xs text-brand-text-light font-medium pl-2">
+                        <div className="space-y-3">
                           {studentDetail.recommendations?.length > 0 ? (
                             studentDetail.recommendations.map((rec, rIdx) => (
-                              <li key={rIdx} className="flex gap-2">
-                                <span className="text-brand-accent font-bold">&bull;</span>
-                                <span>{rec}</span>
-                              </li>
+                              <div key={rIdx} className="border-l-2 border-brand-accent/40 pl-3 py-0.5">
+                                <div className="flex items-center gap-1.5">
+                                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                                    rec.priority === "high" ? "bg-rose-500" :
+                                    rec.priority === "medium" ? "bg-amber-500" : "bg-emerald-500"
+                                  }`} />
+                                  <span className="text-xs font-bold text-brand-text-light">
+                                    {rec.title || rec}
+                                  </span>
+                                </div>
+                                {rec.detail && (
+                                  <p className="text-xs text-brand-muted-light font-medium mt-1 leading-relaxed">
+                                    {rec.detail}
+                                  </p>
+                                )}
+                              </div>
                             ))
                           ) : (
-                            <li className="text-brand-muted-light italic">All clear! No current recommendations needed.</li>
+                            <p className="text-xs text-brand-muted-light italic">All clear! No current recommendations needed.</p>
                           )}
-                        </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -992,10 +1065,24 @@ useEffect(() => {
                         {classData.teaching_recommendations.map((rec, rIdx) => (
                           <li
                             key={rIdx}
-                            className="bg-brand-bg-light/35 border border-brand-border-light rounded-lg p-3 text-xs text-brand-text-light/90 font-semibold flex items-start gap-2"
+                            className="bg-brand-bg-light/35 border border-brand-border-light rounded-lg p-3.5"
                           >
-                            <span className="text-brand-accent text-lg leading-none shrink-0">&bull;</span>
-                            <span>{rec}</span>
+                            <div className="flex items-start gap-2">
+                              <span className={`mt-1 w-2 h-2 rounded-full shrink-0 ${
+                                rec.priority === "high" ? "bg-rose-500" :
+                                rec.priority === "medium" ? "bg-amber-500" : "bg-emerald-500"
+                              }`} />
+                              <div>
+                                <span className="text-xs font-bold text-brand-text-light block">
+                                  {rec.title || rec}
+                                </span>
+                                {rec.detail && (
+                                  <span className="text-xs text-brand-text-light/80 font-medium leading-relaxed block mt-1">
+                                    {rec.detail}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
                           </li>
                         ))}
                       </ul>
