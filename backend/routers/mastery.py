@@ -3,6 +3,7 @@ from firebase_admin import firestore
 from backend.routers.auth import get_current_user
 from backend.firebase_admin_init import db
 from backend.models.schemas import MasteryProfileResponse, MasteryTopicDetail
+from backend.services.subject_utils import resolve_target_exam, group_chapters_by_subject
 
 router = APIRouter(prefix="/api/mastery", tags=["mastery"])
 
@@ -21,7 +22,8 @@ async def get_mastery_profile(user: dict = Depends(get_current_user)):
     joined_date = "July 2026"
     assigned_batch_id = None
     assigned_batch_name = "Not Enrolled"
-    
+    udata = {}
+
     if user_doc.exists:
         udata = user_doc.to_dict()
         name = udata.get("name", name)
@@ -39,12 +41,18 @@ async def get_mastery_profile(user: dict = Depends(get_current_user)):
     
     mastery = {}
     chapters = {}
+    chapter_topics = {}
     tests_completed = 0
     
     if profile_doc.exists:
         pdata = profile_doc.to_dict()
         mastery = pdata.get("mastery", {})
         chapters = pdata.get("chapters", {})
+        # FIX: this field was already being written to the mastery_profiles
+        # doc (teacher.py reads it), but this student-facing endpoint never
+        # read/returned it, so the chapter -> topic drill-down on the
+        # student's own Mastery Profile page never had anything to expand.
+        chapter_topics = pdata.get("chapter_topics", {})
         tests_completed = pdata.get("tests_completed", 0)
 
     # Cast topics to schema structure
@@ -67,12 +75,24 @@ async def get_mastery_profile(user: dict = Depends(get_current_user)):
 
     # Keep mastery_response empty if no attempts exist yet
 
+    # 3. Group chapters into their subject (Physics/Chemistry/Mathematics or
+    # Physics/Chemistry/Biology), always including every canonical subject
+    # for the student's exam track even if it has no attempted chapters yet.
+    # This is what powers the "click a subject to see its chapters" UI, and
+    # guarantees every student on the same exam track has the same subject
+    # keys in their profile.
+    target_exam = resolve_target_exam(db, udata)
+    subjects_response, exam_subjects = group_chapters_by_subject(chapters_response, target_exam)
+
     return MasteryProfileResponse(
         student_id=student_id,
         name=name,
         email=email,
         mastery=mastery_response,
         chapters=chapters_response,
+        subjects=subjects_response,
+        exam_subjects=exam_subjects,
+        chapter_topics=chapter_topics,
         assigned_batch_name=assigned_batch_name,
         tests_completed=tests_completed,
         joined_date=joined_date
