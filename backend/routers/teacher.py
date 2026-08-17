@@ -1,9 +1,218 @@
 from fastapi import APIRouter, Depends, HTTPException
 from backend.routers.auth import get_current_user
 from backend.firebase_admin_init import db
+from backend.services.subject_utils import (
+    get_chapter_subject_map,
+    resolve_target_exam,
+    group_chapters_by_subject,
+    EXAM_SUBJECTS,
+)
 from typing import List, Dict, Any, Optional
 
 router = APIRouter(prefix="/api/teacher", tags=["teacher"])
+
+
+def _build_class_recommendations(roster, weakest_topics, flagged_students, batch_id, batch_name, batch_target_exam):
+    """
+    Builds the class-wide "AI Teaching Recommendations" list.
+
+    - When batch_id is None ("All Classes" filter): produces a broader,
+      more detailed set of recommendations that looks across every batch
+      the teacher owns (weakest chapters, weakest vs strongest batch,
+      flagged students, and overall engagement).
+    - When batch_id is set (a specific batch filter): every recommendation
+      is scoped and worded specifically for that batch - it names the
+      batch, and adds a subject-level (Physics/Chemistry/Math or Bio)
+      breakdown unique to that batch's exam track.
+    """
+    recommendations = []
+    chapter_subject_map = get_chapter_subject_map()
+
+    if not batch_id:
+        # ---------------- ALL CLASSES: detailed, multi-angle ----------------
+        worst = [w for w in weakest_topics[:2] if w["avg_accuracy"] < 50.0]
+        for w in worst:
+            recommendations.append({
+                "title": f"Reinforce {w['topic']}",
+                "detail": (
+                    f"Across every batch you teach, the average accuracy on '{w['topic']}' "
+                    f"is {w['avg_accuracy']}%. This is dragging down overall class performance - "
+                    f"consider a shared remedial session or an extra practice set covering this "
+                    f"chapter before moving further ahead in the syllabus."
+                ),
+                "priority": "high" if w["avg_accuracy"] < 35 else "medium",
+            })
+        if not worst and weakest_topics:
+            strongest = weakest_topics[-1]
+            recommendations.append({
+                "title": "Overall syllabus pace is healthy",
+                "detail": (
+                    f"No chapter is currently averaging below 50% across your batches. "
+                    f"'{strongest['topic']}' is the strongest ({strongest['avg_accuracy']}%) - "
+                    f"maintain the current homework cadence and keep monitoring for regressions."
+                ),
+                "priority": "low",
+            })
+
+        # Per-batch breakdown: which batch needs the most attention
+        batch_groups: Dict[str, List[float]] = {}
+        for r in roster:
+            key = r.get("batch_name") or "Unassigned"
+            batch_groups.setdefault(key, []).append(r["avg_accuracy"])
+        if len(batch_groups) > 1:
+            batch_avgs = {name: (sum(v) / len(v) if v else 0.0) for name, v in batch_groups.items()}
+            weakest_batch = min(batch_avgs, key=batch_avgs.get)
+            strongest_batch = max(batch_avgs, key=batch_avgs.get)
+            if weakest_batch != strongest_batch:
+                recommendations.append({
+                    "title": f"'{weakest_batch}' needs the most attention",
+                    "detail": (
+                        f"Comparing all your batches, '{weakest_batch}' has the lowest average "
+                        f"accuracy ({round(batch_avgs[weakest_batch], 1)}%), while '{strongest_batch}' "
+                        f"leads at {round(batch_avgs[strongest_batch], 1)}%. Consider carrying over "
+                        f"whatever pacing or practice material is working in '{strongest_batch}' to "
+                        f"'{weakest_batch}'."
+                    ),
+                    "priority": "medium",
+                })
+
+        if flagged_students:
+            names = [f["name"] for f in flagged_students[:3]]
+            extra = f" and {len(flagged_students) - 3} more" if len(flagged_students) > 3 else ""
+            recommendations.append({
+                "title": f"{len(flagged_students)} student(s) showing a declining trend",
+                "detail": (
+                    f"Across all batches, {len(flagged_students)} student(s) are trending downward "
+                    f"in at least one chapter - starting with {', '.join(names)}{extra}. A short "
+                    f"1:1 check-in with each can catch the issue before it compounds."
+                ),
+                "priority": "high",
+            })
+        else:
+            recommendations.append({
+                "title": "No declining-performance flags right now",
+                "detail": (
+                    "None of your students are currently trending downward in any chapter. "
+                    "Keep the current pace and revisit this after the next round of tests."
+                ),
+                "priority": "low",
+            })
+
+        low_active = [r["name"] for r in roster if r["tests_completed"] < 2]
+        if low_active:
+            pct = round(len(low_active) / len(roster) * 100) if roster else 0
+            recommendations.append({
+                "title": f"{len(low_active)} student(s) ({pct}%) have low practice activity",
+                "detail": (
+                    f"Students including {', '.join(low_active[:3])} have completed fewer than 2 "
+                    f"practice sessions across all your batches. Consider assigning a lightweight "
+                    f"adaptive paper this week - both to re-engage them and to get enough data for "
+                    f"their mastery profile to be meaningful."
+                ),
+                "priority": "medium",
+            })
+        else:
+            recommendations.append({
+                "title": "Participation is strong across every batch",
+                "detail": (
+                    "Nearly all students across your batches have completed multiple practice "
+                    "sessions. No engagement intervention needed right now."
+                ),
+                "priority": "low",
+            })
+
+    else:
+        # ---------------- SPECIFIC BATCH: tightly scoped & customized ----------------
+        exam_label = f" ({batch_target_exam})" if batch_target_exam else ""
+
+        worst = [w for w in weakest_topics[:2] if w["avg_accuracy"] < 50.0]
+        for w in worst:
+            subject = chapter_subject_map.get(w["topic"], "General")
+            recommendations.append({
+                "title": f"'{batch_name}'{exam_label}: reinforce {w['topic']}",
+                "detail": (
+                    f"Within '{batch_name}', the class average on '{w['topic']}' ({subject}) is "
+                    f"{w['avg_accuracy']}%. Assign a targeted practice set for this chapter before "
+                    f"the batch's next test, and consider a short recap at the start of the next "
+                    f"{subject} class."
+                ),
+                "priority": "high" if w["avg_accuracy"] < 35 else "medium",
+            })
+        if not worst and weakest_topics:
+            strongest = weakest_topics[-1]
+            recommendations.append({
+                "title": f"'{batch_name}' is on track",
+                "detail": (
+                    f"No chapter in '{batch_name}' is currently averaging below 50%. "
+                    f"'{strongest['topic']}' is the batch's strongest chapter "
+                    f"({strongest['avg_accuracy']}%) - maintain the current schedule for this group."
+                ),
+                "priority": "low",
+            })
+
+        if flagged_students:
+            names = [f["name"] for f in flagged_students[:3]]
+            extra = " and others" if len(flagged_students) > 3 else ""
+            recommendations.append({
+                "title": f"{len(flagged_students)} student(s) in '{batch_name}' trending down",
+                "detail": (
+                    f"{', '.join(names)}{extra} in this batch show a declining mastery trend in at "
+                    f"least one chapter. Since this is a single batch, a quick group discussion on "
+                    f"the affected chapter(s) alongside individual check-ins should help."
+                ),
+                "priority": "high",
+            })
+        else:
+            recommendations.append({
+                "title": f"No flags in '{batch_name}' this week",
+                "detail": f"Every student in '{batch_name}' is holding steady or improving. No intervention needed for this batch right now.",
+                "priority": "low",
+            })
+
+        low_active = [r["name"] for r in roster if r["tests_completed"] < 2]
+        if low_active:
+            extra = " and others" if len(low_active) > 3 else ""
+            recommendations.append({
+                "title": f"Low engagement in '{batch_name}'",
+                "detail": (
+                    f"{', '.join(low_active[:3])}{extra} in this batch have completed fewer than 2 "
+                    f"practice sessions. A batch-wide adaptive paper assigned this week would give "
+                    f"you fresher mastery data for the whole group."
+                ),
+                "priority": "medium",
+            })
+        else:
+            recommendations.append({
+                "title": f"'{batch_name}' is actively practicing",
+                "detail": "Most students in this batch are completing practice papers regularly. Keep the current cadence.",
+                "priority": "low",
+            })
+
+        # Subject-wise breakdown - unique to a specific batch's exam track
+        if batch_target_exam:
+            exam_subjects = EXAM_SUBJECTS.get(batch_target_exam, EXAM_SUBJECTS["JEE"])
+            subject_scores: Dict[str, List[float]] = {s: [] for s in exam_subjects}
+            for w in weakest_topics:
+                subj = chapter_subject_map.get(w["topic"])
+                if subj in subject_scores:
+                    subject_scores[subj].append(w["avg_accuracy"])
+            scored = {s: (sum(v) / len(v)) for s, v in subject_scores.items() if v}
+            if len(scored) > 1:
+                weakest_subject = min(scored, key=scored.get)
+                others = ", ".join(f"{s} ({round(v, 1)}%)" for s, v in scored.items() if s != weakest_subject)
+                recommendations.append({
+                    "title": f"'{batch_name}': {weakest_subject} needs the most focus",
+                    "detail": (
+                        f"Averaging across all attempted chapters, {weakest_subject} is this batch's "
+                        f"weakest subject at {round(scored[weakest_subject], 1)}%, compared to "
+                        f"{others}. Worth allocating extra {weakest_subject} practice for this batch "
+                        f"specifically."
+                    ),
+                    "priority": "medium",
+                })
+
+    return recommendations
+
 
 @router.get("/analytics")
 async def get_class_analytics(batch_id: Optional[str] = None, user: dict = Depends(get_current_user)):
@@ -19,6 +228,7 @@ async def get_class_analytics(batch_id: Optional[str] = None, user: dict = Depen
 
     # 1b. If a specific batch is requested, confirm it exists and belongs to this teacher.
     batch_name = None
+    batch_target_exam = None
     if batch_id:
         batch_doc = db.collection("batches").document(batch_id).get()
         if not batch_doc.exists:
@@ -27,9 +237,15 @@ async def get_class_analytics(batch_id: Optional[str] = None, user: dict = Depen
         if batch_data.get("teacher_id") != uid:
             raise HTTPException(status_code=403, detail="You do not own this batch.")
         batch_name = batch_data.get("name", "")
+        batch_target_exam = batch_data.get("target_exam")
 
     try:
-        # 2. Fetch student profiles and users - scoped to the selected batch if provided
+        # 2. Fetch student profiles and users - scoped to the selected batch if provided.
+        # FIX (issue 5): students here are always counted live from the `users`
+        # collection via assigned_batch_id, the same source of truth used by
+        # Batch Management (see batches.py list_batches, which now also counts
+        # live instead of trusting the batch doc's `current_count` field). This
+        # keeps the numbers shown in Class Pulse and Batch Management in sync.
         if batch_id:
             students_ref = (
                 db.collection("users")
@@ -47,9 +263,6 @@ async def get_class_analytics(batch_id: Optional[str] = None, user: dict = Depen
                 "name": sdata.get("name", "Unknown Student"),
                 "email": sdata.get("email", ""),
                 "joined_date": sdata.get("joined_date", "July 2026"),
-                # FIX: these were missing before, so every roster entry's
-                # batch_id/batch_name fell back to None regardless of the
-                # student's actual assigned batch, breaking the batch filter.
                 "assigned_batch_id": sdata.get("assigned_batch_id"),
                 "assigned_batch_name": sdata.get("assigned_batch_name")
             }
@@ -66,10 +279,6 @@ async def get_class_analytics(batch_id: Optional[str] = None, user: dict = Depen
 
         # 3. Build Roster
         roster = []
-        default_topics = [
-            "Mechanics", "Thermodynamics", "Electrochemistry", "Organic Chemistry",
-            "Inorganic Chemistry", "Calculus", "Genetics", "Human Physiology"
-        ]
 
         for s_id, meta in student_metadata.items():
             profile = student_profiles.get(s_id, {})
@@ -145,41 +354,10 @@ async def get_class_analytics(batch_id: Optional[str] = None, user: dict = Depen
                 })
 
         # 7. AI-Driven Class-wide Teaching Recommendations
-        recommendations = []
-        
-        # Recommendation 1: Weakest Subject Focus
-        if weakest_topics:
-            lowest = weakest_topics[0]
-            if lowest["avg_accuracy"] < 50.0:
-                recommendations.append(
-                    f"Prioritize Remedial Session: The class average for '{lowest['topic']}' is currently {lowest['avg_accuracy']}%. Assign additional practice modules here."
-                )
-            else:
-                recommendations.append(
-                    f"Steady Progress: '{weakest_topics[-1]['topic']}' is the strongest class topic ({weakest_topics[-1]['avg_accuracy']}%). Maintain standard homework schedules."
-                )
-
-        # Recommendation 2: Flagged Students Alert
-        if len(flagged_students) > 0:
-            names = [f["name"] for f in flagged_students[:3]]
-            recommendations.append(
-                f"Declining Performance Alert: {len(flagged_students)} students show declining mastery trends. We suggest checking in with {', '.join(names)}."
-            )
-        else:
-            recommendations.append(
-                "Excellent Consistency: No students are currently flagged with declining performance trends."
-            )
-
-        # Recommendation 3: Practice Frequency Recommendation
-        low_active_students = [r["name"] for r in roster if r["tests_completed"] < 2]
-        if low_active_students:
-            recommendations.append(
-                f"Engagement Nudge: Students like {', '.join(low_active_students[:3])} have completed fewer than 2 practice sessions. Recommend launching adaptive papers."
-            )
-        else:
-            recommendations.append(
-                "High Participation: Most batch members are actively completing practice papers."
-            )
+        # (issue 1: detailed for "All Classes", customized per selected batch)
+        recommendations = _build_class_recommendations(
+            roster, weakest_topics, flagged_students, batch_id, batch_name, batch_target_exam
+        )
 
         return {
             "roster": roster,
@@ -201,7 +379,7 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
     """
     Returns full details for a selected student, including:
     - Profile metadata
-    - Topic-wise mastery bars
+    - Topic-wise mastery bars, grouped by subject
     - Response speed analysis
     - Recurring mistake patterns summarized from their incorrect submissions
     """
@@ -274,6 +452,12 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
         # raise a NameError / 500 error any time this endpoint was hit.
         chapter_topics = pdata.get("chapter_topics", {}) if profile_doc.exists else {}
 
+        # Group chapters into subjects (issue 2 & 4): every student on the
+        # same exam track gets the same subject keys, even if a subject has
+        # no attempted chapters yet.
+        target_exam = resolve_target_exam(db, sdata)
+        subjects_response, exam_subjects = group_chapters_by_subject(chapters_response, target_exam)
+
         # Speed analysis
         avg_speed_sec = round(total_time / total_attempts, 1) if total_attempts > 0 else 0.0
         speed_status = "STABLE"
@@ -283,7 +467,8 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
             speed_status = "FAST"
 
         # 4. Generate recurring mistake patterns from submission history
-        # We look at wrong answers in the submissions collection
+        # (issue 3: more detailed - percentage breakdown + top 2 error chapters
+        # instead of just 1)
         submissions_ref = db.collection("submissions").where("student_id", "==", student_id).stream()
         mistake_counts = {"conceptual": 0, "computational": 0}
         mistake_topics = {}
@@ -301,45 +486,149 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
 
         mistake_patterns = []
         if total_attempts == 0:
-            mistake_patterns.append("Student has not completed any tests yet.")
+            mistake_patterns.append({
+                "title": "No test data yet",
+                "detail": "This student hasn't completed any tests yet, so no mistake pattern can be detected. Encourage them to take the Diagnostic Practice Test to get started.",
+                "priority": "low",
+            })
         else:
             total_errors = sum(mistake_counts.values())
             if total_errors == 0:
-                mistake_patterns.append("No repeating mistake patterns detected. Keeping up strong progress!")
+                mistake_patterns.append({
+                    "title": "No repeating mistake patterns",
+                    "detail": "Every attempted question so far has been answered correctly, or the errors are too scattered to form a pattern. Keep up the current level of practice.",
+                    "priority": "low",
+                })
             else:
-                if mistake_counts.get("conceptual", 0) > mistake_counts.get("computational", 0):
-                    mistake_patterns.append(f"Primary error style: Conceptual gaps ({mistake_counts.get('conceptual')} flags). Focus on core formula derivations.")
-                else:
-                    mistake_patterns.append(f"Primary error style: Computational slips ({mistake_counts.get('computational')} flags). Review numerical calculations carefully.")
-                
-                # Identify weakest topic by errors
-                if mistake_topics:
-                    weakest_by_error = max(mistake_topics, key=mistake_topics.get)
-                    mistake_patterns.append(f"Most errors occurred in {weakest_by_error} ({mistake_topics[weakest_by_error]} wrong responses). Revisit textbook worksheets.")
+                conceptual = mistake_counts.get("conceptual", 0)
+                computational = mistake_counts.get("computational", 0)
+                conceptual_pct = round(conceptual / total_errors * 100) if total_errors else 0
+                computational_pct = round(computational / total_errors * 100) if total_errors else 0
 
-        # 5. AI Student-specific Teaching Recommendations
+                if conceptual > computational:
+                    mistake_patterns.append({
+                        "title": f"Primary error style: Conceptual gaps ({conceptual_pct}% of errors)",
+                        "detail": (
+                            f"{conceptual} of this student's {total_errors} recorded mistakes stem "
+                            f"from conceptual misunderstanding rather than calculation slips, versus "
+                            f"{computational} computational errors ({computational_pct}%). This usually "
+                            f"means the underlying formula or derivation isn't fully internalized yet - "
+                            f"focus remediation on 'why', not just 'how'."
+                        ),
+                        "priority": "high" if conceptual_pct >= 65 else "medium",
+                    })
+                else:
+                    mistake_patterns.append({
+                        "title": f"Primary error style: Computational slips ({computational_pct}% of errors)",
+                        "detail": (
+                            f"{computational} of this student's {total_errors} recorded mistakes are "
+                            f"arithmetic or calculation errors rather than conceptual gaps, versus "
+                            f"{conceptual} conceptual errors ({conceptual_pct}%). The underlying concept "
+                            f"is likely understood - the issue is execution speed/accuracy under test "
+                            f"conditions."
+                        ),
+                        "priority": "high" if computational_pct >= 65 else "medium",
+                    })
+
+                # Top 2 weakest-by-error topics instead of just 1
+                if mistake_topics:
+                    sorted_topics = sorted(mistake_topics.items(), key=lambda kv: kv[1], reverse=True)[:2]
+                    for t_name, t_count in sorted_topics:
+                        mistake_patterns.append({
+                            "title": f"Recurring errors in {t_name}",
+                            "detail": (
+                                f"{t_count} of this student's wrong answers came from {t_name}. "
+                                f"Consider assigning a focused worksheet on this topic and reviewing "
+                                f"1-2 of their incorrect attempts together to pin down the exact "
+                                f"misconception."
+                            ),
+                            "priority": "medium",
+                        })
+
+        # 5. AI Student-specific Teaching Recommendations (issue 3: more detail)
         rec_list = []
         if tests_completed == 0:
-            rec_list.append("Prompt student to take the Diagnostic Practice Test to set up their baseline profile.")
+            rec_list.append({
+                "title": "Get the student started",
+                "detail": (
+                    "Prompt the student to take the Diagnostic Practice Test. This establishes their "
+                    "baseline mastery profile, without which personalized recommendations, chapter "
+                    "mastery, and mistake-pattern detection can't run."
+                ),
+                "priority": "high",
+            })
         else:
             # Pacing
             if speed_status == "SLOW":
-                rec_list.append(f"Student is pacing slow ({avg_speed_sec}s avg per question). Suggest doing shorter, timed mock drills.")
+                rec_list.append({
+                    "title": f"Pacing is slow ({avg_speed_sec}s/question avg)",
+                    "detail": (
+                        f"This student is averaging {avg_speed_sec} seconds per question, above the "
+                        f"75s threshold flagged as slow. Suggest shorter, strictly timed mock drills "
+                        f"(e.g. 20 questions in 20 minutes) to build speed without sacrificing the "
+                        f"accuracy they already have."
+                    ),
+                    "priority": "medium",
+                })
             elif speed_status == "FAST":
-                rec_list.append(f"Student is pacing fast ({avg_speed_sec}s avg). Remind them to double check their algebra to reduce slips.")
+                rec_list.append({
+                    "title": f"Pacing is fast ({avg_speed_sec}s/question avg)",
+                    "detail": (
+                        f"At {avg_speed_sec}s per question (under the 45s fast threshold), this "
+                        f"student may be rushing. Remind them to double-check algebra/units before "
+                        f"submitting, especially on multi-step numerical problems, to reduce "
+                        f"avoidable slips."
+                    ),
+                    "priority": "medium",
+                })
+            else:
+                rec_list.append({
+                    "title": "Pacing is on track",
+                    "detail": f"At {avg_speed_sec}s per question on average, this student's pace is within the healthy range. No pacing intervention needed right now.",
+                    "priority": "low",
+                })
             
             # Weak topic
             weak_list = [chap for chap, data in chapters_response.items() if data["accuracy"] < 40.0]
             if weak_list:
-                rec_list.append(f"Weak chapters detected: {', '.join(weak_list)}. Assign custom targets focusing on these areas.")
+                rec_list.append({
+                    "title": f"{len(weak_list)} weak chapter(s) detected",
+                    "detail": (
+                        f"Accuracy is below 40% in: {', '.join(weak_list)}. Assign custom practice "
+                        f"targets for these specific chapters rather than general revision, so the "
+                        f"student's limited study time goes where it matters most."
+                    ),
+                    "priority": "high",
+                })
             else:
-                rec_list.append("Student shows great baseline accuracy across all active chapters.")
+                rec_list.append({
+                    "title": "Strong baseline across active chapters",
+                    "detail": "No chapter is currently below the 40% weak-threshold. Continue with the standard syllabus pace for this student.",
+                    "priority": "low",
+                })
 
             # Socratic Mistake Reflection Recommendations
             if mistake_counts.get("conceptual", 0) > mistake_counts.get("computational", 0):
-                rec_list.append("Provide standard worked derivations or tutorial links to address their high conceptual mistake rate.")
+                rec_list.append({
+                    "title": "Address conceptual gaps directly",
+                    "detail": (
+                        "Given this student's conceptual-mistake rate, share worked derivations or "
+                        "short tutorial links for the chapters they're struggling with, rather than "
+                        "just assigning more practice questions - repetition alone won't fix a "
+                        "misunderstood concept."
+                    ),
+                    "priority": "medium",
+                })
             elif mistake_counts.get("computational", 0) > 0:
-                rec_list.append("Recommend step-by-step arithmetic writeups or formula cheat sheets to reduce calculation errors.")
+                rec_list.append({
+                    "title": "Reduce computational errors",
+                    "detail": (
+                        "Recommend step-by-step arithmetic writeups or a formula cheat-sheet the "
+                        "student can reference while practicing, to cut down on calculation slips "
+                        "that are otherwise costing them marks on concepts they already understand."
+                    ),
+                    "priority": "medium",
+                })
 
         return {
             "student_id": student_id,
@@ -350,6 +639,8 @@ async def get_student_details(student_id: str, user: dict = Depends(get_current_
             "tests_completed": tests_completed,
             "mastery": mastery_response,
             "chapters": chapters_response,
+            "subjects": subjects_response,
+            "exam_subjects": exam_subjects,
             "chapter_topics": chapter_topics,
             "speed": {
                 "avg_time_sec": avg_speed_sec,
